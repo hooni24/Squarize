@@ -14,16 +14,29 @@
 			<result>index.jsp</result>
 		</action>
 
-		<action name="kakao">
-			<result>kakaoTest.jsp</result>
+		<action name="about_e">
+			<result>assets/pages/about_e.jsp</result>
+		</action>
+
+		<action name="contact_e">
+			<result>assets/pages/contact_e.jsp</result>
+		</action>
+
+		<action name="faq_e">
+			<result>assets/pages/faq_e.jsp</result>
+		</action>
+
+		<action name="persons_e">
+			<result>assets/pages/persons_e.jsp</result>
 		</action>
 		
-		
-		
-		
+		<action name="submit_e">
+			<result>assets/pages/submit_e.jsp</result>
+		</action>
 		
     </package>
 
-<!--     <include file="인클루드할 xml경로"/> -->
+    <include file="action/seekingAction.xml"></include>
+    <include file="action/buskingAction.xml"></include>
 
 </struts>
