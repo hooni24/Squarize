@@ -1,18 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SQUARIZE</title>
+	<style>
+		*{margin:0; padding:0;}
+		a, a span{
+		}
+		span.busking_text, span.seeking_text{
+			font: bold 4em 맑은 고딕;
+			display: inline-block;
+			position: absolute;
+			z-index: 10;
+			color: black;
+		}
+		span.busking_text{
+			left: 18%;
+			top: 50%;
+			cursor: pointer;
+		}
+		span.seeking_text{
+			right: 18%;
+			top: 50%;
+			cursor: pointer;
+		}
+		img.busking{
+			display: inline-block;
+			width: 50%;
+			margin-right: -3px;
+			filter: blur(8px);
+			transition-duration: 0.8s;
+			border-radius: 50px 0 0 50px;
+		}
+		img.seeking{
+			display: inline-block;
+			width: 50%;
+			margin-left: -3px;
+			filter: blur(8px);
+			transition-duration: 0.8s;
+			border-radius: 0 50px 50px 0;
+		}
+		p.title{
+			font: bold 2em 맑은 고딕;
+			text-align: center;
+			margin: 50px 0;
+		}
+	</style>
+	
+	<script src="assets/js/jquery-2.1.0.min.js"></script>
+	<script>
+		$(function(){
+			$("img.seeking").on("mouseenter", function(){
+				$(this).css("filter", "none");
+			});
+			$("img.seeking").on("mouseleave", function(){
+				$(this).css("filter", "blur(8px)");
+			});
+			$("img.busking").on("mouseenter", function(){
+				$(this).css("filter", "none");
+			});
+			$("img.busking").on("mouseleave", function(){
+				$(this).css("filter", "blur(8px)");
+			});
+		});
+	</script>
 </head>
 <body>
-
-<h2>[ SQUARIZE ]</h2>
-
-<a href="toBuskingMain.action">BUSKING</a>
-<br>
-<a href="toSeekingMain.action">SEEKING</a>
-
+	<p class="title">[ SQUARIZE ]</p>
+	
+	<a href="toBuskingMain.action">
+		<span class="busking_text">BUSKING</span>
+		<img src="assets/img/main/busking.jpg" class="busking">
+	</a>
+	
+	<a href="toSeekingMain.action">
+		<span class="seeking_text">SEEKING</span>
+		<img src="assets/img/main/seeking.jpg" class="seeking">
+	</a>
+	
 </body>
 </html>
