@@ -14,6 +14,14 @@
 			<result>index.jsp</result>
 		</action>
 
+		<action name="kakao">
+			<result>kakaoTest.jsp</result>
+		</action>
+		
+		
+		
+		
+		
     </package>
 
 <!--     <include file="인클루드할 xml경로"/> -->
