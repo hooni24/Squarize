@@ -250,7 +250,7 @@
             .fail(function( jqxhr, textStatus,	 error ) {
                 console.log(error);
             })
-    ;ㅌ
+    ;
 </script>
 
 </body>
