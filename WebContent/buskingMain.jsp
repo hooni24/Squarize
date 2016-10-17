@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 
 <html lang="en-US">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
 
     <title>SQUARIZE - BUSKING</title>
 
@@ -34,20 +36,21 @@
                                 <li role="presentation"><a href="#sign-in" aria-controls="sign-in" role="tab" data-toggle="tab" data-transition-parent="#sign-in">Sign In</a></li>
                                 <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register">Register</a></li>
                             </ul>
+                           
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane" id="sign-in">
                                     <form role="form" method="post" id="form-sign-in">
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="sign-in-id" name="sign-in-id" placeholder="ID">
+                                            <input type="text" class="form-control" id="login-id" name="login-id" placeholder="ID">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="password" class="form-control" id="sing-in-pw" name="sing-in-pw" placeholder="Password">
+                                            <input type="password" class="form-control" id="login-pw" name="login-pw" placeholder="Password">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <button type="submit" class="btn btn-primary">Sign In</button>
+                                            <button type="button" class="btn btn-primary" id="login_btn">Sign In</button>
                                         </div>
                                         <!--end .form-group-->
                                     </form>
@@ -105,9 +108,13 @@
         <div class="container">
             <div class="header-inner">
                 <nav class="secondary">
-                    <ul>
+                    <ul class="unlogin">
                         <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#sign-in" data-transition-parent="#header">Sign In</a></li>
                         <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header">Register</a></li>
+                    </ul>
+                    <ul class="login hidden">
+                    	<li class="message"><span id="loginId"></span>님 환영합니다.</li>
+                    	<li id="logout_btn"><a href="#logout">Logout</a></li>
                     </ul>
                 </nav>
                 <!--end Secondary navigation-->

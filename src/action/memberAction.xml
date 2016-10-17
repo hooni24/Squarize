@@ -9,13 +9,15 @@
 
     <package name="member" namespace="/" extends="struts-default, json-default">
 
-		<action name="registerSQmember">
+		<action name="registerSQmember" class="squarize.action.SQ_memberAction" method="registerSQmember">
 			<result type="json"></result>
 		</action>
-		<action name="loginSQmember">
+		<action name="loginSQmember" class="squarize.action.SQ_memberAction" method="loginSQmember">
 			<result type="json"></result>
 		</action>
-		
+		<action name="logoutSQmember" class="squarize.action.SQ_memberAction" method="logoutSQmember">
+			<result type="json"></result>
+		</action>
 		
 		
     </package>

@@ -2,6 +2,21 @@
  * 
  */
 $(function(){
+	$.ajax({
+		url:'loginCheck'
+		,dataType:'String'
+		,success:function(send){
+			var loginId=send.loginId;	
+			if(loginId!=""){
+				$('.close').trigger('click');
+				$('.unlogin').addClass('hidden');
+				$('.login').removeClass('hidden');
+				$('#loginId').html(loginId);
+			}
+			
+		}
+	});
+	
 	$('#register_btn').click(function(){
 		var reg_id=$('#register-id').val();
 		alert("hi1");
@@ -37,8 +52,8 @@ $(function(){
 		}
 		alert("hi3");
 		$.ajax({
-			method:'method'
-			,url:'sq_member_join'
+			method:'post'
+			,url:'registerSQmember'
 			,data:{'sq_member.sq_member_id':reg_id,'sq_member.sq_member_pw':reg_password,'sq_member.sq_member_name':reg_name,'sq_member.sq_member_email':reg_email,'sq_member.sq_member_favorite':reg_favorite}
 			,success:function(){
 				alert("success");
@@ -47,9 +62,66 @@ $(function(){
 				alert("error");
 			}
 		});
-			
-			
-		
-		
 	});
+	
+	
+	$('#login_btn').click(function(){
+		var login_id=$('#login-id').val();
+		var login_pw=$('#login-pw').val();
+		alert(login_id+" pw: "+login_pw);
+		if(login_id.length<1||login_pw.length<1){
+			alert("아이디와 패스워드를 정확히 입력해주십시오 ");
+		}
+		
+		$.ajax({
+			method:'get'
+			,url:'loginSQmember'
+			,data:{"sq_member_id":login_id,"sq_member_pw":login_pw}
+			,dataType:'json'
+			,success:function(send){
+				var user=send.sq_member;
+				var loginId=send.loginId;
+				alert(user.sq_member_name+"님 환영합니다");
+				$('#login-id').val("");
+				$('#login-pw').val("");
+				if(loginId!=""){
+					$('.close').trigger('click');
+					$('.unlogin').addClass('hidden');
+					$('.login').removeClass('hidden');
+					$('#loginId').html(loginId);
+					alert("hi");
+				}else{
+					$('.login').addClass('hidden');
+					$('.unlogin').removeClass('hidden');
+					$('#loginId').html(loginId);
+				}
+			}
+			,error:function(){
+				alert("오류발생");
+			}
+			
+		});
+	});
+	
+	$('#logout_btn').click(function(){
+		alert("hi");
+		$.ajax({
+			method:'get'
+			,url:'logoutSQmember'
+			,success:function(send){
+				alert("logout")
+				var loginId=send.loginId;
+				
+				if(loginId==null){
+					$('.login').addClass('hidden');
+					$('.unlogin').removeClass('hidden');
+					
+				}
+			}
+			,error:function(){
+				alert("error")
+			}
+		});
+	});
+
 })

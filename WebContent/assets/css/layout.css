@@ -4,27 +4,20 @@
 	margin:0;
 	vertical-align: top;
 }
-p.title{
-	font: bold 2em 맑은 고딕;
-	text-align: center;
-	margin: 50px 0;
 
+.login{
+	font-size: 12px;
+	margin-top:10px;
 }
-.login_btn{
-	position: absolute;
-	right:10%;
-	top:6%;
-	width:40px;
-	height:40px;
-	background: url('../img/items/login_mouseoff.png');
-	background-size: 100%;
+.hidden{
+	visibility: hidden;
+	background: orange;
 	-webkit-transition:0.3s;
 	transition:0.3s;
-	cursor:pointer
 }
-.login_btn:hover{
-	width:40px;
-	height:40px;
-	background: url('../img/items/login-mouseon.png');
-	background-size: 100%;
+.message{
+	padding-top:10px;
+	margin-right:30px;
+	font-size:15px;
+	color: rgba(0,0,0,0.5);
 }
