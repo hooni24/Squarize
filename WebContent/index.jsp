@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SQUARIZE</title>
+<link href="https://fonts.googleapis.com/css?family=Bangers|Orbitron" rel="stylesheet">
 	<style>
 		*{margin:0; padding:0;}
 		a, a span{
@@ -43,7 +44,7 @@
 			border-radius: 0 50px 50px 0;
 		}
 		p.title{
-			font: bold 2em 맑은 고딕;
+			font: bold 5em Bangers;
 			text-align: center;
 			margin: 50px 0;
 		}
@@ -68,7 +69,7 @@
 	</script>
 </head>
 <body>
-	<p class="title">[ SQUARIZE ]</p>
+	<p class="title">S Q U A R I Z E</p>
 	
 	<a href="toBuskingMain.action">
 		<span class="busking_text">BUSKING</span>
