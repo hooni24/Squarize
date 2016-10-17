@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 
 <html lang="en-US">
@@ -218,7 +219,7 @@
                             <!-- /.form-group -->
                         </div>
                         
-                 <!-- 반경설정 코드 추가 필요(price 부분 반경으로 변경하기 -->      
+                 <!-- 반경설정 코드 추가 필요(price 부분 반경으로 변경하기) -->      
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label>반경설정</label>
