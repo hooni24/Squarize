@@ -6,7 +6,16 @@
 	<properties resource="db.properties" />
 	
 	<typeAliases>
-		<typeAlias type="squarize.vo.SQ_member" alias="sq_member"/>
+		<typeAlias type="squarize.vo.SQ_ad" alias="SQ_ad"/>
+		<typeAlias type="squarize.vo.SQ_artist" alias="SQ_artist"/>
+		<typeAlias type="squarize.vo.SQ_busking" alias="SQ_busking"/>
+		<typeAlias type="squarize.vo.SQ_favorite" alias="SQ_favorite"/>
+		<typeAlias type="squarize.vo.SQ_member" alias="SQ_member"/>
+		<typeAlias type="squarize.vo.SQ_portfolio" alias="SQ_portfolio"/>
+		<typeAlias type="squarize.vo.SQ_recruit_apply" alias="SQ_recruit_apply"/>
+		<typeAlias type="squarize.vo.SQ_recruit" alias="SQ_recruit"/>
+		<typeAlias type="squarize.vo.SQ_rent_apply" alias="SQ_rent_apply"/>
+		<typeAlias type="squarize.vo.SQ_rent" alias="SQ_rent"/>
 	</typeAliases>
 	
 	<!-- DB접속 정보 셋팅 -->
@@ -24,8 +33,10 @@
 	
 	<!-- SQL문 정의한 파일 포함 -->
 	<mappers>
-		<mapper resource="mapper/testMapper.xml" />
 		<mapper resource="mapper/sq_memberMapper.xml" />
+		<mapper resource="mapper/sq_buskingMapper.xml" />
+		<mapper resource="mapper/sq_seekingMapper.xml" />
+		<mapper resource="mapper/sq_rentMapper.xml" />
 	</mappers>
 	
 </configuration>

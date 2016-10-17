@@ -7,15 +7,18 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
 
-    <package name="busking" namespace="/" extends="struts-default, json-default">
-    
-		<action name="toBuskingMain">
-			<result>buskingMain.jsp</result>
+    <package name="member" namespace="/" extends="struts-default, json-default">
+
+		<action name="registerSQmember">
+			<result type="json"></result>
+		</action>
+		<action name="loginSQmember">
+			<result type="json"></result>
 		</action>
 		
 		
 		
-		
     </package>
+	
 
 </struts>

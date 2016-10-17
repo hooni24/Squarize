@@ -48,5 +48,6 @@
     <include file="action/seekingAction.xml"></include>
     <include file="action/buskingAction.xml"></include>
     <include file="action/rentAction.xml"></include>
+    <include file="action/memberAction.xml"></include>
 
 </struts>

@@ -48,9 +48,7 @@
 			font: bold 5em Bangers;
 			text-align: center;
 			margin: 50px 0;
-
 		}
-		
 		
 	</style>
 	
@@ -73,14 +71,10 @@
 	</script>
 </head>
 <body>
-<<<<<<< HEAD
-	<p class="title">S Q U A R I Z E</p>
-=======
 	<header>
-		<p class="title">[ SQUARIZE ]</p>
+		<p class="title">S Q U A R I Z E</p>
 		<div class="login_btn"></div>
 	</header>
->>>>>>> origin/dev
 	
 	<a href="toBuskingMain.action">
 		<span class="busking_text">BUSKING</span>
