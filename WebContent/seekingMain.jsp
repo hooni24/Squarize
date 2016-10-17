@@ -101,7 +101,7 @@
                 <nav class="main">
                     <div class="brand">
                         <a href="index.action">
-                            <img src="assets/img/logo.png" alt="brand">
+                            <img src="assets/img/logo.png" alt="brand">	<!-- Squarize 로고 박을 자리 -->
                         </a>
                     </div>
                     <ul>
@@ -140,7 +140,7 @@
         </div>
     </header>
     <!--end Header-->
-
+<!-- 여기서 부터 content -->
     <div class="page-content">
         <div class="search collapse in" id="search-collapse">
             <div class="container">
@@ -148,19 +148,24 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
-                                <label for="type">Property Type</label>
-                                <select name="type" multiple title="All" id="type" class="animate" data-transition-parent=".dropdown-menu">
-                                    <option value="1">Apartment</option>
-                                    <option value="2">Condominium</option>
-                                    <option value="3">Cottage</option>
-                                    <option value="4">Flat</option>
+                                <label for="type">검색 키워드</label>
+                                <select name="type" multiple title="전체" id="type" class="animate" data-transition-parent=".dropdown-menu">
+                                    <option value="1">전체</option>
+                                    <option value="2">세션</option>
+                                    <option value="3">장르</option>
+                                    <option value="4">이름</option>
+                             <!--        
                                     <option value="5">House</option>
                                     <option value="6">Construction Site</option>
+                              -->       
                                 </select>
                             </div>
                             <!-- /.form-group -->
                         </div>
                         <!--/.col-md-6-->
+                        
+                <!-- 필요없는 요소 주석처리 -->
+                	<!-- 
                         <div class="col-md-3 col-sm-3">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
@@ -174,11 +179,11 @@
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default plus" type="button"><i class="fa fa-plus"></i></button>
                                             </span>
-                                        </div><!-- /input-group -->
+                                        </div>/input-group
                                     </div>
-                                    <!-- /.form-group -->
+                                    /.form-group
                                 </div>
-                                <!--/.col-md-3-->
+                                /.col-md-3
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label for="bathrooms">Bathrooms</label>
@@ -190,29 +195,34 @@
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default plus" type="button"><i class="fa fa-plus"></i></button>
                                             </span>
-                                        </div><!-- /input-group -->
+                                        </div>/input-group
                                     </div>
-                                    <!-- /.form-group -->
+                                    /.form-group
                                 </div>
-                                <!--/.col-md-3-->
+                                /.col-md-3
                             </div>
                         </div>
+                      -->   
+                <!-- 필요없는 요소 주석 끝 -->
+                        
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
-                                <label for="location">Location</label>
+                                <label for="location">위치</label>
                                 <div class="input-group location">
-                                    <input type="text" class="form-control" id="location" placeholder="Enter Location">
+                                    <input type="text" class="form-control" id="location" placeholder="지역명 입력">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default animate" type="button"><i class="fa fa-map-marker geolocation" data-toggle="tooltip" data-placement="bottom" title="Find my position"></i></button>
+                                        <button class="btn btn-default animate" type="button"><i class="fa fa-map-marker geolocation" data-toggle="tooltip" data-placement="bottom" title="내 위치 선택"></i></button>
                                     </span>
                                 </div>
                             </div>
                             <!-- /.form-group -->
                         </div>
+                        
+                 <!-- 반경설정 코드 추가 필요(price 부분 반경으로 변경하기 -->      
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
-                                <label>Price</label>
-                                <div class="ui-slider" id="price-slider" data-value-min="100" data-value-max="40000" data-value-type="price" data-currency="$" data-currency-placement="before">
+                                <label>반경설정</label>
+                                <div class="ui-slider" id="price-slider" data-value-min="400" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before">
                                     <div class="values clearfix">
                                         <input class="value-min" name="value-min[]" readonly>
                                         <input class="value-max" name="value-max[]" readonly>
@@ -223,6 +233,8 @@
                             <!-- /.form-group -->
                         </div>
                         <!--/.col-md-6-->
+                 <!-- 반경설정 끝 -->       
+                        
                     </div>
                     <!--/.row-->
                 </form>
@@ -243,6 +255,8 @@
                 <!--end Content Loader-->
             </div>
         </div>
+
+<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
 
         <div class="masonry grid full-width animate">
         <div class="item move_from_bottom idle">
@@ -307,6 +321,7 @@
 
         </div>
 
+<!-- 나열부분 끝 -->
     </div>
     <!--end Page Content-->
 </div>

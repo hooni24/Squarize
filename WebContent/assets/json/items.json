@@ -2,12 +2,12 @@
     "data": [
         {
             "id": 1,
-            "title": "2151 Mulberry Avenue",
-            "location": "63 Birch Street",
-            "latitude": 51.538395,
-            "longitude": -0.097418,
+            "[구인]": "밤을 잊은 그대에게 -베이스세션",
+            "위치": "홍대입구",
+            "latitude": 37.5564059,
+            "longitude": 126.9259563,
             "url": "assets/pages/items/1_e.html",
-            "type": "Apartment",
+            "장르": "헤비메탈",
             "type_icon": "",
             "rating": 4,
             "gallery":
