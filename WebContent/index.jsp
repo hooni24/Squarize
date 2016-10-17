@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SQUARIZE</title>
+<link rel="stylesheet" type="text/css" href="./assets/css/layout.css">
 	<style>
 		*{margin:0; padding:0;}
 		a, a span{
@@ -46,7 +47,10 @@
 			font: bold 2em 맑은 고딕;
 			text-align: center;
 			margin: 50px 0;
+
 		}
+		
+		
 	</style>
 	
 	<script src="assets/js/jquery-2.1.0.min.js"></script>
@@ -68,7 +72,10 @@
 	</script>
 </head>
 <body>
-	<p class="title">[ SQUARIZE ]</p>
+	<header>
+		<p class="title">[ SQUARIZE ]</p>
+		<div class="login_btn"></div>
+	</header>
 	
 	<a href="toBuskingMain.action">
 		<span class="busking_text">BUSKING</span>
