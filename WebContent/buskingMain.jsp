@@ -39,11 +39,11 @@
                                 <div role="tabpanel" class="tab-pane" id="sign-in">
                                     <form role="form" method="post" id="form-sign-in">
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="sing-in-name" name="name" placeholder="Name">
+                                            <input type="text" class="form-control" id="sign-in-id" name="sign-in-id" placeholder="ID">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="email" class="form-control" id="sing-in-email" name="email" placeholder="Email">
+                                            <input type="password" class="form-control" id="sing-in-pw" name="sing-in-pw" placeholder="Password">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
@@ -55,23 +55,36 @@
                                 <div role="tabpanel" class="tab-pane" id="register">
                                     <form role="form" method="post" id="form-register">
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                            <input type="text" class="form-control" id="register-id" name="register-id" placeholder="ID">
+                                        </div>
+                                        <!--end .form-group-->
+                                         <div class="form-group animate move_from_bottom_short">
+                                            <input type="text" class="form-control" id="register-name" name="register-name" placeholder="Name">
+                                        </div>
+                                        <!--end .form-group-->                                        
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="email" class="form-control" id="register-email" name="register-email" placeholder="Email">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                            <input type="password" class="form-control" id="register-password" name="register-password" placeholder="Password">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                            <input type="password" class="form-control" id="register-confirm-password" name="register-confirm-password" placeholder="Confirm Password">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
+                                            <select id="register_favorite">
+                                            	<option>선호장르</option>
+                                            	<option>발라드</option>
+                                            	<option>힙합</option>
+                                            	<option>인디</option>
+                                            </select>
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <button type="submit" class="btn btn-primary">Register</button>
+                                            <button type="button" class="btn btn-primary" id="register_btn">Register</button>
                                         </div>
                                         <!--end .form-group-->
                                     </form>
@@ -217,6 +230,7 @@
 <script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
 <script type="text/javascript" src="assets/js/functions.js"></script>
 <script type="text/javascript" src="assets/js/custom.js"></script>
+<script type="text/javascript" src="assets/js/sq_member.js"></script>
 
 <!--[if lte IE 9]>
 <script type="text/javascript" src="assets/js/ie-scripts.js"></script>
@@ -233,10 +247,10 @@
             .done(function(json) {
                 createHomepageGoogleMap(_latitude,_longitude,json);
             })
-            .fail(function( jqxhr, textStatus, error ) {
+            .fail(function( jqxhr, textStatus,	 error ) {
                 console.log(error);
             })
-    ;
+    ;ㅌ
 </script>
 
 </body>

@@ -5,6 +5,10 @@
 	<!-- DB접속정보 값을 가지고 있는 파일 -->
 	<properties resource="db.properties" />
 	
+	<typeAliases>
+		<typeAlias type="squarize.vo.SQ_member" alias="sq_member"/>
+	</typeAliases>
+	
 	<!-- DB접속 정보 셋팅 -->
 	<environments default="development">
 		<environment id="development">
@@ -21,6 +25,7 @@
 	<!-- SQL문 정의한 파일 포함 -->
 	<mappers>
 		<mapper resource="mapper/testMapper.xml" />
+		<mapper resource="mapper/sq_memberMapper.xml" />
 	</mappers>
 	
 </configuration>

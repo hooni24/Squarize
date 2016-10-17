@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SQUARIZE</title>
 <link href="https://fonts.googleapis.com/css?family=Bangers|Orbitron" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./assets/css/layout.css">
 	<style>
 		*{margin:0; padding:0;}
 		a, a span{
@@ -47,7 +48,10 @@
 			font: bold 5em Bangers;
 			text-align: center;
 			margin: 50px 0;
+
 		}
+		
+		
 	</style>
 	
 	<script src="assets/js/jquery-2.1.0.min.js"></script>
@@ -69,7 +73,14 @@
 	</script>
 </head>
 <body>
+<<<<<<< HEAD
 	<p class="title">S Q U A R I Z E</p>
+=======
+	<header>
+		<p class="title">[ SQUARIZE ]</p>
+		<div class="login_btn"></div>
+	</header>
+>>>>>>> origin/dev
 	
 	<a href="toBuskingMain.action">
 		<span class="busking_text">BUSKING</span>

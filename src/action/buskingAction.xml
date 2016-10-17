@@ -13,9 +13,17 @@
 			<result>buskingMain.jsp</result>
 		</action>
 		
+		<action name="registerSQmember">
+			<result type="jason"></result>
+		</action>
+		<action name="loginSQmember">
+			<result type="jason"></result>
+		</action>
+		
 		
 		
 		
     </package>
+	
 
 </struts>
