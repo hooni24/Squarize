@@ -180,14 +180,20 @@ CREATE TABLE SQ_RENT
 	SQ_RENT_ID number(10) NOT NULL,
 	-- 회원 아이디 : 일반회원 ID
 	SQ_MEMBER_ID varchar2(15) NOT NULL,
+  -- 대관글 올린 밴드 이름
+  SQ_RENT_BAND_NAME varchar2(30) NOT NULL,
+  -- 콘서트 예정일
+  SQ_RENT_CONCERT_DATE date,
 	-- 대관정보 등록일
 	SQ_RENT_INPUT_DATE date DEFAULT SYSDATE NOT NULL,
 	-- 대관 팀 모집 마감날짜
 	SQ_RENT_LIMIT date NOT NULL,
 	-- 대관정보 게시물 내용
 	SQ_RENT_INFO varchar2(1000) NOT NULL,
-	-- 대관 게시물 사진 경로
-	SQ_RENT_PHOTO varchar2(50),
+	-- 대관 게시물 사진 저장된 파일명
+	SQ_RENT_PHOTO varchar2(300),
+  -- 대관 게시물 사진 원래 파일명
+  SQ_RENT_PHOTO_ORIGINAL varchar2(300),
 	PRIMARY KEY (SQ_RENT_ID)
 );
 
@@ -309,4 +315,6 @@ INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', sysdate, 'GUITAR',
 INSERT INTO SQ_RECRUIT_APPLY VALUES (SQ_RECRUIT_APPLY_ID_SQ.nextval, 1, 'aa');
 
 commit;
+
+
 

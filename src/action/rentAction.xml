@@ -9,14 +9,17 @@
 
     <package name="rent" namespace="/" extends="struts-default, json-default">
     
-		<action name="toRentMain">
+		<action name="toRentMain" class="squarize.action.SQ_rentAction" method="getAllRent">
 			<result>rentMain.jsp</result>
 		</action>
 		
-		<action name="toAddRent">
+		<action name="toAddRent" class="squarize.action.SQ_rentAction">
 			<result>assets/pages/add_rent.jsp</result>
 		</action>
 		
+		<action name="insertRent" class="squarize.action.SQ_rentAction" method="insertRent">
+			<result type="redirect">toRentMain.action</result>
+		</action>
 		
 		
     </package>

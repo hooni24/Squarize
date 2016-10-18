@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="sq_memberMapper">
+<mapper namespace="sq_rentMapper">
+
+	<select id="getAllRent" resultType="SQ_rent">
+		SELECT *
+		FROM sq_rent
+		ORDER BY sq_rent_id
+	</select>
+
+	<insert id="insertRent" parameterType="SQ_rent">
+		INSERT INTO sq_rent
+		VALUES (sq_rent_id_sq.nextval, #{sq_member_id}, #{sq_rent_band_name}, to_date(#{sq_rent_concert_date}, 'yyyy-mm-dd hh24:mi'), default, to_date(#{sq_rent_limit}, 'yyyy-mm-dd hh24:mi'), #{sq_rent_info}, #{sq_rent_photo}, #{sq_rent_photo_original})
+	</insert>
 
 </mapper>

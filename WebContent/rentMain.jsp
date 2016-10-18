@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 
 <html lang="en-US">
@@ -243,70 +244,45 @@
                 <!--end Content Loader-->
             </div>
         </div>
-
-        <div class="masonry grid full-width animate">
-        <div class="item move_from_bottom idle">
-            <a href="assets/pages/items/1_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                <div class="inner">
-                    <div class="image">
-                        <div class="price average-color"><span>$25.000</span></div>
-                        <img src="assets/img/items/1.jpg" alt="">
-                    </div>
-                    <div class="item-content">
-                        <header class="average-color">
-                            <h2>2151 Mulberry Avenue</h2>
-                            <h3>63 Birch Street</h3>
-                        </header>
-                        <footer>
-                            <dl>
-                                <dt>Bathrooms</dt>
-                                <dd>1</dd>
-                                <dt>Bedrooms</dt>
-                                <dd>2</dd>
-                                <dt>Area</dt>
-                                <dd>165m<sup>2</sup></dd>
-                                <dt>Garages</dt>
-                                <dd>1</dd>
-                            </dl>
-                        </footer>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!--end .item-->
-
-        <div class="item move_from_bottom idle">
-            <a href="assets/pages/items/2_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                <div class="inner">
-                    <div class="image">
-                        <div class="price average-color"><span>$49.000</span></div>
-                        <img src="assets/img/items/2.jpg" alt="">
-                    </div>
-                    <div class="item-content">
-                        <header class="average-color">
-                            <h2>3295 Valley Street</h2>
-                            <h3>Collingswood</h3>
-                        </header>
-                        <footer>
-                            <dl>
-                                <dt>Bathrooms</dt>
-                                <dd>1</dd>
-                                <dt>Bedrooms</dt>
-                                <dd>2</dd>
-                                <dt>Area</dt>
-                                <dd>165m<sup>2</sup></dd>
-                                <dt>Garages</dt>
-                                <dd>1</dd>
-                            </dl>
-                        </footer>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!--end .item-->
-
-        </div>
-
+        
+        <s:iterator value="rentList" var="rent">
+        	<div class="masonry grid full-width animate">
+	        <div class="item move_from_bottom idle">
+	            <a href="assets/pages/items/1_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+	                <div class="inner">
+	                    <div class="image">
+	                        <div class="price average-color"><span>${sq_member_id }</span></div>
+	                        <s:if test="sq_rent_photo != null">
+		                        <img src="assets/downloadIMG/rent/${sq_rent_photo }" alt="">
+	                        </s:if>
+	                        <s:else>
+		                        <img src="assets/img/items/1.jpg" alt="">
+	                        </s:else>
+	                        
+	                    </div>
+	                    <div class="item-content">
+	                        <header class="average-color">
+	                            <h2>${rent.sq_rent_band_name }</h2>
+	                            <h3>${rent.sq_rent_concert_date }</h3>
+	                        </header>
+	                        <footer>
+	                            <dl>
+	                                <dt>SQ_RENT_ID</dt>
+	                                <dd>${sq_rent_id }</dd>
+	                                <dt>a</dt>
+	                                <dd>2</dd>
+	                                <dt>b</dt>
+	                                <dd>165m<sup>2</sup></dd>
+	                                <dt>c</dt>
+	                                <dd>1</dd>
+	                            </dl>
+	                        </footer>
+	                    </div>
+	                </div>
+	            </a>
+	        </div>
+        </s:iterator>
+	        
     </div>
     <!--end Page Content-->
 </div>
