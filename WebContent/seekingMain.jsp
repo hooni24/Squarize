@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="s" uri="/struts-json-tags" %>
 <!DOCTYPE html>
 
 <html lang="en-US">
@@ -150,7 +150,8 @@
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label for="type">검색 키워드</label>
-                                <select name="type" multiple title="전체" id="type" class="animate" data-transition-parent=".dropdown-menu">
+                                <select name="type" title="전체" id="type" class="animate" data-transition-parent=".dropdown-menu">
+                                	<!-- multiple title="전체" : 여러개 선택 가능 -->
                                     <option value="1">전체</option>
                                     <option value="2">세션</option>
                                     <option value="3">장르</option>
@@ -223,7 +224,8 @@
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label>반경설정</label>
-                                <div class="ui-slider" id="price-slider" data-value-min="400" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before">
+                                <!-- <div class="ui-slider" id="price-slider" data-value-min="400" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before"> -->
+                                <div class="ui-slider" id="price-slider" data-value-min="" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before">
                                     <div class="values clearfix">
                                         <input class="value-min" name="value-min[]" readonly>
                                         <input class="value-max" name="value-max[]" readonly>

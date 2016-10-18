@@ -264,8 +264,49 @@ $(document).ready(function($) {
         });
     }
 
-//  No UI Slider -------------------------------------------------------------------------------------------------------
+//  No UI Slider (가격을 반경으로 바꿔줌.)----------------------------------------------------------------------------------
 
+    if( $('.ui-slider').length > 0 ){
+        $('.ui-slider').each(function() {
+            var step;
+            if( $(this).attr('data-step') ) {
+                step = parseFloat( $(this).attr('data-step') );
+            }
+            else {
+                step = 0.5;
+            }
+            var sliderElement = $(this).attr('id');
+            var element = $( '#' + sliderElement);
+            var valueMin = parseFloat( $(this).attr('data-value-min') );
+            var valueMax = parseFloat( $(this).attr('data-value-max') );
+            $(this).noUiSlider({
+                start: [ valueMin, valueMax ],
+                connect: true,
+                range: {
+                    'min': valueMin,
+                    'max': valueMax
+                },
+                step: step
+            });
+            if( $(this).attr('data-value-type') == 'price' ) {
+                if( $(this).attr('data-currency-placement') == 'before' ) {
+                    $(this).Link('lower').to( $(this).children('.values').children('.value-min'), null, wNumb({ prefix: $(this).attr('data-currency'), decimals: 0, thousand: '.' }));
+                    $(this).Link('upper').to( $(this).children('.values').children('.value-max'), null, wNumb({ prefix: $(this).attr('data-currency'), decimals: 0, thousand: '.' }));
+                }
+                else if( $(this).attr('data-currency-placement') == 'after' ){
+                    $(this).Link('lower').to( $(this).children('.values').children('.value-min'), null, wNumb({ postfix: $(this).attr('data-currency'), decimals: 0, thousand: ' ' }));
+                    $(this).Link('upper').to( $(this).children('.values').children('.value-max'), null, wNumb({ postfix: $(this).attr('data-currency'), decimals: 0, thousand: ' ' }));
+                }
+            }
+            else {
+                $(this).Link('lower').to( $(this).children('.values').children('.value-min'), null, wNumb({ decimals: 0 }));
+                $(this).Link('upper').to( $(this).children('.values').children('.value-max'), null, wNumb({ decimals: 0 }));
+            }
+        });
+    }
+    
+    
+    /*
     if( $('.ui-slider').length > 0 ){
         $('.ui-slider').each(function() {
             var step;
@@ -304,7 +345,8 @@ $(document).ready(function($) {
             }
         });
     }
-
+    
+*/
 // Autocomplete address ------------------------------------------------------------------------------------------------
 
     var input = document.getElementById('location') ;
