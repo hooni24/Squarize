@@ -248,7 +248,7 @@
         <s:iterator value="rentList" var="rent">
         	<div class="masonry grid full-width animate">
 	        <div class="item move_from_bottom idle">
-	            <a href="assets/pages/items/1_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+	            <a href="toRentDetail.action?rent.sq_rent_id=${sq_rent_id }" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
 	                <div class="inner">
 	                    <div class="image">
 	                        <div class="price average-color"><span>${sq_member_id }</span></div>

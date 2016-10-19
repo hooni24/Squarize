@@ -12,6 +12,9 @@ public class SQ_rentDAO {
 	private SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 	private SqlSession ss;
 	
+	/**
+	 * 대관 게시물 전체 가져오기
+	 */
 	public List<SQ_rent> getAllRent() {
 		try {
 			ss = factory.openSession();
@@ -21,6 +24,9 @@ public class SQ_rentDAO {
 		}
 	}
 	
+	/**
+	 * 대관 게시물 등록
+	 */
 	public void insertRent(SQ_rent rent) {
 		try {
 			ss = factory.openSession();
@@ -29,7 +35,18 @@ public class SQ_rentDAO {
 		} finally {
 			ss.close();
 		}
-		
+	}
+	
+	/**
+	 * rent_id로 한 게시물 정보 얻어오기
+	 */
+	public SQ_rent getRentById(SQ_rent rent){
+		try {
+			ss = factory.openSession();
+			return ss.selectOne("sq_rentMapper.getRentById", rent);
+		} finally {
+			ss.close();
+		}
 	}
 
 	

@@ -53,7 +53,6 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public String registerSQmember() throws Exception{
 		System.out.println(sq_member);
 		mdao=new SQ_memberDAO();
-		mdao.
 		return SUCCESS;
 	}
 	

@@ -21,6 +21,10 @@
 			<result type="redirect">toRentMain.action</result>
 		</action>
 		
+		<action name="toRentDetail" class="squarize.action.SQ_rentAction" method="toRentDetail">
+			<result>assets/pages/rent/rent_detail.jsp</result>
+		</action>
+		
 		
     </package>
 
