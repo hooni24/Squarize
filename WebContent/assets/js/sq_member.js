@@ -33,6 +33,7 @@ $(function(){
 				if(send.sq_member==null){
 				
 					$('#id-check').html("사용가능한 아이디입니다.");
+					idError="f";
 					$('#id-check').css('color','blue');
 					$('#register-id').css('color','blue');
 						

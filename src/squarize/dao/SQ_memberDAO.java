@@ -26,7 +26,7 @@ public class SQ_memberDAO {
 	public void registerSQmember(SQ_member sq_member){
 		try{
 			ss=factory.openSession();
-			ss.insert("sq_memberMapper.loginSQmember", sq_member);
+			ss.insert("sq_memberMapper.registerSQmember", sq_member);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{

@@ -18,6 +18,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String sq_member_id;
 	private String sq_member_pw;
 	private String loginId;
+	private String isArtist;
 
 	
 	public SQ_member getSq_member() {
@@ -47,8 +48,15 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
+	
 
 	
+	public String getIsArtist() {
+		return isArtist;
+	}
+	public void setIsArtist(String isArtist) {
+		this.isArtist = isArtist;
+	}
 	public String idCheck() throws Exception{
 		mdao=new SQ_memberDAO();
 		sq_member=mdao.loginSQmember(sq_member_id);
@@ -68,10 +76,13 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		
 		if(sq_member.getSq_member_pw().equals(sq_member_pw)){
 			session.put("loginId", sq_member.getSq_member_id());
+			session.put("isArtist", sq_member.getSq_member_isartist());
 			loginId=(String) session.get("loginId");
+			isArtist=(String) session.get("isArtist");
 		}else{
 			sq_member=null;
 			loginId="";
+			isArtist="";
 		}
 		return SUCCESS;
 	}
