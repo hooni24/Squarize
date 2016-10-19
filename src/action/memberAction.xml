@@ -18,6 +18,12 @@
 		<action name="logoutSQmember" class="squarize.action.SQ_memberAction" method="logoutSQmember">
 			<result type="json"></result>
 		</action>
+		<action name="idCheck" class="squarize.action.SQ_memberAction" method="idCheck">
+			<result type="json"></result>
+		</action>
+		<action name="loginCheck" class="squarize.action.SQ_memberAction" method="loginCheck">
+			<result type="json"></result>
+		</action>
 		
 		
     </package>

@@ -33,7 +33,7 @@
                         <div role="tabpanel">
                             <!-- Nav tabs -->
                             <ul class="nav nav-pills" role="tablist">
-                                <li role="presentation"><a href="#sign-in" aria-controls="sign-in" role="tab" data-toggle="tab" data-transition-parent="#sign-in">Sign In</a></li>
+                                <li role="presentation"><a href="#sign-in" aria-controls="sign-in" id="sign_in_btn" role="tab" data-toggle="tab" data-transition-parent="#sign-in">Sign In</a></li>
                                 <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register">Register</a></li>
                             </ul>
                            
@@ -56,9 +56,10 @@
                                     </form>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="register">
-                                    <form role="form" method="post" id="form-register">
-                                        <div class="form-group animate move_from_bottom_short">
+                                    <form role="form" method="post" id="form-register" class="register-pane">
+                                        <div class="form-group animate move_from_bottom_short" id="idInput">
                                             <input type="text" class="form-control" id="register-id" name="register-id" placeholder="ID">
+                                           	<span id="id-check"></span>
                                         </div>
                                         <!--end .form-group-->
                                          <div class="form-group animate move_from_bottom_short">
@@ -78,7 +79,7 @@
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <select id="register_favorite">
+                                            <select id="register_favorite" class="select">
                                             	<option>선호장르</option>
                                             	<option>발라드</option>
                                             	<option>힙합</option>
