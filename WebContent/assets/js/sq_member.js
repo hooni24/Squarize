@@ -104,8 +104,8 @@ $(function(){
 				$('#register-email').val("");
 				$('#register-password').val("");
 				$('#register-confirm-password').val("");
-				$('#register_favorite > option:selected').index('1');
-				$('#idInput #id-check').html('');
+				$('#register_favorite option:eq(1)').attr('selected','selected');
+				$('#id-check').html(' ');
 				$('#id-check').css('color','black');
 				$('#register-id').css('color','black');
 				$('#sign_in_btn').trigger('click');
@@ -141,7 +141,7 @@ $(function(){
 					$('.close').trigger('click');
 					$('.unlogin').addClass('hidden');
 					$('.login').removeClass('hidden');
-					$('#loginId').html(loginId);
+					$('.loginId').html(loginId);
 				}else{
 					alert("사용자 정보를 확인해주세요")
 					$('.login').addClass('hidden');

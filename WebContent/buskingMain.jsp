@@ -39,6 +39,11 @@
                            
                             <!-- Tab panes -->
                             <div class="tab-content">
+                            	<div role="tabpanel" class="tab-pane hidden" id="add-artist">
+                            		<form action="form" method="post" id="form-add-artist">
+                            			<div class="loginId"></div>
+                            		</form>
+                            	</div>
                                 <div role="tabpanel" class="tab-pane" id="sign-in">
                                     <form role="form" method="post" id="form-sign-in">
                                         <div class="form-group animate move_from_bottom_short">
@@ -114,7 +119,7 @@
                         <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header">Register</a></li>
                     </ul>
                     <ul class="login hidden">
-                    	<li class="message"><span id="loginId"></span>님 환영합니다.</li>
+                    	<li class="message"><span class="loginId"></span>님 환영합니다.</li>
                     	<li id="logout_btn"><a href="#logout">Logout</a></li>
                     </ul>
                 </nav>
