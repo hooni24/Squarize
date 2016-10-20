@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.opensymphony.xwork2.ActionSupport;
+
+import squarize.util.FileService;
 import squarize.util.MybatisConfig;
 import squarize.vo.SQ_rent;
 
@@ -40,10 +43,31 @@ public class SQ_rentDAO {
 	/**
 	 * rent_id로 한 게시물 정보 얻어오기
 	 */
-	public SQ_rent getRentById(SQ_rent rent){
+	public Object[] getRentById(SQ_rent rent){
+		try {
+			Object[] result = new Object[2];
+			ss = factory.openSession();
+			rent = ss.selectOne("sq_rentMapper.getRentById", rent);
+			result[0] = ss.selectOne("sq_rentMapper.getMemberById", rent.getSq_member_id());
+			result[1] = rent;
+			return result;
+		} finally {
+			ss.close();
+		}
+	}
+
+	/**
+	 * rent_id로 게시물 삭제
+	 */
+	public void deleteRent(SQ_rent rent) {
 		try {
 			ss = factory.openSession();
-			return ss.selectOne("sq_rentMapper.getRentById", rent);
+			rent = ss.selectOne("sq_rentMapper.getRentById", rent);
+			String fullpath = new ActionSupport().getText("rent.uploadpath") +"/"+ rent.getSq_rent_photo();
+			new FileService().fileDelete(fullpath);
+			System.out.println(fullpath);
+			ss.delete("sq_rentMapper.deleteRent", rent);
+			ss.commit();
 		} finally {
 			ss.close();
 		}

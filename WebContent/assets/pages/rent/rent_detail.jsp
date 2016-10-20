@@ -1,21 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--<link href="../../fonts/font-awesome.css" rel="stylesheet" type="text/css">-->
-    <!--<link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>-->
-    <!--<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
-    <!--<link href="../../css/style.css" rel="stylesheet" type="text/css">-->
-
-    <style>
-        #map-simple { min-height: 240px; }
-    </style>
-
-    <title>534 Roosevelt Street</title>
+	<style>
+		textarea.taSetting[readonly]{
+			resize: vertical;
+			background-color: transparent;
+			cursor: default;
+		}
+		a.aRed{
+			text-decoration: none;
+			color: red;
+			background-color: white;
+		}
+		a.aBlack{
+			text-decoration: none;
+			color: black;
+			background-color: white;
+		}
+	</style>
+	
+	<script>
+		$(function(){
+			$("a.aRed").on("click", function(){
+				var selected = confirm("정말 삭제하시겠습니까?");
+				if(selected){
+					var rent_id = $("input#hidden").val();
+					location.href="deleteRent.action?rent.sq_rent_id="+rent_id;
+				}
+			})
+		});
+	</script>
+    <title></title>
 </head>
 <body class="external">
 
@@ -36,13 +56,9 @@
                 </article>
                 <article class="animate move_from_bottom_short">
                     <h1>${rent.sq_rent_band_name }</h1>
-                    <h2><i class="fa fa-map-marker"></i>San Francisco</h2>
-                    <figure class="price average-color"><span>$25.000</span></figure>
-                    <p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa,
-                        viverra interdum eros ut, imperdiet pellentesque mauris. Proin sit amet scelerisque risus.
-                        Donec semper semper erat ut mollis. Curabitur suscipit, justo eu dignissim lacinia ante
-                        sapien pharetra duin consectetur eros augue sed ex
-                    </p>
+                    <h2>${rent.sq_rent_input_date } 업로드</h2>
+                    <figure class="price average-color"><span>${rent.sq_member_id }</span></figure><br>
+                    <textarea class="form-control taSetting" rows="12" ReadOnly="readonly">${rent.sq_rent_info }</textarea>
                 </article>
                 <!--end Description-->
                 <article class="sidebar">
@@ -51,33 +67,16 @@
                             <figure class="person-image">
                                 <img src="assets/img/person-01.jpg" alt="">
                             </figure>
-                            <header>Catherine Brown</header>
-                            <a href="tel:818-832-5258">818-832-5258</a>
-                            <a href="mailto:catherine.brown@example.com">catherine.brown@example.com</a>
+                            <header>${rent.sq_member_id }</header>
+                            <div>${member.sq_member_email }</div>
                             <hr>
                             <a href="#person-detail" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="person-detail">Show Details</a>
                         </div>
                         <div class="collapse" id="person-detail">
                             <div class="details">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum, sem ut sollicitudin consectetur, augue diam ornare massa
+                                	올린사람 자기소개글
                                 </p>
-                                <h3>Contact Me</h3>
-                                <form role="form" method="post" class="clearfix">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="person-name" name="person-name" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="person-email" name="person-email" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="2" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-link dark pull-right">Send Message</button>
-                                    </div>
-                                </form>
-
                             </div>
                             <!--end .details-->
                         </div>
@@ -86,58 +85,39 @@
                     <!--end .person-->
                     <div class="block animate move_from_bottom_short">
                         <dl>
-                            <dt>Bathrooms</dt>
-                            <dd>1</dd>
-                            <dt>Bedrooms</dt>
-                            <dd>2</dd>
-                            <dt>Area</dt>
-                            <dd>165m<sup>2</sup></dd>
-                            <dt>Garages</dt>
-                            <dd>1</dd>
+                            <dt>지역</dt>
+                            <dd>서울</dd>
+                            <dt>장르</dt>
+                            <dd>락</dd>
+                            <dt>총 공연시간</dt>
+                            <dd>1시간</dd>
+                            <dt>모집팀 수</dt>
+                            <dd>3팀</dd>
                         </dl>
                     </div>
                 </article>
                 <!--end Sidebar-->
-                <article class="animate move_from_bottom_short">
-                    <h3>Features</h3>
-                    <ul class="bullets">
-                        <li>Air Conditioning</li>
-                        <li>Balcony</li>
-                        <li>Bedding</li>
-                        <li>Cable TV</li>
-                        <li>Dishwasher</li>
-                        <li>Family Room</li>
-                        <li>Fireplace</li>
-                        <li>Grill</li>
-                        <li>Outdoor Kitchen</li>
-                        <li>Sauna</li>
-                        <li>Landscaping</li>
-                    </ul>
-                </article>
-                <!--end Features-->
                 <article>
-                    <h3>Map</h3>
-                    <div id="map-simple"></div>
-                </article>
-                <!--end Map-->
-                <article>
-                    <h3>Reviews</h3>
+                    <h3>댓글</h3>
                     <div class="review block">
                         <figure class="person-image">
                             <img src="assets/img/person-01.jpg" alt="">
                         </figure>
-                        <header>Catherine Brown</header>
-                        <div class="rating" data-rating="4"></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum,
-                            sem ut sollicitudin consectetur, augue diam ornare massa, ac vehicula leo
-                            turpis eget purus. Nunc pellentesque vestibulum mauris, eget suscipit mauris
-                            imperdiet vel. Nulla et massa metus.
-                        </p>
+                        <header>누군가</header>
+                        <div class="rating" data-rating="2"></div>
+                        <p>안해도 되겠지??</p>
                     </div>
                 </article>
                 <!--end Reviews-->
                 <article class="center" id="test">
-                    <a href="#" class="btn btn-circle btn-default btn-lg"><i class="fa fa-plus"></i></a>
+<%--                     <s:if test="#session.loginId == rent.sq_member_id "> --%>
+                    	<a class="btn btn-circle btn-lg btn_default aBlack">지원자 보기</a>&nbsp;&nbsp;&nbsp;
+                    	<a class="btn btn-circle btn-lg aRed">삭제</a>
+<%--                     </s:if> --%>
+<%--                     <s:else> --%>
+	                    <a href="#" class="btn btn-circle btn-default btn-lg">지원</a>
+<%--                     </s:else> --%>
+                    <input type="hidden" value="${rent.sq_rent_id }" id="hidden">
                 </article>
                 <!--end Add Review-->
             </div>
@@ -147,33 +127,5 @@
     <!--end .row-->
 </div>
 <!--end #item-detail-->
-
-<script>
-    var _latitude = 51.541599;
-    var _longitude = -0.112588;
-    var draggableMarker = false;
-    var scrollwheel = true;
-    var element = document.querySelector('body');
-
-    if( hasClass(element, 'external') ){
-        var head = document.getElementsByTagName('head')[0];
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = "../../js/external.js";
-        head.appendChild(script);
-    }
-    else {
-        simpleMap(_latitude, _longitude,draggableMarker, scrollwheel);
-        rating();
-        averageColor( $('.content-container') );
-    }
-
-    function hasClass(element, cls) {
-        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-    }
-
-</script>
-
-
 </body>
 </html>

@@ -25,6 +25,9 @@
 			<result>assets/pages/rent/rent_detail.jsp</result>
 		</action>
 		
+		<action name="deleteRent" class="squarize.action.SQ_rentAction" method="deleteRent">
+			<result type="redirect">toRentMain.action</result>
+		</action>
 		
     </package>
 

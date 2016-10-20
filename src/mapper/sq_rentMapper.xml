@@ -18,4 +18,14 @@
 		FROM sq_rent
 		WHERE sq_rent_id = #{sq_rent_id}
 	</select>
+	
+	<select id="getMemberById" parameterType="String" resultType="SQ_member">
+		SELECT *
+		FROM sq_member
+		WHERE sq_member_id = #{sq_member_id}
+	</select>
+	
+	<delete id="deleteRent" parameterType="SQ_rent">
+		DELETE sq_rent WHERE sq_rent_id = #{sq_rent_id}
+	</delete>
 </mapper>

@@ -11,11 +11,13 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.dao.SQ_rentDAO;
 import squarize.util.FileService;
+import squarize.vo.SQ_member;
 import squarize.vo.SQ_rent;
 
 public class SQ_rentAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private SQ_rent rent;
+	private SQ_member member;
 	private List<SQ_rent> rentList;
 	
 	
@@ -52,12 +54,11 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		if (upload != null) { 
 			try {
 				FileService fs = new FileService();
-				String basePath = getText("rent.uploadpath");		
+				String basePath = getText("rent.uploadpath");
 				String savedfile;
 				savedfile = fs.saveFile(upload, basePath, uploadFileName);
 				rent.setSq_rent_photo(savedfile);
 				rent.setSq_rent_photo_original(uploadFileName);
-				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -66,12 +67,26 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
-	
+	/**
+	 * 대관게시물 읽기
+	 */
 	public String toRentDetail(){
-		rent = new SQ_rentDAO().getRentById(rent);
-		System.out.println("검색해온 대관게시물 " + rent);
+		Object[] result = new SQ_rentDAO().getRentById(rent);
+		member = (SQ_member) result[0];
+		rent = (SQ_rent) result[1];
 		return SUCCESS;
 	}
+	
+	/**
+	 * 대관게시물 삭제
+	 */
+	public String deleteRent(){
+		new SQ_rentDAO().deleteRent(rent);
+		return SUCCESS;
+	}
+	
+	
+	
 	
 	
 	
@@ -121,6 +136,14 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	
 	public void setRentList(List<SQ_rent> rentList) {
 		this.rentList = rentList;
+	}
+
+	public SQ_member getMember() {
+		return member;
+	}
+
+	public void setMember(SQ_member member) {
+		this.member = member;
 	}
 	
 

@@ -269,12 +269,14 @@
 	                            <dl>
 	                                <dt>SQ_RENT_ID</dt>
 	                                <dd>${sq_rent_id }</dd>
-	                                <dt>a</dt>
-	                                <dd>2</dd>
-	                                <dt>b</dt>
-	                                <dd>165m<sup>2</sup></dd>
-	                                <dt>c</dt>
-	                                <dd>1</dd>
+	                                <dt>지역</dt>
+		                            <dd>서울</dd>
+		                            <dt>장르</dt>
+		                            <dd>락</dd>
+		                            <dt>총 공연시간</dt>
+		                            <dd>1시간</dd>
+		                            <dt>모집팀 수</dt>
+		                            <dd>3팀</dd>
 	                            </dl>
 	                        </footer>
 	                    </div>
