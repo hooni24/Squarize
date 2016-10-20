@@ -5,7 +5,7 @@
 <html>
 <head>
     <title></title>
-
+    
 <script>
 	$(function(){
 		$("button#submits").on("click", function(){
@@ -14,11 +14,19 @@
 				var band_name = $("input#band_name").val();
 				var info = $("textarea#info").val();
 				var concert_date = $("input#concert_date").val();
+				var concert_date_hour = $("select#concert_date_hour").val().split("시")[0];
+				var concert_date_min = $("select#concert_date_min").val().split("분")[0];
 				var limit = $("input#limit").val();
+				var limit_hour = $("select#limit_hour").val().split("시")[0];
+				var limit_min = $("select#limit_min").val().split("분")[0];
 				var photo = $("#upload").val();
 				
-				$("input#real_concert_date").val(concert_date);
-				$("input#real_limit").val(limit);
+				var real_concert_date = concert_date + " " + concert_date_hour + ":" + concert_date_min;
+				var real_limit = limit + " " + limit_hour + ":" + limit_min;
+				
+				
+				$("input#real_concert_date").val(real_concert_date);
+				$("input#real_limit").val(real_limit);
 				
 				$("#forms")[0].submit();
 			}
@@ -82,6 +90,27 @@
                         </div>   
                     </div>
                     <!--end .col-md-4-->
+                    
+                    <div class="col-md-4">
+	                    <div class="form-group">
+                            <select id="concert_date_hour">
+                            	<s:iterator begin="0" end="23" var="h">
+                            		<option>${h }시</option>
+                            	</s:iterator>
+                            </select>
+                        </div>
+                    </div>
+                    <!--end .col-md-4-->
+                    <div class="col-md-4">
+                        <div class="form-group">    
+                            <select id="concert_date_min">
+                            	<s:iterator begin="0" end="60" var="m" step="10">
+                            		<option>${m }분</option>
+                            	</s:iterator>
+                            </select>
+                        </div>
+                    </div>
+                    <!--end .col-md-4-->
                 </div>
                 <!--end .row-->
                 
@@ -91,6 +120,26 @@
                         <div class="form-group">
                             <input type="date" class="form-control" id="limit">
                         </div>   
+                    </div>
+                    <!--end .col-md-4-->
+                    <div class="col-md-4">
+	                    <div class="form-group">
+                            <select id="limit_hour">
+                            	<s:iterator begin="0" end="23" var="h">
+                            		<option>${h }시</option>
+                            	</s:iterator>
+                            </select>
+                        </div>
+                    </div>
+                    <!--end .col-md-4-->
+                    <div class="col-md-4">
+                        <div class="form-group">    
+                            <select id="limit_min">
+                            	<s:iterator begin="0" end="60" var="m" step="10">
+                            		<option>${m }분</option>
+                            	</s:iterator>
+                            </select>
+                        </div>
                     </div>
                     <!--end .col-md-4-->
                 </div>

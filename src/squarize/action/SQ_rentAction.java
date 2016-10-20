@@ -89,7 +89,24 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	 * 대관게시물 수정
 	 */
 	public String updateRent(){
-		
+		SQ_rentDAO dao = new SQ_rentDAO();
+		dao.updateWithoutFile(rent);
+		if (upload != null) { 	//새로 올린 사진이 있다면 수정해야함
+			rent = (SQ_rent) dao.getRentById(rent)[1];	//ID로 얻어온 rent객체
+			try {
+				FileService fs = new FileService();
+				String basePath = getText("rent.uploadpath");
+				String savedfile;
+				String fullpath = basePath +"/"+ rent.getSq_rent_photo();	//수정대상의 사진파일 전체경로
+				new FileService().fileDelete(fullpath);						//삭제
+				savedfile = fs.saveFile(upload, basePath, uploadFileName);
+				rent.setSq_rent_photo(savedfile);
+				rent.setSq_rent_photo_original(uploadFileName);
+				dao.updateRentPhoto(rent);	//새로올라온 파일경로 저장
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		return SUCCESS;
 	}
 	

@@ -65,8 +65,27 @@ public class SQ_rentDAO {
 			rent = ss.selectOne("sq_rentMapper.getRentById", rent);
 			String fullpath = new ActionSupport().getText("rent.uploadpath") +"/"+ rent.getSq_rent_photo();
 			new FileService().fileDelete(fullpath);
-			System.out.println(fullpath);
 			ss.delete("sq_rentMapper.deleteRent", rent);
+			ss.commit();
+		} finally {
+			ss.close();
+		}
+	}
+
+	public void updateWithoutFile(SQ_rent rent) {
+		try {
+			ss = factory.openSession();
+			ss.update("sq_rentMapper.updateWithoutFile", rent);
+			ss.commit();
+		} finally {
+			ss.close();
+		}
+	}
+
+	public void updateRentPhoto(SQ_rent rent) {
+		try {
+			ss = factory.openSession();
+			ss.update("sq_rentMapper.updateRentPhoto", rent);
 			ss.commit();
 		} finally {
 			ss.close();

@@ -12,6 +12,11 @@
 			background-color: transparent;
 			cursor: default;
 		}
+		textarea.taSetting{
+			resize: vertical;
+			background-color: transparent;
+			cursor: text;
+		}
 		a.aRed{
 			text-decoration: none;
 			color: red;
@@ -21,6 +26,9 @@
 			text-decoration: none;
 			color: black;
 			background-color: white;
+		}
+		a#realUpdate{
+			display: none;
 		}
 	</style>
 	
@@ -35,9 +43,21 @@
 			})
 			
 			$("a#update").on("click", function(){
-				var rent_id = $("input#hidden").val();
-				location.href="toUpdateRent.action?rent.sq_rent_id="+rent_id;
+				$("h1#band_name").html("<input type='text' id='band_name' name='rent.sq_rent_band_name' value='${rent.sq_rent_band_name }'>");
+				$("h2#concert_date").html("공연 예정일 <input type='date' id='concert_date' name='rent.sq_rent_concert_date'>");
+				$("h2#limit").html("지원 마감일 <input type='date' id='limit' name='rent.sq_rent_limit'>");
+				$("textarea#ta").removeAttr("readonly");
+				$("div#file").append("<input type='file' id='upload' name='upload' >");
+				$(this).css("display", "none");
+				$("a#seeApply").css("display", "none");
+				$("a#delete").css("display", "none");
+				$("a#realUpdate").css("display", "inline-block");
 			});
+			
+			$("a#realUpdate").on("click", function(){
+				$("#form")[0].submit();
+			});
+			
 		});
 	</script>
     <title></title>
@@ -59,13 +79,20 @@
                         </div>
                     </div>
                 </article>
-                <article class="animate move_from_bottom_short">
-                    <h1>${rent.sq_rent_band_name }</h1>
-                    <h2>${rent.sq_rent_input_date } 업로드</h2>
-                    <figure class="price average-color"><span>${rent.sq_member_id }</span></figure><br>
-                    <textarea class="form-control taSetting" rows="12" ReadOnly="readonly">${rent.sq_rent_info }</textarea>
-                </article>
+                
+                <form id="form" action='updateRent.action' method="post" enctype="multipart/form-data">
+	                <article class="animate move_from_bottom_short">
+	                    <h1 id="band_name">${rent.sq_rent_band_name }</h1><br>
+	                    <h2 id="concert_date">${rent.sq_rent_concert_date } 공연 예정</h2>
+	                    <h2 id="limit">${rent.sq_rent_limit } 지원 마감</h2>
+	                    <figure class="price average-color"><span>${rent.sq_member_id }</span></figure><br>
+	                    <textarea class="form-control taSetting" id="ta" name="rent.sq_rent_info" rows="12" ReadOnly="readonly">${rent.sq_rent_info }</textarea>
+	                    <div id="file"></div>
+	                </article>
+		                <input type="hidden" value="${rent.sq_rent_id }" id="hidden" name="rent.sq_rent_id">
+                </form>
                 <!--end Description-->
+                
                 <article class="sidebar">
                     <div class="person animate move_from_bottom_short">
                         <div class="inner average-color">
@@ -115,15 +142,15 @@
                 </article>
                 <!--end Reviews-->
                 <article class="center" id="test">
-<%--                     <s:if test="#session.loginId == rent.sq_member_id "> --%>
-                    	<a class="btn btn-circle btn-lg btn_default aBlack">지원자 보기</a>&nbsp;&nbsp;&nbsp;
+                    <s:if test="#session.loginId == rent.sq_member_id ">
+                    	<a class="btn btn-circle btn-lg btn_default aBlack" id="seeApply">지원자 보기</a>&nbsp;&nbsp;&nbsp;
                     	<a class="btn btn-circle btn-lg aBlack" id="update">수정</a>&nbsp;&nbsp;&nbsp;
+                    	<a class="btn btn-circle btn-lg aBlack" id="realUpdate">수정aa</a>&nbsp;&nbsp;&nbsp;
                     	<a class="btn btn-circle btn-lg aRed" id="delete">삭제</a>
-<%--                     </s:if> --%>
-<%--                     <s:else> --%>
+                    </s:if>
+                    <s:else>
 	                    <a href="#" class="btn btn-circle btn-default btn-lg">지원</a>
-<%--                     </s:else> --%>
-                    <input type="hidden" value="${rent.sq_rent_id }" id="hidden">
+                    </s:else>
                 </article>
                 <!--end Add Review-->
             </div>
