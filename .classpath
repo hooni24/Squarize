@@ -8,5 +8,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/lib/java-json.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

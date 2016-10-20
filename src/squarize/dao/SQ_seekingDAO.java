@@ -20,7 +20,8 @@ public class SQ_seekingDAO {
 	public List<SQ_recruit> selectAll_sq_recruit(){
 		List<SQ_recruit> sq_recruit_list = null;
 		ss = factory.openSession();
-		sq_recruit_list = ss.selectList("mapper.seekingMapper.selectAll_sq_recruit");
+		sq_recruit_list = ss.selectList("sq_seekingMapper.selectAll_sq_recruit");
+		System.out.println("DAO"+sq_recruit_list);
 		if(ss!=null) ss.close();
 		return sq_recruit_list;
 	}
