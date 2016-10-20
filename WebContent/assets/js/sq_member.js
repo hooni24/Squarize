@@ -5,7 +5,7 @@ $(function(){
 	var idError="f";
 	$.ajax({
 		url:'loginCheck'
-		,dataType:'jason'
+		,dataType:'json'
 		,success:function(send){
 			var loginId=send.loginId;	
 			if(loginId!=""){
