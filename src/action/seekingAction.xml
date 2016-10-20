@@ -12,7 +12,7 @@
 		<action name="toSeekingMain">
 			<result>seekingMain.jsp</result>
 		</action>
-		<action name="getRecruit_list" class="squarize.action.SQ_seekingAction" method="getRecruit_list">
+		<action name="getRecruit_list" class="squarize.action.SQ_seekingAction" method="selectAll_SQ_recruit">
 			<result type="chain">toSeekingMain</result>
 		</action>
 		
