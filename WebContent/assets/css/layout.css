@@ -24,3 +24,16 @@
 .select{
 	z-index:1000000;
 }
+#sq_artist{
+	margin-top:5px;
+	font-size: 11px;
+	color:rgba(0,0,0,0.3);
+	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	cursor:pointer;
+	-webkit-transition:0.2s;
+	transition:0.2s;
+}
+#sq_artist:hover{
+	color:rgba(0,0,0,0.8);
+}

@@ -120,6 +120,9 @@
                     </ul>
                     <ul class="login hidden">
                     	<li class="message"><span class="loginId"></span>님 환영합니다.</li>
+                    	<%-- <s:if test='#session.isArtist=="N"'> --%>
+                    		<li><a href="#user-area" data-toggle="collapse"  id="sq_artist" aria-expanded="false" aria-controls="user-area" data-tab="#addArtist" data-transition-parent="#header"></a></li>
+                    <%-- 	</s:if> --%>
                     	<li id="logout_btn"><a href="#logout">Logout</a></li>
                     </ul>
                 </nav>

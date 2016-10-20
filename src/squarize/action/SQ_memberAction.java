@@ -89,7 +89,13 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	public String loginCheck() throws Exception{
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		
 		loginId=(String)session.get("loginId");
+		System.out.println(loginId);
 			return SUCCESS;
 		}
 	public String logoutSQmember() throws Exception{

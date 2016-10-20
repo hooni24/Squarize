@@ -7,20 +7,43 @@ $(function(){
 		url:'loginCheck'
 		,dataType:'json'
 		,success:function(send){
-			var loginId=send.loginId;	
-			if(loginId!=""){
-				
+			var loginId=send.loginId;
+			var isArtist=send.isArtist;
+			if(loginId==null||loginId==""){
+				alert("로그인안됨"+loginId);
 				$('.login').addClass('hidden');
 				$('.unlogin').removeClass('hidden');
-				$('#loginId').html(loginId);
+				$('.loginId').html("");
+			}else{
+				alert("로그인됨"+loginId);
+				$('.unlogin').addClass('hidden');
+				$('.login').removeClass('hidden');
+				$('.loginId').html(loginId);
+			}
+			if(isArtist=="N"){
+				$('#sq_artist').html("추가인증");
 			}
 			
 		}
 		,error:function(){
-			
+			alert("");
 		}
 	});
-	
+	$('.close').click(function(){
+		$('#register-id').val("");
+		$('#register-name').val("");
+		$('#register-email').val("");
+		$('#register-password').val("");
+		$('#register-confirm-password').val("");
+		$('#register_favorite option:eq("선호장르")').attr('selected','selected');
+		$('#id-check').html(' ');
+		$('#id-check').css('color','black');
+		$('#register-id').css('color','black');
+		$('#sign_in_btn').trigger('click');
+		$('#login-id').val("");
+		$('#login-pw').val("");
+		
+	});
 	$('#register-id').on('focusout',function(){
 		var checkId=$('#register-id').val();
 		
@@ -30,22 +53,24 @@ $(function(){
 			,url:'idCheck'
 			,data:{"sq_member_id":checkId}
 			,success:function(send){
-				if(send.sq_member==null){
+				if(checkId==""||checkId==null){
+					$('#id-check').html(" ");
+				}else if(send.sq_member!=null){
+					alert('이미 사용중인 아이디입니다.');
+					
+					idError="t";
+					if(idError=="t"){
+						$('#id-check').css('color','red');
+						$('#register-id').css('color','red');
+					}
+				}else if(send.sq_member==null){
 				
 					$('#id-check').html("사용가능한 아이디입니다.");
 					idError="f";
 					$('#id-check').css('color','blue');
 					$('#register-id').css('color','blue');
 						
-				}else{
-					alert('이미 사용중인 아이디입니다.');
-					$('#id-check').html("이미사용중인 아이디입니다.");
-					idError="t";
-					if(idError=="t"){
-						$('#id-check').css('color','red');
-						$('#register-id').css('color','red');
-					}
-				}
+				} 
 				
 			}
 			,error : function(){
@@ -104,7 +129,7 @@ $(function(){
 				$('#register-email').val("");
 				$('#register-password').val("");
 				$('#register-confirm-password').val("");
-				$('#register_favorite option:eq(1)').attr('selected','selected');
+				$('#register_favorite option:eq("선호장르")').attr('selected','selected');
 				$('#id-check').html(' ');
 				$('#id-check').css('color','black');
 				$('#register-id').css('color','black');
@@ -115,7 +140,7 @@ $(function(){
 			}
 		});
 	});
-	
+
 	
 	$('#login_btn').click(function(){
 		var login_id=$('#login-id').val();
@@ -176,5 +201,7 @@ $(function(){
 			}
 		});
 	});
-
+	$('#sq_artist').on('click',function(){
+	
+	});
 })
