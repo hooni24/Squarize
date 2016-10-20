@@ -7,7 +7,7 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
 
-    <package name="seeking" namespace="/seeking" extends="struts-default, json-default">
+    <package name="seeking" namespace="/" extends="struts-default, json-default">
     
 		<action name="toSeekingMain">
 			<result>seekingMain.jsp</result>
