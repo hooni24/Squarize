@@ -256,35 +256,83 @@
 	var _latitude = 37.5564059;
 	var _longitude = 126.9259563;
     var jsonPath = 'assets/json/items.json';
-		
-    	 $(function(){
+    	  $(function(){
+    		  $.ajaxSettings.traditional = true;
+			    var data;
+		//	    var list;
+		//	    var list = "{ 'data':" + data + "}";
+    		  
     		$.ajax({
     			method : "get",
     			url : "toBuskingList",
     			dataType : "JSON",
     			success : function(resp){
-    				var list = resp.buskingList;
+    				data = resp.buskingList;
     				
-    				alert(list);
+    				/*  alert(JSON.stringify(data)); */
+    				 
+    				 var list = JSON.stringify(data);
+/*     			$.each(data, function(index,d){
+    					alert(d[index].SQ_MEMBER_ID);
+    					
+    				}); */
+    				var test =
+   					{
+    					data:[
+	    						{
+		    						"id": "1",
+		    						"title": "밤을 잊은 그대에게 -베이스세션",
+		    						"location": "홍대입구",
+		    						"latitude": "37.5564059",
+		    						"longitude": "126.9259563",
+		    						"url": "assets/pages/items/1_e.html",
+		    						"genre": "헤비메탈",
+		    						"type_icon": "",
+		    						"rating": "4",
+		    						"gallery": [
+		    							"assets/img/items/1.jpg",
+		    							"assets/img/items/2.jpg",
+		    							"assets/img/items/3.jpg"
+		    						],
+		    						"price": "$2500",
+		    						"overview": {
+		    							"bedrooms": "2",
+		    							"bathrooms": "2",
+		    							"rooms": "4",
+		    							"garages": "1",
+		    							"area": "240"
+		    						},
+		    						"description": "Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa, viverra interdum eros ut, imperdiet pellentesque mauris. Proin sit amet scelerisque risus. Donec semper semper erat ut mollis. Curabitur suscipit, justo eu dignissim lacinia, ante sapien pharetra duin consectetur eros augue sed ex. Donec a odio rutrum, hendrerit sapien vitae, euismod arcu."
+	    						}
+    						]
+    				};
+    				
+    				alert(typeof test);
+    				
+    				
+// 				     $.getJSON(jsonPath)
+// 				            .done(function(json) {
+// 				            	alert(resp.buskingList);
+// 				                createHomepageGoogleMap(_latitude,_longitude,json);
+// 				            })
+// 				            .fail(function( jqxhr, textStatus, error ) {
+// 				                console.log(error);
+// 				            });
+
+					$.ajax({
+						"url" : toBuskingList
+						, "method" : "post"
+						, "success" : function(resp){
+				                createHomepageGoogleMap(_latitude,_longitude,resp.buskingList);
+						}
+					});
+					
     			}
     		});
-    	}); 
+    	});
     
-    
-    
-    
-    
-    
-    // Load JSON data and create Google Maps
+    // Load JSON data and create Google Map
 
-    $.getJSON(jsonPath)
-            .done(function(json) {
-                createHomepageGoogleMap(_latitude,_longitude,json);
-            })
-            .fail(function( jqxhr, textStatus,	 error ) {
-                console.log(error);
-            })
-    ;
 </script>
 
 </body>

@@ -1,32 +1,36 @@
 function drawInfobox(infoboxContent, json, i){
 
-    if( json.data[i].price )        { var price = '<div class="price average-color"><span>' + json.data[i].price + '</span></div>' }
-        else                        { price = '' }
-    if(json.data[i].id)             { var id = json.data[i].id }
-        else                        { id = '' }
-    if(json.data[i].url)            { var url = json.data[i].url }
-        else                        { url = '' }
-    if(json.data[i].type)           { var type = json.data[i].type }
-        else                        { type = '' }
-    if(json.data[i].title)          { var title = json.data[i].title }
-        else                        { title = '' }
-    if(json.data[i].location)       { var location = json.data[i].location }
-        else                        { location = '' }
-    if(json.data[i].gallery[0])     { var gallery = json.data[i].gallery[0] }
-        else                        { gallery[0] = '../img/default-item.jpg' }
-
+    if( json.data[i].SQ_BUSKING_ID )        { var SQ_BUSKING_ID = '<div class="price average-color"><span>' + json.data[i].SQ_BUSKING_ID + '</span></div>' }
+        else                        { SQ_BUSKING_ID = '' }
+    if(json.data[i].SQ_MEMBER_ID)             { var SQ_MEMBER_ID = json.data[i].SQ_MEMBER_ID }
+	        else                        { SQ_MEMBER_ID = '' }                                              
+	    if(json.data[i].url)            { var url = json.data[i].url }                          
+	        else                        { url = '' }                                            
+	    if(json.data[i].type)           { var type = json.data[i].type }                        
+	        else                        { type = '' }                                           
+	    if(json.data[i].SQ_BUSKING_GENRE)          { var SQ_BUSKING_GENRE = json.data[i].SQ_BUSKING_GENRE } 
+	        else                        { SQ_BUSKING_GENRE = '' }                                          
+    if(json.data[i].SQ_BUSKING_RUNNINGTIME)       { var SQ_BUSKING_RUNNINGTIME = json.data[i].SQ_BUSKING_RUNNINGTIME }
+        else                        { SQ_BUSKING_RUNNINGTIME = '' }                                        	
+    if(json.data[i].gallery[0])     { var gallery = json.data[i].gallery[0] }                	
+        else                        { gallery[0] = '../img/default-item.jpg' }               	
+                                                                                             	
     var ibContent = '';
     ibContent =
     '<div class="infobox">' +
         '<div class="left">' +
-            '<a href="'+ url +'" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
+            '<a href="'+ 
+            
+            "assets/pages/items/1_e.html" +
+            
+            '" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
                 '<div class="image">' +
-                    price +
-                    '<img src="'+ gallery +'" alt="">' +
+                SQ_BUSKING_ID +
+                    '<img src="'+ "assets/img/items/2.jpg" +'" alt="">' +
                 '</div>' +
                 '<header class="average-color">' +
-                    '<h1 class="animate move_from_top_short">'+ title +'</h1>' +
-                    '<h2 class="animate move_from_top_short"><span>'+ location +'</span></h2>' +
+                    '<h1 class="animate move_from_top_short">'+ SQ_BUSKING_GENRE +'</h1>' +
+                    '<h2 class="animate move_from_top_short"><span>'+ SQ_BUSKING_RUNNINGTIME +'</span></h2>' +
                 '</header>' +
             '</a>' +
         '</div>' +

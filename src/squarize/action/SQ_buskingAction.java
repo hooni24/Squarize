@@ -22,7 +22,7 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 		
 		SQ_buskingDAO dao = new SQ_buskingDAO();
 		buskingList = dao.buskingList();
-		
+		System.out.println("ㅋㅋ" + buskingList);
 		return SUCCESS;
 	}
 	

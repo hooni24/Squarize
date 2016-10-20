@@ -14,7 +14,7 @@
 		</action>
 
 		<action name="toBuskingList" class="squarize.action.SQ_buskingAction" method="buskingList">
-			<result>buskingMain.jsp</result>
+			<result type="json"></result>
 		</action>
 		
 		
