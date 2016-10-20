@@ -9,9 +9,9 @@ $(function(){
 		,success:function(send){
 			var loginId=send.loginId;	
 			if(loginId!=""){
-				$('.close').trigger('click');
-				$('.unlogin').addClass('hidden');
-				$('.login').removeClass('hidden');
+				
+				$('.login').addClass('hidden');
+				$('.unlogin').removeClass('hidden');
 				$('#loginId').html(loginId);
 			}
 			
