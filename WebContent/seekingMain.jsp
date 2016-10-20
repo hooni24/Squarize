@@ -37,7 +37,7 @@
 					<div class="row">
 						<div class="col-md-3 col-md-offset-9">
 							<div role="tabpanel">
-		<!-- Nav tabs -->
+								<!-- Nav tabs -->
 								<ul class="nav nav-pills" role="tablist">
 									<li role="presentation"><a href="#sign-in"
 										aria-controls="sign-in" role="tab" data-toggle="tab"
@@ -46,7 +46,7 @@
 										aria-controls="register" role="tab" data-toggle="tab"
 										data-transition-parent="#register">Register</a></li>
 								</ul>
-					<!-- Tab panes -->
+								<!-- Tab panes -->
 								<div class="tab-content">
 									<div role="tabpanel" class="tab-pane" id="sign-in">
 										<form role="form" method="post" id="form-sign-in">
@@ -64,10 +64,9 @@
 												<button type="submit" class="btn btn-primary">Sign
 													In</button>
 											</div>
-						<!--end .form-group-->
+											<!--end .form-group-->
 										</form>
 									</div>
-									
 									<div role="tabpanel" class="tab-pane" id="register">
 										<form role="form" method="post" id="form-register">
 											<div class="form-group animate move_from_bottom_short">
@@ -123,7 +122,7 @@
 								data-transition-parent="#header">Register</a></li>
 						</ul>
 					</nav>
-		<!--end Secondary navigation-->
+					<!--end Secondary navigation-->
 					<nav class="main">
 						<div class="brand">
 							<a href="index.action"> <img src="assets/img/logo.png"
@@ -189,7 +188,7 @@
 										<option value="2">세션</option>
 										<option value="3">장르</option>
 										<option value="4">이름</option>
-							<!--        
+										<!--        
                                     <option value="5">House</option>
                                     <option value="6">Construction Site</option>
                               -->
@@ -198,14 +197,12 @@
 								<!-- /.form-group -->
 							</div>
 							<!--/.col-md-6-->
-						</div>
-						
-			<!-- 필요없는 요소 주석처리 -->
+
+							<!-- 필요없는 요소 주석처리 -->
 							
                         <div class="col-md-3 col-sm-3">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
-                                    <%-- 
                                     <div class="form-group">
                                         <label for="bedrooms">Bedrooms</label>
                                         <div class="input-group counter">
@@ -218,12 +215,9 @@
                                             </span>
                                         </div><!-- /input-group -->
                                     </div>
-                                     --%>
                                     <!-- /.form-group -->
                                 </div>
                                 <!-- /.col-md-3 -->
-    
-    
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label for="bathrooms">Bathrooms</label>
@@ -265,8 +259,8 @@
 							<!-- 반경설정 코드 추가 필요(price 부분 반경으로 변경하기) -->
 							<div class="col-md-3 col-sm-3">
 								<div class="form-group">
-								<label>반경설정</label>
-								<div class="ui-slider" id="price-slider" data-value-min="400" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before">
+									<label>반경설정</label>
+									<!-- <div class="ui-slider" id="price-slider" data-value-min="400" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before"> -->
 									<div class="ui-slider" id="price-slider" data-value-min=""
 										data-value-max="5000" data-value-type="price"
 										data-currency="$" data-currency-placement="before">
@@ -304,65 +298,40 @@
 				</div>
 			</div>
 
-<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
-
-		<div class="masonry grid full-width animate">
-				
-			<div class="item move_from_bottom idle">
-			<a href="/getRecruit_list" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+			<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
+<!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
+			<div class="masonry grid full-width animate">
+				<div class="item move_from_bottom idle">
+			<a href="seeking/getRecruit_list" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
                 <div class="inner">
                     <div class="image">
-                        <div class="price average-color"><span><s:property value="sq_recruit_list.sq_recruit"/></span></div>
-                        <img src="assets/img/items/1.jpg" alt="">
+                        <div class="price average-color"><span></span></div>
+                        <img src="" alt="">
                     </div>
                     <div class="item-content">
                         <header class="average-color">
-                            <h2>asdkfhasdjgjaslkgjsldgj</h2>
-                            <h3>63 Birch Street</h3>
+                            <h2></h2>
+                            <h3></h3>
                         </header>
                         <footer>
-                            <%-- <dl>
-                                <dt>Bathrooms</dt>
-                                <dd>1</dd>
-                                <dt>Bedrooms</dt>
-                                <dd>2</dd>
-                                <dt>Area</dt>
-                                <dd>165m<sup>2</sup></dd>
-                                <dt>Garages</dt>
-                                <dd>1</dd>
-                            </dl> --%>
-                            <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
-                            <script type="text/javascript">
-                            	$(function(){
-                            		$.ajaxSettings.traditional = true;
-                            		$.ajax({
-                            			url: 'getRecruit_list'
-                            			, method: 'POST'
-                            			, dataType:'json'
-                            			, success : function(response){
-                            				var data_list = response.sq_recruit_list;
-                            				
-                            				$.each(data_list, function(data){
-                            				
-                            					alert(data.sq_recruit_id);
-                            					$('.item-content footer')append.("<dl><dt>게시멤버</dt><dd>"+data.sq_member_id+"</dd><dt>장르</dt><dd>"+data.sq_recruit_genre+"</dd><dt>파트</dt><dd>"+data.sq_recruit_part+"</dd><dt>연주날짜</dt><dd>"+data.sq_recruit_date+"</dd></dl>");
-                            				});
-        										                    			
-                            			}
-                            		
-                            		});
-                            	
-                            	});
-                            
-                            </script>
+                            <dl>
+                                <dt></dt>
+                                <dd></dd>
+                                <dt></dt>
+                                <dd></dd>
+                                <dt></dt>
+                                <dd></dd>
+                                <dt></dt>
+                                <dd></dd>
+                            </dl>
                         </footer>
                     </div>
                 </div>
             </a>
         </div>
         <!--end .item-->
-
-        <div class="item move_from_bottom idle">
+<!-- 요기까지 정보 넣기 -->
+        <%-- <div class="item move_from_bottom idle">
             <a href="assets/pages/items/2_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
                 <div class="inner">
                     <div class="image">
@@ -391,15 +360,14 @@
             </a>
         </div>
         <!--end .item-->
-
+ --%>
         </div>
-
 	<!-- 나열부분 끝 -->
 		</div>
-	<!--end Page Content-->
-		</div>
+		<!--end Page Content-->
+	</div>
 
-		<%-- <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script> --%>
+		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript"
 			src="assets/js/imagesloaded.pkgd.min.js"></script>
 		<script type="text/javascript"
@@ -421,7 +389,6 @@
 			src="assets/js/jquery.nouislider.all.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
 		<script type="text/javascript" src="assets/js/functions.js"></script>
-		
 		<script type="text/javascript" src="assets/js/custom.js"></script>
 		<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
