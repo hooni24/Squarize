@@ -26,13 +26,18 @@
 	
 	<script>
 		$(function(){
-			$("a.aRed").on("click", function(){
+			$("a#delete").on("click", function(){
 				var selected = confirm("정말 삭제하시겠습니까?");
 				if(selected){
 					var rent_id = $("input#hidden").val();
 					location.href="deleteRent.action?rent.sq_rent_id="+rent_id;
 				}
 			})
+			
+			$("a#update").on("click", function(){
+				var rent_id = $("input#hidden").val();
+				location.href="toUpdateRent.action?rent.sq_rent_id="+rent_id;
+			});
 		});
 	</script>
     <title></title>
@@ -112,7 +117,8 @@
                 <article class="center" id="test">
 <%--                     <s:if test="#session.loginId == rent.sq_member_id "> --%>
                     	<a class="btn btn-circle btn-lg btn_default aBlack">지원자 보기</a>&nbsp;&nbsp;&nbsp;
-                    	<a class="btn btn-circle btn-lg aRed">삭제</a>
+                    	<a class="btn btn-circle btn-lg aBlack" id="update">수정</a>&nbsp;&nbsp;&nbsp;
+                    	<a class="btn btn-circle btn-lg aRed" id="delete">삭제</a>
 <%--                     </s:if> --%>
 <%--                     <s:else> --%>
 	                    <a href="#" class="btn btn-circle btn-default btn-lg">지원</a>

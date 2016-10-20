@@ -85,7 +85,13 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
-	
+	/**
+	 * 대관게시물 수정
+	 */
+	public String updateRent(){
+		
+		return SUCCESS;
+	}
 	
 	
 	

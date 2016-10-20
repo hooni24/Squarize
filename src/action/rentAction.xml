@@ -14,7 +14,7 @@
 		</action>
 		
 		<action name="toAddRent" class="squarize.action.SQ_rentAction">
-			<result>assets/pages/add_rent.jsp</result>
+			<result>assets/pages/rent/add_rent.jsp</result>
 		</action>
 		
 		<action name="insertRent" class="squarize.action.SQ_rentAction" method="insertRent">
@@ -29,6 +29,13 @@
 			<result type="redirect">toRentMain.action</result>
 		</action>
 		
+		<action name="toUpdateRent" class="squarize.action.SQ_rentAction">
+			<result>assets/pages/rent/updateRent.jsp</result>
+		</action>
+		
+		<action name="updateRent" class="squarize.action.SQ_rentAction" method="updateRent">
+			<result type="redirect">toRentMain.action</result>
+		</action>
     </package>
 
 </struts>
