@@ -12,5 +12,10 @@
 		INSERT INTO sq_rent
 		VALUES (sq_rent_id_sq.nextval, #{sq_member_id}, #{sq_rent_band_name}, to_date(#{sq_rent_concert_date}, 'yyyy-mm-dd hh24:mi'), default, to_date(#{sq_rent_limit}, 'yyyy-mm-dd hh24:mi'), #{sq_rent_info}, #{sq_rent_photo}, #{sq_rent_photo_original})
 	</insert>
-
+	
+	<select id="getRentById" parameterType="SQ_rent" resultType="SQ_rent">
+		SELECT *
+		FROM sq_rent
+		WHERE sq_rent_id = #{sq_rent_id}
+	</select>
 </mapper>

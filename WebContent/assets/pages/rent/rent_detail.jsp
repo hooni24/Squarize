@@ -30,12 +30,12 @@
                 <article class="animate move_from_bottom_short">
                     <div class="gallery">
                         <div class="image">
-                            <img src="assets/img/items/1_b.jpg" alt="">
+                            <img src="assets/downloadIMG/rent/${rent.sq_rent_photo }" alt="">
                         </div>
                     </div>
                 </article>
                 <article class="animate move_from_bottom_short">
-                    <h1>534 Roosevelt Street</h1>
+                    <h1>${rent.sq_rent_band_name }</h1>
                     <h2><i class="fa fa-map-marker"></i>San Francisco</h2>
                     <figure class="price average-color"><span>$25.000</span></figure>
                     <p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa,

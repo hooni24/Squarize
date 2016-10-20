@@ -18,6 +18,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String sq_member_id;
 	private String sq_member_pw;
 	private String loginId;
+	private String isArtist;
 
 	
 	public SQ_member getSq_member() {
@@ -47,13 +48,27 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
+	
 
 	
-	
-	public String registerSQmember() throws Exception{
-		System.out.println(sq_member);
+	public String getIsArtist() {
+		return isArtist;
+	}
+	public void setIsArtist(String isArtist) {
+		this.isArtist = isArtist;
+	}
+	public String idCheck() throws Exception{
 		mdao=new SQ_memberDAO();
-	//	mdao.
+		sq_member=mdao.loginSQmember(sq_member_id);
+		
+			return SUCCESS;
+		
+	}
+	public String registerSQmember() throws Exception{
+		mdao=new SQ_memberDAO();
+
+		mdao.registerSQmember(sq_member);
+
 		return SUCCESS;
 	}
 	
@@ -61,28 +76,27 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		mdao=new SQ_memberDAO();
 		sq_member=mdao.loginSQmember(sq_member_id);
 		
-		System.out.println("action"+sq_member);
 		if(sq_member.getSq_member_pw().equals(sq_member_pw)){
 			session.put("loginId", sq_member.getSq_member_id());
-			System.out.println(session.get("loginId"));
+			session.put("isArtist", sq_member.getSq_member_isartist());
 			loginId=(String) session.get("loginId");
-			return SUCCESS;
+			isArtist=(String) session.get("isArtist");
 		}else{
-			return ERROR;
+			sq_member=null;
+			loginId="";
+			isArtist="";
 		}
+		return SUCCESS;
 	}
 	public String loginCheck() throws Exception{
 		loginId=(String)session.get("loginId");
-		if(loginId!=null){
 			return SUCCESS;
-		}else{
-			return LOGIN;
-		}		
-	}
+		}
 	public String logoutSQmember() throws Exception{
 		session.clear();
 		return SUCCESS;
 	}
+	
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		session = arg0;
