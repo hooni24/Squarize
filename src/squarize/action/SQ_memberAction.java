@@ -72,6 +72,11 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	public String addArtist() throws Exception{
+		loginId=(String)session.get("loginId");
+		return SUCCESS;
+	}
+	
 	/**
 	 * 포트폴리오 읽기. 주인 artist정보도 얻어옴(사진 뿌려주기 위함)
 	 */

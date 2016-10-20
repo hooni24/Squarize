@@ -4,6 +4,7 @@ public class SQ_artist {
 	private String sq_member_id;
 	private String sq_artist_phone;
 	private String sq_artist_photo = "";
+	private String sq_artist_intro;
 	
 	public SQ_artist() {}
 
@@ -31,12 +32,20 @@ public class SQ_artist {
 		this.sq_artist_photo = sq_artist_photo;
 	}
 
+	public String getSq_artist_intro() {
+		return sq_artist_intro;
+	}
+
+	public void setSq_artist_intro(String sq_artist_intro) {
+		this.sq_artist_intro = sq_artist_intro;
+	}
+
 	@Override
 	public String toString() {
 		return "SQ_artist [sq_member_id=" + sq_member_id + ", sq_artist_phone=" + sq_artist_phone + ", sq_artist_photo="
-				+ sq_artist_photo + "]";
+				+ sq_artist_photo + ", sq_artist_intro=" + sq_artist_intro + "]";
 	}
 	
 	
-
+	
 }
