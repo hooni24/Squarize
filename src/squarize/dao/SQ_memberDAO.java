@@ -15,7 +15,6 @@ public class SQ_memberDAO {
 		try{
 			ss=factory.openSession();
 			result=ss.selectOne("sq_memberMapper.loginSQmember", sq_member_id);
-			System.out.println("dao login 완료"+result);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -24,12 +23,10 @@ public class SQ_memberDAO {
 		}
 		return result;
 	}
-	
 	public void registerSQmember(SQ_member sq_member){
 		try{
 			ss=factory.openSession();
-			ss.insert("sq_memberMapper.loginSQmember", sq_member);
-			System.out.println("dao insert 완료");
+			ss.insert("sq_memberMapper.registerSQmember", sq_member);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{

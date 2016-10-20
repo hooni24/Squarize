@@ -62,9 +62,14 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 				e.printStackTrace();
 			}
 		}
-		
 		new SQ_rentDAO().insertRent(rent);
-		System.out.println(rent + "DB등록 성공");
+		return SUCCESS;
+	}
+	
+	
+	public String toRentDetail(){
+		rent = new SQ_rentDAO().getRentById(rent);
+		System.out.println("검색해온 대관게시물 " + rent);
 		return SUCCESS;
 	}
 	
