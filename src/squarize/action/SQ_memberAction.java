@@ -66,7 +66,9 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	}
 	public String registerSQmember() throws Exception{
 		mdao=new SQ_memberDAO();
+
 		mdao.registerSQmember(sq_member);
+
 		return SUCCESS;
 	}
 	

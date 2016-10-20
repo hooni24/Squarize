@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-json-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 
 <html lang="en-US">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
     <title>SQUARIZE - SEEKING</title>
-
+	
 </head>
 
 <body id="page-top" class="has-map">
@@ -262,16 +262,22 @@
 <!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
 
         <div class="masonry grid full-width animate">
-        <div class="item move_from_bottom idle">
-            <a href="assets/pages/items/1_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+        <script>
+        	$(function(){
+	        	loadPage();
+        	
+        	});
+        </script>
+        <%-- <div class="item move_from_bottom idle">
+			<a href="seeking/getRecruit_list" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
                 <div class="inner">
                     <div class="image">
-                        <div class="price average-color"><span>$25.000</span></div>
+                        <div class="price average-color"><span><s:property value="sq_recruit_list.sq_recruit"/></span></div>
                         <img src="assets/img/items/1.jpg" alt="">
                     </div>
                     <div class="item-content">
                         <header class="average-color">
-                            <h2>2151 Mulberry Avenue</h2>
+                            <h2><s:property  /></h2>
                             <h3>63 Birch Street</h3>
                         </header>
                         <footer>
@@ -323,7 +329,7 @@
         <!--end .item-->
 
         </div>
-
+ --%>
 <!-- 나열부분 끝 -->
     </div>
     <!--end Page Content-->
