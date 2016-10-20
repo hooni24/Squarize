@@ -65,9 +65,9 @@ CREATE TABLE SQ_BUSKING
 	-- 버스킹 진행 예정 시간 (분)
 	SQ_BUSKING_RUNNINGTIME number(3) NOT NULL,
 	-- 버스킹 위치정보 (위도 LAT)
-	SQ_BUSKING_LAT number(6,3) NOT NULL,
+	SQ_BUSKING_LAT number(6,4) NOT NULL,
 	-- 버스킹 위치정보 (경도 LNG)
-	SQ_BUSKING_LNG number(6,3) NOT NULL,
+	SQ_BUSKING_LNG number(6,4) NOT NULL,
 	-- 버스킹 실황 자료 경로1
 	SQ_BUSKING_FILE1 varchar2(100),
 	-- 버스킹 실황 자료 경로2

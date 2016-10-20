@@ -9,10 +9,13 @@
 
     <package name="busking" namespace="/" extends="struts-default, json-default">
     
-		<action name="toBuskingMain">
+		<action name="toBuskingMain" >
 			<result>buskingMain.jsp</result>
 		</action>
-		
+
+		<action name="toBuskingList" class="squarize.action.SQ_buskingAction" method="BuskingList">
+			<result>buskingMain.jsp</result>
+		</action>
 		
 		
 		

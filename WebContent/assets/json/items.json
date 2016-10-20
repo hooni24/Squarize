@@ -2,12 +2,12 @@
     "data": [
         {
             "id": 1,
-            "[구인]": "밤을 잊은 그대에게 -베이스세션",
-            "위치": "홍대입구",
+            "title": "밤을 잊은 그대에게 -베이스세션",
+            "location": "홍대입구",
             "latitude": 37.5564059,
             "longitude": 126.9259563,
             "url": "assets/pages/items/1_e.html",
-            "장르": "헤비메탈",
+            "genre": "헤비메탈",
             "type_icon": "",
             "rating": 4,
             "gallery":
@@ -415,30 +415,8 @@
                     "rooms": 3,
                     "area": 153
                 }
-        },
-        {
-            "id": 23,
-            "category": "real_estate",
-            "title": "힘들고 지친 그대에게",
-            "location": "홍대입구",
-            "latitude": 37.5564059,
-            "longitude": 126.9259563,
-            "url": "item-detail.html",
-            "type": "락밴드",
-            "type_icon": "",
-            "rating": 4,
-            "gallery":
-                [
-                    "assets/img/items/3.jpg"
-                ],
-            "item_specific":
-                {
-                    "bedrooms": 2,
-                    "bathrooms": 1,
-                    "rooms": 3,
-                    "area": 165
-                }
         }
+       
 
 
     ]

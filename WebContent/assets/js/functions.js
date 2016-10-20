@@ -724,7 +724,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             }
         });
     }
-} //googlemap
+} 													//googlemap
 
 function redrawMap(map){
     google.maps.event.trigger(map, 'resize');

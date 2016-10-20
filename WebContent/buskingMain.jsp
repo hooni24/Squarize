@@ -218,26 +218,29 @@
     <!--end Page Content-->
 </div>
 
-<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
-<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
-<script type="text/javascript" src="assets/js/infobox.js"></script>
-<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-<script type="text/javascript" src="assets/js/markerclusterer.js"></script>
-<script type="text/javascript" src="assets/js/smoothscroll.js"></script>
-<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap-select.js"></script>
-<script type="text/javascript" src="assets/js/icheck.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
-<script type="text/javascript" src="assets/js/functions.js"></script>
-<script type="text/javascript" src="assets/js/custom.js"></script>
-<script type="text/javascript" src="assets/js/sq_member.js"></script>
+			<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
+			<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
+			<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+			<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
+			<script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
+			<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
+			<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
+			<script type="text/javascript" src="assets/js/infobox.js"></script>
+			<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
+			
+			<script type="text/javascript" src="assets/js/markerclusterer.js"></script>
+			<script type="text/javascript" src="assets/js/smoothscroll.js"></script>
+			<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+			<script type="text/javascript" src="assets/js/bootstrap-select.js"></script>
+			<script type="text/javascript" src="assets/js/icheck.min.js"></script>
+			
+			<script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
+			<script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
+			<script type="text/javascript" src="assets/js/custom.js"></script>
+			<script type="text/javascript" src="assets/js/sq_member.js"></script>
+							
+			<script type="text/javascript" src="assets/js/functions.js"></script>
 
 <!--[if lte IE 9]>
 <script type="text/javascript" src="assets/js/ie-scripts.js"></script>
@@ -246,8 +249,26 @@
 <script>
 	var _latitude = 37.5564059;
 	var _longitude = 126.9259563;
-    var jsonPath = 'assets/json/items.json';
-
+    /* var jsonPath = 'assets/json/items.json'; */
+		
+    	 $(function(){
+    		$.ajax({
+    			method : "get",
+    			url : "toBuskingList",
+    			dataType : "JSON",
+    			success : function(resp){
+    				var list = resp.buskingList;
+    				
+    				alert(list);
+    			}
+    		});
+    	}); 
+    
+    
+    
+    
+    
+    
     // Load JSON data and create Google Maps
 
     $.getJSON(jsonPath)

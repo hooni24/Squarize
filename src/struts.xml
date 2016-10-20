@@ -7,7 +7,7 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
 
-    <package name="default" namespace="/" extends="struts-default">
+    <package name="default" namespace="/" extends="struts-default, json-default">
 <!--         <default-action-ref name="index" /> 당분간 디폴트사용 ㄴㄴ.. 헷갈림 방지-->
 
 		<action name="index">
