@@ -16,7 +16,7 @@
 	transition:0.3s;
 }
 .message{
-	padding-top:10px;
+	margin-top:5px;
 	margin-right:30px;
 	font-size:15px;
 	color: rgba(0,0,0,0.5);
@@ -24,7 +24,7 @@
 .select{
 	z-index:1000000;
 }
-#sq_artist{
+/* #sq_artist{
 	margin-top:5px;
 	font-size: 11px;
 	color:rgba(0,0,0,0.3);
@@ -36,4 +36,22 @@
 }
 #sq_artist:hover{
 	color:rgba(0,0,0,0.8);
+} */
+#sq_artist{
+	margin-top:-5px;
+	margin-right:-30px;
+	    font-family: 'Roboto', sans-serif;
+	    font-size: 12px;
+	    font-weight: bold;
+}
+
+.nav-artist{
+	font-weight: bold;
+	color:rgba(0,0,0,0.5);
+	cursor:default;
+	
+}
+
+#add-artist-phone{
+	background:orange;
 }

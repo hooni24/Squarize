@@ -36,12 +36,20 @@
                                 <li role="presentation"><a href="#sign-in" aria-controls="sign-in" id="sign_in_btn" role="tab" data-toggle="tab" data-transition-parent="#sign-in">Sign In</a></li>
                                 <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register">Register</a></li>
                             </ul>
-                           
+                           	<ul class="nav nav-artist hidden">
+                           		<li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane">추가인증</a></li>
+                           	</ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                            	<div role="tabpanel" class="tab-pane hidden" id="add-artist">
+                            	<div role="tabpanel" class="tab-pane" id="add-artist">
                             		<form action="form" method="post" id="form-add-artist">
-                            			<div class="loginId"></div>
+                            			<div class="form-group animate move_from_bottom_short" id="phoneInput">
+                                            <input type="text" class="form-control" id="add-artist-phone" name="add-artist-phone" placeholder="PHONE">
+                                        </div>
+                                        <div class="form-group animate move_from_bottom_short" id="photoInput">
+                                            <input type="text" class="form-control" id="add-artist-photo" name="add-artist-photo" placeholder="PHOTO">
+                                        </div>
+                                        
                             		</form>
                             	</div>
                                 <div role="tabpanel" class="tab-pane" id="sign-in">
@@ -61,7 +69,7 @@
                                     </form>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="register">
-                                    <form role="form" method="post" id="form-register" class="register-pane">
+                                	<form role="form" method="post" id="form-register" class="register-pane">
                                         <div class="form-group animate move_from_bottom_short" id="idInput">
                                             <input type="text" class="form-control" id="register-id" name="register-id" placeholder="ID">
                                            	<span id="id-check"></span>
@@ -119,9 +127,9 @@
                         <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header">Register</a></li>
                     </ul>
                     <ul class="login hidden">
-                    	<li class="message"><span class="loginId"></span>님 환영합니다.</li>
+                    	<li class="message"><span class="loginId"></span>님 로그인 중.</li>
                     	<%-- <s:if test='#session.isArtist=="N"'> --%>
-                    		<li><a href="#user-area" data-toggle="collapse"  id="sq_artist" aria-expanded="false" aria-controls="user-area" data-tab="#addArtist" data-transition-parent="#header"></a></li>
+                    		
                     <%-- 	</s:if> --%>
                     	<li id="logout_btn"><a href="#logout">Logout</a></li>
                     </ul>

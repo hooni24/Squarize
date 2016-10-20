@@ -81,6 +81,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 			session.put("isArtist", sq_member.getSq_member_isartist());
 			loginId=(String) session.get("loginId");
 			isArtist=(String) session.get("isArtist");
+			System.out.println();
 		}else{
 			sq_member=null;
 			loginId="";
@@ -95,7 +96,8 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		System.out.println();
 		
 		loginId=(String)session.get("loginId");
-		System.out.println(loginId);
+		isArtist=(String)session.get("isArtist");
+		System.out.println(isArtist);
 			return SUCCESS;
 		}
 	public String logoutSQmember() throws Exception{
