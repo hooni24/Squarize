@@ -13,6 +13,22 @@
     	<action name="toPortfolio" class="squarize.action.SQ_memberAction" method="portfolioCheck">
     		<result>assets/pages/portfolio/portfolio.jsp</result>
     	</action>
+    	
+    	<action name="makePortfolio" class="squarize.action.SQ_memberAction" method="makePortfolio">
+    		<result type="redirect" name="seeking">toSeekingMain.action</result>
+    		<result type="redirect" name="rent">toRentMain.action</result>
+    	</action>
+    	
+    	<action name="deletePortfolio" class="squarize.action.SQ_memberAction" method="deletePortfolio">
+			<result type="json"></result>
+    	</action>
+    	
+    	<action name="updatePortfolio" class="squarize.action.SQ_memberAction" method="updatePortfolio">
+    		<result type="json"></result>
+    	</action>
+    	
+    	
+    	
 
 		<action name="registerSQmember" class="squarize.action.SQ_memberAction" method="registerSQmember">
 			<result type="json"></result>

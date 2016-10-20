@@ -20,7 +20,7 @@
 				$("input#real_concert_date").val(concert_date);
 				$("input#real_limit").val(limit);
 				
-				$("#forms")[0].submit();
+// 				$("#forms")[0].submit();
 			}
 		});
 		

@@ -1,23 +1,34 @@
 package squarize.action;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import squarize.vo.SQ_artist;
 import squarize.dao.SQ_memberDAO;
+import squarize.util.FileService;
 import squarize.vo.SQ_member;
+import squarize.vo.SQ_portfolio;
 
 public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private SQ_memberDAO mdao;
 	private Map<String, Object> session;
 	private SQ_member sq_member;
+	private SQ_portfolio sq_portfolio;
+	private SQ_artist sq_artist;
 	private String sq_member_id;
 	private String sq_member_pw;
 	private String loginId;
 	private String isArtist;
-
+	private String fromWhere;
+	
+	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
+	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
+	private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
 	
 	
 	public String idCheck() throws Exception{
@@ -61,8 +72,60 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	/**
+	 * 포트폴리오 읽기. 주인 artist정보도 얻어옴(사진 뿌려주기 위함)
+	 */
+	public String portfolioCheck(){
+		sq_portfolio = new SQ_memberDAO().portfolioCheck("ss");
+		sq_artist = new SQ_memberDAO().getArtistInfo("aa");
+		return SUCCESS;
+	}
 	
+	/**
+	 * 포트폴리오 등록
+	 */
+	public String makePortfolio(){
+		if (upload != null) { 
+			try {
+				FileService fs = new FileService();
+				String basePath = getText("port.uploadpath");
+				String savedfile;
+				savedfile = fs.saveFile(upload, basePath, uploadFileName);
+				sq_portfolio.setSq_port_file(savedfile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		sq_portfolio.setSq_member_id("ss");
+		new SQ_memberDAO().makePortfolio(sq_portfolio);
+		
+		if(fromWhere != null){
+			switch (fromWhere) {
+			case "rent":
+				return "rent";
+			case "seeking":
+				return "seeking";
+			}
+		}
+		return ERROR;
+	}
 	
+	/**
+	 * 포트폴리오 삭제
+	 */
+	public String deletePortfolio(){
+		new SQ_memberDAO().deletePortfolio("ss");
+		return SUCCESS;
+	}
+	
+	/**
+	 * 포트폴리오 수정
+	 */
+	public String updatePortfolio(){
+		sq_portfolio.setSq_member_id("ss");
+		sq_portfolio = new SQ_memberDAO().updatePortfolio(sq_portfolio);
+		return SUCCESS;
+	}
 	
 	
 	
@@ -99,6 +162,43 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public void setIsArtist(String isArtist) {
 		this.isArtist = isArtist;
 	}
+	public SQ_portfolio getSq_portfolio() {
+		return sq_portfolio;
+	}
+	public void setSq_portfolio(SQ_portfolio sq_portfolio) {
+		this.sq_portfolio = sq_portfolio;
+	}
+	public File getUpload() {
+		return upload;
+	}
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+	public SQ_artist getSq_artist() {
+		return sq_artist;
+	}
+	public void setSq_artist(SQ_artist sq_artist) {
+		this.sq_artist = sq_artist;
+	}
+	public String getFromWhere() {
+		return fromWhere;
+	}
+	public void setFromWhere(String fromWhere) {
+		this.fromWhere = fromWhere;
+	}
+
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		session = arg0;
