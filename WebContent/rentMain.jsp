@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
     <title>SQUARIZE - RENT</title>
-
+    
 </head>
 
 <body id="page-top" class="has-map">
@@ -161,7 +161,7 @@
                             </div>
                             <!-- /.form-group -->
                         </div>
-                        <!--/.col-md-6-->
+                        <!--/.col-md-3 col-sm-3-->
                         <div class="col-md-3 col-sm-3">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
@@ -197,7 +197,9 @@
                                 </div>
                                 <!--/.col-md-3-->
                             </div>
+                            <!-- .row -->
                         </div>
+                        <!-- col-md-3 col-sm-3 -->
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label for="location">Location</label>
@@ -210,6 +212,7 @@
                             </div>
                             <!-- /.form-group -->
                         </div>
+                        <!-- col-md-3 col-sm-3 -->
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label>Price</label>
@@ -223,7 +226,7 @@
                             </div>
                             <!-- /.form-group -->
                         </div>
-                        <!--/.col-md-6-->
+                        <!--/.col-md-3 col-sm-3-->
                     </div>
                     <!--/.row-->
                 </form>
@@ -245,49 +248,56 @@
             </div>
         </div>
         
-        <s:iterator value="rentList" var="rent">
-        	<div class="masonry grid full-width animate">
-	        <div class="item move_from_bottom idle">
-	            <a href="toRentDetail.action?rent.sq_rent_id=${sq_rent_id }" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-	                <div class="inner">
-	                    <div class="image">
-	                        <div class="price average-color"><span>${sq_member_id }</span></div>
-	                        <s:if test="sq_rent_photo != null">
-		                        <img src="assets/downloadIMG/rent/${sq_rent_photo }" alt="">
-	                        </s:if>
-	                        <s:else>
-		                        <img src="assets/img/items/1.jpg" alt="">
-	                        </s:else>
-	                        
-	                    </div>
-	                    <div class="item-content">
-	                        <header class="average-color">
-	                            <h2>${rent.sq_rent_band_name }</h2>
-	                            <h3>${rent.sq_rent_concert_date }</h3>
-	                        </header>
-	                        <footer>
-	                            <dl>
-	                                <dt>SQ_RENT_ID</dt>
-	                                <dd>${sq_rent_id }</dd>
-	                                <dt>지역</dt>
-		                            <dd>서울</dd>
-		                            <dt>장르</dt>
-		                            <dd>락</dd>
-		                            <dt>총 공연시간</dt>
-		                            <dd>1시간</dd>
-		                            <dt>모집팀 수</dt>
-		                            <dd>3팀</dd>
-	                            </dl>
-	                        </footer>
-	                    </div>
-	                </div>
-	            </a>
-	        </div>
-        </s:iterator>
-	        
+       	<div class="masonry grid full-width animate">
+	        <s:iterator value="rentList" var="rent">
+		        <div class="item move_from_bottom idle">
+		            <a href="toRentDetail.action?rent.sq_rent_id=${sq_rent_id }" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+		                <div class="inner">
+		                    <div class="image">
+		                        <div class="price average-color"><span>${sq_member_id }</span></div>
+		                        <s:if test="sq_rent_photo != null">
+			                        <img src="assets/downloadIMG/rent/${sq_rent_photo }" alt="">
+		                        </s:if>
+		                        <s:else>
+			                        <img src="assets/img/items/1.jpg" alt="">
+		                        </s:else>
+		                        
+		                    </div>
+		                    <div class="item-content">
+		                        <header class="average-color">
+		                            <h2>${rent.sq_rent_band_name }</h2>
+		                            <h3>${rent.sq_rent_concert_date }</h3>
+		                        </header>
+		                        <footer>
+		                            <dl>
+		                                <dt>SQ_RENT_ID</dt>
+		                                <dd>${sq_rent_id }</dd>
+		                                <dt>지역</dt>
+			                            <dd>서울</dd>
+			                            <dt>장르</dt>
+			                            <dd>락</dd>
+			                            <dt>총 공연시간</dt>
+			                            <dd>1시간</dd>
+			                            <dt>모집팀 수</dt>
+			                            <dd>3팀</dd>
+		                            </dl>
+		                        </footer>
+		                    </div>
+		                    <!--end .item-content -->
+		                </div>
+		                <!--end .inner -->
+		            </a>
+		        </div>
+		        <!--end .item move_from_bottom idle  -->
+	        </s:iterator>
+	    </div>
+	    <!--end .masonry grid full-width animate -->
     </div>
     <!--end Page Content-->
 </div>
+<!-- end Page Wrapper -->
+
+<div id="loading"></div>
 
 <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>

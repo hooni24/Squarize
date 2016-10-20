@@ -21,6 +21,8 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	private List<SQ_rent> rentList;
 	
 	
+	
+	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
 	private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
@@ -35,10 +37,8 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	 * 전체 대관모집 게시물 불러오기.
 	 */
 	public String getAllRent(){
-		
-		
 		//이 부분 또는 SQ_rentDAO().getAllRent()에 선호도에 따라 order by 정하는 알고리즘 필요. 일단은 올린 순서대로 뽑아옴
-		
+
 		rentList = new SQ_rentDAO().getAllRent();
 		return SUCCESS;
 	}
@@ -113,6 +113,13 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	
 	
 	
+	/**
+	 * 스크롤 페이징 테스트
+	 */
+	public String test(){
+			System.out.println("ok");
+		return SUCCESS;
+	}
 	
 	
 
@@ -168,7 +175,6 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	public void setMember(SQ_member member) {
 		this.member = member;
 	}
-	
 
 
 }

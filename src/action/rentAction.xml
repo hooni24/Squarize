@@ -32,6 +32,8 @@
 		<action name="updateRent" class="squarize.action.SQ_rentAction" method="updateRent">
 			<result type="redirect">toRentMain.action</result>
 		</action>
+		
+		
     </package>
 
 </struts>
