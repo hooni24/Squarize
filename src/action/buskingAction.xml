@@ -13,7 +13,7 @@
 			<result>buskingMain.jsp</result>
 		</action>
 
-		<action name="toBuskingList" class="squarize.action.SQ_buskingAction" method="BuskingList">
+		<action name="toBuskingList" class="squarize.action.SQ_buskingAction" method="buskingList">
 			<result>buskingMain.jsp</result>
 		</action>
 		

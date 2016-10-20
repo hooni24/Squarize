@@ -3,6 +3,6 @@
 <mapper namespace="sq_memberMapper">
 
 	<select id="selectAll" resultType="SQ_busking">
-		select * from sq_busking;
+		select * from sq_busking
 	</select>
 </mapper>
