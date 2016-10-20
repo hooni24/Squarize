@@ -307,7 +307,6 @@
     						]
     				};
     				
-    				alert(typeof test);
     				
     				
 // 				     $.getJSON(jsonPath)
@@ -320,10 +319,12 @@
 // 				            });
 
 					$.ajax({
-						"url" : toBuskingList
+						"url" : "toBuskingList"
 						, "method" : "post"
-						, "success" : function(resp){
-				                createHomepageGoogleMap(_latitude,_longitude,resp.buskingList);
+						, "success" : function(resp.buskingList){
+							var data = resp.buskingList
+							
+				                createHomepageGoogleMap(_latitude,_longitude, data);
 						}
 					});
 					
