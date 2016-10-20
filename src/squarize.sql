@@ -47,6 +47,8 @@ CREATE TABLE SQ_ARTIST
 	SQ_ARTIST_PHONE number(11) NOT NULL UNIQUE,
 	-- 아티스트 프로필 사진 경로
 	SQ_ARTIST_PHOTO varchar2(50),
+	-- 회원 소개
+	SQ_ARTIST_INTRO varchar2(1000),
 	PRIMARY KEY (SQ_MEMBER_ID)
 );
 

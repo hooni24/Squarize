@@ -24,25 +24,14 @@
 .select{
 	z-index:1000000;
 }
-/* #sq_artist{
-	margin-top:5px;
-	font-size: 11px;
-	color:rgba(0,0,0,0.3);
-	font-weight: bold;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	cursor:pointer;
-	-webkit-transition:0.2s;
-	transition:0.2s;
-}
-#sq_artist:hover{
-	color:rgba(0,0,0,0.8);
-} */
+
 #sq_artist{
 	margin-top:-5px;
 	margin-right:-30px;
 	    font-family: 'Roboto', sans-serif;
 	    font-size: 12px;
 	    font-weight: bold;
+	    
 }
 
 .nav-artist{
@@ -54,4 +43,5 @@
 
 #add-artist-phone{
 	background:orange;
+	z-index:9999999;
 }

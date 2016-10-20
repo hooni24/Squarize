@@ -3,10 +3,11 @@
  */
 $(function(){
 	var idError="f";
+	
 	$.ajax({
 		url:'loginCheck'
 		,dataType:'json'
-		,success:function(send){
+		,success:reset()/*function(send){
 			var loginId=send.loginId;
 			var isArtist=send.isArtist;
 			alert(isArtist);
@@ -22,8 +23,7 @@ $(function(){
 				$('.loginId').html(loginId);
 				
 				$('.nav-pills').addClass("hidden");
-				/*$('.tab-pane').addClass("hidden");
-				$('.tab-pane')*/
+				
 				if(isArtist=="N"){
 					$('.nav-artist').removeClass("hidden");
 					alert(isArtist);
@@ -41,7 +41,7 @@ $(function(){
 			}
 			
 			
-		}
+		}*/
 		,error:function(){
 			alert("");
 		}
@@ -236,8 +236,43 @@ $(function(){
 			}
 		});
 	});
+	
 	$('#sq_artist').on('click',function(){
 		$('#tab-pane').addClass("hidden");
 		$('#add-artist').removeClass("hidden");
 	});
+	
+	function reset(send){
+		var loginId=send.loginId;
+		var isArtist=send.isArtist;
+		if(loginId==null||loginId==""){
+			alert("로그인안됨"+loginId);
+			$('.login').addClass('hidden');
+			$('.unlogin').removeClass('hidden');
+			$('.loginId').html("");
+			$('.nav-artist').addClass("hidden");
+			$('.nav-pills').removeClass("hidden");
+		}else{
+			alert("로그인됨"+loginId);
+			$('.unlogin').addClass('hidden');
+			$('.login').removeClass('hidden');
+			$('.loginId').html(loginId);
+			$('.nav-pills').addClass("hidden");
+			if(isArtist=="N"){
+				$('.nav-artist').removeClass("hidden");
+				alert(isArtist);
+				var code="<li><a href='#user-area' data-toggle='collapse'  id='sq_artist' aria-expanded='false' aria-controls='user-area' data-tab='#add-artist' data-transition-parent='#header'>추가인증</a></li>";
+				$(code).appendTo('.message');
+				alert("hi1");
+				$('#add-artist').removeClass("hidden");
+				alert("hi2");
+			}else{
+				$('#sq_artist').remove();
+				$('.nav-pills').addClass("hidden");
+				$('.nav-artist').removeClass("hidden");
+			}
+		}
+	}
 })
+
+

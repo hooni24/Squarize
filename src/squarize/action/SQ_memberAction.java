@@ -61,6 +61,11 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	public String addArtist() throws Exception{
+		loginId=(String)session.get("loginId");
+		
+		return SUCCESS;
+	}
 	
 	
 	
