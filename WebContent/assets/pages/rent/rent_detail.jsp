@@ -68,10 +68,6 @@
     <div class="row">
         <div class="col-md-8">
             <div class="inner">
-                <div class="items-switch">
-                    <a href="#" class=""><img src="assets/img/arrow-left.png"></a>
-                    <a href="#" class=""><img src="assets/img/arrow-right.png"></a>
-                </div>
                 <article class="animate move_from_bottom_short">
                     <div class="gallery">
                         <div class="image">
@@ -118,29 +114,17 @@
                     <div class="block animate move_from_bottom_short">
                         <dl>
                             <dt>지역</dt>
-                            <dd>서울</dd>
+                            <dd>${rent.sq_rent_region }</dd>
                             <dt>장르</dt>
-                            <dd>락</dd>
+                            <dd>${rent.sq_rent_genre }</dd>
                             <dt>총 공연시간</dt>
-                            <dd>1시간</dd>
+                            <dd>${rent.sq_rent_running_time } 시간</dd>
                             <dt>모집팀 수</dt>
-                            <dd>3팀</dd>
+                            <dd>${rent.sq_rent_team_count } 팀</dd>
                         </dl>
                     </div>
                 </article>
                 <!--end Sidebar-->
-                <article>
-                    <h3>댓글</h3>
-                    <div class="review block">
-                        <figure class="person-image">
-                            <img src="assets/img/person-01.jpg" alt="">
-                        </figure>
-                        <header>누군가</header>
-                        <div class="rating" data-rating="2"></div>
-                        <p>안해도 되겠지??</p>
-                    </div>
-                </article>
-                <!--end Reviews-->
                 <article class="center" id="test">
                     <s:if test="#session.loginId == rent.sq_member_id ">
                     	<a class="btn btn-circle btn-lg btn_default aBlack" id="seeApply">지원자 보기</a>&nbsp;&nbsp;&nbsp;

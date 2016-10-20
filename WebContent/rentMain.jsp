@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 
 <html lang="en-US">
@@ -115,7 +116,7 @@
                                 <li><a href="#">Something 4</a></li>
                             </ul>
                         </li>
-                        <li><a href="about_e.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">About Us</a></li>
+                        <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">About Us</a></li>
                         <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li>
                         <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li>
                         <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li>
@@ -266,20 +267,20 @@
 		                    <div class="item-content">
 		                        <header class="average-color">
 		                            <h2>${rent.sq_rent_band_name }</h2>
-		                            <h3>${rent.sq_rent_concert_date }</h3>
+		                            <h3>${fn:substring(rent.sq_rent_concert_date, 0, 11) }</h3>
 		                        </header>
 		                        <footer>
 		                            <dl>
 		                                <dt>SQ_RENT_ID</dt>
 		                                <dd>${sq_rent_id }</dd>
 		                                <dt>지역</dt>
-			                            <dd>서울</dd>
+			                            <dd>${sq_rent_region }</dd>
 			                            <dt>장르</dt>
-			                            <dd>락</dd>
+			                            <dd>${sq_rent_genre }</dd>
 			                            <dt>총 공연시간</dt>
-			                            <dd>1시간</dd>
+			                            <dd>${sq_rent_running_time } 시간</dd>
 			                            <dt>모집팀 수</dt>
-			                            <dd>3팀</dd>
+			                            <dd>${sq_rent_team_count } 팀</dd>
 		                            </dl>
 		                        </footer>
 		                    </div>
