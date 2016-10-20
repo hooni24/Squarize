@@ -332,7 +332,7 @@
 					$.ajax({
 						"url" : "toBuskingList"
 						, "method" : "post"
-						, "success" : function(resp.buskingList){
+						, "success" : function(resp){
 							var data = resp.buskingList
 							
 				                createHomepageGoogleMap(_latitude,_longitude, data);
