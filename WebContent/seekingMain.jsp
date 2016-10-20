@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 
@@ -22,7 +21,7 @@
 
 <body id="page-top" class="has-map">
 
-<div id="page-wrapper">
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><div id="page-wrapper">
     <div class="collapse has-tabs" id="user-area">
         <div class="container">
             <div class="inner">
