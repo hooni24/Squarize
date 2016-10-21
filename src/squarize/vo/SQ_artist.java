@@ -1,15 +1,23 @@
 package squarize.vo;
 
 public class SQ_artist {
-	private String sq_member_id;
-	private String sq_artist_phone;
+	private String sq_member_id="";
+	private String sq_artist_phone="";
 	private String sq_artist_photo = "";
-	private String sq_artist_intro;
+	private String sq_artist_intro="";
 	
 	public SQ_artist() {}
 
 	public String getSq_member_id() {
 		return sq_member_id;
+	}
+
+	public SQ_artist(String sq_member_id, String sq_artist_phone, String sq_artist_photo, String sq_artist_intro) {
+		super();
+		this.sq_member_id = sq_member_id;
+		this.sq_artist_phone = sq_artist_phone;
+		this.sq_artist_photo = sq_artist_photo;
+		this.sq_artist_intro = sq_artist_intro;
 	}
 
 	public void setSq_member_id(String sq_member_id) {

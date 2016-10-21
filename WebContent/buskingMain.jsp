@@ -315,6 +315,7 @@
       } 
       
    });
+
     
     // Load JSON data and create Google Map
 

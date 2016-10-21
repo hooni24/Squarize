@@ -19,6 +19,175 @@
 
     <title>SQUARIZE - RENT</title>
     
+    <style>
+    	.hidden{
+    		display : none;
+    	}
+    </style>
+    
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+    <script>
+    	$(function(){
+    		//로그인 ajax
+    		$("button#sign-in-submit").on("click", function(){
+    			var id = $("input#sign-in-id").val();
+    			var pw = $("input#sign-in-pw").val();
+    			var loginItem = {"sq_member_id" : id, "sq_member_pw": pw};
+    			
+	    		$.ajax({
+	    			url : "loginSQmember"
+	    			, method : "post"
+	    			, data : loginItem
+	    			, dataType : "json"
+	    			, success : function(){
+	    				$(".close").trigger("click");
+	    				$("#main_login").addClass("hidden");
+	    				$("#main_register").addClass("hidden");
+	    				
+	    				var logout = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>';
+	    				var makeArtist = '<li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>';
+	    				
+	    				$("ul#main_menu").append(logout);
+	    				$("ul#main_menu").append(makeArtist);
+	    				
+	    				$("#tab_login").addClass("hidden");
+	    				$("#tab_register").addClass("hidden");
+	    				
+	    				var tab_makeArtist = '<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>';
+	    				$("ul#tab_menu").append(tab_makeArtist);
+	    				$("a#tab_makeArtist").trigger("click");
+	    			}
+	    			, error : function(){
+	    				alert("실패");
+	    			}
+	    		});
+    		});
+    		
+    		//로그아웃
+    		$("ul#main_menu").on("click", "a#main_logout", function(){
+    			location.href = "logoutSQmember.action?fromWhere=rent";
+    		});
+    		
+    		//회원가입
+    		$("button#register_btn").on("click", function(){
+    			var id=$('#register-id');
+    			var name=$('#register-name');
+    			var favorite=$('#register_favorite');
+    			var email=$('#register-email');
+    			var pw=$('#register-password');
+    			var pwConfirm=$('#register-confirm-password');
+    			
+    			if(id.val().length<4 || id.val().length>8){
+    				alert("아이디는 4~8자로 입력해주세요");
+    				id.focus();
+    				return false;
+    			}
+    			if(idError=="t"){
+    				alert("사용중인 아이디입니다. 다시 확인해주십시오");
+    				id.focus();
+    				return false;
+    			}
+    			if(name.val().length<2 || name.val().length>5){
+    				alert("이름은 2~4자로 입력해주세요");
+    				name.focus();
+    				return false;
+    			}
+    			if(email.val().length<4 || email.val().length>20){
+    				alert("이메일은 도메인포함 정확히 입력해주세요");
+    				email.focus();
+    				return false;
+    			}
+    			if(pw.val().length<4 || pw.val().length>8){
+    				alert("비밀번호는 4~8자로 입력하여주세요");
+    				pw.focus();
+    				return false;
+    			}
+    			if(pw.val() != pwConfirm.val()){
+    				alert("비밀번호를 확인하여주십시오");
+    				pw.focus();
+    				return false;
+    			}
+    			if(favorite.val()=="선호장르"){
+    				alert("선호장르를 선택하여주십시오");
+    				return false;
+    			}
+    			
+    			var registerItem = {
+    					'sq_member.sq_member_id' : id.val()
+    					,'sq_member.sq_member_pw' : pw.val()
+    					,'sq_member.sq_member_name' : name.val()
+    					,'sq_member.sq_member_email' : email.val()
+    					,'sq_member.sq_member_favorite' : favorite.val()
+    					};
+    			
+    			$.ajax({
+    				method : 'post'
+    				,url : 'registerSQmember'
+    				,data : registerItem
+    				,success : function(){
+    					alert("회원가입이 완료되었습니다. 로그인하여 주십시오");
+    					$('#register-id').val("");
+    					$('#register-name').val("");
+    					$('#register-email').val("");
+    					$('#register-password').val("");
+    					$('#register-confirm-password').val("");
+    					$('#register_favorite option:eq("선호장르")').attr('selected','selected');
+    					$('#id-check').html(' ');
+    					$('#id-check').css('color','black');
+    					$('#register-id').css('color','black');
+    					$('a#tab_login').trigger('click');
+    				}
+    				,error:function(){
+    					alert("회원가입실패");
+    				}
+    			});
+    		});
+    		
+    		//아이디 실시간 체크
+    		$('#register-id').on('focusout',function(){
+				var checkId=$('#register-id').val();
+				
+				if(checkId.length>3 && checkId.length<9){
+					$.ajax({
+						method:'post'
+						,url:'idCheck'
+						,data:{"sq_member_id":checkId}
+						,success:function(send){
+							if(checkId==""||checkId==null){
+								$('#id-check').html(" ");
+							}else if(send.sq_member!=null){
+								idError="t";
+								if(idError=="t"){
+									$('#id-check').html("사용중인 아이디입니다.");
+									$('#id-check').css('color','red');
+									$('#register-id').css('color','red');
+								}
+							}else if(send.sq_member==null){
+								$('#id-check').html("사용가능한 아이디입니다.");
+								idError="f";
+								$('#id-check').css('color','blue');
+								$('#register-id').css('color','blue');
+							} 
+						}
+						,error : function(){
+							alert("error");
+						}
+					});
+				}else {
+					$('#id-check').html("아이디는 4~8자로 입력해주세요.");
+					$('#id-check').css('color','red');
+					$('#register-id').css('color','red');
+				}
+			});
+    		
+    		//아티스트 인증
+    		
+    		
+    		
+    	});
+    	
+    </script>
+    
 </head>
 
 <body id="page-top" class="has-map">
@@ -32,52 +201,102 @@
                     <div class="col-md-3 col-md-offset-9">
                         <div role="tabpanel">
                             <!-- Nav tabs -->
-                            <ul class="nav nav-pills" role="tablist">
-                                <li role="presentation"><a href="#sign-in" aria-controls="sign-in" role="tab" data-toggle="tab" data-transition-parent="#sign-in">Sign In</a></li>
-                                <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register">Register</a></li>
+                            <ul class="nav nav-pills" role="tablist" id="tab_menu">
+                            <!-- 여기부터 3개는 새로 생킨 탭에 있는 탭 제목 -->
+                            <s:if test="#session.loginId == null">
+                                <li role="presentation"><a href="#sign-in" aria-controls="sign-in" role="tab" data-toggle="tab" data-transition-parent="#sign-in" id="tab_login">Login</a></li>
+                                <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register" id="tab_register">Register</a></li>
+                            </s:if>
+                            <s:else>
+                                <li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>
+                            </s:else>
                             </ul>
-                            <!-- Tab panes -->
+                            <!-- 각각 탭안에 있는 내용물들 -->
+                            <!-- 로그인 -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane" id="sign-in">
                                     <form role="form" method="post" id="form-sign-in">
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="sing-in-name" name="name" placeholder="Name">
+                                            <input type="text" class="form-control" id="sign-in-id" name="id" placeholder="ID">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="email" class="form-control" id="sing-in-email" name="email" placeholder="Email">
+                                            <input type="password" class="form-control" id="sign-in-pw" name="pw" placeholder="PW">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <button type="submit" class="btn btn-primary">Sign In</button>
+                                            <button type="button" class="btn btn-primary" id="sign-in-submit">Log In</button>
                                         </div>
                                         <!--end .form-group-->
                                     </form>
                                 </div>
+                                
+                            <!-- 회원가입 -->
                                 <div role="tabpanel" class="tab-pane" id="register">
-                                    <form role="form" method="post" id="form-register">
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                    <form role="form" method="post" id="form-register" action="registerSQmember?fromWhere=rent">
+                                        <div class="form-group animate move_from_bottom_short" id="idInput">
+                                            <input type="text" class="form-control" id="register-id" name="register-id" placeholder="ID">
+                                           	<span id="id-check"></span>
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                            <input type="text" class="form-control" id="register-name" name="register-name" placeholder="Name">
+                                        </div>
+                                        <!--end .form-group-->
+                                        
+                                        <div class="form-group">
+                                            <select id="register_favorite" size="3">
+                                            	<option>선호장르</option>
+                                            	<option value="rock">락</option>
+                                            	<option value="ballad">발라드</option>
+                                            	<option value="jazz">재즈</option>
+                                            	<option value="hiphop">힙합</option>
+                                            </select>
+                                        </div>
+                                        <!--end .form-group-->
+                                        
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="email" class="form-control" id="register-email" name="register-email" placeholder="Email">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                            <input type="password" class="form-control" id="register-password" name="register-password" placeholder="Password">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
+                                            <input type="password" class="form-control" id="register-confirm-password" name="register-confirm-password" placeholder="Confirm Password">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <button type="submit" class="btn btn-primary">Register</button>
+                                            <button type="button" class="btn btn-primary" id="register_btn">Register</button>
                                         </div>
                                         <!--end .form-group-->
                                     </form>
                                 </div>
+                                
+                                <!-- 로그아웃 -->
+                                <div role="tabpanel" class="tab-pane" id="logout">
+                                	<div class="form-group animate move_from_bottom_short">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                    </div>
+                                </div>
+                                
+                                <!-- 아티스트 인증 -->
+                                <div role="tabpanel" class="tab-pane" id="makeArtist">
+                                	<form role="form" method="post" id="form-register" action="addArtist?fromWhere=rent">
+                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+                                            <input type="text" class="form-control" id="add-artist-phone" name="add-artist-phone" placeholder="PHONE">
+                                        </div>
+                                        <div class="form-group animate move_from_bottom_short" id="photoInput">
+                                            <input type="file" class="form-control" id="add-artist-photo" name="add-artist-photo" placeholder="PHOTO">
+                                        </div>
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <button type="button" class="btn btn-primary" id="makeArtist_submit">Make Artist</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -94,9 +313,16 @@
         <div class="container">
             <div class="header-inner">
                 <nav class="secondary">
-                    <ul>
-                        <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#sign-in" data-transition-parent="#header">Sign In</a></li>
-                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header">Register</a></li>
+                    <ul id="main_menu">
+                    <!-- 메인페이지에 보이는 메뉴들 -->
+                    <s:if test="#session.loginId == null">
+                        <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#sign-in" data-transition-parent="#header" id="main_login">logIn</a></li>
+                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header" id="main_register">Register</a></li>
+                    </s:if>
+                    <s:else>
+                        <li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>
+                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>
+                    </s:else>
                     </ul>
                 </nav>
                 <!--end Secondary navigation-->

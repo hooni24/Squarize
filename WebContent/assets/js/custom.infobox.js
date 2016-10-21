@@ -8,11 +8,11 @@ function drawInfobox(infoboxContent, json, i){
     	else                        { title = '' }
     if(json.data[i].url)            { var url = json.data[i].url }
         else                        { url = '' }
-    if(json.data[i].genre)           { var genre = json.data[i].genre }
+    if(json.data[i].genre)          { var genre = json.data[i].genre }
         else                        { genre = '' }
     if(json.data[i].location)       { var location = json.data[i].location }
         else                        { location = '' }
-    if(json.data[i].gallery)     { var gallery = json.data[i].gallery }
+    if(json.data[i].gallery)     	{ var gallery = json.data[i].gallery }
         else                        { gallery = '../img/default-item.jpg' }
     if(json.data[i].buskingdate)    { var buskingdate = json.data[i].buskingdate }
 		else                        { buskingdate = '' }
