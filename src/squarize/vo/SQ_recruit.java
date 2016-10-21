@@ -13,7 +13,6 @@ public class SQ_recruit {
 	private String sq_recruit_latitude;	//구인정보 위도
 	private String sq_recruit_longitude;	//구인정보 경도
 	private String sq_recruit_info;		//구인정보 소개글 내용
-	private String sq_recruit_title;//구인정보 타이틀
 	public SQ_recruit(){}
 	
 
@@ -129,17 +128,6 @@ public class SQ_recruit {
 	public void setSq_recruit_info(String sq_recruit_info) {
 		this.sq_recruit_info = sq_recruit_info;
 	}
-	
-
-	public String getSq_recruit_title() {
-		return sq_recruit_title;
-	}
-
-
-	public void setSq_recruit_title(String sq_recruit_title) {
-		this.sq_recruit_title = sq_recruit_title;
-	}
-
 
 	@Override
 	public String toString() {
