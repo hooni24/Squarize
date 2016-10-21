@@ -289,7 +289,7 @@
     				}); */
     				var test =
    					{
-    					data:[
+    					"data" : [
 	    						{
 		    						"id": "1",
 		    						"title": "밤을 잊은 그대에게 -베이스세션",
@@ -320,16 +320,16 @@
     				
     				
     				
-// 				     $.getJSON(jsonPath)
-// 				            .done(function(json) {
-// 				            	alert(resp.buskingList);
-// 				                createHomepageGoogleMap(_latitude,_longitude,json);
-// 				            })
-// 				            .fail(function( jqxhr, textStatus, error ) {
-// 				                console.log(error);
-// 				            });
+				     $.getJSON(test)
+				            .done(function(json) {
+				            	alert(resp.buskingList);
+				                createHomepageGoogleMap(_latitude,_longitude,json);
+				            })
+				            .fail(function( jqxhr, textStatus, error ) {
+				                console.log(error);
+				            });
 
-					$.ajax({
+				/* 	$.ajax({
 						"url" : "toBuskingList"
 						, "method" : "post"
 						, "success" : function(resp){
@@ -337,7 +337,7 @@
 							
 				                createHomepageGoogleMap(_latitude,_longitude, data);
 						}
-					});
+					}); */
 					
     			}
     		});
