@@ -206,7 +206,7 @@ function hoverOnGrid(){
 
 function loadPage(_this){
     var $contentLoader = $('.content-loader');
-    if( $(_this).attr('data-external') ){
+    if( $(_this).attr('data-external') ){	//.att('속성'):속성값을 받아옴. .attr('속성','값');
         $('.content').removeClass('fade_out');
         var parentElement = $(_this).attr('data-transition-parent');
         if( $('#loader').length == 0 ){

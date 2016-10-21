@@ -302,7 +302,7 @@
 <!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
 			<div class="masonry grid full-width animate">
 				<div class="item move_from_bottom idle">
-			<a href="seeking/getRecruit_list" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+				<a href="seeking/getRecruit_list" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
                 <div class="inner">
                     <div class="image">
                         <div class="price average-color"><span></span></div>
@@ -392,7 +392,54 @@
 		<script type="text/javascript" src="assets/js/custom.js"></script>
 		<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
-
+		
+		<script type="text/javascript">
+			/* DB정보 입력 */
+			$(function(){
+				$.ajaxSettings.traditional = true;
+				$.ajax({
+					url : 'getResult_list'
+					, dataType : 'json'
+					, method : 'POST'
+					, success : function(response){
+						response.sq_recruit_list;
+					
+					}
+				});
+			});
+			/* 
+			<div class="masonry grid full-width animate">
+				<div class="item move_from_bottom idle">
+				<a href="seeking/getRecruit_list" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+                <div class="inner">
+                    <div class="image">
+                        <div class="price average-color"><span></span></div>
+                        <img src="" alt="">
+                    </div>
+                    <div class="item-content">
+                        <header class="average-color">
+                            <h2></h2>
+                            <h3></h3>
+                        </header>
+                        <footer>
+                            <dl>
+                                <dt></dt>
+                                <dd></dd>
+                                <dt></dt>
+                                <dd></dd>
+                                <dt></dt>
+                                <dd></dd>
+                                <dt></dt>
+                                <dd></dd>
+                            </dl>
+                        </footer>
+                    </div>
+                </div>
+            </a>
+        </div>
+         */
+		</script>
+		
 		<!--[if lte IE 9]>
 <script type="text/javascript" src="assets/js/ie-scripts.js"></script>
 <![endif]-->
