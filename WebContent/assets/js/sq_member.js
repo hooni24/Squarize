@@ -7,9 +7,7 @@ $(function(){
 	$.ajax({
 		url:'loginCheck'
 		,dataType:'json'
-		,success:function(send){
-			reset(send);
-		}/*function(send){
+		,success:reset()/*function(send){
 			var loginId=send.loginId;
 			var isArtist=send.isArtist;
 			alert(isArtist);
@@ -180,11 +178,34 @@ $(function(){
 				var isArtist=send.isArtist;
 				$('#login-id').val("");
 				$('#login-pw').val("");
-				reset(send);
 				if(loginId!=""){
 					alert(user.sq_member_name+"님 환영합니다");
+					$('.close').trigger('click');
+					$('.unlogin').addClass('hidden');
+					$('.login').removeClass('hidden');
+					$('.loginId').html(loginId);
+					$('#sign-in').addClass("hidden");
+					$('#register').addClass("hidden");
+					if(isArtist=="N"){
+						alert(isArtist);
+						var code="<li><a href='#user-area' data-toggle='collapse'  id='sq_artist' aria-expanded='false' aria-controls='user-area' data-tab='#add-artist' data-transition-parent='#header'>추가인증</a></li>";
+						$(code).appendTo('.message');
+						alert("hi1");
+						$('#add-artist').removeClass("hidden");
+						alert("hi2");
+					}else{
+						$('#sq_artist').remove();
+						$('.nav-pills').addClass("hidden");
+						$('.nav-artist').removeClass("hidden");
+					}
+					
 				}else{
 					alert("사용자 정보를 확인해주세요")
+					$('.login').addClass('hidden');
+					$('.unlogin').removeClass('hidden');
+					$('#loginId').html(loginId);
+					$('.nav-artist').addClass("hidden");
+					$('.nav-pills').removeClass("hidden");
 					
 				}
 			}
@@ -201,8 +222,7 @@ $(function(){
 			method:'get'
 			,url:'logoutSQmember'
 			,success:function(send){
-				alert("logout");
-				reset(send);
+				alert("logout")
 				var loginId=send.loginId;
 				
 				if(loginId==null){
@@ -220,9 +240,6 @@ $(function(){
 	$('#sq_artist').on('click',function(){
 		$('#tab-pane').addClass("hidden");
 		$('#add-artist').removeClass("hidden");
-		$('.nav-pills').addClass("hidden");
-		$('#add-artist-tab').trigger('click');
-		
 	});
 	
 	function reset(send){
@@ -243,10 +260,12 @@ $(function(){
 			$('.nav-pills').addClass("hidden");
 			if(isArtist=="N"){
 				$('.nav-artist').removeClass("hidden");
+				alert(isArtist);
 				var code="<li><a href='#user-area' data-toggle='collapse'  id='sq_artist' aria-expanded='false' aria-controls='user-area' data-tab='#add-artist' data-transition-parent='#header'>추가인증</a></li>";
 				$(code).appendTo('.message');
+				alert("hi1");
 				$('#add-artist').removeClass("hidden");
-				$('#tab-pane').addClass("hidden");
+				alert("hi2");
 			}else{
 				$('#sq_artist').remove();
 				$('.nav-pills').addClass("hidden");

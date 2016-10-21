@@ -100,7 +100,17 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * */
 	public String logoutSQmember() throws Exception{
 		session.clear();
-		return SUCCESS;
+		if(fromWhere != null){
+			switch (fromWhere) {
+			case "rent":
+				return "rent";
+			case "seeking":
+				return "seeking";
+			case "busking" :
+				return "busking";
+			}
+		}
+		return ERROR;
 	}
 	
 	/**
@@ -146,6 +156,8 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 				return "rent";
 			case "seeking":
 				return "seeking";
+			case "busking" :
+				return "busking";
 			}
 		}
 		return ERROR;

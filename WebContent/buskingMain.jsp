@@ -37,8 +37,7 @@
                                 <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register">Register</a></li>
                             </ul>
                            	<ul class="nav nav-artist hidden">
-                           		<!-- <li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane">추가인증</a></li> -->
-                           		<li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane" id="add-artist-tab">추가인증</a></li>
+                           		<li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane">추가인증</a></li>
                            	</ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -48,7 +47,7 @@
                                             <input type="text" class="form-control" id="add-artist-phone" name="add-artist-phone" placeholder="PHONE">
                                         </div>
                                         <div class="form-group animate move_from_bottom_short" id="photoInput">
-                                            <input type="file" class="form-control" id="add-artist-photo" name="add-artist-photo" placeholder="PHOTO">
+                                            <input type="text" class="form-control" id="add-artist-photo" name="add-artist-photo" placeholder="PHOTO">
                                         </div>
                                         
                             		</form>
@@ -290,7 +289,7 @@
     				}); */
     				var test =
    					{
-    					"data" : [
+    					data:[
 	    						{
 		    						"id": "1",
 		    						"title": "밤을 잊은 그대에게 -베이스세션",
@@ -321,16 +320,16 @@
     				
     				
     				
-				     $.getJSON(test)
-				            .done(function(json) {
-				            	alert(resp.buskingList);
-				                createHomepageGoogleMap(_latitude,_longitude,json);
-				            })
-				            .fail(function( jqxhr, textStatus, error ) {
-				                console.log(error);
-				            });
+// 				     $.getJSON(jsonPath)
+// 				            .done(function(json) {
+// 				            	alert(resp.buskingList);
+// 				                createHomepageGoogleMap(_latitude,_longitude,json);
+// 				            })
+// 				            .fail(function( jqxhr, textStatus, error ) {
+// 				                console.log(error);
+// 				            });
 
-				/* 	$.ajax({
+					$.ajax({
 						"url" : "toBuskingList"
 						, "method" : "post"
 						, "success" : function(resp){
@@ -338,7 +337,7 @@
 							
 				                createHomepageGoogleMap(_latitude,_longitude, data);
 						}
-					}); */
+					});
 					
     			}
     		});
