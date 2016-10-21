@@ -37,7 +37,8 @@
                                 <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register">Register</a></li>
                             </ul>
                            	<ul class="nav nav-artist hidden">
-                           		<li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane">추가인증</a></li>
+                           		<!-- <li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane">추가인증</a></li> -->
+                           		<li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane" id="add-artist-tab">추가인증</a></li>
                            	</ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -47,7 +48,7 @@
                                             <input type="text" class="form-control" id="add-artist-phone" name="add-artist-phone" placeholder="PHONE">
                                         </div>
                                         <div class="form-group animate move_from_bottom_short" id="photoInput">
-                                            <input type="text" class="form-control" id="add-artist-photo" name="add-artist-photo" placeholder="PHOTO">
+                                            <input type="file" class="form-control" id="add-artist-photo" name="add-artist-photo" placeholder="PHOTO">
                                         </div>
                                         
                             		</form>
