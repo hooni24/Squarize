@@ -9,6 +9,7 @@
 
     <package name="seeking" namespace="/" extends="struts-default, json-default">
     
+		
 		<action name="toSeekingMain">
 			<result>seekingMain.jsp</result>
 		</action>
@@ -20,6 +21,12 @@
 			<result type="json"></result>
 		</action>
 		
+		<action name="toAddSQrecruit">
+			<result>assets/pages/recruit/add_recruit.jsp</result>
+		</action>
+		<action name="insertSQrecruit" class="squarize.action.SQ_seekingAction" method="insertSQrecruit">
+			<result type="redirect">toSeekingMain.action</result>
+		</action>
 		
     </package>
 
