@@ -140,25 +140,27 @@ CREATE TABLE SQ_PORTFOLIO
 -- 구인정보 게시물
 CREATE TABLE SQ_RECRUIT
 (
-	-- 구인정보 고유번호
-	SQ_RECRUIT_ID number NOT NULL,
-	-- 회원 아이디 : 일반회원 ID
-	SQ_MEMBER_ID varchar2(15) NOT NULL,
-	-- 구인정보 등록 날짜
-	SQ_RECRUIT_INPUT_DATE date DEFAULT SYSDATE NOT NULL,
-	-- 모집중인 악기 파트
-	SQ_RECRUIT_PART varchar2(15) NOT NULL,
-	-- 구인정보 사진 경로
-	SQ_RECRUIT_PHOTO varchar2(50),
-	-- 구인중인 장르
-	SQ_RECRUIT_GENRE varchar2(20) NOT NULL,
-	-- 구인정보 공연날짜
-	SQ_RECRUIT_DATE date NOT NULL,
-	-- 구인정보 공연장소
-	SQ_RECRUIT_LOCATION varchar2(50) NOT NULL,
-	-- 구인정보 소개글 내용
-	SQ_RECRUIT_INFO varchar2(1000) NOT NULL,
-	PRIMARY KEY (SQ_RECRUIT_ID)
+   -- 구인정보 고유번호
+   SQ_RECRUIT_ID number NOT NULL,
+   -- 회원 아이디 : 일반회원 ID
+   SQ_MEMBER_ID varchar2(15) NOT NULL,
+   -- 구인정보 제목
+   SQ_RECRUIT_TITLE varchar2(50) NOT NULL,
+   -- 구인정보 등록 날짜
+   SQ_RECRUIT_INPUT_DATE date DEFAULT SYSDATE NOT NULL,
+   -- 모집중인 악기 파트
+   SQ_RECRUIT_PART varchar2(15) NOT NULL,
+   -- 구인정보 사진 경로
+   SQ_RECRUIT_PHOTO varchar2(50),
+   -- 구인중인 장르
+   SQ_RECRUIT_GENRE varchar2(20) NOT NULL,
+   -- 구인정보 공연날짜
+   SQ_RECRUIT_DATE date NOT NULL,
+   -- 구인정보 공연장소
+   SQ_RECRUIT_LOCATION varchar2(50) NOT NULL,
+   -- 구인정보 소개글 내용
+   SQ_RECRUIT_INFO varchar2(1000) NOT NULL,
+   PRIMARY KEY (SQ_RECRUIT_ID)
 );
 
 

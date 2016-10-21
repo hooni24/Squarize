@@ -20,6 +20,9 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private List<SQ_recruit> sq_recruit_list;
 	private List<SQ_rent> sq_rent_list;
 	private List<SQ_portfolio> sq_portfolio_list;
+	private SQ_recruit sq_recruit;
+	private String loginId=(String)session.get("loginId");
+
 	
 	
 	//SQ_seekingAction 기본 생성자
@@ -36,7 +39,17 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		System.out.println(sq_recruit_list);
 		return SUCCESS;
 	}
-
+	
+	/**
+	 * insertSQrecruit()
+	 * 구인정보 등록 
+	 * @param sq_recruit
+	 * @return success
+	 * */
+	public String insertSQrecruit(){
+		System.out.println(loginId);
+		return SUCCESS;
+	}
 	
 	//멤버의 getter & setter
 	@Override
@@ -67,5 +80,25 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	public void setSq_portfolio_list(List<SQ_portfolio> sq_portfolio_list) {
 		this.sq_portfolio_list = sq_portfolio_list;
 	}
+
+	public SQ_recruit getSq_recruit() {
+		return sq_recruit;
+	}
+
+	public void setSq_recruit(SQ_recruit sq_recruit) {
+		this.sq_recruit = sq_recruit;
+	}
+
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
+	
+	
+	
+	
 
 }
