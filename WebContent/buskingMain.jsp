@@ -36,22 +36,22 @@
                                 <li role="presentation"><a href="#sign-in" aria-controls="sign-in" id="sign_in_btn" role="tab" data-toggle="tab" data-transition-parent="#sign-in">Sign In</a></li>
                                 <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register">Register</a></li>
                             </ul>
-                           	<ul class="nav nav-artist hidden">
-                           		<li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane">추가인증</a></li>
-                           	</ul>
+                              <ul class="nav nav-artist hidden">
+                                 <li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane">추가인증</a></li>
+                              </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                            	<div role="tabpanel" class="tab-pane" id="add-artist">
-                            		<form action="form" method="post" id="form-add-artist">
-                            			<div class="form-group animate move_from_bottom_short" id="phoneInput">
+                               <div role="tabpanel" class="tab-pane" id="add-artist">
+                                  <form action="form" method="post" id="form-add-artist">
+                                     <div class="form-group animate move_from_bottom_short" id="phoneInput">
                                             <input type="text" class="form-control" id="add-artist-phone" name="add-artist-phone" placeholder="PHONE">
                                         </div>
                                         <div class="form-group animate move_from_bottom_short" id="photoInput">
                                             <input type="text" class="form-control" id="add-artist-photo" name="add-artist-photo" placeholder="PHOTO">
                                         </div>
                                         
-                            		</form>
-                            	</div>
+                                  </form>
+                               </div>
                                 <div role="tabpanel" class="tab-pane" id="sign-in">
                                     <form role="form" method="post" id="form-sign-in">
                                         <div class="form-group animate move_from_bottom_short">
@@ -69,10 +69,10 @@
                                     </form>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="register">
-                                	<form role="form" method="post" id="form-register" class="register-pane">
+                                   <form role="form" method="post" id="form-register" class="register-pane">
                                         <div class="form-group animate move_from_bottom_short" id="idInput">
                                             <input type="text" class="form-control" id="register-id" name="register-id" placeholder="ID">
-                                           	<span id="id-check"></span>
+                                              <span id="id-check"></span>
                                         </div>
                                         <!--end .form-group-->
                                          <div class="form-group animate move_from_bottom_short">
@@ -93,10 +93,10 @@
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
                                             <select id="register_favorite" class="select">
-                                            	<option>선호장르</option>
-                                            	<option>발라드</option>
-                                            	<option>힙합</option>
-                                            	<option>인디</option>
+                                               <option>선호장르</option>
+                                               <option>발라드</option>
+                                               <option>힙합</option>
+                                               <option>인디</option>
                                             </select>
                                         </div>
                                         <!--end .form-group-->
@@ -127,11 +127,11 @@
                         <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header">Register</a></li>
                     </ul>
                     <ul class="login hidden">
-                    	<li class="message"><span class="loginId"></span>님 로그인 중.</li>
-                    	<%-- <s:if test='#session.isArtist=="N"'> --%>
-                    		
-                    <%-- 	</s:if> --%>
-                    	<li id="logout_btn"><a href="#logout">Logout</a></li>
+                       <li class="message"><span class="loginId"></span>님 로그인 중.</li>
+                       <%-- <s:if test='#session.isArtist=="N"'> --%>
+                          
+                    <%--    </s:if> --%>
+                       <li id="logout_btn"><a href="#logout">Logout</a></li>
                     </ul>
                 </nav>
                 <!--end Secondary navigation-->
@@ -235,113 +235,86 @@
     <!--end Page Content-->
 </div>
 
-			<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
-			<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
-			<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-			<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
-			<script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
-			<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
-			<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
-			<script type="text/javascript" src="assets/js/infobox.js"></script>
-			<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-			
-			<script type="text/javascript" src="assets/js/markerclusterer.js"></script>
-			<script type="text/javascript" src="assets/js/smoothscroll.js"></script>
-			<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
-			<script type="text/javascript" src="assets/js/bootstrap-select.js"></script>
-			<script type="text/javascript" src="assets/js/icheck.min.js"></script>
-			
-			<script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
-			<script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
-			<script type="text/javascript" src="assets/js/custom.js"></script>
-			<script type="text/javascript" src="assets/js/sq_member.js"></script>
-							
-			<script type="text/javascript" src="assets/js/functions.js"></script>
+         <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
+         <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
+         <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+         <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+         <script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
+         <script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
+         <script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
+         <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
+         <script type="text/javascript" src="assets/js/infobox.js"></script>
+         <script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
+         
+         <script type="text/javascript" src="assets/js/markerclusterer.js"></script>
+         <script type="text/javascript" src="assets/js/smoothscroll.js"></script>
+         <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+         <script type="text/javascript" src="assets/js/bootstrap-select.js"></script>
+         <script type="text/javascript" src="assets/js/icheck.min.js"></script>
+         
+         <script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
+         <script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
+         <script type="text/javascript" src="assets/js/custom.js"></script>
+         <script type="text/javascript" src="assets/js/sq_member.js"></script>
+                     
+         <script type="text/javascript" src="assets/js/functions.js"></script>
 
 <!--[if lte IE 9]>
 <script type="text/javascript" src="assets/js/ie-scripts.js"></script>
 <![endif]-->
 
 <script>
-	var _latitude = 37.5564059;
-	var _longitude = 126.9259563;
+   var _latitude = 37.5564059;
+   var _longitude = 126.9259563;
     var jsonPath = 'assets/json/items.json';
-    	  $(function(){
-    		  $.ajaxSettings.traditional = true;
-			    var data;
-		//	    var list;
-		//	    var list = "{ 'data':" + data + "}";
-    		  
-    		$.ajax({
-    			method : "get",
-    			url : "toBuskingList",
-    			dataType : "JSON",
-    			success : function(resp){
-    				data = resp.buskingList;
-    				
-    				/*  alert(JSON.stringify(data)); */
-    				 
-    				 var list = JSON.stringify(data);
-/*     			$.each(data, function(index,d){
-    					alert(d[index].SQ_MEMBER_ID);
-    					
-    				}); */
-    				var test =
-   					{
-    					"data" : [
-	    						{
-		    						"id": "1",
-		    						"title": "밤을 잊은 그대에게 -베이스세션",
-		    						"location": "홍대입구",
-		    						"latitude": "37.5564059",
-		    						"longitude": "126.9259563",
-		    						"url": "assets/pages/items/1_e.html",
-		    						"genre": "헤비메탈",
-		    						"type_icon": "",
-		    						"rating": "4",
-		    						"gallery": [
-		    							"assets/img/items/1.jpg",
-		    							"assets/img/items/2.jpg",
-		    							"assets/img/items/3.jpg"
-		    						],
-		    						"price": "$2500",
-		    						"overview": {
-		    							"bedrooms": "2",
-		    							"bathrooms": "2",
-		    							"rooms": "4",
-		    							"garages": "1",
-		    							"area": "240"
-		    						},
-		    						"description": "Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa, viverra interdum eros ut, imperdiet pellentesque mauris. Proin sit amet scelerisque risus. Donec semper semper erat ut mollis. Curabitur suscipit, justo eu dignissim lacinia, ante sapien pharetra duin consectetur eros augue sed ex. Donec a odio rutrum, hendrerit sapien vitae, euismod arcu."
-	    						}
-    						]
-    				};
-    				
-    				
-    				
-				     $.getJSON(test)
-				            .done(function(json) {
-				            	alert(resp.buskingList);
-				                createHomepageGoogleMap(_latitude,_longitude,json);
-				            })
-				            .fail(function( jqxhr, textStatus, error ) {
-				                console.log(error);
-				            });
-
-				/* 	$.ajax({
-						"url" : "toBuskingList"
-						, "method" : "post"
-						, "success" : function(resp){
-							var data = resp.buskingList
-							
-				                createHomepageGoogleMap(_latitude,_longitude, data);
-						}
-					}); */
-					
-    			}
-    		});
-    	});
+    
+//     $.getJSON(jsonPath)
+//      .done(function(json) {
+//          createHomepageGoogleMap(_latitude,_longitude,json);
+         
+//          alert(json.data[0].latitude);
+         
+//      })
+//      .fail(function( jqxhr, textStatus, error ) {
+//          console.log(error);
+//      });
+   
+   $.ajax({
+      url : "toBuskingList"
+      , method : "post"
+      , dataType : "json"
+      , success : function(resp){
+         
+         var list = resp.buskingArraylist;
+         
+         var jsonArray = new Array();
+         
+          $.each(list, function(index, item){
+//          	alert(item);
+//             jsonArray.push(eval("(" + item + ")"));
+            jsonArray.push(JSON.parse(item));
+         }); 
+         
+         
+//           var data = resp.source;
+         
+//          var jjj = JSON.parse(data);
+         
+//          var array = [jjj];
+         
+         var finalJson = {"data" : jsonArray};      //data : {   [   {  }, {   }   ]   }
+                                       //            marker  gallery
+//          alert(finalJson.data[0]);
+         
+//          alert(JSON.stringify(finalJson));
+         
+         createHomepageGoogleMap(_latitude,_longitude,finalJson);
+      }
+      , error : function(){
+         alert("실패");
+      } 
+      
+   });
     
     // Load JSON data and create Google Map
 
