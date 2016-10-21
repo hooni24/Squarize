@@ -7,7 +7,7 @@ $(function(){
     			var id = $("input#sign-in-id").val();
     			var pw = $("input#sign-in-pw").val();
     			var loginItem = {"sq_member_id" : id, "sq_member_pw": pw};
-    			alert("hi!");
+    			
 	    		$.ajax({
 	    			url : "loginSQmember"
 	    			, method : "post"
@@ -155,20 +155,7 @@ $(function(){
 			});
     		
     		//아티스트 인증
-    		$('#makeArtist_submit').click(function(){
-    			alert("hi");
-    			var phone=$('#add-artist-phone').val();
-    			var photo=$('#add-artist-photo').val();
-
-    			$.ajax({
-    				method:'post'
-    				,url:'addSQArtist'
-    				,data:{'sq_artist.sq_artist_phone':phone,'sq_artist.sq_artist_photo':photo}
-    				,success:function(){
-    					
-    				}
-    			});
-    		});
+    		
     		
     		
     	});
