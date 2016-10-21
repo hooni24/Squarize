@@ -9,10 +9,12 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.vo.SQ_artist;
+import squarize.vo.SQ_favorite;
 import squarize.dao.SQ_memberDAO;
 import squarize.util.FileService;
 import squarize.vo.SQ_member;
 import squarize.vo.SQ_portfolio;
+
 
 public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private SQ_memberDAO mdao;// 멤버용 dao 
@@ -25,6 +27,8 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String loginId;
 	private String isArtist;
 	private String fromWhere;
+	
+	private SQ_favorite sq_favorite;
 	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
@@ -235,6 +239,12 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	}
 	public void setFromWhere(String fromWhere) {
 		this.fromWhere = fromWhere;
+	}
+	public SQ_favorite getSq_favorite() {
+		return sq_favorite;
+	}
+	public void setSq_favorite(SQ_favorite sq_favorite) {
+		this.sq_favorite = sq_favorite;
 	}
 
 	@Override
