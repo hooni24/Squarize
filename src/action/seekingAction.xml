@@ -16,7 +16,7 @@
 			<result type="json"></result>
 		</action>
 		
-		<action name="getRecruit_detail" class="squarize.action.SQ_SeekingAction" method="selectOne_SQ_recruit">
+		<action name="getRecruit_detail" class="squarize.action.SQ_seekingAction" method="selectOne_SQ_recruit">
 			<result type="josn"></result>
 		</action>
 		
