@@ -301,41 +301,47 @@
 			<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
 <!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
 			<div class="masonry grid full-width animate">
-				<div class="item move_from_bottom idle">
-				<a href="seeking/getRecruit_list" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                <div class="inner">
-                    <div class="image">
-                        <div class="price average-color"><span></span></div>
-                        <img src="" alt="">
-                    </div>
-                    <div class="item-content">
-                        <header class="average-color">
-                            <h2></h2>
-                            <h3></h3>
-                        </header>
-                        <footer>
-                            <dl>
-                                <dt></dt>
-                                <dd></dd>
-                                <dt></dt>
-                                <dd></dd>
-                                <dt></dt>
-                                <dd></dd>
-                                <dt></dt>
-                                <dd></dd>
-                            </dl>
-                        </footer>
-                    </div>
-                </div>
-            </a>
-        </div>
+				<s:iterator value="sq_recruit_list" var="sq_recruit">
+					<div class="item move_from_bottom idle">
+						<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+	                <div class="inner">
+	                    <div class="image">
+	                        <div class="price average-color"><span><!-- 작성자 ID -->${sq_member_id}</span></div>
+	                        <s:if test="sq_recruit_photo == null">
+	                        	<img src="assets/img/main/seeking.jpg">
+	                        </s:if>
+	                        <s:else>
+	                        	<img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 -->
+	                    	</s:else>
+	                    </div>
+	                    <div class="item-content">
+	                        <header class="average-color">
+	                            <h2>${sq_recruit_title}</h2><!-- 제목 -->
+	                            <h3>${sq_recruit_part}</h3><!-- 파트 -->
+	                        </header>
+	                        <footer>
+	                            <dl>
+	                                <dt>음악 장르</dt>
+	                                <dd>${sq_recruit_genre}</dd>
+	                                <dt>연주 장소</dt>
+	                                <dd>${sq_recruit_location}</dd>
+	                                <dt>연주 일시</dt>
+	                                <dd>${sq_recruit_date}</dd>
+	                                <dt>구인 정보</dt>
+	                                <dd>${sq_recruit_info}</dd>
+	                            </dl>
+	                        </footer>
+	                    </div>
+	                </div>
+	            </a>
+	        </div>
         <!--end .item-->
 <!-- 요기까지 정보 넣기 -->
         <%-- <div class="item move_from_bottom idle">
             <a href="assets/pages/items/2_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
                 <div class="inner">
                     <div class="image">
-                        <div class="price average-color"><span>$49.000</span></div>
+                        <div class=""><span>$49.000</span></div>
                         <img src="assets/img/items/2.jpg" alt="">
                     </div>
                     <div class="item-content">
@@ -361,6 +367,7 @@
         </div>
         <!--end .item-->
  --%>
+ 	</s:iterator>
         </div>
 	<!-- 나열부분 끝 -->
 		</div>
@@ -368,14 +375,10 @@
 	</div>
 
 		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
-		<script type="text/javascript"
-			src="assets/js/imagesloaded.pkgd.min.js"></script>
-		<script type="text/javascript"
-			src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-		<script type="text/javascript"
-			src="assets/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript"
-			src="assets/js/jquery.color-2.1.2.min.js"></script>
+		<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
 		<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>
@@ -385,29 +388,41 @@
 		<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
 		<script type="text/javascript" src="assets/js/bootstrap-select.js"></script>
 		<script type="text/javascript" src="assets/js/icheck.min.js"></script>
-		<script type="text/javascript"
-			src="assets/js/jquery.nouislider.all.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
 		<script type="text/javascript" src="assets/js/functions.js"></script>
 		<script type="text/javascript" src="assets/js/custom.js"></script>
-		<script type="text/javascript"
-			src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 		
+		<%-- 
 		<script type="text/javascript">
 			/* DB정보 입력 */
 			$(function(){
+				
 				$.ajaxSettings.traditional = true;
 				$.ajax({
 					url : 'getResult_list'
 					, dataType : 'json'
 					, method : 'POST'
 					, success : function(response){
-						response.sq_recruit_list;
+						var sq_recruit_list = response.sq_recruit_list;
+						$.each(sq_recruit_list, function(index,recruit_one){
+							alert(recruit_one);
+							$('.price average-color > span').innerHTML = recruit_one.sq_member_id;
+							$('.price average-color ~ img').css('src',recruit_one.sq_recruit_photo);
+						});
 					
+					}
+					, error : function(response){
+						console.log(response);
 					}
 				});
 			});
-			/* 
+		</script>
+			 --%>
+			
+			
+			<%-- 
 			<div class="masonry grid full-width animate">
 				<div class="item move_from_bottom idle">
 				<a href="seeking/getRecruit_list" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
@@ -437,8 +452,8 @@
                 </div>
             </a>
         </div>
-         */
-		</script>
+         --%> 
+		
 		
 		<!--[if lte IE 9]>
 <script type="text/javascript" src="assets/js/ie-scripts.js"></script>

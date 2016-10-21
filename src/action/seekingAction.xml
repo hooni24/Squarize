@@ -9,15 +9,12 @@
 
     <package name="seeking" namespace="/" extends="struts-default, json-default">
     
-		<action name="toSeekingMain">
+		<action name="toSeekingMain" class="squarize.action.SQ_seekingAction" method="selectAll_SQ_recruit">
 			<result>seekingMain.jsp</result>
 		</action>
-		<action name="getRecruit_list" class="squarize.action.SQ_seekingAction" method="selectAll_SQ_recruit">
-			<result type="json"></result>
-		</action>
 		
-		<action name="getRecruit_detail" class="squarize.action.SQ_seekingAction" method="selectOne_SQ_recruit">
-			<result type="json"></result>
+		<action name="getRecruit_detail" class="squarize.action.SQ_seekingAction" method="selectOne_SQ_recruit_artist">
+			<result>assets/pages/items/recruit_detail.jsp</result>
 		</action>
 		
 		

@@ -394,7 +394,7 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
     function renderMap(){
         var mapCenter = new google.maps.LatLng(_latitude, _longitude);
         var mapOptions = {
-            zoom: 12,
+            zoom: 17,
             center: mapCenter,
             disableDefaultUI: true,
             scrollwheel: scrollwheel,
