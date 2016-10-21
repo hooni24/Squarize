@@ -42,6 +42,22 @@ public class SQ_memberDAO {
 		
 	}
 	
+	public void addSQArtist(SQ_artist sq_artist){
+		ss=factory.openSession();
+		String sq_member_id=sq_artist.getSq_member_id();
+		System.out.println(sq_artist+"   "+sq_member_id);
+		try{
+			ss.update("sq_memberMapper.addSQArtist", sq_member_id);
+			ss.insert("sq_memberMapper.insertSQArtist", sq_artist);
+			System.out.println("완료");
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			ss.commit();
+			ss.close();
+		}
+	}
+	
 	public SQ_portfolio portfolioCheck(String loginId) {
 		try {
 			ss = factory.openSession();
@@ -96,5 +112,12 @@ public class SQ_memberDAO {
 		}
 	}
 	
-	
+	public static void main(String[] args) {
+		SQ_artist sq_artist=new SQ_artist("123", "111111111", "", "안녕하세요 반갑습니다");
+		SQ_memberDAO mdao=new SQ_memberDAO();
+		mdao.addSQArtist(sq_artist);
+		System.out.println("야호");
+	}
 }
+
+

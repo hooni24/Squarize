@@ -1,55 +1,57 @@
 function drawInfobox(infoboxContent, json, i){
 
-    if( json.data[i].SQ_BUSKING_ID )        { var SQ_BUSKING_ID = '<div class="price average-color"><span>' + json.data[i].SQ_BUSKING_ID + '</span></div>' }
-        else                        { SQ_BUSKING_ID = '' }
-    if(json.data[i].SQ_MEMBER_ID)             { var SQ_MEMBER_ID = json.data[i].SQ_MEMBER_ID }
-	        else                        { SQ_MEMBER_ID = '' }                                              
-	    if(json.data[i].url)            { var url = json.data[i].url }                          
-	        else                        { url = '' }                                            
-	    if(json.data[i].type)           { var type = json.data[i].type }                        
-	        else                        { type = '' }                                           
-	    if(json.data[i].SQ_BUSKING_GENRE)          { var SQ_BUSKING_GENRE = json.data[i].SQ_BUSKING_GENRE } 
-	        else                        { SQ_BUSKING_GENRE = '' }                                          
-    if(json.data[i].SQ_BUSKING_RUNNINGTIME)       { var SQ_BUSKING_RUNNINGTIME = json.data[i].SQ_BUSKING_RUNNINGTIME }
-        else                        { SQ_BUSKING_RUNNINGTIME = '' }                                        	
-    if(json.data[i].gallery[0])     { var gallery = json.data[i].gallery[0] }                	
-        else                        { gallery[0] = '../img/default-item.jpg' }               	
-                                                                                             	
+    if( json.data[i].teamname )     { var teamname = '<div class="price average-color"><span>' + json.data[i].teamname + '</span></div>' }
+        else                        { teamname = '' }
+    if(json.data[i].id)             { var id = json.data[i].id }
+        else                        { id = '' }
+    if(json.data[i].title)          { var title = json.data[i].title }
+    	else                        { title = '' }
+    if(json.data[i].url)            { var url = json.data[i].url }
+        else                        { url = '' }
+    if(json.data[i].genre)          { var genre = json.data[i].genre }
+        else                        { genre = '' }
+    if(json.data[i].location)       { var location = json.data[i].location }
+        else                        { location = '' }
+    if(json.data[i].gallery)     	{ var gallery = json.data[i].gallery }
+        else                        { gallery = '../img/default-item.jpg' }
+    if(json.data[i].buskingdate)    { var buskingdate = json.data[i].buskingdate }
+		else                        { buskingdate = '' }
+    if(json.data[i].runningtime)    { var runningtime = json.data[i].runningtime }
+		else                        { runningtime = '' }
+    if(json.data[i].description)    { var description = json.data[i].description }
+    	else                        { description = '' }
+
     var ibContent = '';
     ibContent =
     '<div class="infobox">' +
         '<div class="left">' +
-            '<a href="'+ 
-            
-            "assets/pages/items/1_e.html" +
-            
-            '" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
+            '<a href="'+ url +'" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
                 '<div class="image">' +
-                SQ_BUSKING_ID +
-                    '<img src="'+ "assets/img/items/2.jpg" +'" alt="">' +
+                teamname +
+                    '<img src="'+ gallery +'" alt="">' +
                 '</div>' +
                 '<header class="average-color">' +
-                    '<h1 class="animate move_from_top_short">'+ SQ_BUSKING_GENRE +'</h1>' +
-                    '<h2 class="animate move_from_top_short"><span>'+ SQ_BUSKING_RUNNINGTIME +'</span></h2>' +
+                    '<h1 class="animate move_from_top_short">'+ title +'</h1>' +
+//                    '<h2 class="animate move_from_top_short"><span>'+ location +'</span></h2>' +
                 '</header>' +
             '</a>' +
         '</div>' +
         '<div class="right">' +
             '<article class="animate move_from_top_short">' +
                 '<h3>Description</h3>' +
-                '<p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa, viverra interdum eros ut, imperdiet </p>' +
+                '<p>'+ description +'</p>' +
             '</article>' +
             '<article class="animate move_from_top_short">' +
-                '<h3>Overview</h3>' +
+                '<h3>Information</h3>' +
                 '<dl>' +
-                    '<dt>Bathrooms</dt>' +
-                    '<dd>1</dd>' +
-                    '<dt>Bedrooms</dt>' +
-                    '<dd>2</dd>' +
-                    '<dt>Area</dt>' +
-                    '<dd>165m<sup>2</sup></dd>' +
-                    '<dt>Garages</dt>' +
-                    '<dd>1</dd>' +
+                    '<dt>장소</dt>' +
+                    '<dd>'+ location +'</dd>' +
+                    '<dt>장르</dt>' +
+                    '<dd>'+ genre +'</dd>' +
+                    '<dt>날짜</dt>' +
+                    '<dd>'+ buskingdate +'</dd>' +
+                    '<dt>공연시간</dt>' +
+                    '<dd>'+ runningtime +'분</dd>' +
                 '</dl>' +
             '</article>' +
         '</div>' +

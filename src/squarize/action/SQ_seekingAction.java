@@ -21,8 +21,12 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private List<SQ_recruit> sq_recruit_list;
 	private List<SQ_rent> sq_rent_list;
 	private List<SQ_portfolio> sq_portfolio_list;
+
 	private SQ_recruit_artist sq_recruit_artist;
+
 	private SQ_recruit sq_recruit;
+	private String loginId=(String)session.get("loginId");
+
 	
 	
 	//SQ_seekingAction 기본 생성자
@@ -45,6 +49,17 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		sq_recruit_artist = dao.selectOne_sq_recruit_artist(sq_recruit_artist.getSq_recruit_id());
 		System.out.println("recruit_detail : " + sq_recruit_artist);
+		return SUCCESS;
+	}
+
+	/**
+	 * insertSQrecruit()
+	 * 구인정보 등록 
+	 * @param sq_recruit
+	 * @return success
+	 * */
+	public String insertSQrecruit(){
+		System.out.println(loginId);
 		return SUCCESS;
 	}
 	
@@ -94,4 +109,11 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		this.sq_recruit_artist = sq_recruit_artist;
 	}
 	
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
 }

@@ -138,6 +138,7 @@ CREATE TABLE SQ_PORTFOLIO
 -- 구인정보 게시물
 CREATE TABLE SQ_RECRUIT
 (
+
 	-- 구인정보 고유번호
 	SQ_RECRUIT_ID number NOT NULL,
 	-- 회원 아이디 : 일반회원 ID

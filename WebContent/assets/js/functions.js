@@ -452,7 +452,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             zoom: 15,
             center: mapCenter,
             disableDefaultUI: false,
-            scrollwheel: false,
+            scrollwheel: true,
             styles: mapStyles,
             mapTypeControlOptions: {
                 style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
