@@ -5,13 +5,7 @@ $(function(){
 	alert("hello world");
 	$('#recruit-reg-btn').click(function(){
 		alert("hi");
-		$.ajax({
-			method:'get'
-			,url:'insertSQrecruit'
-			,success:function(send){
-				alert(send.loginId);
-			}
-		});
+		
 	});
 	
 	
