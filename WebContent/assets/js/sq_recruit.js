@@ -2,7 +2,9 @@
  * 
  */
 $(function(){
-	$('.form-group button').click(function(){
+	alert("hello world");
+	$('#recruit-reg-btn').click(function(){
+		alert("hi");
 		$.ajax({
 			method:'get'
 			,url:'insertSQrecruit'
@@ -10,5 +12,11 @@ $(function(){
 				alert(send.loginId);
 			}
 		});
+	});
+	
+	
+	//로그아웃
+	$("ul#main_menu").on("click", "a#main_logout", function(){
+		location.href = "logoutSQmember.action?fromWhere=seeking";
 	});
 })

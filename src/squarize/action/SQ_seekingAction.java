@@ -22,10 +22,11 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private List<SQ_rent> sq_rent_list;
 	private List<SQ_portfolio> sq_portfolio_list;
 
+
 	private SQ_recruit_artist sq_recruit_artist;
 
 	private SQ_recruit sq_recruit;
-	private String loginId=(String)session.get("loginId");
+	private String loginId;
 
 	
 	
@@ -116,4 +117,8 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
+
+
+	
+	
 }

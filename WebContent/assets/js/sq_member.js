@@ -4,10 +4,10 @@
 $(function(){
     		//로그인 ajax
     		$("button#sign-in-submit").on("click", function(){
+    			
     			var id = $("input#sign-in-id").val();
     			var pw = $("input#sign-in-pw").val();
     			var loginItem = {"sq_member_id" : id, "sq_member_pw": pw};
-    			alert("hi!");
 	    		$.ajax({
 	    			url : "loginSQmember"
 	    			, method : "post"
@@ -37,10 +37,7 @@ $(function(){
 	    		});
     		});
     		
-    		//로그아웃
-    		$("ul#main_menu").on("click", "a#main_logout", function(){
-    			location.href = "logoutSQmember.action?fromWhere=rent";
-    		});
+    		
     		
     		//회원가입
     		$("button#register_btn").on("click", function(){
