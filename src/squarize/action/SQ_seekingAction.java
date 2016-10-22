@@ -25,9 +25,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private SQ_recruit_artist sq_recruit_artist;
 
 	private SQ_recruit sq_recruit;
-	private String loginId=(String)session.get("loginId");
-
-	
+//	private String loginId=(String)session.get("loginId");
 	
 	//SQ_seekingAction 기본 생성자
 	public SQ_seekingAction(){
@@ -59,7 +57,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	 * @return success
 	 * */
 	public String insertSQrecruit(){
-		System.out.println(loginId);
+//		System.out.println(loginId);
 		return SUCCESS;
 	}
 	
@@ -109,11 +107,11 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		this.sq_recruit_artist = sq_recruit_artist;
 	}
 	
-	public String getLoginId() {
-		return loginId;
-	}
-
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
-	}
+//	public String getLoginId() {
+//		return loginId;
+//	}
+//
+//	public void setLoginId(String loginId) {
+//		this.loginId = loginId;
+//	}
 }
