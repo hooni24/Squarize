@@ -23,20 +23,11 @@
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
 <title>SQUARIZE - SEEKING</title>
-
-<<<<<<< HEAD
-=======
-    <title>SQUARIZE - Seeking</title>
-    
     <style>
     	.hidden{
     		display : none;
     	}
     </style>
-    
-    
-    
->>>>>>> origin/dev
 </head>
 
 <body id="page-top" class="has-map">
