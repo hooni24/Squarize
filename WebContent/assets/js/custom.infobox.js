@@ -20,12 +20,14 @@ function drawInfobox(infoboxContent, json, i){
 		else                        { runningtime = '' }
     if(json.data[i].description)    { var description = json.data[i].description }
     	else                        { description = '' }
+    if(json.data[i].sq_busking_id)    { var sq_busking_id = json.data[i].sq_busking_id }
+    	else                        { sq_busking_id = '' }
 
     var ibContent = '';
     ibContent =
     '<div class="infobox">' +
         '<div class="left">' +
-            '<a href="'+ url +'" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
+            '<a href="toDetailInformation.action?sq_busking_id='+sq_busking_id+'" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
                 '<div class="image">' +
                 teamname +
                     '<img src="'+ gallery +'" alt="">' +
@@ -48,7 +50,7 @@ function drawInfobox(infoboxContent, json, i){
                     '<dd>'+ location +'</dd>' +
                     '<dt>장르</dt>' +
                     '<dd>'+ genre +'</dd>' +
-                    '<dt>날짜</dt>' +
+                    '<dt>일시</dt>' +
                     '<dd>'+ buskingdate +'</dd>' +
                     '<dt>공연시간</dt>' +
                     '<dd>'+ runningtime +'분</dd>' +

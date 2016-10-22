@@ -54,33 +54,45 @@ CREATE TABLE SQ_ARTIST
 
 
 -- 버스킹 정보
-CREATE TABLE SQ_BUSKING
+CREATE TABLE SQ_BUSKINGLIST 
 (
-	-- 해당 버스킹 고유번호
-	SQ_BUSKING_ID number NOT NULL,
-	-- 회원 아이디 : 일반회원 ID
-	SQ_MEMBER_ID varchar2(15) NOT NULL,
-	-- 버스킹 장르
-	SQ_BUSKING_GENRE varchar2(20) NOT NULL,
-	-- 버스킹 시작 날짜
-	SQ_BUSKING_DATE date NOT NULL,
-	-- 버스킹 진행 예정 시간 (분)
-	SQ_BUSKING_RUNNINGTIME number(3) NOT NULL,
-	-- 버스킹 위치정보 (위도 LAT)
-	SQ_BUSKING_LAT number(6,4) NOT NULL,
-	-- 버스킹 위치정보 (경도 LNG)
-	SQ_BUSKING_LNG number(6,4) NOT NULL,
-	-- 버스킹 실황 자료 경로1
-	SQ_BUSKING_FILE1 varchar2(100),
-	-- 버스킹 실황 자료 경로2
-	SQ_BUSKING_FILE2 varchar2(100),
-	-- 버스킹 실황 자료 경로3
-	SQ_BUSKING_FILE3 varchar2(100),
-	-- 버스킹 실황 자료 경로4
-	SQ_BUSKING_FILE4 varchar2(100),
-	-- 버스킹 실황 자료 경로5
-	SQ_BUSKING_FILE5 varchar2(100),
-	PRIMARY KEY (SQ_BUSKING_ID)
+  -- 버스킹 ID 시퀀스
+  SQ_BUSKING_ID NUMBER NOT NULL 
+  -- 글쓴이 ID
+, ID VARCHAR2(15 BYTE) NOT NULL 
+  -- 글제목
+, TITLE VARCHAR2(50 BYTE) NOT NULL 
+  -- 공연위치(ex:홍대입구)
+, LOCATION VARCHAR2(40 BYTE) NOT NULL 
+  -- 공연위치 위도
+, LATITUDE NUMBER(12, 7) NOT NULL 
+  -- 공연위치 경도
+, LONGITUDE NUMBER(12, 7) NOT NULL 
+  -- 공연 상세정보 주소
+, URL VARCHAR2(100 BYTE) NOT NULL 
+  -- 공연장르
+, GENRE VARCHAR2(20 BYTE) NOT NULL 
+  -- 관람객 별점(사용안함)
+, RATING NUMBER
+  -- 팀 명
+, TEAMNAME VARCHAR2(30 BYTE) NOT NULL 
+  -- 갤러리 정보
+, GALLERY VARCHAR2(100 BYTE) 
+  -- 갤러리 정보2
+, GALLERY2 VARCHAR2(100 BYTE) 
+  -- 갤러리 정보3
+, GALLERY3 VARCHAR2(100 BYTE) 
+  -- 갤러리 정보4
+, GALLERY4 VARCHAR2(100 BYTE) 
+  -- 갤러리 정보5
+, GALLERY5 VARCHAR2(100 BYTE) 
+  -- 공연일시
+, BUSKINGDATE DATE NOT NULL 
+  -- 공연지속시간
+, RUNNINGTIME NUMBER(3, 0) NOT NULL 
+  -- 공연설명
+, DESCRIPTION VARCHAR2(200 BYTE) 
+, CONSTRAINT SYS_C007308 PRIMARY KEY
 );
 
 

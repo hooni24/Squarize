@@ -9,4 +9,9 @@
 		gallery, gallery2, gallery3, gallery4, gallery5, buskingdate, runningtime, description 
 		from sq_buskinglist
 	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="SQ_busking">
+		select * from sq_buskinglist
+		where sq_busking_id = #{sq_busking_id}
+	</select>
 </mapper>

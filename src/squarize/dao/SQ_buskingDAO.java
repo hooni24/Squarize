@@ -16,4 +16,9 @@ public class SQ_buskingDAO {
 		List<SQ_busking> result = ss.selectList("sq_memberMapper.selectAll");
 		return result;
 	}
+	
+	public SQ_busking buskingDetail(int sq_busking_id){
+		SQ_busking result = ss.selectOne("sq_memberMapper.selectOne", sq_busking_id);
+		return result;
+	}
 }

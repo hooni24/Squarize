@@ -18,7 +18,12 @@
     <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
 
     <title>SQUARIZE - BUSKING</title>
-
+	
+	<style type="text/css">
+	    	html{
+    		overflow: scroll;
+    	}
+	</style>
 </head>
 
 <body id="page-top" class="fullscreen-map has-map">

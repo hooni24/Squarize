@@ -20,11 +20,13 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
    private JSONObject jsonData;
    private String source;
    private ArrayList<String> buskingArraylist;
+   private int sq_busking_id;
+   SQ_buskingDAO dao = new SQ_buskingDAO();
+   
 
    public String buskingList(){
       System.out.println("SQ_buskingAction의 buskingList");
       buskingList = new ArrayList<>();
-      SQ_buskingDAO dao = new SQ_buskingDAO();
       buskingList = dao.buskingList();
       buskingArraylist = new ArrayList<>();
       
@@ -53,6 +55,14 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
       
       return SUCCESS;
    }
+   
+   public String buskingDetail(){
+	   System.out.println("SQ_buskingAction의 buskingDetail()");
+	   System.out.println("sq_busking_id: " + sq_busking_id);
+	   SQ_busking = dao.buskingDetail(sq_busking_id);
+	   return SUCCESS;
+   }
+   
    
    @Override
    public void setSession(Map<String, Object> arg0) {
@@ -91,14 +101,21 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
       this.source = source;
    }
 
-public ArrayList<String> getBuskingArraylist() {
-	return buskingArraylist;
-}
+	public ArrayList<String> getBuskingArraylist() {
+		return buskingArraylist;
+	}
+	
+	public void setBuskingArraylist(ArrayList<String> buskingArraylist) {
+		this.buskingArraylist = buskingArraylist;
+	}
 
-public void setBuskingArraylist(ArrayList<String> buskingArraylist) {
-	this.buskingArraylist = buskingArraylist;
-}
-   
-   
+	public int getSq_busking_id() {
+		return sq_busking_id;
+	}
 
+	public void setSq_busking_id(int sq_busking_id) {
+		this.sq_busking_id = sq_busking_id;
+	}
+
+	
 }
