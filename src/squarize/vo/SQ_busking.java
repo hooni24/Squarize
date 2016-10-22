@@ -1,145 +1,204 @@
 package squarize.vo;
 
 public class SQ_busking {
-	private int SQ_BUSKING_ID;
-	private String SQ_MEMBER_ID;
-	private String SQ_BUSKING_GENRE;
-	private String SQ_BUSKING_DATE;
-	private int SQ_BUSKING_RUNNINGTIME;
-	private int SQ_BUSKING_LAT;
-	private int SQ_BUSKING_LNG;
-	private String SQ_BUSKING_FILE1;
-	private String SQ_BUSKING_FILE2;
-	private String SQ_BUSKING_FILE3;
-	private String SQ_BUSKING_FILE4;
-	private String SQ_BUSKING_FILE5;
+	private int sq_busking_id;
+	private String id;
+	private String title;
+	private String location;
+	private String latitude;
+	private String longitude;
+	private String url;
+	private String genre;
+	private int rating;
+	private String teamname;
+	private String gallery;
+	private String gallery2;
+	private String gallery3;
+	private String gallery4;
+	private String gallery5;
+	private String buskingdate;
+	private int runningtime;
+	private String description;
 
 	public SQ_busking() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SQ_busking(int sQ_BUSKING_ID, String sQ_MEMBER_ID, String sQ_BUSKING_GENRE, String sQ_BUSKING_DATE,
-			int sQ_BUSKING_RUNNINGTIME, int sQ_BUSKING_LAT, int sQ_BUSKING_LNG, String sQ_BUSKING_FILE1,
-			String sQ_BUSKING_FILE2, String sQ_BUSKING_FILE3, String sQ_BUSKING_FILE4, String sQ_BUSKING_FILE5) {
+	public SQ_busking(int sq_busking_id, String id, String title, String location, String latitude, String longitude,
+			String url, String genre, int rating, String teamname, String gallery, String gallery2, String gallery3,
+			String gallery4, String gallery5, String buskingdate, int runningtime, String description) {
 		super();
-		SQ_BUSKING_ID = sQ_BUSKING_ID;
-		SQ_MEMBER_ID = sQ_MEMBER_ID;
-		SQ_BUSKING_GENRE = sQ_BUSKING_GENRE;
-		SQ_BUSKING_DATE = sQ_BUSKING_DATE;
-		SQ_BUSKING_RUNNINGTIME = sQ_BUSKING_RUNNINGTIME;
-		SQ_BUSKING_LAT = sQ_BUSKING_LAT;
-		SQ_BUSKING_LNG = sQ_BUSKING_LNG;
-		SQ_BUSKING_FILE1 = sQ_BUSKING_FILE1;
-		SQ_BUSKING_FILE2 = sQ_BUSKING_FILE2;
-		SQ_BUSKING_FILE3 = sQ_BUSKING_FILE3;
-		SQ_BUSKING_FILE4 = sQ_BUSKING_FILE4;
-		SQ_BUSKING_FILE5 = sQ_BUSKING_FILE5;
+		this.sq_busking_id = sq_busking_id;
+		this.id = id;
+		this.title = title;
+		this.location = location;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.url = url;
+		this.genre = genre;
+		this.rating = rating;
+		this.teamname = teamname;
+		this.gallery = gallery;
+		this.gallery2 = gallery2;
+		this.gallery3 = gallery3;
+		this.gallery4 = gallery4;
+		this.gallery5 = gallery5;
+		this.buskingdate = buskingdate;
+		this.runningtime = runningtime;
+		this.description = description;
 	}
 
-	public int getSQ_BUSKING_ID() {
-		return SQ_BUSKING_ID;
+	public int getSq_busking_id() {
+		return sq_busking_id;
 	}
 
-	public void setSQ_BUSKING_ID(int sQ_BUSKING_ID) {
-		SQ_BUSKING_ID = sQ_BUSKING_ID;
+	public void setSq_busking_id(int sq_busking_id) {
+		this.sq_busking_id = sq_busking_id;
 	}
 
-	public String getSQ_MEMBER_ID() {
-		return SQ_MEMBER_ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setSQ_MEMBER_ID(String sQ_MEMBER_ID) {
-		SQ_MEMBER_ID = sQ_MEMBER_ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getSQ_BUSKING_GENRE() {
-		return SQ_BUSKING_GENRE;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setSQ_BUSKING_GENRE(String sQ_BUSKING_GENRE) {
-		SQ_BUSKING_GENRE = sQ_BUSKING_GENRE;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getSQ_BUSKING_DATE() {
-		return SQ_BUSKING_DATE;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setSQ_BUSKING_DATE(String sQ_BUSKING_DATE) {
-		SQ_BUSKING_DATE = sQ_BUSKING_DATE;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
-	public int getSQ_BUSKING_RUNNINGTIME() {
-		return SQ_BUSKING_RUNNINGTIME;
+	public String getLatitude() {
+		return latitude;
 	}
 
-	public void setSQ_BUSKING_RUNNINGTIME(int sQ_BUSKING_RUNNINGTIME) {
-		SQ_BUSKING_RUNNINGTIME = sQ_BUSKING_RUNNINGTIME;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
 
-	public int getSQ_BUSKING_LAT() {
-		return SQ_BUSKING_LAT;
+	public String getLongitude() {
+		return longitude;
 	}
 
-	public void setSQ_BUSKING_LAT(int sQ_BUSKING_LAT) {
-		SQ_BUSKING_LAT = sQ_BUSKING_LAT;
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 
-	public int getSQ_BUSKING_LNG() {
-		return SQ_BUSKING_LNG;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setSQ_BUSKING_LNG(int sQ_BUSKING_LNG) {
-		SQ_BUSKING_LNG = sQ_BUSKING_LNG;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
-	public String getSQ_BUSKING_FILE1() {
-		return SQ_BUSKING_FILE1;
+	public String getGenre() {
+		return genre;
 	}
 
-	public void setSQ_BUSKING_FILE1(String sQ_BUSKING_FILE1) {
-		SQ_BUSKING_FILE1 = sQ_BUSKING_FILE1;
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 
-	public String getSQ_BUSKING_FILE2() {
-		return SQ_BUSKING_FILE2;
+	public int getRating() {
+		return rating;
 	}
 
-	public void setSQ_BUSKING_FILE2(String sQ_BUSKING_FILE2) {
-		SQ_BUSKING_FILE2 = sQ_BUSKING_FILE2;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
-	public String getSQ_BUSKING_FILE3() {
-		return SQ_BUSKING_FILE3;
+	public String getTeamname() {
+		return teamname;
 	}
 
-	public void setSQ_BUSKING_FILE3(String sQ_BUSKING_FILE3) {
-		SQ_BUSKING_FILE3 = sQ_BUSKING_FILE3;
+	public void setTeamname(String teamname) {
+		this.teamname = teamname;
 	}
 
-	public String getSQ_BUSKING_FILE4() {
-		return SQ_BUSKING_FILE4;
+	public String getGallery() {
+		return gallery;
 	}
 
-	public void setSQ_BUSKING_FILE4(String sQ_BUSKING_FILE4) {
-		SQ_BUSKING_FILE4 = sQ_BUSKING_FILE4;
+	public void setGallery(String gallery) {
+		this.gallery = gallery;
 	}
 
-	public String getSQ_BUSKING_FILE5() {
-		return SQ_BUSKING_FILE5;
+	public String getGallery2() {
+		return gallery2;
 	}
 
-	public void setSQ_BUSKING_FILE5(String sQ_BUSKING_FILE5) {
-		SQ_BUSKING_FILE5 = sQ_BUSKING_FILE5;
+	public void setGallery2(String gallery2) {
+		this.gallery2 = gallery2;
+	}
+
+	public String getGallery3() {
+		return gallery3;
+	}
+
+	public void setGallery3(String gallery3) {
+		this.gallery3 = gallery3;
+	}
+
+	public String getGallery4() {
+		return gallery4;
+	}
+
+	public void setGallery4(String gallery4) {
+		this.gallery4 = gallery4;
+	}
+
+	public String getGallery5() {
+		return gallery5;
+	}
+
+	public void setGallery5(String gallery5) {
+		this.gallery5 = gallery5;
+	}
+
+	public String getBuskingdate() {
+		return buskingdate;
+	}
+
+	public void setBuskingdate(String buskingdate) {
+		this.buskingdate = buskingdate;
+	}
+
+	public int getRunningtime() {
+		return runningtime;
+	}
+
+	public void setRunningtime(int runningtime) {
+		this.runningtime = runningtime;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public String toString() {
-		return "SQ_busking [SQ_BUSKING_ID=" + SQ_BUSKING_ID + ", SQ_MEMBER_ID=" + SQ_MEMBER_ID + ", SQ_BUSKING_GENRE="
-				+ SQ_BUSKING_GENRE + ", SQ_BUSKING_DATE=" + SQ_BUSKING_DATE + ", SQ_BUSKING_RUNNINGTIME="
-				+ SQ_BUSKING_RUNNINGTIME + ", SQ_BUSKING_LAT=" + SQ_BUSKING_LAT + ", SQ_BUSKING_LNG=" + SQ_BUSKING_LNG
-				+ ", SQ_BUSKING_FILE1=" + SQ_BUSKING_FILE1 + ", SQ_BUSKING_FILE2=" + SQ_BUSKING_FILE2
-				+ ", SQ_BUSKING_FILE3=" + SQ_BUSKING_FILE3 + ", SQ_BUSKING_FILE4=" + SQ_BUSKING_FILE4
-				+ ", SQ_BUSKING_FILE5=" + SQ_BUSKING_FILE5 + "]";
+		return "SQ_busking [sq_busking_id=" + sq_busking_id + ", id=" + id + ", title=" + title + ", location="
+				+ location + ", latitude=" + latitude + ", longitude=" + longitude + ", url=" + url + ", genre=" + genre
+				+ ", rating=" + rating + ", teamname=" + teamname + ", gallery=" + gallery + ", gallery2=" + gallery2
+				+ ", gallery3=" + gallery3 + ", gallery4=" + gallery4 + ", gallery5=" + gallery5 + ", buskingdate="
+				+ buskingdate + ", runningtime=" + runningtime + ", description=" + description + "]";
 	}
 
 }

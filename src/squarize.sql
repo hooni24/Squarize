@@ -54,33 +54,45 @@ CREATE TABLE SQ_ARTIST
 
 
 -- 버스킹 정보
-CREATE TABLE SQ_BUSKING
+CREATE TABLE SQ_BUSKINGLIST 
 (
-	-- 해당 버스킹 고유번호
-	SQ_BUSKING_ID number NOT NULL,
-	-- 회원 아이디 : 일반회원 ID
-	SQ_MEMBER_ID varchar2(15) NOT NULL,
-	-- 버스킹 장르
-	SQ_BUSKING_GENRE varchar2(20) NOT NULL,
-	-- 버스킹 시작 날짜
-	SQ_BUSKING_DATE date NOT NULL,
-	-- 버스킹 진행 예정 시간 (분)
-	SQ_BUSKING_RUNNINGTIME number(3) NOT NULL,
-	-- 버스킹 위치정보 (위도 LAT)
-	SQ_BUSKING_LAT number(6,4) NOT NULL,
-	-- 버스킹 위치정보 (경도 LNG)
-	SQ_BUSKING_LNG number(6,4) NOT NULL,
-	-- 버스킹 실황 자료 경로1
-	SQ_BUSKING_FILE1 varchar2(100),
-	-- 버스킹 실황 자료 경로2
-	SQ_BUSKING_FILE2 varchar2(100),
-	-- 버스킹 실황 자료 경로3
-	SQ_BUSKING_FILE3 varchar2(100),
-	-- 버스킹 실황 자료 경로4
-	SQ_BUSKING_FILE4 varchar2(100),
-	-- 버스킹 실황 자료 경로5
-	SQ_BUSKING_FILE5 varchar2(100),
-	PRIMARY KEY (SQ_BUSKING_ID)
+  -- 버스킹 ID 시퀀스
+  SQ_BUSKING_ID NUMBER NOT NULL 
+  -- 글쓴이 ID
+, ID VARCHAR2(15 BYTE) NOT NULL 
+  -- 글제목
+, TITLE VARCHAR2(50 BYTE) NOT NULL 
+  -- 공연위치(ex:홍대입구)
+, LOCATION VARCHAR2(40 BYTE) NOT NULL 
+  -- 공연위치 위도
+, LATITUDE NUMBER(12, 7) NOT NULL 
+  -- 공연위치 경도
+, LONGITUDE NUMBER(12, 7) NOT NULL 
+  -- 공연 상세정보 주소
+, URL VARCHAR2(100 BYTE) NOT NULL 
+  -- 공연장르
+, GENRE VARCHAR2(20 BYTE) NOT NULL 
+  -- 관람객 별점(사용안함)
+, RATING NUMBER
+  -- 팀 명
+, TEAMNAME VARCHAR2(30 BYTE) NOT NULL 
+  -- 갤러리 정보
+, GALLERY VARCHAR2(100 BYTE) 
+  -- 갤러리 정보2
+, GALLERY2 VARCHAR2(100 BYTE) 
+  -- 갤러리 정보3
+, GALLERY3 VARCHAR2(100 BYTE) 
+  -- 갤러리 정보4
+, GALLERY4 VARCHAR2(100 BYTE) 
+  -- 갤러리 정보5
+, GALLERY5 VARCHAR2(100 BYTE) 
+  -- 공연일시
+, BUSKINGDATE DATE NOT NULL 
+  -- 공연지속시간
+, RUNNINGTIME NUMBER(3, 0) NOT NULL 
+  -- 공연설명
+, DESCRIPTION VARCHAR2(200 BYTE) 
+, CONSTRAINT SYS_C007308 PRIMARY KEY
 );
 
 
@@ -140,10 +152,13 @@ CREATE TABLE SQ_PORTFOLIO
 -- 구인정보 게시물
 CREATE TABLE SQ_RECRUIT
 (
+
 	-- 구인정보 고유번호
 	SQ_RECRUIT_ID number NOT NULL,
 	-- 회원 아이디 : 일반회원 ID
 	SQ_MEMBER_ID varchar2(15) NOT NULL,
+	-- 구인정보 제목
+	SQ_RECRUIT_TITLE varchar2(50) NOT NULL,
 	-- 구인정보 등록 날짜
 	SQ_RECRUIT_INPUT_DATE date DEFAULT SYSDATE NOT NULL,
 	-- 모집중인 악기 파트
@@ -156,6 +171,10 @@ CREATE TABLE SQ_RECRUIT
 	SQ_RECRUIT_DATE date NOT NULL,
 	-- 구인정보 공연장소
 	SQ_RECRUIT_LOCATION varchar2(50) NOT NULL,
+	-- 구인 위치 위도
+	SQ_RECRUIT_LATITUDE number(11,7) NOT NULL,
+	-- 구인 위치 경도
+	SQ_RECRUIT_LONGITUDE number(11,7) NOT NULL,
 	-- 구인정보 소개글 내용
 	SQ_RECRUIT_INFO varchar2(1000) NOT NULL,
 	PRIMARY KEY (SQ_RECRUIT_ID)
@@ -302,9 +321,6 @@ CREATE SEQUENCE SQ_AD_ID_SQ; --광고ID 시퀀스
 
 commit;
 
-
-
-
 /* EXAMPLES */
 
 --SQ_MEMBER 생성
@@ -313,22 +329,45 @@ INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', 'rock', 'N');
 INSERT INTO SQ_MEMBER VALUES ('aa', '123', '김소똥', 'a@a.a', 'rock', 'Y');
 INSERT INTO SQ_MEMBER VALUES ('ss', '123', '김쥐똥', 'a@a.a', 'rock', 'Y');
 INSERT INTO SQ_MEMBER VALUES ('dd', '123', '김양똥', 'a@a.a', 'rock', 'Y');
+INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'Y');
+INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y');
 
 --SQ_ARTIST 생성
 INSERT INTO SQ_ARTIST VALUES ('aa', 01011111111, null);
 INSERT INTO SQ_ARTIST VALUES ('ss', 01012111111, null);
-INSERT INTO SQ_ARTIST VALUES ('dd', 01012511111, null);
-
+INSERT INTO SQ_ARTIST VALUES ('dd', 01012411111, null);
+INSERT INTO SQ_ARTIST VALUES ('123', 01017111111, null);
+INSERT INTO SQ_ARTIST VALUES ('1234', 01018111111, null);
+INSERT INTO SQ_ARTIST VALUES ('qq', 01012591111, null);
 
 
 
 --테스트용
 
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', sysdate, 'GUITAR', null, 'ROCK', sysdate, '삼성동', '컴온 이리오세요');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '이리오세요! 기타세션 급구', sysdate, 'GUITAR', null, 'ROCK', sysdate, '홍대',37.556386, 126.924211, '컴온 이리오세요');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '밤을 잊은 그대에게-바이올린', sysdate, 'VIOLIN', null, 'CLASSIC', sysdate, '도림천',37.472118, 126.933605, '컴온');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '퓨전 클래식-첼리스트 구해요', sysdate, 'CELLO', null, 'CLASSIC', sysdate, '홍대',37.556309, 126.924104, '요~~');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '재즈 : 베이스 캄온~~!', sysdate, 'CONTRABASE', null, 'JAZZ', sysdate, '청담',37.523830, 127.053350, '풋쳐핸즈업');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', '이번밖에 없습니다.-키보드', sysdate, 'KEYBOARD', null, 'ROCK', sysdate, '이대',37.561866, 126.946727, '왓썹?');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Such a *****!(drum)', sysdate, 'DRUM', null, 'ROCK', sysdate, '홍대',37.555799, 126.924034, '컴온 레이디즈');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Nanananana-기타세션', sysdate, 'GUITAR', null, 'ROCK', sysdate, '서울 시청',37.565578, 126.977984, '컴온 보이즈');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '깔아줄 베이스 찾습니다', sysdate, 'BASEGUITAR', null, 'ROCK', sysdate, '홍대',37.555739, 126.923959, '쉬즈건');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '헤비메탈에 목청을 바칩니다', sysdate, 'VOCAL', null, 'HEAVYMETAL', sysdate, '대학동',37.470931, 126.938185, '콜라보레이션');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '피아노 시합-영화같은 장면 만들분 찾습니다.', sysdate, 'PIANO', null, 'CONCERTO', sysdate, '신림',37.483743, 126.929978, '미쳐봅시다');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '파티타임! 기타세션~', sysdate, 'GUITAR', null, 'ROCK', sysdate, '신림',37.483913, 126.929257, '아임인');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '첼로-국악과의 콜라보레이션', sysdate, 'CELLO', null, 'ROCK', sysdate, '홍대',37.555939, 126.924286, '준');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '첼리스트 급구합니다.', sysdate, 'CELLO', null, 'CLASSIC', sysdate,'청담',37.523668, 127.054047, '컴온 이리오세요');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', 'DRUM 세션 급구!', sysdate, 'DRUM', null, 'ROCK', sysdate,'삼성동',37.512441, 127.058668, '아리랑');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '[급구]가야금', sysdate, 'GUITAR', null, 'ROCK', sysdate, '도림천',37.471539, 126.93438, '퓨전');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '역삼역-락보컬', sysdate, 'VOCAL', null, 'ROCK', sysdate, '도림천',37.471752, 126.933691, '컴온 이리오세요');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '락발라드', sysdate, 'GUITAR', null, 'ROCK', sysdate, '삼성동',37.511956, 127.060576, '발라드 함 들어보실라예');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '전자 바이올리니스트 급구', sysdate, 'VIOLIN', null, 'ROCK', sysdate, '삼성동',37.510145, 127.061726, '컴온 이리오세요');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '드럼 세션', sysdate, 'DRUM', null, 'ROCK', sysdate,'삼성동', 37.511488, 127.061088, '컴컴');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '드럼 세션', sysdate, 'DRUM', null, 'ROCK', sysdate, '홍대',37.556033, 126.924797, '냥냥');
 
 INSERT INTO SQ_RECRUIT_APPLY VALUES (SQ_RECRUIT_APPLY_ID_SQ.nextval, 1, 'aa');
 
 commit;
 
 
-
+SELECT * FROM SQ_RECRUIT;

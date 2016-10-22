@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sq_memberMapper">
-
+<!-- 	<select id="selectAll" resultType="SQ_busking"> -->
+<!-- 		select * from SQ_BUSKINGLIST -->
+<!-- 	</select> -->
 	<select id="selectAll" resultType="SQ_busking">
-		select * from sq_busking
+		select SQ_BUSKING_ID, id, title, location, latitude, longitude, url, genre, rating, teamname, 
+		gallery, gallery2, gallery3, gallery4, gallery5, buskingdate, runningtime, description 
+		from sq_buskinglist
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="SQ_busking">
+		select * from sq_buskinglist
+		where sq_busking_id = #{sq_busking_id}
 	</select>
 </mapper>

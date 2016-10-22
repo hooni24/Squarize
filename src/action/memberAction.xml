@@ -8,11 +8,14 @@
     <constant name="struts.devMode" value="true" />
 
     <package name="member" namespace="/" extends="struts-default, json-default">
-    
+    	<action name="imsi">
+    		<result>imsi.jsp</result>
+    	</action>
     
     	<action name="toPortfolio" class="squarize.action.SQ_memberAction" method="portfolioCheck">
     		<result>assets/pages/portfolio/portfolio.jsp</result>
     	</action>
+    
     	
     	<action name="makePortfolio" class="squarize.action.SQ_memberAction" method="makePortfolio">
     		<result type="redirect" name="seeking">toSeekingMain.action</result>
@@ -38,20 +41,25 @@
 		<action name="registerSQmember" class="squarize.action.SQ_memberAction" method="registerSQmember">
 			<result type="json"></result>
 		</action>
+		
 		<action name="loginSQmember" class="squarize.action.SQ_memberAction" method="loginSQmember">
 			<result type="json"></result>
 		</action>
+		
 		<action name="logoutSQmember" class="squarize.action.SQ_memberAction" method="logoutSQmember">
     		<result type="redirect" name="seeking">toSeekingMain.action</result>
     		<result type="redirect" name="rent">toRentMain.action</result>
     		<result type="redirect" name="busking">toBuskingMain.action</result>
 		</action>
+		
 		<action name="idCheck" class="squarize.action.SQ_memberAction" method="idCheck">
 			<result type="json"></result>
 		</action>
+		
 		<action name="loginCheck" class="squarize.action.SQ_memberAction" method="loginCheck">
 			<result type="json"></result>
 		</action>
+		
 		<action name="addArtist" class="squarize.action.SQ_memberAction" method="addArtist">
 			<result type="redirect" name="seeking">toSeekingMain.action</result>
     		<result type="redirect" name="rent">toRentMain.action</result>

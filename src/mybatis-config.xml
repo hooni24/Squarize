@@ -14,6 +14,7 @@
 		<typeAlias type="squarize.vo.SQ_portfolio" alias="SQ_portfolio"/>
 		<typeAlias type="squarize.vo.SQ_recruit_apply" alias="SQ_recruit_apply"/>
 		<typeAlias type="squarize.vo.SQ_recruit" alias="SQ_recruit"/>
+		<typeAlias type="squarize.vo.SQ_recruit_artist" alias="SQ_recruit_artist"/>
 		<typeAlias type="squarize.vo.SQ_rent_apply" alias="SQ_rent_apply"/>
 		<typeAlias type="squarize.vo.SQ_rent" alias="SQ_rent"/>
 		<typeAlias type="squarize.vo.SQ_human" alias="SQ_human"/>

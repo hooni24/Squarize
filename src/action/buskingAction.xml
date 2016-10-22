@@ -17,6 +17,10 @@
 			<result type="json"></result>
 		</action>
 		
+		<action name="toDetailInformation" class="squarize.action.SQ_buskingAction" method="buskingDetail">
+<!-- 			<result>assets/pages/items/busking_detail.jsp</result> -->
+			<result>assets/pages/items/busking_detail.jsp</result>
+		</action>
 		
 		
     </package>
