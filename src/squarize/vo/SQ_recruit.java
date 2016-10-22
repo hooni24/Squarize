@@ -3,14 +3,16 @@ package squarize.vo;
 public class SQ_recruit {
 	private int sq_recruit_id;	//구인정보 고유번호
 	private String sq_member_id;	//회원 아이디 : 일반회원 ID
+	private String sq_recruit_title;	//구인글 제목
 	private String sq_recruit_input_date;	//구인정보 등록 날짜
 	private String sq_recruit_part;	//모집중인 악기 파트
 	private String sq_recruit_photo;	//구인정보 사진 경로
 	private String sq_recruit_genre;	//구인중인 장르
 	private String sq_recruit_date;	//구인정보 공연날짜
 	private String sq_recruit_location;	//구인정보 공연장소
+	private String sq_recruit_latitude;	//구인정보 위도
+	private String sq_recruit_longitude;	//구인정보 경도
 	private String sq_recruit_info;		//구인정보 소개글 내용
-	private String sq_recruit_title;//구인정보 타이틀
 	public SQ_recruit(){}
 	
 
@@ -45,6 +47,14 @@ public class SQ_recruit {
 
 	public void setSq_member_id(String sq_member_id) {
 		this.sq_member_id = sq_member_id;
+	}
+
+	public String getSq_recruit_title() {
+		return sq_recruit_title;
+	}
+
+	public void setSq_recruit_title(String sq_recruit_title) {
+		this.sq_recruit_title = sq_recruit_title;
 	}
 
 	public String getSq_recruit_input_date() {
@@ -94,6 +104,22 @@ public class SQ_recruit {
 	public void setSq_recruit_location(String sq_recruit_location) {
 		this.sq_recruit_location = sq_recruit_location;
 	}
+	
+	public String getSq_recruit_latitude() {
+		return sq_recruit_latitude;
+	}
+
+	public void setSq_recruit_latitude(String sq_recruit_latitude) {
+		this.sq_recruit_latitude = sq_recruit_latitude;
+	}
+
+	public String getSq_recruit_longitude() {
+		return sq_recruit_longitude;
+	}
+
+	public void setSq_recruit_longitude(String sq_recruit_longitude) {
+		this.sq_recruit_longitude = sq_recruit_longitude;
+	}
 
 	public String getSq_recruit_info() {
 		return sq_recruit_info;
@@ -102,25 +128,14 @@ public class SQ_recruit {
 	public void setSq_recruit_info(String sq_recruit_info) {
 		this.sq_recruit_info = sq_recruit_info;
 	}
-	
-
-	public String getSq_recruit_title() {
-		return sq_recruit_title;
-	}
-
-
-	public void setSq_recruit_title(String sq_recruit_title) {
-		this.sq_recruit_title = sq_recruit_title;
-	}
-
 
 	@Override
 	public String toString() {
-		return "SQ_recruit [sq_recruit_id=" + sq_recruit_id + ", sq_member_id=" + sq_member_id
-				+ ", sq_recruit_input_date=" + sq_recruit_input_date + ", sq_recruit_part=" + sq_recruit_part
-				+ ", sq_recruit_photo=" + sq_recruit_photo + ", sq_recruit_genre=" + sq_recruit_genre
+		return "SQ_recruit [sq_recruit_id=" + sq_recruit_id + ", sq_member_id=" + sq_member_id + ", sq_recruit_title="
+				+ sq_recruit_title + ", sq_recruit_input_date=" + sq_recruit_input_date + ", sq_recruit_part="
+				+ sq_recruit_part + ", sq_recruit_photo=" + sq_recruit_photo + ", sq_recruit_genre=" + sq_recruit_genre
 				+ ", sq_recruit_date=" + sq_recruit_date + ", sq_recruit_location=" + sq_recruit_location
+				+ ", sq_recruit_latitude=" + sq_recruit_latitude + ", sq_recruit_longitude=" + sq_recruit_longitude
 				+ ", sq_recruit_info=" + sq_recruit_info + "]";
 	}
-	
 }

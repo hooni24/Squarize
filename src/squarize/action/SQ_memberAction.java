@@ -91,7 +91,17 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		loginId=(String)session.get("loginId");
 		isArtist=(String)session.get("isArtist");
 		System.out.println(isArtist);
-		return SUCCESS;
+		if(fromWhere != null){
+			switch (fromWhere) {
+			case "rent":
+				return "rent";
+			case "seeking":
+				return "seeking";
+			case "busking" :
+				return "busking";
+			}
+		}
+		return ERROR;
 	}
 	
 	/**

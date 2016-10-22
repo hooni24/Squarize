@@ -3,7 +3,25 @@
 <mapper namespace="sq_seekingMapper">
 
 	<select id="selectAll_sq_recruit" resultType="SQ_recruit">
-		SELECT * FROM SQ_RECRUIT
+		SELECT * FROM SQ_RECRUIT ORDER BY SQ_RECRUIT_ID DESC
+	</select>
+	
+	<select id="selectOne_sq_recruit_artist" parameterType="int" resultType="SQ_recruit_artist">
+		SELECT  
+			SQ_R.SQ_MEMBER_ID, SQ_R.SQ_RECRUIT_ID,SQ_R.SQ_RECRUIT_TITLE,SQ_R.SQ_RECRUIT_LOCATION,SQ_R.SQ_RECRUIT_LATITUDE,SQ_R.SQ_RECRUIT_LONGITUDE
+			,SQ_R.SQ_RECRUIT_PART, SQ_R.SQ_RECRUIT_GENRE
+			,SQ_R.SQ_RECRUIT_INPUT_DATE
+			,SQ_R.SQ_RECRUIT_DATE
+			,SQ_R.SQ_RECRUIT_INFO
+			,SQ_M.SQ_MEMBER_NAME,SQ_M.SQ_MEMBER_EMAIL,SQ_A.SQ_ARTIST_PHONE,SQ_A.SQ_ARTIST_PHOTO 
+		FROM 
+			SQ_RECRUIT SQ_R, SQ_MEMBER SQ_M, SQ_ARTIST SQ_A 
+		WHERE 
+			SQ_R.SQ_RECRUIT_ID = #{id}
+		AND
+			SQ_R.SQ_MEMBER_ID = SQ_M.SQ_MEMBER_ID
+		AND 
+			SQ_M.SQ_MEMBER_ID = SQ_A.SQ_MEMBER_ID
 	</select>
 
 </mapper>
