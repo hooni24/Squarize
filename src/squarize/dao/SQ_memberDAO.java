@@ -44,16 +44,13 @@ public class SQ_memberDAO {
 	
 	public void addSQArtist(SQ_artist sq_artist){
 		ss=factory.openSession();
-		String sq_member_id=sq_artist.getSq_member_id();
-		System.out.println(sq_artist+"   "+sq_member_id);
 		try{
-			ss.update("sq_memberMapper.addSQArtist", sq_member_id);
+			ss.update("sq_memberMapper.addSQArtist", sq_artist.getSq_member_id());
 			ss.insert("sq_memberMapper.insertSQArtist", sq_artist);
-			System.out.println("완료");
+			ss.commit();
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
-			ss.commit();
 			ss.close();
 		}
 	}
@@ -117,6 +114,15 @@ public class SQ_memberDAO {
 		SQ_memberDAO mdao=new SQ_memberDAO();
 		mdao.addSQArtist(sq_artist);
 		System.out.println("야호");
+	}
+
+	public SQ_portfolio checkPortfolio(String loginId) {
+		try {
+			ss = factory.openSession();
+			return ss.selectOne("sq_memberMapper.portfolioCheck", loginId);
+		} finally {
+			ss.close();
+		}
 	}
 }
 

@@ -11,7 +11,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.util.FileService;
 import squarize.util.MybatisConfig;
+import squarize.vo.SQ_human;
 import squarize.vo.SQ_rent;
+import squarize.vo.SQ_rent_apply;
 
 public class SQ_rentDAO {
 	private SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
@@ -47,11 +49,12 @@ public class SQ_rentDAO {
 	 */
 	public Object[] getRentById(SQ_rent rent){
 		try {
-			Object[] result = new Object[2];
+			Object[] result = new Object[3];
 			ss = factory.openSession();
 			rent = ss.selectOne("sq_rentMapper.getRentById", rent);
 			result[0] = ss.selectOne("sq_rentMapper.getMemberById", rent.getSq_member_id());
 			result[1] = rent;
+			result[2] = ss.selectOne("sq_rentMapper.getArtistById", rent.getSq_member_id());
 			return result;
 		} finally {
 			ss.close();
@@ -74,6 +77,9 @@ public class SQ_rentDAO {
 		}
 	}
 
+	/**
+	 * 사진 없이 대관게시물 수정
+	 */
 	public void updateWithoutFile(SQ_rent rent) {
 		try {
 			ss = factory.openSession();
@@ -83,12 +89,61 @@ public class SQ_rentDAO {
 			ss.close();
 		}
 	}
-
+	
+	/**
+	 * 대관게시물 사진 수정
+	 */
 	public void updateRentPhoto(SQ_rent rent) {
 		try {
 			ss = factory.openSession();
 			ss.update("sq_rentMapper.updateRentPhoto", rent);
 			ss.commit();
+		} finally {
+			ss.close();
+		}
+	}
+
+	/**
+	 * 대관 게시물 지원
+	 */
+	public void rentApply(SQ_rent_apply rent_apply) {
+		try {
+			ss = factory.openSession();
+			ss.insert("sq_rentMapper.rentApply", rent_apply);
+			ss.commit();
+		} finally {
+			ss.close();
+		}
+	}
+	
+	/**
+	 * 대관 게시물 지원여부 확인
+	 */
+	public SQ_rent_apply checkRentApply(SQ_rent_apply rent_apply) {
+		try {
+			ss = factory.openSession();
+			return ss.selectOne("sq_rentMapper.checkRentApply", rent_apply);
+		} finally {
+			ss.close();
+		}
+	}
+
+	/**
+	 * 유저 전체 지원현황
+	 */
+	public List<SQ_rent> rentApplySituation(String loginId) {
+		try {
+			ss = factory.openSession();
+			return ss.selectList("sq_rentMapper.rentApplySituation", loginId);
+		} finally {
+			ss.close();
+		}
+	}
+
+	public List<SQ_human> seeRentApply(String sq_rent_id) {
+		try {
+			ss = factory.openSession();
+			return ss.selectList("sq_rentMapper.seeRentApply", sq_rent_id);
 		} finally {
 			ss.close();
 		}

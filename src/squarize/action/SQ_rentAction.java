@@ -11,21 +11,24 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.dao.SQ_rentDAO;
 import squarize.util.FileService;
+import squarize.vo.SQ_artist;
+import squarize.vo.SQ_human;
 import squarize.vo.SQ_member;
 import squarize.vo.SQ_rent;
+import squarize.vo.SQ_rent_apply;
 
 public class SQ_rentAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private SQ_rent rent;
 	private SQ_member member;
+	private SQ_artist artist;
 	private List<SQ_rent> rentList;
-	
-	
-	
+	private List<SQ_human> humanList;
 	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
 	private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
+	private SQ_rent_apply rent_apply;
 	
 	
 	
@@ -47,9 +50,7 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	 * 대관모집 게시물 등록. 같이올린 사진파일을 원본이름과 날짜붙인이름 2가지로 저장한다.
 	 */
 	public String insertRent(){
-//		rent.setSq_member_id((String) session.get("loginId"));
-		
-		rent.setSq_member_id("aa");		//테스트용
+		rent.setSq_member_id((String) session.get("loginId"));
 		
 		if (upload != null) { 
 			try {
@@ -64,6 +65,8 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 			}
 		}
 		new SQ_rentDAO().insertRent(rent);
+		
+		System.out.println(rent);
 		return SUCCESS;
 	}
 	
@@ -74,6 +77,7 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		Object[] result = new SQ_rentDAO().getRentById(rent);
 		member = (SQ_member) result[0];
 		rent = (SQ_rent) result[1];
+		artist = (SQ_artist) result[2];
 		return SUCCESS;
 	}
 	
@@ -110,17 +114,44 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
-	
-	
-	
 	/**
-	 * 스크롤 페이징 테스트
+	 * 대관 지원여부 확인
 	 */
-	public String test(){
-			System.out.println("ok");
+	public String checkRentApply(){
+		rent_apply = new SQ_rent_apply();
+		rent_apply.setSq_rent_id(rent.getSq_rent_id());
+		rent_apply.setSq_member_id((String) session.get("loginId"));
+		rent_apply = new SQ_rentDAO().checkRentApply(rent_apply);
+		System.out.println(rent_apply);
 		return SUCCESS;
 	}
 	
+	/**
+	 * 대관 지원
+	 */
+	public String rentApply(){
+		rent_apply = new SQ_rent_apply();
+		rent_apply.setSq_rent_id(rent.getSq_rent_id());
+		rent_apply.setSq_member_id((String) session.get("loginId"));
+		new SQ_rentDAO().rentApply(rent_apply);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 전체 지원현황 보기
+	 */
+	public String rentApplySituation(){
+		rentList = new SQ_rentDAO().rentApplySituation((String) session.get("loginId"));
+		return SUCCESS;
+	}
+	
+	/**
+	 * 해당 글 지원자 보기
+	 */
+	public String seeRentApply(){
+		humanList = new SQ_rentDAO().seeRentApply(rent.getSq_rent_id());
+		return SUCCESS;
+	}
 	
 
 	@Override
@@ -174,6 +205,30 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 
 	public void setMember(SQ_member member) {
 		this.member = member;
+	}
+
+	public SQ_artist getArtist() {
+		return artist;
+	}
+
+	public void setArtist(SQ_artist artist) {
+		this.artist = artist;
+	}
+
+	public SQ_rent_apply getRent_apply() {
+		return rent_apply;
+	}
+
+	public void setRent_apply(SQ_rent_apply rent_apply) {
+		this.rent_apply = rent_apply;
+	}
+
+	public List<SQ_human> getHumanList() {
+		return humanList;
+	}
+
+	public void setHumanList(List<SQ_human> humanList) {
+		this.humanList = humanList;
 	}
 
 

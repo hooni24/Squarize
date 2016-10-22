@@ -10,7 +10,7 @@
 
 	<insert id="insertRent" parameterType="SQ_rent">
 		INSERT INTO sq_rent
-		VALUES (sq_rent_id_sq.nextval, #{sq_member_id}, #{sq_rent_band_name}, #{sq_rent_concert_date}, default, #{sq_rent_limit}, #{sq_rent_info}, #{sq_rent_photo}, #{sq_rent_photo_original})
+		VALUES (sq_rent_id_sq.nextval, #{sq_member_id}, #{sq_rent_band_name}, #{sq_rent_concert_date}, default, #{sq_rent_limit}, #{sq_rent_info}, #{sq_rent_photo}, #{sq_rent_photo_original}, #{sq_rent_region}, #{sq_rent_genre}, #{sq_rent_running_time}, #{sq_rent_team_count}, #{sq_rent_lat}, #{sq_rent_lng})
 	</insert>
 	
 	<select id="getRentById" parameterType="SQ_rent" resultType="SQ_rent">
@@ -25,13 +25,19 @@
 		WHERE sq_member_id = #{sq_member_id}
 	</select>
 	
+	<select id="getArtistById" parameterType="String" resultType="SQ_artist">
+		SELECT *
+		FROM sq_artist
+		WHERE sq_member_id = #{sq_member_id}
+	</select>
+	
 	<delete id="deleteRent" parameterType="SQ_rent">
 		DELETE sq_rent WHERE sq_rent_id = #{sq_rent_id}
 	</delete>
 	
 	<update id="updateWithoutFile" parameterType="SQ_rent">
 		UPDATE sq_rent
-		SET sq_rent_band_name = #{sq_rent_band_name}, sq_rent_concert_date = #{sq_rent_concert_date}, sq_rent_limit = #{sq_rent_limit}, sq_rent_info = #{sq_rent_info}
+		SET sq_rent_band_name = #{sq_rent_band_name}, sq_rent_concert_date = #{sq_rent_concert_date}, sq_rent_limit = #{sq_rent_limit}, sq_rent_info = #{sq_rent_info}, sq_rent_region = #{sq_rent_region}, sq_rent_genre = #{sq_rent_genre}, sq_rent_running_time = #{sq_rent_running_time}, sq_rent_team_count = #{sq_rent_team_count}, sq_rent_lat = #{sq_rent_lat}, sq_rent_lng = #{sq_rent_lng}
 		WHERE sq_rent_id = #{sq_rent_id}
 	</update>
 	
@@ -40,6 +46,34 @@
 		SET sq_rent_photo = #{sq_rent_photo}, sq_rent_photo_original = #{sq_rent_photo_original}
 		WHERE sq_rent_id = #{sq_rent_id}
 	</update>
+	
+	<insert id="rentApply" parameterType="SQ_rent_apply">
+		INSERT INTO sq_rent_apply
+		VALUES (sq_rent_apply_id_sq.nextval, #{sq_rent_id}, #{sq_member_id})
+	</insert>
+	
+	<select id="checkRentApply" parameterType="SQ_rent_apply" resultType="SQ_rent_apply">
+		SELECT *
+		FROM sq_rent_apply
+		WHERE sq_rent_id = #{sq_rent_id} AND sq_member_id = #{sq_member_id}
+	</select>
+	
+	<select id="rentApplySituation" parameterType="String" resultType="SQ_rent">
+		SELECT * 
+		FROM sq_rent re, 
+			(select sq_rent_id from sq_rent_apply where sq_member_id = #{sq_member_id}) ap 
+		WHERE re.sq_rent_id = ap.sq_rent_id
+	</select>
+	
+	<select id="seeRentApply" parameterType="String" resultType="SQ_human">
+		SELECT * 
+		FROM (SELECT * FROM sq_artist) ar, 
+			 (SELECT * FROM sq_member) mem 
+		WHERE ar.sq_member_id = mem.sq_member_id 
+				AND ar.sq_member_id IN (SELECT sq_member_id 
+										FROM sq_rent_apply 
+										WHERE sq_rent_id = #{sq_rent_id})
+	</select>
 	
 	
 </mapper>

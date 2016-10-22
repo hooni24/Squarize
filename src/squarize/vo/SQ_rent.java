@@ -12,8 +12,10 @@ public class SQ_rent {
 	private String sq_rent_photo_original = "";
 	private String sq_rent_region;
 	private String sq_rent_genre;
-	private String sq_rent_running_time;
-	private String sq_rent_team_count;
+	private int sq_rent_running_time;
+	private int sq_rent_team_count;
+	private double sq_rent_lat;
+	private double sq_rent_lng;
 	
 	
 	public SQ_rent() {}
@@ -106,20 +108,36 @@ public class SQ_rent {
 		this.sq_rent_genre = sq_rent_genre;
 	}
 
-	public String getSq_rent_running_time() {
+	public int getSq_rent_running_time() {
 		return sq_rent_running_time;
 	}
 
-	public void setSq_rent_running_time(String sq_rent_running_time) {
+	public void setSq_rent_running_time(int sq_rent_running_time) {
 		this.sq_rent_running_time = sq_rent_running_time;
 	}
 
-	public String getSq_rent_team_count() {
+	public int getSq_rent_team_count() {
 		return sq_rent_team_count;
 	}
 
-	public void setSq_rent_team_count(String sq_rent_team_count) {
+	public void setSq_rent_team_count(int sq_rent_team_count) {
 		this.sq_rent_team_count = sq_rent_team_count;
+	}
+
+	public double getSq_rent_lat() {
+		return sq_rent_lat;
+	}
+
+	public void setSq_rent_lat(double sq_rent_lat) {
+		this.sq_rent_lat = sq_rent_lat;
+	}
+
+	public double getSq_rent_lng() {
+		return sq_rent_lng;
+	}
+
+	public void setSq_rent_lng(double sq_rent_lng) {
+		this.sq_rent_lng = sq_rent_lng;
 	}
 
 	@Override
@@ -129,8 +147,10 @@ public class SQ_rent {
 				+ sq_rent_input_date + ", sq_rent_limit=" + sq_rent_limit + ", sq_rent_info=" + sq_rent_info
 				+ ", sq_rent_photo=" + sq_rent_photo + ", sq_rent_photo_original=" + sq_rent_photo_original
 				+ ", sq_rent_region=" + sq_rent_region + ", sq_rent_genre=" + sq_rent_genre + ", sq_rent_running_time="
-				+ sq_rent_running_time + ", sq_rent_team_count=" + sq_rent_team_count + "]";
+				+ sq_rent_running_time + ", sq_rent_team_count=" + sq_rent_team_count + ", sq_rent_lat=" + sq_rent_lat
+				+ ", sq_rent_lng=" + sq_rent_lng + "]";
 	}
+
 
 
 	

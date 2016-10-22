@@ -90,7 +90,6 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public String loginCheck() throws Exception{
 		loginId=(String)session.get("loginId");
 		isArtist=(String)session.get("isArtist");
-		System.out.println(isArtist);
 		return SUCCESS;
 	}
 	
@@ -100,35 +99,39 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * */
 	public String logoutSQmember() throws Exception{
 		session.clear();
-		if(fromWhere != null){
-			switch (fromWhere) {
-			case "rent":
-				return "rent";
-			case "seeking":
-				return "seeking";
-			case "busking" :
-				return "busking";
-			}
-		}
-		return ERROR;
+		return fromWhere();
 	}
 	
 	/**
 	 * addArtist(): 아티스트 추가인증 메소드 
-	 * 
 	 * */
 	public String addArtist() throws Exception{
-		loginId=(String)session.get("loginId");
-		mdao.addSQArtist(sq_artist);
-		return SUCCESS;
+		System.out.println(fromWhere);
+		sq_artist.setSq_member_id((String)session.get("loginId"));
+		if (upload != null) { 
+			try {
+				FileService fs = new FileService();
+				String basePath = getText("artist.uploadpath");
+				String savedfile;
+				savedfile = fs.saveFile(upload, basePath, uploadFileName);
+				sq_artist.setSq_artist_photo(savedfile);
+				System.out.println(savedfile);
+				System.out.println("파일 넘길때 아티스트객체" + sq_artist);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		new SQ_memberDAO().addSQArtist(sq_artist);
+		session.put("isArtist", "Y");
+		return fromWhere();
 	}
 	
 	/**
 	 * 포트폴리오 읽기. 주인 artist정보도 얻어옴(사진 뿌려주기 위함)
 	 */
 	public String portfolioCheck(){
-		sq_portfolio = new SQ_memberDAO().portfolioCheck("ss");
-		sq_artist = new SQ_memberDAO().getArtistInfo("aa");
+		sq_portfolio = new SQ_memberDAO().portfolioCheck((String) session.get("loginId"));
+		sq_artist = new SQ_memberDAO().getArtistInfo((String) session.get("loginId"));
 		return SUCCESS;
 	}
 	
@@ -147,9 +150,41 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 				e.printStackTrace();
 			}
 		}
-		sq_portfolio.setSq_member_id("ss");
+		sq_portfolio.setSq_member_id((String) session.get("loginId"));
 		new SQ_memberDAO().makePortfolio(sq_portfolio);
-		
+		return fromWhere();
+	}
+
+	
+	/**
+	 * 포트폴리오 삭제
+	 */
+	public String deletePortfolio(){
+		new SQ_memberDAO().deletePortfolio((String) session.get("loginId"));
+		return SUCCESS;
+	}
+	
+	/**
+	 * 포트폴리오 수정
+	 */
+	public String updatePortfolio(){
+		sq_portfolio.setSq_member_id((String) session.get("loginId"));
+		sq_portfolio = new SQ_memberDAO().updatePortfolio(sq_portfolio);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 포트폴리오 보유여부 확인
+	 */
+	public String checkPortfolio(){
+		sq_portfolio = new SQ_memberDAO().checkPortfolio((String) session.get("loginId"));
+		return SUCCESS;
+	}
+	
+	/**
+	 * 어디서 왔니?
+	 */
+	public String fromWhere(){
 		if(fromWhere != null){
 			switch (fromWhere) {
 			case "rent":
@@ -162,26 +197,6 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		}
 		return ERROR;
 	}
-
-	
-	/**
-	 * 포트폴리오 삭제
-	 */
-	public String deletePortfolio(){
-		new SQ_memberDAO().deletePortfolio("ss");
-		return SUCCESS;
-	}
-	
-	/**
-	 * 포트폴리오 수정
-	 */
-	public String updatePortfolio(){
-		sq_portfolio.setSq_member_id("ss");
-		sq_portfolio = new SQ_memberDAO().updatePortfolio(sq_portfolio);
-		return SUCCESS;
-	}
-	
-	
 	
 	public SQ_member getSq_member() {
 		return sq_member;

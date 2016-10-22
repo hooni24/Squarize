@@ -39,16 +39,21 @@
 	    			, method : "post"
 	    			, data : loginItem
 	    			, dataType : "json"
-	    			, success : function(){
+	    			, success : function(resp){
 	    				$(".close").trigger("click");
 	    				$("#main_login").addClass("hidden");
 	    				$("#main_register").addClass("hidden");
 	    				
-	    				var logout = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>';
-	    				var makeArtist = '<li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>';
+	    				var welcome = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area">'+resp.loginId+' 님 환영합니다!</a></li>';
+	    				$("ul#main_menu").append(welcome);
 	    				
+	    				var logout = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>';
 	    				$("ul#main_menu").append(logout);
-	    				$("ul#main_menu").append(makeArtist);
+
+	    				if(resp.isArtist == 'N'){
+		    				var makeArtist = '<li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>';
+		    				$("ul#main_menu").append(makeArtist);
+	    				}
 	    				
 	    				$("#tab_login").addClass("hidden");
 	    				$("#tab_register").addClass("hidden");
@@ -180,7 +185,30 @@
 				}
 			});
     		
-    		//아티스트 인증
+    		//아티스트 업그레이드
+    		$("button#makeArtist_submit").on("click", function(){
+    			var phone = $("input#add-artist-phone").val();
+    			var intro = $("textarea#add-artist-intro").val();
+    			var file = $("input#add-artist-photo").val();
+    			var fileLength = file.length;
+    			var ext = file.substring(fileLength-3, fileLength);	//확장자
+    			
+    			if(isNaN(phone)){
+    				alert("전화번호는 숫자만 입력하세요");
+    				return false;
+    			}else if(fileLength < 1){
+    				alert("사진을 반드시 업로드해주세요");
+    				return false;
+    			}else if(!(ext == "png" || ext == "PNG" || ext == "jpg" || ext == "JPG")){
+    				alert("사진은 png나 jpg 파일만 업로드 가능합니다");
+    				return false;
+    			}else if(intro.length < 1){
+    				alert("자기소개를 반드시 입력해 주세요");
+    				return false;
+    			}else {
+	    			$("form#form-makeArtist")[0].submit();
+    			}
+    		});
     		
     		
     		
@@ -208,7 +236,9 @@
                                 <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register" id="tab_register">Register</a></li>
                             </s:if>
                             <s:else>
-                                <li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>
+                            	<s:if test='#session.isArtist == "N"'>
+                            		<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>
+                            	</s:if>
                             </s:else>
                             </ul>
                             <!-- 각각 탭안에 있는 내용물들 -->
@@ -247,10 +277,10 @@
                                         <div class="form-group">
                                             <select id="register_favorite" size="3">
                                             	<option>선호장르</option>
-                                            	<option value="rock">락</option>
-                                            	<option value="ballad">발라드</option>
-                                            	<option value="jazz">재즈</option>
-                                            	<option value="hiphop">힙합</option>
+                                            	<option>락</option>
+                                            	<option>발라드</option>
+                                            	<option>재즈</option>
+                                            	<option>힙합</option>
                                             </select>
                                         </div>
                                         <!--end .form-group-->
@@ -282,20 +312,24 @@
                                 </div>
                                 
                                 <!-- 아티스트 인증 -->
-                                <div role="tabpanel" class="tab-pane" id="makeArtist">
-                                	<form role="form" method="post" id="form-register" action="addArtist?fromWhere=rent">
-                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
-                                            <input type="text" class="form-control" id="add-artist-phone" name="add-artist-phone" placeholder="PHONE">
-                                        </div>
-                                        <div class="form-group animate move_from_bottom_short" id="photoInput">
-                                            <input type="file" class="form-control" id="add-artist-photo" name="add-artist-photo" placeholder="PHOTO">
-                                        </div>
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <button type="button" class="btn btn-primary" id="makeArtist_submit">Make Artist</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                
+<%--                                 <s:if test='#session.isArtist == "N"'> --%>
+	                                <div role="tabpanel" class="tab-pane" id="makeArtist">
+	                                	<form role="form" method="post" id="form-makeArtist" action="addArtist?fromWhere=rent" enctype="multipart/form-data">
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <input type="text" class="form-control" id="add-artist-phone" name="sq_artist.sq_artist_phone" placeholder="PHONE (JUST NUMBER)">
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <textarea class="form-control" id="add-artist-intro" name="sq_artist.sq_artist_intro" placeholder="INTRODUCE YOURSELF" rows="8"></textarea>
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="photoInput">
+	                                            <input type="file" class="form-control" id="add-artist-photo" name="upload" placeholder="PHOTO">
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short">
+	                                            <button type="button" class="btn btn-primary" id="makeArtist_submit">Make Artist</button>
+	                                        </div>
+	                                    </form>
+	                                </div>
+<%--                                 </s:if> --%>
                                 
                             </div>
                         </div>
@@ -320,8 +354,11 @@
                         <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header" id="main_register">Register</a></li>
                     </s:if>
                     <s:else>
+                    	<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area">${sessionScope.loginId } 님 환영합니다!</a></li>
                         <li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>
-                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>
+                        <s:if test='#session.isArtist == "N"'>
+	                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>
+	                    </s:if>
                     </s:else>
                     </ul>
                 </nav>
@@ -342,7 +379,8 @@
                                 <li><a href="#">Something 4</a></li>
                             </ul>
                         </li>
-                        <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">My Portfolio</a></li>
+                        <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
+                        <li><a href="rentApplySituation.action" id="rent_apply_situation">내 지원현황</a></li>
                         <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li>
                         <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li>
                         <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li>
@@ -497,7 +535,7 @@
 		                        </header>
 		                        <footer>
 		                            <dl>
-		                                <dt>SQ_RENT_ID</dt>
+		                                <dt>게시물 번호</dt>
 		                                <dd>${sq_rent_id }</dd>
 		                                <dt>지역</dt>
 			                            <dd>${sq_rent_region }</dd>

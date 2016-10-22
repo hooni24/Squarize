@@ -48,7 +48,7 @@ CREATE TABLE SQ_ARTIST
 	-- 아티스트 프로필 사진 경로
 	SQ_ARTIST_PHOTO varchar2(50),
 	-- 회원 소개
-	SQ_ARTIST_INTRO varchar2(1000),
+	SQ_ARTIST_INTRO varchar2(1000) NOT NULL,
 	PRIMARY KEY (SQ_MEMBER_ID)
 );
 
@@ -196,6 +196,18 @@ CREATE TABLE SQ_RENT
 	SQ_RENT_PHOTO varchar2(300),
   -- 대관 게시물 사진 원래 파일명
   SQ_RENT_PHOTO_ORIGINAL varchar2(300),
+  -- 대관 게시물 지역
+  SQ_RENT_REGION varchar2(50) NOT NULL,
+  -- 대관 게시물 장르
+  SQ_RENT_GENRE varchar2(50) NOT NULL,
+  -- 대관 게시물 총 공연시간
+  SQ_RENT_RUNNING_TIME number NOT NULL,
+  -- 대관 게시물 모집 팀 수
+  SQ_RENT_TEAM_COUNT number NOT NULL,
+  -- 대관 게시물 공연 위도
+  SQ_RENT_LAT number NOT NULL,
+  -- 대관 게시물 공연 경도
+  SQ_RENT_LNG number NOT NULL,
 	PRIMARY KEY (SQ_RENT_ID)
 );
 

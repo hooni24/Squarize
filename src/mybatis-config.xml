@@ -16,6 +16,7 @@
 		<typeAlias type="squarize.vo.SQ_recruit" alias="SQ_recruit"/>
 		<typeAlias type="squarize.vo.SQ_rent_apply" alias="SQ_rent_apply"/>
 		<typeAlias type="squarize.vo.SQ_rent" alias="SQ_rent"/>
+		<typeAlias type="squarize.vo.SQ_human" alias="SQ_human"/>
 	</typeAliases>
 	
 	<!-- DB접속 정보 셋팅 -->
