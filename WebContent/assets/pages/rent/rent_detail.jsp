@@ -16,6 +16,18 @@
 			resize: vertical;
 			background-color: transparent;
 			cursor: default;
+			border: none;
+		}
+		textarea.detail[readonly]{
+			resize: vertical;
+			background-color: transparent;
+			cursor: default;
+			border: none;
+			width: 100%;
+		}
+		span.detail{
+			font: bold 1.2em 맑은 고딕;
+			margin-bottom: 10%;
 		}
 		textarea.taSetting{
 			resize: vertical;
@@ -33,6 +45,13 @@
 			background-color: white;
 		}
 		a#realUpdate{
+			display: none;
+		}
+		a#toTitle{
+			font: bold 1.2em 맑은 고딕;
+			color: black;
+		}
+		a.hidden{
 			display: none;
 		}
 	</style>
@@ -125,6 +144,7 @@
 			//지원자 보기 버튼 클릭
 			$("a#seeApply").on("click", function(){
 				var rent_id = $("input#rent_id_hidden").val();
+				$(this).addClass("hidden");
 				
 				$.ajax({
 					url : "seeRentApply?rent.sq_rent_id="+rent_id
@@ -138,12 +158,18 @@
 								var appendThing = '<article class="person list">';
 								appendThing += '<div class="left average-color">';
 								appendThing += '<figure class="person-image image">';
-								appendThing += '<img src="assets/downloadIMG/artist/default.jpg">';
+								if(item.sq_port_file == null){
+									appendThing += '<img src="assets/downloadIMG/artist/default.jpg">';
+								}else {
+									appendThing += '<img src="assets/downloadIMG/port/'+item.sq_port_file+'">';
+								}
 								appendThing += '</figure>';
 								appendThing += '<aside class="number">'+item.sq_member_name+'</aside>';
 								appendThing += '<aside>아이디 : '+item.sq_member_id+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연락처 : '+item.sq_artist_phone+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이메일 : '+item.sq_member_email+'</aside>';
-								appendThing += '<h3>Catherine Brown</h3>';
-								appendThing += '<h3>Catherine Brown</h3>';
+								appendThing += '<h3>다루는 악기 - '+item.sq_port_inst+'</h3>';
+								appendThing += '<span class="detail">경력</span><textarea class="detail" rows="8" readonly>'+item.sq_port_career+'</textarea>';
+								appendThing += '<span class="detail">자기소개</span><textarea class="detail" rows="8" readonly>'+item.sq_port_pr+'</textarea>';
+								appendThing += '<a href="#result" id="toTitle">목록으로</a>';
 								appendThing += '</div>';
 								appendThing += '</article>';
 								$("div#result").append(appendThing);
@@ -153,17 +179,6 @@
 					}
 				});
 			});
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
 			
@@ -212,7 +227,12 @@
                 <article class="animate move_from_bottom_short">
                     <div class="gallery">
                         <div class="image">
-                            <img src="assets/downloadIMG/rent/${rent.sq_rent_photo }" alt="">
+                        <s:if test="rent.sq_rent_photo != ''">
+                            <img src="assets/downloadIMG/rent/${rent.sq_rent_photo }">
+                        </s:if>
+                        <s:else>
+                        	<img src="assets/img/default-item.png">
+                        </s:else>
                         </div>
                     </div>
                 </article>
@@ -234,7 +254,12 @@
                     <div class="person animate move_from_bottom_short">
                         <div class="inner average-color">
                             <figure class="person-image">
-                                <img src="assets/downloadIMG/artist/${artist.sq_artist_photo }" alt="">
+                            <s:if test="artist.sq_artist_photo != ''">
+                                <img src="assets/downloadIMG/artist/${artist.sq_artist_photo }">
+                            </s:if>
+                            <s:else>
+                            	<img src="assets/img/person-01.jpg">
+                            </s:else>
                             </figure>
                             <header>${rent.sq_member_id }</header>
                             <div>${member.sq_member_email }</div>
@@ -280,7 +305,7 @@
                 <!--end Sidebar-->
                 <article class="center" id="test">
                     <s:if test="#session.loginId == rent.sq_member_id ">
-                    	<a class="btn btn-circle btn-lg btn_default aBlack" id="seeApply">지원자 보기</a>&nbsp;&nbsp;&nbsp;
+                    	<a class="btn btn-circle btn-lg btn_default aBlack" id="seeApply" class="seeApply">지원자 보기</a>&nbsp;&nbsp;&nbsp;
                     	<a class="btn btn-circle btn-lg aBlack" id="update">수정</a>&nbsp;&nbsp;&nbsp;
                     	<a class="btn btn-circle btn-lg aBlack" id="realUpdate">수정aa</a>&nbsp;&nbsp;&nbsp;
                     	<a class="btn btn-circle btn-lg aRed" id="delete">삭제</a>
