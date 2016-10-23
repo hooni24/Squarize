@@ -22,7 +22,7 @@ end DISTNACE_WGS84;
 /* Drop Tables */
 
 DROP TABLE SQ_AD CASCADE CONSTRAINTS;
-DROP TABLE SQ_BUSKING CASCADE CONSTRAINTS;
+DROP TABLE SQ_BUSKINGLIST CASCADE CONSTRAINTS;
 DROP TABLE SQ_FAVORITE CASCADE CONSTRAINTS;
 DROP TABLE SQ_PORTFOLIO CASCADE CONSTRAINTS;
 DROP TABLE SQ_RECRUIT_APPLY CASCADE CONSTRAINTS;
@@ -112,7 +112,7 @@ CREATE TABLE SQ_BUSKINGLIST
 , RUNNINGTIME NUMBER(3, 0) NOT NULL 
   -- 공연설명
 , DESCRIPTION VARCHAR2(200 BYTE) 
-, CONSTRAINT SYS_C007308 PRIMARY KEY
+, PRIMARY KEY (SQ_BUSKING_ID)
 );
 
 
@@ -198,9 +198,9 @@ CREATE TABLE SQ_RECRUIT
 	-- 구인정보 공연장소
 	SQ_RECRUIT_LOCATION varchar2(100) NOT NULL,
 	-- 구인 위치 위도
-	SQ_RECRUIT_LATITUDE number(11,7) NOT NULL,
+	SQ_RECRUIT_LATITUDE number NOT NULL,
 	-- 구인 위치 경도
-	SQ_RECRUIT_LONGITUDE number(11,7) NOT NULL,
+	SQ_RECRUIT_LONGITUDE number NOT NULL,
 	-- 구인정보 소개글 내용
 	SQ_RECRUIT_INFO varchar2(1000) NOT NULL,
 	PRIMARY KEY (SQ_RECRUIT_ID)
@@ -272,9 +272,9 @@ CREATE TABLE SQ_RENT_APPLY
 
 
 /* Create Foreign Keys */
---SQ_BUSKING 테이블은 올린 ARTIST의 SQ_MEMBER_ID를 참조함
-ALTER TABLE SQ_BUSKING
-	ADD FOREIGN KEY (SQ_MEMBER_ID)
+--SQ_BUSKINGLIST 테이블은 올린 ARTIST의 SQ_MEMBER_ID를 참조함
+ALTER TABLE SQ_BUSKINGLIST
+	ADD FOREIGN KEY (ID)
 	REFERENCES SQ_ARTIST (SQ_MEMBER_ID) ON DELETE CASCADE -- SQ_ARTIST 정보가 삭제되면 해당 아티스트의 버스킹 정보도 삭제
 ;
 
@@ -350,13 +350,13 @@ commit;
 /* EXAMPLES */
 
 --SQ_MEMBER 생성
-INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', 'rock', 'N');
-INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', 'rock', 'N');
-INSERT INTO SQ_MEMBER VALUES ('aa', '123', '김소똥', 'a@a.a', 'rock', 'Y');
-INSERT INTO SQ_MEMBER VALUES ('ss', '123', '김쥐똥', 'a@a.a', 'rock', 'Y');
-INSERT INTO SQ_MEMBER VALUES ('dd', '123', '김양똥', 'a@a.a', 'rock', 'Y');
-INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'Y');
-INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y');
+INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', 'rock', 'N', null, 'N');
+INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', 'rock', 'N', null, 'N');
+INSERT INTO SQ_MEMBER VALUES ('aa', '123', '김소똥', 'a@a.a', 'rock', 'Y', null, 'N');
+INSERT INTO SQ_MEMBER VALUES ('ss', '123', '김쥐똥', 'a@a.a', 'rock', 'Y', null, 'N');
+INSERT INTO SQ_MEMBER VALUES ('dd', '123', '김양똥', 'a@a.a', 'rock', 'Y', null, 'N');
+INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'Y', null, 'N');
+INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y', null, 'N');
 
 --SQ_ARTIST 생성
 INSERT INTO SQ_ARTIST VALUES ('aa', 01011111111, null,'adfadsfd');
@@ -379,7 +379,6 @@ INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Such a *****!(dru
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Nanananana-기타세션', sysdate, 'GUITAR','gggg', null, 'ROCK', sysdate, '서울 시청',37.565578, 126.977984, '컴온 보이즈');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '깔아줄 베이스 찾습니다', sysdate, 'BASEGUITAR','hhh', null, 'ROCK', sysdate, '홍대',37.555739, 126.923959, '쉬즈건');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '헤비메탈에 목청을 바칩니다', sysdate, 'VOCAL','iii', null, 'HEAVYMETAL', sysdate, '대학동',37.470931, 126.938185, '콜라보레이션');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '피아노 시합-영화같은 장면 만들분 찾습니다.', sysdate, 'PIANO','jjj', null, 'CONCERTO', sysdate, '신림',37.483743, 126.929978, '미쳐봅시다');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '파티타임! 기타세션~', sysdate, 'GUITAR','kkkk', null, 'ROCK', sysdate, '신림',37.483913, 126.929257, '아임인');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '첼로-국악과의 콜라보레이션', sysdate, 'CELLO', null,'lll', 'ROCK', sysdate, '홍대',37.555939, 126.924286, '준');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '첼리스트 급구합니다.', sysdate, 'CELLO', null,'mmm', 'CLASSIC', sysdate,'청담',37.523668, 127.054047, '컴온 이리오세요');
@@ -394,6 +393,3 @@ INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '드럼 세션', s
 INSERT INTO SQ_RECRUIT_APPLY VALUES (SQ_RECRUIT_APPLY_ID_SQ.nextval, 1, 'aa');
 
 commit;
-
-
-SELECT * FROM SQ_RECRUIT;
