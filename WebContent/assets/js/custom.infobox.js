@@ -1,5 +1,8 @@
 function drawInfobox(infoboxContent, json, i){
 
+	var str = json.data[i].buskingdate;
+	var temp = str.substring(0,13);
+	
     if( json.data[i].teamname )     { var teamname = '<div class="price average-color"><span>' + json.data[i].teamname + '</span></div>' }
         else                        { teamname = '' }
     if(json.data[i].id)             { var id = json.data[i].id }
@@ -14,7 +17,7 @@ function drawInfobox(infoboxContent, json, i){
         else                        { location = '' }
     if(json.data[i].gallery)     	{ var gallery = json.data[i].gallery }
         else                        { gallery = '../img/default-item.jpg' }
-    if(json.data[i].buskingdate)    { var buskingdate = json.data[i].buskingdate }
+    if(json.data[i].buskingdate)    { var buskingdate = temp }
 		else                        { buskingdate = '' }
     if(json.data[i].runningtime)    { var runningtime = json.data[i].runningtime }
 		else                        { runningtime = '' }
@@ -51,7 +54,7 @@ function drawInfobox(infoboxContent, json, i){
                     '<dt>장르</dt>' +
                     '<dd>'+ genre +'</dd>' +
                     '<dt>일시</dt>' +
-                    '<dd>'+ buskingdate +'</dd>' +
+                    '<dd>'+ temp + '시' + '</dd>' +
                     '<dt>공연시간</dt>' +
                     '<dd>'+ runningtime +'분</dd>' +
                 '</dl>' +

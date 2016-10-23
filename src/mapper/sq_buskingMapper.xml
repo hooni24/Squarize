@@ -15,3 +15,6 @@
 		where sq_busking_id = #{sq_busking_id}
 	</select>
 </mapper>
+
+
+<!-- TO_DATE(buskingdate , 'yyyy-mm-dd hh')  -->

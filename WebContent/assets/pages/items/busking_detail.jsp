@@ -28,8 +28,13 @@
 /*       $(function() {
         $( '.my-thumb-1' ).nailthumb();
       }); */
+  	var str = "<s:property value='#request.SQ_busking.buskingdate'/>";
+	var temp = str.substring(0,13) + "시";
+  	alert(temp);
       
       	$(function(){
+			$("#buskingdate").append(temp);
+			
 			$(".img").click(function(){
 // 				var img = document.getElementById("");
 // 				alert(img.src);
@@ -39,6 +44,8 @@
 			});
       	});
       
+  	
+  	
       
     </script>
     
@@ -136,7 +143,8 @@
                             <dt>장르</dt>
                             <dd><s:property value="SQ_busking.genre"/></dd>
                             <dt>일시</dt>
-                            <dd><s:property value="SQ_busking.buskingdate"/></dd>
+<%--                             <dd><s:property value="SQ_busking.buskingdate"/></dd> --%>
+                            <dd id="buskingdate"></dd>
                             <dt>공연시간</dt>
                             <dd><s:property value="SQ_busking.runningtime"/>분</dd>
                         </dl>
