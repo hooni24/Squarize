@@ -68,7 +68,6 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public String loginSQmember() throws Exception{
 		mdao=new SQ_memberDAO();
 		sq_member=mdao.loginSQmember(sq_member_id);
-		
 		if(sq_member.getSq_member_pw().equals(sq_member_pw)){
 			session.put("loginId", sq_member.getSq_member_id());
 			session.put("isArtist", sq_member.getSq_member_isartist());

@@ -13,23 +13,36 @@ $(function(){
 	    			, method : "post"
 	    			, data : loginItem
 	    			, dataType : "json"
-	    			, success : function(){
-	    				$(".close").trigger("click");
-	    				$("#main_login").addClass("hidden");
-	    				$("#main_register").addClass("hidden");
+	    			, success : function(resp){
+	    				if(resp.loginId==null||resp.loginId==""){
+	    					alert("입력정보가 틀렸습니다.");
+	    					$('input#sign-in-id').val("");
+	    					$('input#sign-in-pw').val("");
+	    					return false;
+	    				}else{
+	    					$(".close").trigger("click");
+	    					$("#main_login").addClass("hidden");
+	    					$("#main_register").addClass("hidden");
+	    					var welcome = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area">'+resp.loginId+' 님 환영합니다!</a></li>';
+	    					$("ul#main_menu").append(welcome);
+	    					var logout = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>';
+	    					alert("resp.isArtist= "+resp.isArtist);
+	    					if(resp.isArtist=="N"){
+	    						var makeArtist = '<li><a href="#user-area" class="promoted idle" data-toggle="collapse" aria-expanded="true" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>';
+	    						$("ul#main_menu").append(makeArtist);
+	    					}
+	    					
+	    					$("ul#main_menu").append(logout);
+	    					/*$("ul#main_menu").append(makeArtist);*/
+	    					
+	    					$("#tab_login").addClass("hidden");
+	    					$("#tab_register").addClass("hidden");
+	    					
+	    					var tab_makeArtist = '<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>';
+	    					$("ul#tab_menu").append(tab_makeArtist);
+	    					$("a#tab_makeArtist").trigger("click");
+	    				}
 	    				
-	    				var logout = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>';
-	    				var makeArtist = '<li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>';
-	    				
-	    				$("ul#main_menu").append(logout);
-	    				$("ul#main_menu").append(makeArtist);
-	    				
-	    				$("#tab_login").addClass("hidden");
-	    				$("#tab_register").addClass("hidden");
-	    				
-	    				var tab_makeArtist = '<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>';
-	    				$("ul#tab_menu").append(tab_makeArtist);
-	    				$("a#tab_makeArtist").trigger("click");
 	    			}
 	    			, error : function(){
 	    				alert("실패");
@@ -152,19 +165,28 @@ $(function(){
 			});
     		
     		//아티스트 인증
-    		$('#makeArtist_submit').click(function(){
-    			alert("hi");
-    			var phone=$('#add-artist-phone').val();
-    			var photo=$('#add-artist-photo').val();
-
-    			$.ajax({
-    				method:'post'
-    				,url:'addSQArtist'
-    				,data:{'sq_artist.sq_artist_phone':phone,'sq_artist.sq_artist_photo':photo}
-    				,success:function(){
-    					
-    				}
-    			});
+    		$("button#makeArtist_submit").on("click", function(){
+    			var phone = $("input#add-artist-phone").val();
+    			var intro = $("textarea#add-artist-intro").val();
+    			var file = $("input#add-artist-photo").val();
+    			var fileLength = file.length;
+    			var ext = file.substring(fileLength-3, fileLength);	//확장자
+    			
+    			if(isNaN(phone)){
+    				alert("전화번호는 숫자만 입력하세요");
+    				return false;
+    			}else if(fileLength < 1){
+    				alert("사진을 반드시 업로드해주세요");
+    				return false;
+    			}else if(!(ext == "png" || ext == "PNG" || ext == "jpg" || ext == "JPG")){
+    				alert("사진은 png나 jpg 파일만 업로드 가능합니다");
+    				return false;
+    			}else if(intro.length < 1){
+    				alert("자기소개를 반드시 입력해 주세요");
+    				return false;
+    			}else {
+        			$("form#form-makeArtist")[0].submit();
+    			}
     		});
     		
     		

@@ -162,15 +162,17 @@ CREATE TABLE SQ_RECRUIT
 	-- 구인정보 등록 날짜
 	SQ_RECRUIT_INPUT_DATE date DEFAULT SYSDATE NOT NULL,
 	-- 모집중인 악기 파트
-	SQ_RECRUIT_PART varchar2(15) NOT NULL,
+	SQ_RECRUIT_PART varchar2(100) NOT NULL,
 	-- 구인정보 사진 경로
-	SQ_RECRUIT_PHOTO varchar2(50),
+	SQ_RECRUIT_PHOTO varchar2(100),
+	-- 구인정보 사진 원래경로
+	SQ_RECRUIT_PHOTO_ORIGINAL varchar2(100),
 	-- 구인중인 장르
 	SQ_RECRUIT_GENRE varchar2(20) NOT NULL,
 	-- 구인정보 공연날짜
 	SQ_RECRUIT_DATE date NOT NULL,
 	-- 구인정보 공연장소
-	SQ_RECRUIT_LOCATION varchar2(50) NOT NULL,
+	SQ_RECRUIT_LOCATION varchar2(100) NOT NULL,
 	-- 구인 위치 위도
 	SQ_RECRUIT_LATITUDE number(11,7) NOT NULL,
 	-- 구인 위치 경도

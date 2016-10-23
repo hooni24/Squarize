@@ -187,7 +187,6 @@
 		<script type="text/javascript" src="assets/js/custom.js"></script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 		<script type="text/javascript" src="assets/js/sq_member.js"></script>
-		<script type="text/javascript" src="assets/js/sq_recruit.js"></script>
 
 <script type="text/javascript">
 
