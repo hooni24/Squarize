@@ -57,7 +57,7 @@
 		}//if(navigator~)
 		
 		$("button#submits").on("click", function(){
-			var lat = marker.position.lat();		//위도경도 얻어옴
+			var lat = marker.position.lat();		//위도경도 얻어옴(position이 latlng를 갖고 있는 객체)
 			var lng = marker.position.lng();
 			$("input#lat_").val(lat);				//hidden에 넣음
 			$("input#lng_").val(lng);

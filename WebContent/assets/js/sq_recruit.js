@@ -2,7 +2,7 @@
  * 
  */
 $(function(){
-	alert("hello world");
+//	alert("hello world");
 	$('#recruit-reg-btn').click(function(){
 		alert("hi");
 		

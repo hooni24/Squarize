@@ -7,16 +7,16 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--<link href="../../fonts/font-awesome.css" rel="stylesheet" type="text/css">-->
-    <!--<link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>-->
-    <!--<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
-    <!--<link href="../../css/style.css" rel="stylesheet" type="text/css">-->
+    <link href="../../fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
 
     <style>
         #map-simple { min-height: 240px; }
     </style>
 
-    <title></title>
+    <title>구인 상세 정보</title>
 </head>
 <body class="external">
 
@@ -42,9 +42,11 @@
                 </article>
                 <article class="animate move_from_bottom_short">
                     <h1>${sq_recruit_artist.sq_recruit_title}</h1>
-                    <h2><i class="fa fa-map-marker"></i><span id="sq_recruit_location">${sq_recruit_artist.sq_recruit_location}</span></h2>
+                    <h2><i class="fa fa-map-marker"></i>${sq_recruit_artist.sq_recruit_location}</h2>
                     <figure class="price average-color"><span>${sq_recruit_artist.sq_member_id}</span></figure>
                     <p>${sq_recruit_artist.sq_recruit_info}</p>
+                    <input type="hidden" id="sq_recruit_lat" value="${sq_recruit_artist.sq_recruit_latitude}" />
+                    <input type="hidden" id="sq_recruit_lng" value="${sq_recruit_artist.sq_recruit_longitude}" />
                 </article>
                 <!--end Description-->
                 <article class="sidebar">
@@ -129,7 +131,7 @@
                 <!--end Features-->
                 <article>
                     <h3>Map</h3>
-                    <div id="map-simple"></div>
+                    <div id="map-simple"></div>	<!-- idle클래스 추가 -->
                 </article>
                 <!--end Map-->
                 
@@ -163,35 +165,60 @@
     <!--end .row-->
 </div>
 <!--end #item-detail-->
+		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="assets/js/sq_member.js"></script>
+		<script type="text/javascript" src="assets/js/sq_recruit.js"></script>
+		<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
+		<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
+		<script type="text/javascript" src="assets/js/infobox.js"></script>
+		<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
+		<script type="text/javascript" src="assets/js/markerclusterer.js"></script>
+		<script type="text/javascript" src="assets/js/smoothscroll.js"></script>
+		<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap-select.js"></script>
+		<script type="text/javascript" src="assets/js/icheck.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
+		<script type="text/javascript" src="assets/js/functions.js"></script>
+		<script type="text/javascript" src="assets/js/custom.js"></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
+		<script type="text/javascript" src="assets/js/sq_member.js"></script>
+		<script type="text/javascript" src="assets/js/sq_recruit.js"></script>
 
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 <script type="text/javascript">
-//중심을 찍어줄 위경도를 갖고 온다.(DB에서 갖고 온 것을 기준으로 한다.- 주소->위,경도로 바꿔주기 : 이럴 경우 위경도를 따로 저장할 필요는 없음...=>테이블 수정할 것.)
-//주소로 위, 경도로 바꿔준 값으로 지도에 마커를 찍는다.
 
-        	var _latitude = 37.5564059;
-		    var _longitude = 126.9259563;
-		    var draggableMarker = false;
-		    var scrollwheel = true;
-		    var element = document.querySelector('body');
-		
-		    if( hasClass(element, 'external') ){
-		        var head = document.getElementsByTagName('head')[0];
-		        var script = document.createElement('script');
-		        script.type = 'text/javascript';
-		        script.src = "../../js/external.js";
-		        head.appendChild(script);
-		    }
-		    else {
-		        simpleMap(_latitude, _longitude,draggableMarker, scrollwheel);
-		        rating();
-		        averageColor( $('.content-container') );
-		    }
-		
-		    function hasClass(element, cls) {
-		        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-		    }
-  
+//위치을 찍어줄 위경도를 갖고 온다.
+//지도에 마커를 찍는다.
+
+	var _latitude = document.getElementById("sq_recruit_lat").value;
+    var _longitude = document.getElementById("sq_recruit_lng").value;
+    alert(_latitude+","+_longitude);	//나옴...
+    var draggableMarker = false;
+    var scrollwheel = true;
+    var element = document.querySelector('body');	//body
+
+    if( hasClass(element, 'external') ){	//hasClass():아래에 선언돼 있음. body class="external" 임: false
+        var head = document.getElementsByTagName('head')[0];	// 가장 처음 나오는 head태그를 갖고 옴.
+        var script = document.createElement('script');	//script 요소를 만듦.
+        script.type = 'text/javascript';	//script 의 속성을 정해줌.
+        script.src = "../../js/external.js";	
+        head.appendChild(script);	//script를 첫번째 head태그의 자식으로 붙임.
+        alert(head.className);
+    }
+    else {
+        simpleMap(_latitude, _longitude,draggableMarker, scrollwheel);	// funcitons.js의 simpleMap을 실행.
+        rating();	//rating()메소드 실행
+        averageColor( $('.content-container') );
+    }
+
+    function hasClass(element, cls) {	// return : ' 'external' '.indexOf(' 'external' ') > -1
+        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+    }
+
 </script>
 
 
