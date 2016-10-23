@@ -12,15 +12,46 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>-->
     <!--<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
     <!--<link href="../../css/style.css" rel="stylesheet" type="text/css">-->
-
-    <style type="text/css">
-	    html{
-    		overflow: scroll;
-    	}
-    	
-        #map-simple { min-height: 240px; }
-    </style>
-
+	
+ 	<!-- 여기 -->
+	<script type="text/javascript" src="../../js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../../Thumb/jquery.nailthumb.1.1.min.js"></script>
+    <link rel="stylesheet" href="../../Thumb/jquery.nailthumb.1.1.min.css" type="text/css">
+	
+	<style type="text/css">
+	.my-thumb-1 {
+		width: 40px;
+		height: 20px;
+	}
+	</style> 
+	<script type="text/javascript">
+/*       $(function() {
+        $( '.my-thumb-1' ).nailthumb();
+      }); */
+      
+      	$(function(){
+			$(".img").click(function(){
+// 				var img = document.getElementById("");
+// 				alert(img.src);
+				var src = $(this).attr("src");
+				
+				$(".image img").attr("src", src);		
+			});
+      	});
+      
+      
+    </script>
+    
+     <style type="text/css">
+     .img{
+     	margin: 5px;
+     	/* width: 10px;
+     	height: 30px;
+     	float: left;
+     	display: inline; */
+    } 
+    </style> 
+	
     <title>534 Roosevelt Street</title>
 </head>
 <body class="external">
@@ -59,6 +90,16 @@
 <!--                             <a href="mailto:catherine.brown@example.com">catherine.brown@example.com</a> -->
 <!--                             <hr> -->
 <!--                             <a href="#person-detail" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="person-detail">Show Details</a> -->
+							<div>
+							<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery"/>"></a>
+							
+							<s:if test="SQ_busking.gallery2 != null">
+							<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery2"/>"></a>
+                        	</s:if>
+                        	
+                        	</div>
+                        	
+                        	
                         </div>
                         <div class="collapse" id="person-detail">
                             <div class="details">

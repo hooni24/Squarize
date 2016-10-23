@@ -108,14 +108,12 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 	public void setBuskingArraylist(ArrayList<String> buskingArraylist) {
 		this.buskingArraylist = buskingArraylist;
 	}
-
+	
 	public int getSq_busking_id() {
 		return sq_busking_id;
 	}
-
+	
 	public void setSq_busking_id(int sq_busking_id) {
 		this.sq_busking_id = sq_busking_id;
 	}
-
-	
 }
