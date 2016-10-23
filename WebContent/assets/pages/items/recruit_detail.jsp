@@ -166,8 +166,6 @@
 </div>
 <!--end #item-detail-->
 		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
-		<script type="text/javascript" src="assets/js/sq_member.js"></script>
-		<script type="text/javascript" src="assets/js/sq_recruit.js"></script>
 		<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 		<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
