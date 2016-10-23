@@ -10,7 +10,7 @@ import squarize.vo.SQ_recruit;
 import squarize.vo.SQ_recruit_artist;
 
 public class SQ_seekingDAO {
-	private SqlSessionFactory factory;
+	private SqlSessionFactory factory=MybatisConfig.getSqlSessionFactory();
 	private SqlSession ss;
 	
 	//기본생성자
@@ -19,10 +19,9 @@ public class SQ_seekingDAO {
 	}
 	
 	public List<SQ_recruit> selectAll_sq_recruit(){
-		List<SQ_recruit> sq_recruit_list = null;
-		factory = MybatisConfig.getSqlSessionFactory();
+		/*factory = MybatisConfig.getSqlSessionFactory();*/
 		ss = factory.openSession();
-		sq_recruit_list = ss.selectList("sq_seekingMapper.selectAll_sq_recruit");
+		List<SQ_recruit> sq_recruit_list = ss.selectList("sq_seekingMapper.selectAll_sq_recruit");
 		System.out.println("DAO"+sq_recruit_list);
 		if(ss!=null) ss.close();
 		return sq_recruit_list;
@@ -35,5 +34,25 @@ public class SQ_seekingDAO {
 		sq_recruit_artist = ss.selectOne("sq_seekingMapper.selectOne_sq_recruit_artist",sq_recruit_id);
 		if(ss != null) ss.close();
 		return sq_recruit_artist;
+	}
+	
+	public void insertSQrecruit(SQ_recruit sq_recruit){
+		System.out.println(sq_recruit);
+		ss=factory.openSession();
+		try {
+			ss.insert("sq_seekingMapper.insertSQrecruit",sq_recruit);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ss.commit();
+			ss.close();
+		}
+	}
+	
+	public static void main(String[] args) {
+		SQ_seekingDAO sdao= new SQ_seekingDAO();
+		SQ_recruit sq_recruit=new SQ_recruit(0,"a","a","2012/10/11","a","a","a","a","a","a","a","a","a");
+		sdao.insertSQrecruit(sq_recruit);
 	}
 }

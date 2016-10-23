@@ -1,5 +1,7 @@
 package squarize.action;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +10,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.dao.SQ_seekingDAO;
+import squarize.util.FileService;
 import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
 import squarize.vo.SQ_recruit_artist;
@@ -22,14 +25,15 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private List<SQ_rent> sq_rent_list;
 	private List<SQ_portfolio> sq_portfolio_list;
 
+	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
+	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
+	private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
 
 	private SQ_recruit_artist sq_recruit_artist;
-
 	private SQ_recruit sq_recruit;
 
-//	private String loginId=(String)session.get("loginId");
-
 	private String loginId;
+	private SQ_seekingDAO sdao=new SQ_seekingDAO(); 
 
 	
 
@@ -63,8 +67,24 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	 * @param sq_recruit
 	 * @return success
 	 * */
-	public String insertSQrecruit(){
-//		System.out.println(loginId);
+	public String insertSQrecruit() throws Exception{
+		loginId=(String)session.get("loginId");
+		System.out.println(loginId);
+		sq_recruit.setSq_member_id(loginId);
+		if (upload != null) { 
+			try {
+				FileService fs = new FileService();
+				String basePath = getText("sq_recruit.uploadpath");
+				String savedfile;
+				savedfile = fs.saveFile(upload, basePath, uploadFileName);
+				sq_recruit.setSq_recruit_photo(savedfile);
+				sq_recruit.setSq_recruit_photo_original(uploadFileName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(sq_recruit);
+		sdao.insertSQrecruit(sq_recruit);
 		return SUCCESS;
 	}
 	
@@ -121,5 +141,30 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+	
 
 }
