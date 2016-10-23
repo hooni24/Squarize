@@ -49,9 +49,20 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	/**
 	 * 회원 정보등록 
 	 * @param sq_member
-	 * 회원가입 후 DB에 전송한다.
+	 * 회원가입 요청을 받으면 DB에 저장하고 인증 email을 보낸다.
 	 * */
 	public String registerSQmember() throws Exception{
+		
+		
+		//난수를 발생
+		//auth.jsp만들어서 struts.xml에 등록
+		//authURL = http://localhost:8888/Squarize/auth.action?id=아이디&authKey=발생된 난수
+		//SendMailTest.java 생성
+		
+		
+		
+		//auth.jsp에서는 id, authKey가 없으면 index로 돌려보내고, 있으면 db에서 확인 id
+		
 		mdao=new SQ_memberDAO();
 		mdao.registerSQmember(sq_member);
 		return SUCCESS;

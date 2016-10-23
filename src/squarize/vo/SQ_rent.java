@@ -17,6 +17,10 @@ public class SQ_rent {
 	private double sq_rent_lat;
 	private double sq_rent_lng;
 	
+	private double latRange;
+	private double lngRange;
+	private int range;
+	
 	
 	public SQ_rent() {}
 
@@ -140,6 +144,30 @@ public class SQ_rent {
 		this.sq_rent_lng = sq_rent_lng;
 	}
 
+	public double getLatRange() {
+		return latRange;
+	}
+
+	public void setLatRange(double latRange) {
+		this.latRange = latRange;
+	}
+
+	public double getLngRange() {
+		return lngRange;
+	}
+
+	public void setLngRange(double lngRange) {
+		this.lngRange = lngRange;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+	}
+
 	@Override
 	public String toString() {
 		return "SQ_rent [sq_rent_id=" + sq_rent_id + ", sq_member_id=" + sq_member_id + ", sq_rent_band_name="
@@ -148,8 +176,10 @@ public class SQ_rent {
 				+ ", sq_rent_photo=" + sq_rent_photo + ", sq_rent_photo_original=" + sq_rent_photo_original
 				+ ", sq_rent_region=" + sq_rent_region + ", sq_rent_genre=" + sq_rent_genre + ", sq_rent_running_time="
 				+ sq_rent_running_time + ", sq_rent_team_count=" + sq_rent_team_count + ", sq_rent_lat=" + sq_rent_lat
-				+ ", sq_rent_lng=" + sq_rent_lng + "]";
+				+ ", sq_rent_lng=" + sq_rent_lng + ", latRange=" + latRange + ", lngRange=" + lngRange + ", range="
+				+ range + "]";
 	}
+
 
 
 

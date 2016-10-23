@@ -92,6 +92,7 @@ public class SQ_memberDAO {
 				new FileService().fileDelete(fullpath);
 			}
 			ss.delete("sq_memberMapper.deletePortfolio", loginId);
+			ss.delete("sq_rentMapper.deleteApplyByPortfolio", loginId);		//해당 지원자가 지원했던 정보 모두 삭제 (포폴이 없으므로)
 			ss.commit();
 		} finally {
 			ss.close();

@@ -41,6 +41,17 @@
 			<result type="json"></result>
 		</action>
 		
+		<action name="searchRent" class="squarize.action.SQ_rentAction" method="searchRent">
+			<result type="json"></result>
+		</action>
+		
+		<action name="searchRentRedirect" class="squarize.action.SQ_rentAction" method="searchRent">
+			<result>rentMain.jsp</result>
+		</action>
+		
+		<action name="getAllMyRent" class="squarize.action.SQ_rentAction" method="getAllMyRent">
+			<result>rentMain.jsp</result>
+		</action>
 		
 		
 		

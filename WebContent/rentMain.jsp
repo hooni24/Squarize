@@ -23,6 +23,11 @@
     	.hidden{
     		display : none;
     	}
+    	a.search_icon{
+	    	margin-bottom: -15px;
+	    	border-radius: 35px;
+	    	margin-left: 87%;
+    	}
     </style>
     
     <script src="assets/js/jquery-2.1.0.min.js"></script>
@@ -130,7 +135,7 @@
     				,url : 'registerSQmember'
     				,data : registerItem
     				,success : function(){
-    					alert("회원가입이 완료되었습니다. 로그인하여 주십시오");
+    					alert("이메일을 확인하시고 인증 URL을 눌러주세요");
     					$('#register-id').val("");
     					$('#register-name').val("");
     					$('#register-email').val("");
@@ -210,9 +215,76 @@
     			}
     		});
     		
+    		var visible = true;
+    		//돋보기 있다없다
+    		$("a#filter").on("click", function(){
+    			if(visible){
+    				$("a.search_icon").addClass("hidden");
+    			}else {
+    				$("a.search_icon").removeClass("hidden");
+    			}
+    			visible = !visible;
+    		});
     		
+    		//게시글 검색
+    		$("a.search_icon").on("click", function(){
+    			var genre = $("select#genre").val();
+    			var concert_date_begin = $("input#concert_date_begin").val();
+    			var concert_date_end = $("input#concert_date_end").val();
+    			var region = $("input#location").val();
+    			var range = $("input#range").val().split("k")[0];
+    			
+    			if(region.length < 1){
+    				alert("지역을 반드시 입력하세요");
+    				return false;
+    			}
+    			
+    			$.ajax({
+    				url : "https://maps.googleapis.com/maps/api/geocode/json?address="+region+"&key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8"
+    				, method : "post"
+    				, dataType : "json"
+    				, success : function(resp){
+    					var lat = resp.results[0].geometry.location.lat;
+    					var lng = resp.results[0].geometry.location.lng;
+    					
+    					//form에서 submit 하는거
+    					$("input#lat_hidden").val(lat);
+    					$("input#lng_hidden").val(lng);
+    					$("input#range_hidden").val(range);
+    					$("form#form_search")[0].submit();
+    					
+    					
+    					//ajax로 다녀와서 뿌리기
+//     					var items = {
+//     							"rent.sq_rent_genre" : genre
+//     							, "rent.sq_rent_concert_date" : concert_date_begin
+//     							, "rent.sq_rent_limit" : concert_date_end
+//     							, "rent.sq_rent_lat" : lat
+//     							, "rent.sq_rent_lng" : lng
+//     							, "range" : range
+//     					};
+    					
+//     					$.ajax({
+//     						url : "searchRent.action"	//redirect해서 뿌리는걸로 해 보자.. db에서는 제대로 가져오는데 rentList가 계속 5개임
+//     						, method : "post"
+//     						, data : items
+//     						, dataType : "json"
+//     						, success : function(re){
+//     							alert("성공");
+//     							var searched = re.rentList;
+//     							$.each(searched, function(index, item){
+//     								alert(item.sq_rent_id);
+//     							});
+//     						}
+//     						, error : function(){
+//     							alert("실패");
+//     						}
+//     					});
+    				}
+    			});
+    		});
     		
-    	});
+    	});	//$(function(){})
     	
     </script>
     
@@ -371,16 +443,21 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="#" class="has-child">Home</a>
+                            <a href="toRentMain.action" class="has-child">홈</a>
                             <ul>
                                 <li><a href="toSeekingMain.action">구인글</a></li>
                                 <li><a href="toRentMain.action">대관글</a></li>
-                                <li><a href="#">Something 3</a></li>
-                                <li><a href="#">Something 4</a></li>
                             </ul>
                         </li>
-                        <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
-                        <li><a href="rentApplySituation.action" id="rent_apply_situation">내 지원현황</a></li>
+                        <li>
+                            <a href="#" class="has-child">마이페이지</a>
+                            <ul>
+                                <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
+                                <li><a href="getAllMyRent.action">내가 올린 글</a></li>
+		                        <li><a href="rentApplySituation.action" id="rent_apply_situation">내 지원현황</a></li>
+                            </ul>
+                        </li>
+<!--                         <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li> -->
                         <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li>
                         <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li>
                         <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li>
@@ -400,7 +477,8 @@
         <!--end .container-->
         <div class="container">
             <div class="submit-container">
-                <a href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Search Filter</a>
+                <a class="btn btn-default btn-sm show-filter search_icon" ><input type="image" src="assets/img/search.png"></a>
+                <a href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse" id="filter">Search Filter</a>
                 <a href="toAddRent.action" class="submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true"><i><img src="assets/img/plus.png" alt=""></i></a>
             </div>
         </div>
@@ -410,18 +488,16 @@
     <div class="page-content">
         <div class="search collapse in" id="search-collapse">
             <div class="container">
-                <form class="main-search" role="form" method="post" action="#">
+                <form class="main-search" role="form" method="post" action="searchRentRedirect" id="form_search">
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
-                                <label for="type">Property Type</label>
-                                <select name="type" multiple title="All" id="type" class="animate" data-transition-parent=".dropdown-menu">
-                                    <option value="1">Apartment</option>
-                                    <option value="2">Condominium</option>
-                                    <option value="3">Cottage</option>
-                                    <option value="4">Flat</option>
-                                    <option value="5">House</option>
-                                    <option value="6">Construction Site</option>
+                                <label for="type">장르</label>
+                                <select name="rent.sq_rent_genre" id="genre" class="animate setWidth" data-transition-parent=".dropdown-menu">
+                                    <option>락</option>
+                                    <option>발라드</option>
+                                    <option>재즈</option>
+                                    <option>힙합</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -431,15 +507,9 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label for="bedrooms">Bedrooms</label>
+                                        <label for="concert_date_begin">공연날짜</label>
                                         <div class="input-group counter">
-                                            <input type="text" class="form-control" id="bedrooms" name="bedrooms" placeholder="Any">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default minus" type="button"><i class="fa fa-minus"></i></button>
-                                            </span>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default plus" type="button"><i class="fa fa-plus"></i></button>
-                                            </span>
+                                            <input type="date" class="form-control" id="concert_date_begin" name="rent.sq_rent_concert_date">
                                         </div><!-- /input-group -->
                                     </div>
                                     <!-- /.form-group -->
@@ -447,15 +517,9 @@
                                 <!--/.col-md-3-->
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label for="bathrooms">Bathrooms</label>
+                                        <label for="concert_date_end">&nbsp;</label>
                                         <div class="input-group counter">
-                                            <input type="text" class="form-control" id="bathrooms" name="bathrooms" placeholder="Any">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default minus" type="button"><i class="fa fa-minus"></i></button>
-                                            </span>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default plus" type="button"><i class="fa fa-plus"></i></button>
-                                            </span>
+                                            <input type="date" class="form-control" id="concert_date_end" name="rent.sq_rent_limit">
                                         </div><!-- /input-group -->
                                     </div>
                                     <!-- /.form-group -->
@@ -467,9 +531,9 @@
                         <!-- col-md-3 col-sm-3 -->
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
-                                <label for="location">Location</label>
+                                <label for="location">지역</label>
                                 <div class="input-group location">
-                                    <input type="text" class="form-control" id="location" placeholder="Enter Location">
+                                    <input type="text" class="form-control" id="location" placeholder="지역을 입력하세요">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default animate" type="button"><i class="fa fa-map-marker geolocation" data-toggle="tooltip" data-placement="bottom" title="Find my position"></i></button>
                                     </span>
@@ -480,11 +544,11 @@
                         <!-- col-md-3 col-sm-3 -->
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
-                                <label>Price</label>
-                                <div class="ui-slider" id="price-slider" data-value-min="100" data-value-max="40000" data-value-type="price" data-currency="$" data-currency-placement="before">
+                                <label>반경</label>
+                                <div class="ui-slider" id="price-slider" data-value-min="3" data-value-max="15" data-value-type="price" data-currency="km" data-currency-placement="after">
                                     <div class="values clearfix">
-                                        <input class="value-min" name="value-min[]" readonly>
-                                        <input class="value-max" name="value-max[]" readonly>
+<!--                                         <input class="value-min" name="value-min[]" readonly> -->
+                                        <input class="value-max" name="value-max[]" id="range" readonly>
                                     </div>
                                     <div class="element"></div>
                                 </div>
@@ -494,6 +558,10 @@
                         <!--/.col-md-3 col-sm-3-->
                     </div>
                     <!--/.row-->
+                    
+                    <input type="hidden" name="rent.sq_rent_lat" id="lat_hidden">
+                    <input type="hidden" name="rent.sq_rent_lng" id="lng_hidden">
+                    <input type="hidden" name="range" id="range_hidden">
                 </form>
                 <!-- /.main-search -->
             </div>
@@ -520,7 +588,7 @@
 		                <div class="inner">
 		                    <div class="image">
 		                        <div class="price average-color"><span>${sq_member_id }</span></div>
-		                        <s:if test="sq_rent_photo != null">
+		                        <s:if test="sq_rent_photo != ''">
 			                        <img src="assets/downloadIMG/rent/${sq_rent_photo }" alt="">
 		                        </s:if>
 		                        <s:else>
@@ -530,8 +598,8 @@
 		                    </div>
 		                    <div class="item-content">
 		                        <header class="average-color">
-		                            <h2>${rent.sq_rent_band_name }</h2>
-		                            <h3>${fn:substring(rent.sq_rent_concert_date, 0, 11) }</h3>
+		                            <h2>밴드명 : ${sq_rent_band_name }</h2>
+		                            <h3>공연일 : ${fn:substring(sq_rent_concert_date, 0, 11) }</h3>
 		                        </header>
 		                        <footer>
 		                            <dl>

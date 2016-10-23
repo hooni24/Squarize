@@ -40,9 +40,6 @@
 <!-- 여기까지 -->
 		
 		
-		
-		
-		
     </package>
 
     <include file="action/seekingAction.xml"></include>

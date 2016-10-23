@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.dao.SQ_rentDAO;
 import squarize.util.FileService;
+import squarize.util.RangeCalc;
 import squarize.vo.SQ_artist;
 import squarize.vo.SQ_human;
 import squarize.vo.SQ_member;
@@ -22,13 +23,14 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	private SQ_rent rent;
 	private SQ_member member;
 	private SQ_artist artist;
-	private List<SQ_rent> rentList;
+	private SQ_rent_apply rent_apply;
+	private List<SQ_rent> rentList = null;
 	private List<SQ_human> humanList;
 	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
 	private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
-	private SQ_rent_apply rent_apply;
+	private int range;		//검색할때 지정된 위경도 범위
 	
 	
 	
@@ -153,6 +155,25 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 대관 게시물 검색
+	 */
+	public String searchRent(){
+		RangeCalc calc = new RangeCalc(range);
+		rent.setLatRange(calc.getLatRange());
+		rent.setLngRange(calc.getLngRange());
+		rent.setRange(range);
+		rentList = new SQ_rentDAO().searchRent(rent);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 내가 올린 모든 대관게시물
+	 */
+	public String getAllMyRent(){
+		rentList = new SQ_rentDAO().getAllMyRent((String) session.get("loginId"));
+		return SUCCESS;
+	}
 
 	@Override
 	public void setSession(Map<String, Object> arg0) {
@@ -229,6 +250,14 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 
 	public void setHumanList(List<SQ_human> humanList) {
 		this.humanList = humanList;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
 	}
 
 

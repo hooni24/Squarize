@@ -140,10 +140,37 @@ public class SQ_rentDAO {
 		}
 	}
 
+	/**
+	 * 해당 글 지원자 목록
+	 */
 	public List<SQ_human> seeRentApply(String sq_rent_id) {
 		try {
 			ss = factory.openSession();
 			return ss.selectList("sq_rentMapper.seeRentApply", sq_rent_id);
+		} finally {
+			ss.close();
+		}
+	}
+
+	/**
+	 * 검색
+	 */
+	public List<SQ_rent> searchRent(SQ_rent rent) {
+		try {
+			ss = factory.openSession();
+			return ss.selectList("sq_rentMapper.searchRent", rent);
+		} finally {
+			ss.close();
+		}
+	}
+
+	/**
+	 * 내가 올린 모든 대관 게시물
+	 */
+	public List<SQ_rent> getAllMyRent(String loginId) {
+		try {
+			ss = factory.openSession();
+			return ss.selectList("sq_rentMapper.getAllMyRent", loginId);
 		} finally {
 			ss.close();
 		}

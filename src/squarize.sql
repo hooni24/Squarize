@@ -1,3 +1,23 @@
+/* Make Functions */
+
+CREATE OR REPLACE FUNCTION RADIANS(nDegrees IN NUMBER) 
+RETURN NUMBER DETERMINISTIC 
+IS
+BEGIN
+  RETURN nDegrees / 57.29577951308232087679815481410517033235;
+END RADIANS;
+
+create or replace function DISTNACE_WGS84( H_LAT in number, H_LNG in number, T_LAT in number, T_LNG in number)
+return number deterministic
+is
+begin
+  return ( 6371.0 * acos(  
+          cos( radians( H_LAT ) )*cos( radians( T_LAT /* 위도 */ ) )
+          *cos( radians( T_LNG /* 경도 */ )-radians( H_LNG ) )
+          +
+          sin( radians( H_LAT ) )*sin( radians( T_LAT /* 위도 */ ) )        
+         ));
+end DISTNACE_WGS84;
 
 /* Drop Tables */
 
@@ -126,6 +146,10 @@ CREATE TABLE SQ_MEMBER
 	SQ_MEMBER_FAVORITE varchar2(10),
 	-- 회원의 아티스트 여부 : NULL OR Y
 	SQ_MEMBER_ISARTIST varchar2(1),
+	-- 이메일 인증키
+	SQ_MEMBER_EMAIL_KEY varchar2(500),
+	-- 이메일 인증여부
+	SQ_MEMBER_EMAIL_AUTH varchar2(1),
 	PRIMARY KEY (SQ_MEMBER_ID)
 );
 

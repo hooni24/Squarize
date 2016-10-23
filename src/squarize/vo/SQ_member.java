@@ -9,6 +9,8 @@ public class SQ_member {
 	private String sq_member_email;
 	private String sq_member_favorite;
 	private String sq_member_isartist="N";
+	private String sq_member_email_key;
+	private String sq_member_email_auth;
 	
 	public SQ_member() {
 		// TODO Auto-generated constructor stub
@@ -61,12 +63,30 @@ public class SQ_member {
 		this.sq_member_isartist = sq_member_isartist;
 	}
 
+	public String getSq_member_email_key() {
+		return sq_member_email_key;
+	}
+
+	public void setSq_member_email_key(String sq_member_email_key) {
+		this.sq_member_email_key = sq_member_email_key;
+	}
+
+	public String getSq_member_email_auth() {
+		return sq_member_email_auth;
+	}
+
+	public void setSq_member_email_auth(String sq_member_email_auth) {
+		this.sq_member_email_auth = sq_member_email_auth;
+	}
+
 	@Override
 	public String toString() {
 		return "SQ_member [sq_member_id=" + sq_member_id + ", sq_member_pw=" + sq_member_pw + ", sq_member_name="
 				+ sq_member_name + ", sq_member_email=" + sq_member_email + ", sq_member_favorite=" + sq_member_favorite
-				+ ", sq_member_isartist=" + sq_member_isartist + "]";
+				+ ", sq_member_isartist=" + sq_member_isartist + ", sq_member_email_key=" + sq_member_email_key
+				+ ", sq_member_email_auth=" + sq_member_email_auth + "]";
 	}
+
 	
 	
 	

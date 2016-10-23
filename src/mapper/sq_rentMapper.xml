@@ -58,6 +58,18 @@
 		WHERE sq_rent_id = #{sq_rent_id} AND sq_member_id = #{sq_member_id}
 	</select>
 	
+	<select id="getAllMyRent" parameterType="String" resultType="SQ_rent">
+		SELECT *
+		FROM sq_rent
+		WHERE sq_member_id = #{loginId}
+		ORDER BY sq_rent_id
+	</select>
+	
+	<select id="deleteApplyByPortfolio" parameterType="String">
+		DELETE sq_rent_apply
+		WHERE sq_member_id = #{sq_member_id}
+	</select>
+	
 	<select id="rentApplySituation" parameterType="String" resultType="SQ_rent">
 		SELECT * 
 		FROM sq_rent re, 
@@ -66,13 +78,39 @@
 	</select>
 	
 	<select id="seeRentApply" parameterType="String" resultType="SQ_human">
-		SELECT * 
-		FROM (SELECT * FROM sq_artist) ar, 
-			 (SELECT * FROM sq_member) mem 
-		WHERE ar.sq_member_id = mem.sq_member_id 
-				AND ar.sq_member_id IN (SELECT sq_member_id 
-										FROM sq_rent_apply 
-										WHERE sq_rent_id = #{sq_rent_id})
+		SELECT *
+		FROM (SELECT ar.sq_member_id, sq_artist_phone, sq_artist_photo, sq_artist_intro, sq_member_name, sq_member_email 
+		      FROM (SELECT * FROM sq_artist) ar, 
+		      	   (SELECT * FROM sq_member) mem 
+			  WHERE ar.sq_member_id = mem.sq_member_id 
+		      AND ar.sq_member_id IN (SELECT sq_member_id 
+        							  FROM sq_rent_apply 
+		          					  WHERE sq_rent_id = #{sq_rent_id})) art,
+		      (SELECT * FROM sq_portfolio) port
+		WHERE art.sq_member_id = port.sq_member_id
+	</select>
+	
+	<select id="searchRent" parameterType="SQ_rent" resultType="SQ_rent">
+		SELECT *
+		FROM (SELECT * FROM sq_rent) rent,
+			(SELECT * 
+			FROM (SELECT sq_rent_id
+			    		, DISTNACE_WGS84(#{sq_rent_lat}, #{sq_rent_lng}, sq_rent_lat, sq_rent_lng) as distance
+				  FROM sq_rent
+				  WHERE (sq_rent_lat BETWEEN #{sq_rent_lat}-#{latRange} AND #{sq_rent_lat}+#{latRange})
+			      AND (sq_rent_lng BETWEEN #{sq_rent_lng}-#{lngRange} AND #{sq_rent_lng}+#{lngRange})
+				  ORDER BY distance) TMP
+			) dist
+		<where> rent.sq_rent_id = dist.sq_rent_id 
+				AND distance &lt;= #{range}
+					AND sq_rent_genre = #{sq_rent_genre}
+				<if test="sq_rent_concert_date != ''">
+					AND sq_rent_concert_date &gt;= #{sq_rent_concert_date}
+				</if>
+				<if test="sq_rent_limit != ''">
+					AND sq_rent_concert_date &lt;= #{sq_rent_limit}
+				</if>
+		</where> 
 	</select>
 	
 	
