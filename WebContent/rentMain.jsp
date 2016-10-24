@@ -45,27 +45,32 @@
 	    			, data : loginItem
 	    			, dataType : "json"
 	    			, success : function(resp){
-	    				$(".close").trigger("click");
-	    				$("#main_login").addClass("hidden");
-	    				$("#main_register").addClass("hidden");
+	    				if(resp.loginId != ''){
 	    				
-	    				var welcome = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area">'+resp.loginId+' 님 환영합니다!</a></li>';
-	    				$("ul#main_menu").append(welcome);
-	    				
-	    				var logout = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>';
-	    				$("ul#main_menu").append(logout);
-
-	    				if(resp.isArtist == 'N'){
-		    				var makeArtist = '<li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>';
-		    				$("ul#main_menu").append(makeArtist);
+		    				$(".close").trigger("click");
+		    				$("#main_login").addClass("hidden");
+		    				$("#main_register").addClass("hidden");
+		    				
+		    				var welcome = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area">'+resp.loginId+' 님 환영합니다!</a></li>';
+		    				$("ul#main_menu").append(welcome);
+		    				
+		    				var logout = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>';
+		    				$("ul#main_menu").append(logout);
+	
+		    				if(resp.isArtist == 'N'){
+			    				var makeArtist = '<li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>';
+			    				$("ul#main_menu").append(makeArtist);
+		    				}
+		    				
+		    				$("#tab_login").addClass("hidden");
+		    				$("#tab_register").addClass("hidden");
+		    				
+		    				var tab_makeArtist = '<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>';
+		    				$("ul#tab_menu").append(tab_makeArtist);
+		    				$("a#tab_makeArtist").trigger("click");
+	    				}else {
+	    					alert("비밀번호가 틀렸습니다");
 	    				}
-	    				
-	    				$("#tab_login").addClass("hidden");
-	    				$("#tab_register").addClass("hidden");
-	    				
-	    				var tab_makeArtist = '<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>';
-	    				$("ul#tab_menu").append(tab_makeArtist);
-	    				$("a#tab_makeArtist").trigger("click");
 	    			}
 	    			, error : function(){
 	    				alert("실패");
@@ -87,7 +92,14 @@
     			var pw=$('#register-password');
     			var pwConfirm=$('#register-confirm-password');
     			
-    			if(id.val().length<4 || id.val().length>8){
+   			    // 정규표현식으로 한글만 선택하도록 만듭니다.
+   			    var languageCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+   			    // 입력한 ID와 정규표현식을 비교하여 한글 여부를 판단합니다.
+   			    // test외에도 search ,exec , match등을 사용할 수 있습니다.
+   			    if (languageCheck.test(id.val())) {
+   			        alert("ID에 한글이 포함되어 있습니다.");
+   			        return false;
+   			    }else if(id.val().length<4 || id.val().length>8){
     				alert("아이디는 4~8자로 입력해주세요");
     				id.focus();
     				return false;
@@ -547,8 +559,7 @@
                                 <label>반경</label>
                                 <div class="ui-slider" id="price-slider" data-value-min="3" data-value-max="15" data-value-type="price" data-currency="km" data-currency-placement="after">
                                     <div class="values clearfix">
-<!--                                         <input class="value-min" name="value-min[]" readonly> -->
-                                        <input class="value-max" name="value-max[]" id="range" readonly>
+                                        <input class="value-max" id="range" readonly>
                                     </div>
                                     <div class="element"></div>
                                 </div>
@@ -584,7 +595,7 @@
        	<div class="masonry grid full-width animate">
 	        <s:iterator value="rentList" var="rent">
 		        <div class="item move_from_bottom idle">
-		            <a href="toRentDetail.action?rent.sq_rent_id=${sq_rent_id }" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+		            <a href="toRentDetail.action?rent.sq_rent_id=${sq_rent_id }&rent.sq_rent_genre=${sq_rent_genre}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
 		                <div class="inner">
 		                    <div class="image">
 		                        <div class="price average-color"><span>${sq_member_id }</span></div>

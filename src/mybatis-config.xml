@@ -39,6 +39,7 @@
 		<mapper resource="mapper/sq_buskingMapper.xml" />
 		<mapper resource="mapper/sq_seekingMapper.xml" />
 		<mapper resource="mapper/sq_rentMapper.xml" />
+		<mapper resource="mapper/sq_favoriteMapper.xml" />
 	</mappers>
 	
 </configuration>

@@ -1,13 +1,16 @@
 /* Make Functions */
 
-CREATE OR REPLACE FUNCTION RADIANS(nDegrees IN NUMBER) 
+DROP FUNCTION RADIANS;
+DROP FUNCTION DISTNACE_WGS84;
+
+CREATE FUNCTION RADIANS(nDegrees IN NUMBER) 
 RETURN NUMBER DETERMINISTIC 
 IS
 BEGIN
   RETURN nDegrees / 57.29577951308232087679815481410517033235;
 END RADIANS;
 
-create or replace function DISTNACE_WGS84( H_LAT in number, H_LNG in number, T_LAT in number, T_LNG in number)
+create function DISTNACE_WGS84( H_LAT in number, H_LNG in number, T_LAT in number, T_LNG in number)
 return number deterministic
 is
 begin
@@ -355,8 +358,9 @@ INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', 'rock', 'N', 
 INSERT INTO SQ_MEMBER VALUES ('aa', '123', '김소똥', 'a@a.a', 'rock', 'Y', null, 'N');
 INSERT INTO SQ_MEMBER VALUES ('ss', '123', '김쥐똥', 'a@a.a', 'rock', 'Y', null, 'N');
 INSERT INTO SQ_MEMBER VALUES ('dd', '123', '김양똥', 'a@a.a', 'rock', 'Y', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'Y', null, 'N');
 INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y', null, 'N');
+
+INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'N', null, 'N');
 
 --SQ_ARTIST 생성
 INSERT INTO SQ_ARTIST VALUES ('aa', 01011111111, null,'adfadsfd');
@@ -391,5 +395,16 @@ INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '드럼 세션', 
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '드럼 세션', sysdate, 'DRUM','ppp', null, 'ROCK', sysdate, '홍대',37.556033, 126.924797, '냥냥');
 
 INSERT INTO SQ_RECRUIT_APPLY VALUES (SQ_RECRUIT_APPLY_ID_SQ.nextval, 1, 'aa');
+
+
+
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '즐거운밴드', sysdate+7, sysdate, sysdate+5, '같이해요', null, null, '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'ss', '반가운밴드', sysdate+6, sysdate, sysdate+5, '같이해요', null, null, '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '서울밴드', sysdate+10, sysdate, sysdate+8, '같이해요', null, null, '서울특별시 중랑구', '힙합', '1', '1', 37.59015412293465, 127.08782174306634);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '안즐거운밴드', sysdate+9, sysdate, sysdate+7, '같이해요', null, null, '대한민국 광명시', '락', '1', '1', 37.48071088450467, 126.86225869374994);
+
+
+
+
 
 commit;

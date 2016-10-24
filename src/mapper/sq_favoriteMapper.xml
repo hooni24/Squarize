@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sq_favoriteMapper">
+
+	<select id="getFavorite" parameterType="String" resultType="SQ_favorite">
+		SELECT *
+		FROM sq_favorite
+		WHERE sq_member_id = #{sq_member_id}
+	</select>
+	
+	<update id="setGenre" parameterType="SQ_favorite">
+		UPDATE sq_favorite
+		SET sq_favorite_genre = #{sq_favorite_genre}
+		WHERE sq_member_id = #{sq_member_id}
+	</update>
+</mapper>

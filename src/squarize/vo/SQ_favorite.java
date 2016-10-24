@@ -19,6 +19,40 @@ public class SQ_favorite {
 		this.sq_favorite_location = sq_favorite_location;
 		this.sq_favorite_inst = sq_favorite_inst;
 	}
+	
+	
+
+	public String getSq_member_id() {
+		return sq_member_id;
+	}
+
+	public void setSq_member_id(String sq_member_id) {
+		this.sq_member_id = sq_member_id;
+	}
+
+	public String getSq_favorite_genre() {
+		return sq_favorite_genre;
+	}
+
+	public void setSq_favorite_genre(String sq_favorite_genre) {
+		this.sq_favorite_genre = sq_favorite_genre;
+	}
+
+	public String getSq_favorite_location() {
+		return sq_favorite_location;
+	}
+
+	public void setSq_favorite_location(String sq_favorite_location) {
+		this.sq_favorite_location = sq_favorite_location;
+	}
+
+	public String getSq_favorite_inst() {
+		return sq_favorite_inst;
+	}
+
+	public void setSq_favorite_inst(String sq_favorite_inst) {
+		this.sq_favorite_inst = sq_favorite_inst;
+	}
 
 	@Override
 	public String toString() {
