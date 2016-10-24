@@ -14,6 +14,9 @@
 	$(function(){
 		// Try HTML5 geolocation.
 		var marker;		//submit할때 마커좌표 얻기위해 전역변수로 설정
+		var map;
+		var image;
+		var infoWindow;
 		if (navigator.geolocation) {	//gps사용 허용이면
 	  		navigator.geolocation.getCurrentPosition(function(position) {	//현재 위치 좌표 얻어와서 함수실행
 		    	var pos = {
@@ -25,13 +28,13 @@
 							    	center: pos,
 							    	mapTypeId: google.maps.MapTypeId.ROADMAP
 								};
-				var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);		//div#map-canvas에 지도 붙임 
+				map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);		//div#map-canvas에 지도 붙임 
 		
-				var infoWindow = new google.maps.InfoWindow({map: map});		//지도에 메세지창 생성
+				infoWindow = new google.maps.InfoWindow({map: map});		//지도에 메세지창 생성
 			    infoWindow.setPosition(pos);									//현재 위치로 메세지창 이동
 			    infoWindow.setContent('드래그해서 정확한 위치로 이동하세요');								//메세지창 메세지 입력
 			    
-			    var image = {
+			    image = {
 					            url : "assets/img/marker.png", //마커이미지
 					            size : new google.maps.Size(67, 57), //마커사이즈
 					            origin : new google.maps.Point(0, 0),
@@ -56,10 +59,41 @@
 	  		handleLocationError(false, infoWindow, map.getCenter());
 		}//if(navigator~)
 		
+			
+		//장소 포커스 잃으면 지도에 마커 재생성
+		$("input#region").on("focusout", function(){
+			var region = $("input#region").val();
+			$.ajax({		//마커 부분 시, 동 으로 region에 저장 
+				url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+region+'&key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8'
+				, method : "post"
+				, dataType: "json"
+				, success : function(resp){
+					var targetLat = resp.results[0].geometry.location.lat;
+					var targetLng = resp.results[0].geometry.location.lng;
+					var pos = {
+									lat : targetLat
+									, lng : targetLng
+								};
+					
+					marker.setMap(null);										//기존마커 제거
+					infoWindow.close();											//인포윈도우 제거
+					infoWindow = new google.maps.InfoWindow({map: map});		//지도에 메세지창 생성
+			   	 	infoWindow.setPosition(pos);								//현재 위치로 메세지창 이동
+				    infoWindow.setContent('드래그해서 정확한 위치로 이동하세요');	//메세지창 메세지 입력
+					marker = new google.maps.Marker({							//새 위치에 드래그가능한 마커 생성
+				    	position: pos,			
+			     		map: map,
+			     		draggable: true,
+			     		icon: image
+			 		}); 
+					map.setCenter(pos);	
+				}//success펑션
+			});//ajax
+		});
+		
 		
 		//버스킹 저장버튼 눌렀을때
 		$("button#submits").on("click", function(){
-			alert("Asd");
 			var lat = marker.position.lat();		//위도경도 얻어옴(position이 latlng를 갖고 있는 객체)
 			var lng = marker.position.lng();
 			$("input#lat_").val(lat);				//hidden에 넣음
