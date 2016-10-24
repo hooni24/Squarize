@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-      <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
 
     <title>SQUARIZE - RENT</title>
     
