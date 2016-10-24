@@ -11,6 +11,11 @@
 		VALUES(#{sq_member_id},#{sq_member_pw},#{sq_member_name},#{sq_member_email},#{sq_member_favorite},#{sq_member_isartist},#{sq_member_email_key},#{sq_member_email_auth})
 	</insert>
 	
+	<insert id="registerSQmemberAddFavorite" parameterType="SQ_artist">
+		INSERT INTO sq_favorite 
+		VALUES(#{sq_member_id}, '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' )
+	</insert>
+	
 	<update id="addSQArtist" parameterType="String">
 		UPDATE sq_member SET SQ_member_isartist='Y' WHERE sq_member_id=#{sq_member_id}
 	</update>

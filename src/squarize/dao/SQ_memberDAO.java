@@ -21,7 +21,7 @@ public class SQ_memberDAO {
 			ss=factory.openSession();
 			result=ss.selectOne("sq_memberMapper.loginSQmember", sq_member_id);
 		}catch(Exception e){
-			e.printStackTrace();ss.selectOne("sq_memberMapper.loginSQmember", sq_member_id);
+			e.printStackTrace();
 		}finally{
 			ss.commit();
 			ss.close();
@@ -74,6 +74,8 @@ public class SQ_memberDAO {
 		try{
 			ss.update("sq_memberMapper.addSQArtist", sq_artist.getSq_member_id());
 			ss.insert("sq_memberMapper.insertSQArtist", sq_artist);
+			ss.commit();
+			ss.insert("sq_memberMapper.registerSQmemberAddFavorite", sq_artist);
 			ss.commit();
 		}catch(Exception e){
 			e.printStackTrace();

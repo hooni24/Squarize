@@ -46,7 +46,6 @@
 	    			, dataType : "json"
 	    			, success : function(resp){
 	    				if(resp.loginId != ''){
-	    				
 		    				$(".close").trigger("click");
 		    				$("#main_login").addClass("hidden");
 		    				$("#main_register").addClass("hidden");
@@ -68,6 +67,8 @@
 		    				var tab_makeArtist = '<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>';
 		    				$("ul#tab_menu").append(tab_makeArtist);
 		    				$("a#tab_makeArtist").trigger("click");
+		    				
+		    				location.href = "toRentMain.action";
 	    				}else {
 	    					alert("비밀번호가 틀렸습니다");
 	    				}
@@ -80,7 +81,7 @@
     		
     		//로그아웃
     		$("ul#main_menu").on("click", "a#main_logout", function(){
-    			location.href = "logoutSQmember.action?fromWhere=rent";
+    			location.href = "index.action";
     		});
     		
     		//회원가입

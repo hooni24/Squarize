@@ -105,7 +105,7 @@
 				  WHERE (sq_rent_lat BETWEEN #{sq_rent_lat}-#{latRange} AND #{sq_rent_lat}+#{latRange})
 			      AND (sq_rent_lng BETWEEN #{sq_rent_lng}-#{lngRange} AND #{sq_rent_lng}+#{lngRange})
 				  ORDER BY distance) TMP
-			)
+			) dist
 		<where> rent.sq_rent_id = dist.sq_rent_id 
 				AND distance &lt;= #{range}
 					AND sq_rent_genre = #{sq_rent_genre}
