@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+      <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
 
     <title>SQUARIZE - RENT</title>
     
@@ -31,9 +32,10 @@
     </style>
     
     <script src="assets/js/jquery-2.1.0.min.js"></script>
+    <script src="assets/js/sq_member.js"></script>
     <script>
     	$(function(){
-    		//로그인 ajax
+    		/* //로그인 ajax
     		$("button#sign-in-submit").on("click", function(){
     			var id = $("input#sign-in-id").val();
     			var pw = $("input#sign-in-pw").val();
@@ -77,14 +79,14 @@
 	    				alert("실패");
 	    			}
 	    		});
-    		});
+    		}); */
     		
     		//로그아웃
     		$("ul#main_menu").on("click", "a#main_logout", function(){
     			location.href = "index.action";
     		});
     		
-    		//회원가입
+    		/* //회원가입
     		$("button#register_btn").on("click", function(){
     			var id=$('#register-id');
     			var name=$('#register-name');
@@ -164,9 +166,9 @@
     					alert("회원가입실패");
     				}
     			});
-    		});
+    		}); */
     		
-    		//아이디 실시간 체크
+    		/* //아이디 실시간 체크
     		$('#register-id').on('focusout',function(){
 				var checkId=$('#register-id').val();
 				
@@ -237,7 +239,7 @@
     				$("a.search_icon").removeClass("hidden");
     			}
     			visible = !visible;
-    		});
+    		}); */
     		
     		//게시글 검색
     		$("a.search_icon").on("click", function(){
@@ -642,7 +644,9 @@
 </div>
 <!-- end Page Wrapper -->
 
-<div id="loading"></div>
+<div class="loadingpage loading">
+	<div class="loading-img"></div>	
+</div>
 
 <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>

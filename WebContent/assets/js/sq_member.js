@@ -2,9 +2,9 @@
  * 
  */
 $(function(){
+	
     		//로그인 ajax
     		$("button#sign-in-submit").on("click", function(){
-    			
     			var id = $("input#sign-in-id").val();
     			var pw = $("input#sign-in-pw").val();
     			var loginItem = {"sq_member_id" : id, "sq_member_pw": pw};
@@ -138,7 +138,13 @@ $(function(){
     					$('#id-check').css('color','black');
     					$('#register-id').css('color','black');
     					$('a#tab_login').trigger('click');
-    				}
+    				},beforeSend:function(){
+	    		        $('.loadingpage').removeClass('loading');
+	    		    }
+	    		    ,complete:function(){
+	    		        $('.loadingpage').addClass('loading');
+	    		 
+	    		    }
     				,error:function(){
     					alert("회원가입실패");
     				}
