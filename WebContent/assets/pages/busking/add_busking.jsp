@@ -59,7 +59,7 @@
 	  		handleLocationError(false, infoWindow, map.getCenter());
 		}//if(navigator~)
 		
-			
+		
 		//장소 포커스 잃으면 지도에 마커 재생성
 		$("input#region").on("focusout", function(){
 			var region = $("input#region").val();
