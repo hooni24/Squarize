@@ -1,5 +1,7 @@
 package squarize.action;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,7 @@ import org.json.JSONObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.dao.SQ_buskingDAO;
+import squarize.util.FileService;
 import squarize.vo.SQ_busking;
 
 public class SQ_buskingAction extends ActionSupport implements SessionAware {
@@ -23,9 +26,16 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
    private int sq_busking_id;
    SQ_buskingDAO dao = new SQ_buskingDAO();
    
+   private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
+   private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
+   private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
+   
+   
+   public String execute(){
+	   return SUCCESS;
+   }
 
    public String buskingList(){
-      System.out.println("SQ_buskingAction의 buskingList");
       buskingList = new ArrayList<>();
       buskingList = dao.buskingList();
       buskingArraylist = new ArrayList<>();
@@ -50,16 +60,28 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 			      		
 			      			buskingArraylist.add(source);
 					}                                                                           
-			      	System.out.println(buskingArraylist);
-			                                                                                    
-      
       return SUCCESS;
    }
    
    public String buskingDetail(){
-	   System.out.println("SQ_buskingAction의 buskingDetail()");
-	   System.out.println("sq_busking_id: " + sq_busking_id);
 	   SQ_busking = dao.buskingDetail(sq_busking_id);
+	   return SUCCESS;
+   }
+   
+   public String addBusking(){
+	   if (upload != null) { 
+			try {
+				FileService fs = new FileService();
+				String basePath = getText("rent.uploadpath");
+				String savedfile;
+				savedfile = fs.saveFile(upload, basePath, uploadFileName);
+				SQ_busking.setGallery(savedfile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	   SQ_busking.setId((String) session.get("loginId"));
+	   dao.addBusking(SQ_busking);
 	   return SUCCESS;
    }
    

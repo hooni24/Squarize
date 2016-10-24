@@ -73,7 +73,7 @@
                 <article class="animate move_from_bottom_short">
                     <div class="gallery">
                         <div class="image">
-                            <img src="<s:property value="SQ_busking.gallery"/>" alt="">
+                           	<img src="<s:property value="SQ_busking.gallery"/>" alt="">
                         </div>
                     </div>
                 </article>
