@@ -22,6 +22,8 @@ begin
          ));
 end DISTNACE_WGS84;
 
+
+
 /* Drop Tables */
 
 DROP TABLE SQ_AD CASCADE CONSTRAINTS;
@@ -374,16 +376,16 @@ INSERT INTO SQ_ARTIST VALUES ('qq', 01012591111, null,'adfadsfd');
 
 --테스트용
 
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '이리오세요! 기타세션 급구', sysdate, 'GUITAR','aaa', null, 'ROCK', sysdate, '홍대',37.556386, 126.924211, '컴온 이리오세요');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '밤을 잊은 그대에게-바이올린', sysdate, 'VIOLIN','bbb', null, 'CLASSIC', sysdate, '도림천',37.472118, 126.933605, '컴온');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '퓨전 클래식-첼리스트 구해요', sysdate, 'CELLO','ccc', null, 'CLASSIC', sysdate, '홍대',37.556309, 126.924104, '요~~');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '재즈 : 베이스 캄온~~!', sysdate, 'CONTRABASE','ddd', null, 'JAZZ', sysdate, '청담',37.523830, 127.053350, '풋쳐핸즈업');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', '이번밖에 없습니다.-키보드', sysdate, 'KEYBOARD','eee', null, 'ROCK', sysdate, '이대',37.561866, 126.946727, '왓썹?');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Such a *****!(drum)', sysdate, 'DRUM','fff', null, 'ROCK', sysdate, '홍대',37.555799, 126.924034, '컴온 레이디즈');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Nanananana-기타세션', sysdate, 'GUITAR','gggg', null, 'ROCK', sysdate, '서울 시청',37.565578, 126.977984, '컴온 보이즈');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '깔아줄 베이스 찾습니다', sysdate, 'BASEGUITAR','hhh', null, 'ROCK', sysdate, '홍대',37.555739, 126.923959, '쉬즈건');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '헤비메탈에 목청을 바칩니다', sysdate, 'VOCAL','iii', null, 'HEAVYMETAL', sysdate, '대학동',37.470931, 126.938185, '콜라보레이션');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '파티타임! 기타세션~', sysdate, 'GUITAR','kkkk', null, 'ROCK', sysdate, '신림',37.483913, 126.929257, '아임인');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '이리오세요! 기타세션 급구', sysdate, 'GUITAR',null, null, 'ROCK', sysdate, '홍대',37.556386, 126.924211, '컴온 이리오세요');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '밤을 잊은 그대에게-바이올린', sysdate, 'VIOLIN',null, null, 'CLASSIC', sysdate, '도림천',37.472118, 126.933605, '컴온');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '퓨전 클래식-첼리스트 구해요', sysdate, 'CELLO',null, null, 'CLASSIC', sysdate, '홍대',37.556309, 126.924104, '요~~');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '재즈 : 베이스 캄온~~!', sysdate, 'CONTRABASE',null, null, 'JAZZ', sysdate, '청담',37.523830, 127.053350, '풋쳐핸즈업');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', '이번밖에 없습니다.-키보드', sysdate, 'KEYBOARD',null, null, 'ROCK', sysdate, '이대',37.561866, 126.946727, '왓썹?');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Such a *****!(drum)', sysdate, 'DRUM',null, null, 'ROCK', sysdate, '홍대',37.555799, 126.924034, '컴온 레이디즈');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Nanananana-기타세션', sysdate, 'GUITAR',null, null, 'ROCK', sysdate, '서울 시청',37.565578, 126.977984, '컴온 보이즈');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '깔아줄 베이스 찾습니다', sysdate, 'BASEGUITAR',null, null, 'ROCK', sysdate, '홍대',37.555739, 126.923959, '쉬즈건');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '헤비메탈에 목청을 바칩니다', sysdate, 'VOCAL',null, null, 'HEAVYMETAL', sysdate, '대학동',37.470931, 126.938185, '콜라보레이션');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '파티타임! 기타세션~', sysdate, 'GUITAR',null, null, 'ROCK', sysdate, '신림',37.483913, 126.929257, '아임인');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '첼로-국악과의 콜라보레이션', sysdate, 'CELLO', null,'lll', 'ROCK', sysdate, '홍대',37.555939, 126.924286, '준');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '첼리스트 급구합니다.', sysdate, 'CELLO', null,'mmm', 'CLASSIC', sysdate,'청담',37.523668, 127.054047, '컴온 이리오세요');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', 'DRUM 세션 급구!', sysdate, 'DRUM', null, 'nnn','ROCK', sysdate,'삼성동',37.512441, 127.058668, '아리랑');

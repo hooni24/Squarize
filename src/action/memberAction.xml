@@ -8,9 +8,7 @@
     <constant name="struts.devMode" value="true" />
 
     <package name="member" namespace="/" extends="struts-default, json-default">
-    	<action name="imsi">
-    		<result>imsi.jsp</result>
-    	</action>
+    	
     
     	<action name="toPortfolio" class="squarize.action.SQ_memberAction" method="portfolioCheck">
     		<result>assets/pages/portfolio/portfolio.jsp</result>
@@ -66,7 +64,10 @@
     		<result type="redirect" name="busking">toBuskingMain.action</result>
 		</action>
 		
-		
+		<action name="emailAuth" class="squarize.action.SQ_memberAction" method="emailAuth" >
+			<result name="success">auth.jsp</result>
+			<result type="redirect" name="login">index.action</result>
+		</action>
     </package>
 	
 

@@ -10,7 +10,7 @@ public class SQ_member {
 	private String sq_member_favorite;
 	private String sq_member_isartist="N";
 	private String sq_member_email_key;
-	private String sq_member_email_auth;
+	private String sq_member_email_auth="N";
 	
 	public SQ_member() {
 		// TODO Auto-generated constructor stub

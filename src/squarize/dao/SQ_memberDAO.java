@@ -21,7 +21,7 @@ public class SQ_memberDAO {
 			ss=factory.openSession();
 			result=ss.selectOne("sq_memberMapper.loginSQmember", sq_member_id);
 		}catch(Exception e){
-			e.printStackTrace();
+			e.printStackTrace();ss.selectOne("sq_memberMapper.loginSQmember", sq_member_id);
 		}finally{
 			ss.commit();
 			ss.close();
@@ -39,6 +39,33 @@ public class SQ_memberDAO {
 			ss.commit();
 			ss.close();
 		}
+		
+	}
+	
+	public boolean emailAuth(SQ_member sq_member){
+		boolean result=false; 
+		try {
+			ss = factory.openSession();
+			SQ_member db_member=ss.selectOne("sq_memberMapper.loginSQmember", sq_member.getSq_member_id());
+			String db_authkey=db_member.getSq_member_email_key();
+			System.out.println("sqmember"+sq_member);
+			System.out.println("dbmember"+db_member);
+			
+			if(db_authkey.equals(sq_member.getSq_member_email_key())){
+				System.out.println("결과"+db_authkey.equals(sq_member.getSq_member_email_key()));
+				ss.update("sq_memberMapper.emailAuth", sq_member.getSq_member_id());
+				result=true;
+			}else{
+				result=false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(ss!=null)ss.commit();
+			ss.close();
+		}
+		return result;
 		
 	}
 	

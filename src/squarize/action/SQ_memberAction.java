@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -12,6 +13,7 @@ import squarize.vo.SQ_artist;
 import squarize.vo.SQ_favorite;
 import squarize.dao.SQ_memberDAO;
 import squarize.util.FileService;
+import squarize.util.SendMailTest;
 import squarize.vo.SQ_member;
 import squarize.vo.SQ_portfolio;
 
@@ -27,6 +29,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String loginId;
 	private String isArtist;
 	private String fromWhere;
+	private String email_auth;
 	
 	private SQ_favorite sq_favorite;
 	
@@ -50,22 +53,34 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * 회원 정보등록 
 	 * @param sq_member
 	 * 회원가입 요청을 받으면 DB에 저장하고 인증 email을 보낸다.
+	 * 이메일 인증 전까지의 단계로 디비에 키까지 저장되고 로그인은 되기 전 
 	 * */
 	public String registerSQmember() throws Exception{
-		
-		
+		mdao=new SQ_memberDAO();
+		int num=(int)(Math.random()*999999)+1;
+		String authkey=Integer.toHexString(num);
+		sq_member.setSq_member_email_key(authkey);
+		mdao.registerSQmember(sq_member);
+		System.out.println("ACtion sq_member"+sq_member);
+		String authURL= "http://localhost:8888/Squarize/emailAuth.action?sq_member.sq_member_id="+sq_member.getSq_member_id()+"&sq_member.sq_member_email_key="+authkey;
 		//난수를 발생
 		//auth.jsp만들어서 struts.xml에 등록
 		//authURL = http://localhost:8888/Squarize/auth.action?id=아이디&authKey=발생된 난수
 		//SendMailTest.java 생성
-		
-		
-		
 		//auth.jsp에서는 id, authKey가 없으면 index로 돌려보내고, 있으면 db에서 확인 id
-		
-		mdao=new SQ_memberDAO();
-		mdao.registerSQmember(sq_member);
+		new SendMailTest(sq_member.getSq_member_email(), authURL);
 		return SUCCESS;
+	}
+	
+	public String emailAuth() throws Exception{
+		mdao=new SQ_memberDAO();
+		boolean result=mdao.emailAuth(sq_member);
+		System.out.println(result);
+		if(result){
+			return SUCCESS;
+		}else{
+			return LOGIN;
+		}
 	}
 	
 	/**
@@ -73,21 +88,28 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * 아이디를 입력받아 디비에서 멤버를 가져온 뒤 
 	 * 비밀번호를 확인 받아 동일하면 세션에 loginID로 저장한다.
 	 * 또 isArtist도 저장하여, 아티스트 인증 및 아티스트 메뉴 시에 활용 
+	 * email_auth를 받아 이메일 인증을 하지 않으면 로그인이 되지 않도록 한다.
 	 * @param sq_member_id
 	 * 
 	 * */
 	public String loginSQmember() throws Exception{
 		mdao=new SQ_memberDAO();
 		sq_member=mdao.loginSQmember(sq_member_id);
-		if(sq_member.getSq_member_pw().equals(sq_member_pw)){
+		System.out.println(sq_member);
+		if(sq_member.getSq_member_pw().equals(sq_member_pw)&&sq_member.getSq_member_email_auth().equals("Y")){
 			session.put("loginId", sq_member.getSq_member_id());
 			session.put("isArtist", sq_member.getSq_member_isartist());
+			session.put("email_auth", sq_member.getSq_member_email_auth());
 			loginId=(String) session.get("loginId");
 			isArtist=(String) session.get("isArtist");
+			email_auth=(String)session.get("email_auth");
+			System.out.println(email_auth);
+			
 		}else{
 			sq_member=null;
 			loginId="";
 			isArtist="";
+			email_auth="N";
 		}
 		return SUCCESS;
 	}
@@ -100,6 +122,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public String loginCheck() throws Exception{
 		loginId=(String)session.get("loginId");
 		isArtist=(String)session.get("isArtist");
+		email_auth=(String)session.get("email_prof");
 		return SUCCESS;
 	}
 	
@@ -208,6 +231,11 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		return ERROR;
 	}
 	
+	public String email_prof(){
+		
+		return SUCCESS;
+	}
+	
 	public SQ_member getSq_member() {
 		return sq_member;
 	}
@@ -288,6 +316,14 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public void setSession(Map<String, Object> arg0) {
 		session = arg0;
 	}
+
+	public String getEmail_auth() {
+		return email_auth;
+	}
+
+	public void setEmail_auth(String email_auth) {
+		this.email_auth = email_auth;
+	}
 	
-	
+
 }
