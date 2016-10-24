@@ -30,7 +30,6 @@
       }); */
   	var str = "<s:property value='#request.SQ_busking.buskingdate'/>";
 	var temp = str.substring(0,13) + "시";
-  	alert(temp);
       
       	$(function(){
 			$("#buskingdate").append(temp);
