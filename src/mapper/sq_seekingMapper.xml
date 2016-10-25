@@ -33,5 +33,45 @@
 	<delete id="deleteSQrecruit" parameterType="String">
 		DELETE from sq_recruit where sq_recruit_id=#{sq_recruit_id}
 	</delete>
+	
+	<select id="selectList_applied" parameterType="int" resultType="SQ_recruit_artist">
+		SELECT * FROM SQ_RECRUIT_ARTIST WHERE SQ_RECRUIT_ID = #{id}
+	</select>
+	
+	<insert id="insertApply" parameterType="SQ_recruit_apply">
+		INSERT INTO SQ_RECRUIT_APPLY 
+			VALUES 
+				(
+					SQ_RECRUIT_APPLY_ID_SQ.NEXTVAL
+					, #{sq_recruit_id}
+					, #{sq_member_id}
+				) 
+	</insert>
+	
+	<update id="updateRecruit" parameterType="SQ_recruit">
+		UPDATE SQ_RECRUIT 
+			SET 
+				SQ_RECRUIT_TITLE = #{title}
+				, SQ_RECRUIT_PART = #{part}
+				, SQ_RECRUIT_PHOTO = #{photo}
+				, SQ_RECRUIT_PHOTO_ORIGINAL = #{original}
+				, SQ_RECRUIT_GENRE = #{genre}
+				, SQ_RECRUIT_DATE = #{date}
+				, SQ_RECRUIT_LOCATION = #{location}
+				, SQ_RECRUIT_LATITUDE = #{latitude}
+				, SQ_RECRUIT_LONGITUDE = #{longitude}
+				, SQ_RECRUIT_INFO = #{info}
+			WHERE
+				SQ_RECRUIT_ID = #{recruit_id}
+	</update>
+	
+	<delete id="deleteRecruit" parameterType="int">
+		DELETE SQ_RECRUIT WHERE SQ_RECRUIT_ID = #{recruit_id}
+	</delete>
+	
+	<select id="selectOne_apply" parameterType="SQ_recruit_apply" resultType="SQ_recruit_apply">
+		SELECT * FROM SQ_RECRUIT_APPLY
+			WHERE SQ_MEMBER_ID = #{sq_member_id} AND SQ_RECRUIT_ID = #{sq_recruit_id}
+	</select>
 </mapper>
 	

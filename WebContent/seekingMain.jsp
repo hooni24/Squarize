@@ -153,7 +153,7 @@
             <div class="header-inner">
                 <nav class="secondary">
                     <ul id="main_menu">
-                    <!-- 메인페이지에 보이는 메뉴들 -->
+             <!-- 메인페이지에 보이는 메뉴들 -->
                     <s:if test="#session.loginId == null">
                         <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#sign-in" data-transition-parent="#header" id="main_login">logIn</a></li>
                         <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header" id="main_register">Register</a></li>
@@ -167,7 +167,7 @@
                     </s:else>
                     </ul>
                 </nav>
-                <!--end Secondary navigation-->
+             <!--end Secondary navigation-->
                 <nav class="main">
                     <div class="brand">
                         <a href="index.action">
@@ -203,6 +203,7 @@
             <!--end .header-inner-->
         </div>
         <!--end .container-->
+        
         <div class="container">
             <div class="submit-container">
                 <a href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Search Filter</a>
@@ -210,6 +211,7 @@
             </div>
         </div>
     </header>
+    
 		<!-- 여기서 부터 content -->
 		<div class="page-content">
 			<div class="search collapse in" id="search-collapse">
@@ -218,68 +220,40 @@
 						<div class="row">
 							<div class="col-md-3 col-sm-3">
 								<div class="form-group">
-									<label for="type">검색 키워드</label> <select name="type" title="전체"
-										id="type" class="animate"
+									<label for="type">검색 카테고리</label>
+									<select name="recruit_search_category" id="recruit_search_category" class="animate"
 										data-transition-parent=".dropdown-menu">
-										<!-- multiple title="전체" : 여러개 선택 가능 -->
-										<option value="1">전체</option>
-										<option value="2">세션</option>
-										<option value="3">장르</option>
-										<option value="4">이름</option>
-										<!--        
-                                    <option value="5">House</option>
-                                    <option value="6">Construction Site</option>
-                              -->
+										<!-- 원래 id="type" multiple title="전체" : 여러개 선택 가능 -->
+										<option>전체</option>
+										<option value="sq_recruit.sq_recruit_part">세션</option>
+										<option value="sq_recruit.sq_recruit_genre">장르</option>
+										<option value="sq_member.sq_member_name">이름</option>
 									</select>
 								</div>
 								<!-- /.form-group -->
 							</div>
 							<!--/.col-md-6-->
 
-							<!-- 필요없는 요소 주석처리 -->
+			<!-- 필요없는 요소 주석처리 -->
 							
                         <div class="col-md-3 col-sm-3">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
+<!--                             <div class="row"> -->
+<!--                                 <div class="col-md-6 col-sm-6"> -->
                                     <div class="form-group">
-                                        <label for="bedrooms">Bedrooms</label>
+                                        <label for="bedrooms">검색 키워드</label>
                                         <div class="input-group counter">
-                                            <input type="text" class="form-control" id="bedrooms" name="bedrooms" placeholder="Any">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default minus" type="button"><i class="fa fa-minus"></i></button>
-                                            </span>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default plus" type="button"><i class="fa fa-plus"></i></button>
-                                            </span>
+                                            <input type="text" class="form-control" id="recruit_search_keyword" name="recruit_search_keyword" placeholder="키워드 입력">
                                         </div><!-- /input-group -->
                                     </div>
                                     <!-- /.form-group -->
-                                </div>
-                                <!-- /.col-md-3 -->
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="bathrooms">Bathrooms</label>
-                                        <div class="input-group counter">
-                                            <input type="text" class="form-control" id="bathrooms" name="bathrooms" placeholder="Any">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default minus" type="button"><i class="fa fa-minus"></i></button>
-                                            </span>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default plus" type="button"><i class="fa fa-plus"></i></button>
-                                            </span>
-                                        </div><!-- /input-group -->
-                                    </div>
-                                    <!-- /.form-group -->
-                                </div>
-                                <!-- /.col-md-3 -->
-                            </div>
+<!--                                 </div> -->
+<!--                                 /.col-md-3 -->
+<!--                             </div> -->
                         </div>
-                     
-							<!-- 필요없는 요소 주석 끝 -->
 
 							<div class="col-md-3 col-sm-3">
 								<div class="form-group">
-									<label for="location">위치</label>
+									<label for="location">위치로 검색</label>
 									<div class="input-group location">
 										<input type="text" class="form-control" id="location"
 											placeholder="지역명 입력"> <span class="input-group-btn">
@@ -299,7 +273,7 @@
 								<div class="form-group">
 									<label>반경설정</label>
 									<!-- <div class="ui-slider" id="price-slider" data-value-min="400" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before"> -->
-									<div class="ui-slider" id="price-slider" data-value-min="100" data-value-max="40000" data-value-type="price" data-currency="$" data-currency-placement="before">
+									<div class="ui-slider" id="price-slider" data-value-min="3" data-value-max="15" data-value-type="price" data-currency="km" data-currency-placement="after">
                                     <div class="values clearfix">
                                         <input class="value-min" name="value-min[]" readonly>
                                         <input class="value-max" name="value-max[]" readonly>
@@ -357,7 +331,7 @@
 	                        </header>
 	                        <footer>
 	                            <dl>
-	                                <dt>음악 장르</dt>
+	                                <dt>연주 장르</dt>
 	                                <dd>${sq_recruit_genre}</dd>
 	                                <dt>연주 장소</dt>
 	                                <dd>${sq_recruit_location}</dd>
@@ -373,36 +347,8 @@
 	        </div>
         <!--end .item-->
 <!-- 요기까지 정보 넣기 -->
-        <%-- <div class="item move_from_bottom idle">
-            <a href="assets/pages/items/2_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                <div class="inner">
-                    <div class="image">
-                        <div class=""><span>$49.000</span></div>
-                        <img src="assets/img/items/2.jpg" alt="">
-                    </div>
-                    <div class="item-content">
-                        <header class="average-color">
-                            <h2>3295 Valley Street</h2>
-                            <h3>Collingswood</h3>
-                        </header>
-                        <footer>
-                            <dl>
-                                <dt>Bathrooms</dt>
-                                <dd>1</dd>
-                                <dt>Bedrooms</dt>
-                                <dd>2</dd>
-                                <dt>Area</dt>
-                                <dd>165m<sup>2</sup></dd>
-                                <dt>Garages</dt>
-                                <dd>1</dd>
-                            </dl>
-                        </footer>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!--end .item-->
- --%>
+       
+
  	</s:iterator>
         </div>
 	<!-- 나열부분 끝 -->

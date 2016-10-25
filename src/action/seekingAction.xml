@@ -18,6 +18,30 @@
 			<result>assets/pages/items/recruit_detail.jsp</result>
 		</action>
 		
+		<action name="applied_list" class="squarize.action.SQ_seekingAction" method="selectRecruitApplyList">
+			<result type="json"></result>
+		</action>
+		
+		<action name="apply" class="squarize.action.SQ_seekingAction" method="insertRecruitApplication">
+			<result type="json"></result>
+		</action>
+		
+		<action name="recruit_update">
+			<result type="redirect">getRecruit_detail</result>
+		</action>
+		
+		<action name="recruit_delete" class="squarize.action.SQ_seekingAction" method="deleteRecruit">
+			<result type="redirect">toSeekingMain</result>
+		</action>
+		
+		<action name="checkApplied" class="squarize.action.SQ_seekingAction" method="checkApplied">
+			<result type="json"></result>
+		</action>
+		
+		<action name="checkPortfolio" class="squarize.action.SQ_seekingAction" method="checkPortfolio">
+			<result type="json"></result>
+		</action>
+		
 		<action name="toAddSQrecruit">
 			<result>assets/pages/recruit/add_recruit.jsp</result>
 		</action>

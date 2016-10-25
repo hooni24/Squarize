@@ -5,6 +5,9 @@ public class SQ_recruit_apply {
 	private int sq_recruit_apply_id;
 	private int sq_recruit_id;
 	private String sq_member_id;
+	
+	public SQ_recruit_apply(){}
+	
 	public int getSq_recruit_apply_id() {
 		return sq_recruit_apply_id;
 	}

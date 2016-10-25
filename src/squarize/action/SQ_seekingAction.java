@@ -11,8 +11,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.dao.SQ_seekingDAO;
 import squarize.util.FileService;
+import squarize.vo.SQ_human;
 import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
+import squarize.vo.SQ_recruit_apply;
 import squarize.vo.SQ_recruit_artist;
 import squarize.vo.SQ_rent;
 
@@ -24,6 +26,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private List<SQ_recruit> sq_recruit_list;
 	private List<SQ_rent> sq_rent_list;
 	private List<SQ_portfolio> sq_portfolio_list;
+	private List<SQ_recruit_artist> sq_applied_list;
 
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
@@ -31,6 +34,8 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 
 	private SQ_recruit_artist sq_recruit_artist;
 	private SQ_recruit sq_recruit;
+	private SQ_recruit_apply sq_recruit_apply;
+	private SQ_portfolio sq_portfolio;
 
 	private String loginId;
 	private SQ_seekingDAO sdao=new SQ_seekingDAO(); 
@@ -44,7 +49,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	}
 	
 	//구인정보리스트
-	public String selectAll_SQ_recruit(){
+	public String selectAll_SQ_recruit() throws Exception {
 		System.out.println("구인정보 리스트 갖고오기 - Action");
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		sq_recruit_list = (List<SQ_recruit>)dao.selectAll_sq_recruit();
@@ -53,7 +58,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	}
 	
 	//구인 상세정보
-	public String selectOne_SQ_recruit_artist(){
+	public String selectOne_SQ_recruit_artist() throws Exception {
 		System.out.println("구인 상세정보 갖고오기 - Action : " + sq_recruit_artist.getSq_recruit_id());
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		sq_recruit_artist = dao.selectOne_sq_recruit_artist(sq_recruit_artist.getSq_recruit_id());
@@ -85,6 +90,60 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		}
 		System.out.println(sq_recruit);
 		sdao.insertSQrecruit(sq_recruit);
+		return SUCCESS;
+	}
+	
+	// 해당 구인정보에 등록된 지원자 리스트 갖고 오기.
+	public String selectRecruitApplyList() throws Exception {
+		System.out.println("지원자 리스트 selectAll");
+		SQ_seekingDAO dao = new SQ_seekingDAO();
+		sq_applied_list = dao.selectRecruitApply(sq_recruit_artist.getSq_recruit_id());
+		return SUCCESS;
+	}
+	
+	// 해당 구인 정보에 지원신청 insert
+	public String insertRecruitApplication() throws Exception {
+		System.out.println("지원하기 insert");
+		SQ_seekingDAO dao = new SQ_seekingDAO();
+		int result = dao.insertApply(sq_recruit_apply);
+		if(result != 0){
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+	}
+	
+	//구인정보 수정
+	public String updateRecruit() throws Exception {
+		System.out.println("구인정보 수정");
+		SQ_seekingDAO dao = new SQ_seekingDAO();
+		int result = dao.updateRecruit(sq_recruit);
+		if(result != 0){
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+		
+	}
+	//구인정보 삭제
+	public String deleteRecruit() throws Exception {
+		System.out.println("구인정보 삭제");
+		SQ_seekingDAO dao = new SQ_seekingDAO();
+		int result = dao.deleteRecruit(sq_recruit.getSq_recruit_id());
+		if(result != 0 ){
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+	}
+	
+	// 해당 구인정보에 지원여부 확인
+	public String checkApplied() throws Exception {
+		System.out.println("지원 여부 체크");
+		SQ_seekingDAO dao = new SQ_seekingDAO();
+		String apply_id = (String)session.get("loginId");
+		sq_recruit_apply.setSq_member_id(apply_id);
+		sq_recruit_apply = dao.checkApplied(sq_recruit_apply);
 		return SUCCESS;
 	}
 	
@@ -165,6 +224,29 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	public void setUploadContentType(String uploadContentType) {
 		this.uploadContentType = uploadContentType;
 	}
-	
 
+	public List<SQ_recruit_artist> getSq_applied_list() {
+		return sq_applied_list;
+	}
+
+	public void setSq_applied_list(List<SQ_recruit_artist> sq_applied_list) {
+		this.sq_applied_list = sq_applied_list;
+	}
+
+	public SQ_recruit_apply getSq_recruit_apply() {
+		return sq_recruit_apply;
+	}
+
+	public void setSq_recruit_apply(SQ_recruit_apply sq_recruit_apply) {
+		this.sq_recruit_apply = sq_recruit_apply;
+	}
+
+	public SQ_portfolio getSq_portfolio() {
+		return sq_portfolio;
+	}
+
+	public void setSq_portfolio(SQ_portfolio sq_portfolio) {
+		this.sq_portfolio = sq_portfolio;
+	}
+	
 }

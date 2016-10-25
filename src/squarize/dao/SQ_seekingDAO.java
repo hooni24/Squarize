@@ -6,11 +6,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import squarize.util.MybatisConfig;
+import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
+import squarize.vo.SQ_recruit_apply;
 import squarize.vo.SQ_recruit_artist;
 
 public class SQ_seekingDAO {
-	private SqlSessionFactory factory=MybatisConfig.getSqlSessionFactory();
+	private SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 	private SqlSession ss;
 	
 	//기본생성자
@@ -18,6 +20,7 @@ public class SQ_seekingDAO {
 		System.out.println("SQ_seekingDAO 생성");
 	}
 	
+	// 구인정보 모두 불러오기
 	public List<SQ_recruit> selectAll_sq_recruit(){
 		/*factory = MybatisConfig.getSqlSessionFactory();*/
 		ss = factory.openSession();
@@ -26,10 +29,10 @@ public class SQ_seekingDAO {
 		if(ss!=null) ss.close();
 		return sq_recruit_list;
 	}
-	
+	// 썸네일 클릭시 해당 구인상세정보 불러오기
 	public SQ_recruit_artist selectOne_sq_recruit_artist(int sq_recruit_id){
 		SQ_recruit_artist sq_recruit_artist = null;
-		factory = MybatisConfig.getSqlSessionFactory();
+//		factory = MybatisConfig.getSqlSessionFactory();
 		ss = factory.openSession();
 		sq_recruit_artist = ss.selectOne("sq_seekingMapper.selectOne_sq_recruit_artist",sq_recruit_id);
 		if(ss != null) ss.close();
@@ -50,9 +53,64 @@ public class SQ_seekingDAO {
 		}
 	}
 	
-	public static void main(String[] args) {
+	// 해당 구인정보에 지원한 지원자 리스트 전체 불러오기
+	public List<SQ_recruit_artist> selectRecruitApply(int recruit_id){
+		List<SQ_recruit_artist> recruitList = null;
+		ss = factory.openSession();
+		recruitList = ss.selectList("sq_seekingMapper.selectList_applied", recruit_id);
+		if(ss != null) ss.close();
+		return recruitList;
+	}
+	
+	// 구인정보에 지원시 DB에 등록하기.
+	public int insertApply(SQ_recruit_apply recruit_apply){
+		int result = 0;
+		ss = factory.openSession();
+		result = ss.insert("sq_seekingMapper.insertApply", recruit_apply);
+		ss.commit();
+		if(ss != null) ss.close();
+		return result;
+	}
+	
+	// 구인정보 수정하기.
+	public int updateRecruit(SQ_recruit sq_recruit) {
+		int result = 0;
+		ss = factory.openSession();
+		result = ss.update("sq_seekingMapper.updateRecruit", sq_recruit);
+		ss.commit();
+		if(ss != null) ss.close();
+		return result;
+	}
+	
+	// 구인정보 삭제하기.
+	public int deleteRecruit(int sq_recruit_id){
+		int result = 0;
+		ss = factory.openSession();
+		result = ss.delete("sq_seekingMapper.deleteRecruit", sq_recruit_id);
+		ss.commit();
+		if(ss != null) ss.close();
+		return result;
+	}
+	
+	// 지원 여부 확인을 위한 select
+	public SQ_recruit_apply checkApplied(SQ_recruit_apply recruit_apply){
+		SQ_recruit_apply applied = null;
+		ss = factory.openSession();
+		applied = ss.selectOne("sq_seekingMapper.selectOne_apply", recruit_apply);
+		if(ss != null) ss.close();
+		return applied;
+	}
+	
+	// 포트폴리오 작성여부 select
+	public SQ_portfolio checkPortfolio(int port_id){
+		SQ_portfolio port = null;
+		
+		return port;
+	}
+	
+	/*public static void main(String[] args) {
 		SQ_seekingDAO sdao= new SQ_seekingDAO();
 		SQ_recruit sq_recruit=new SQ_recruit(0,"a","a","2012/10/11","a","a","a","a","a","a","a","a","a");
 		sdao.insertSQrecruit(sq_recruit);
-	}
+	}*/
 }
