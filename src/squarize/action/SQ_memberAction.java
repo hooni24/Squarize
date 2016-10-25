@@ -31,6 +31,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String fromWhere;
 	private String email_auth;
 	private String mediaExt;
+	private String condition;
 	
 	private SQ_favorite sq_favorite;
 	
@@ -100,21 +101,21 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public String loginSQmember() throws Exception{
 		mdao=new SQ_memberDAO();
 		sq_member=mdao.loginSQmember(sq_member_id);
-		System.out.println(sq_member);
-		if(sq_member.getSq_member_pw().equals(sq_member_pw)&&sq_member.getSq_member_email_auth().equals("Y")){
-			session.put("loginId", sq_member.getSq_member_id());
-			session.put("isArtist", sq_member.getSq_member_isartist());
-			session.put("email_auth", sq_member.getSq_member_email_auth());
-			loginId=(String) session.get("loginId");
-			isArtist=(String) session.get("isArtist");
-			email_auth=(String)session.get("email_auth");
-			System.out.println(email_auth);
-			
-		}else{
-			sq_member=null;
-			loginId="";
-			isArtist="";
-			email_auth="N";
+		if(sq_member != null){
+			if(sq_member.getSq_member_pw().equals(sq_member_pw)){
+				if(sq_member.getSq_member_email_auth().equals("Y")){
+					session.put("loginId", sq_member.getSq_member_id());
+					session.put("isArtist", sq_member.getSq_member_isartist());
+					session.put("email_auth", sq_member.getSq_member_email_auth());
+					condition = "login";
+				}else {
+				condition = "email";	
+				}
+			}else{
+				condition = "password";
+			}
+		}else {
+			condition = "id";
 		}
 		return SUCCESS;
 	}
@@ -137,6 +138,8 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * */
 	public String logoutSQmember() throws Exception{
 		session.clear();
+		if(fromWhere != null && fromWhere.equals("busking"))
+			return "busking";
 		return SUCCESS;
 	}
 	
@@ -275,6 +278,8 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 				return "seeking";
 			case "busking" :
 				return "busking";
+			case "index" :
+				return "index";
 			}
 		}
 		return ERROR;
@@ -404,6 +409,14 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 
 	public void setMediaExt(String mediaExt) {
 		this.mediaExt = mediaExt;
+	}
+
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
 	}
 	
 

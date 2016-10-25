@@ -14,17 +14,8 @@ $(function(){
 	    			, data : loginItem
 	    			, dataType : "json"
 	    			, success : function(resp){
-	    				
-	    				if(resp.email_auth=="N"){
-	    					alert("이메일인증확인 후 로그인해주십시오");
-	    					return false;
-	    				}
-	    				if(resp.loginId==null||resp.loginId==""){
-	    					alert("입력정보가 틀렸습니다.");
-	    					$('input#sign-in-id').val("");
-	    					$('input#sign-in-pw').val("");
-	    					return false;
-	    				}else{
+	    				var condition = resp.condition;
+	    				if(condition == 'login'){
 	    					$(".close").trigger("click");
 	    					$("#main_login").addClass("hidden");
 	    					$("#main_register").addClass("hidden");
@@ -46,8 +37,20 @@ $(function(){
 	    					var tab_makeArtist = '<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>';
 	    					$("ul#tab_menu").append(tab_makeArtist);
 	    					$("a#tab_makeArtist").trigger("click");
+	    				}else if(condition == 'email'){
+	    					alert("이메일 인증 확인 후 로그인해 주세요");
+	    					return false;
+	    				}else if(condition == 'password'){
+	    					alert("비밀번호를 확인해 주세요");
+	    					$('input#sign-in-pw').focus();
+	    					$('input#sign-in-pw').val("");
+	    					return false;
+	    				}else if(condition == 'id'){
+	    					alert("존재하지 않는 아이디 입니다.");
+	    					$('input#sign-in-id').focus();
+	    					$('input#sign-in-pw').val("");
+	    					return false;
 	    				}
-	    				
 	    			}
 	    			, error : function(){
 	    				alert("실패");

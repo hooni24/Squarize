@@ -69,7 +69,7 @@ CREATE TABLE SQ_ARTIST
 	-- 회원 아이디 : 일반회원 ID
 	SQ_MEMBER_ID varchar2(15) NOT NULL,
 	-- 회원 전화번호
-	SQ_ARTIST_PHONE number(11) NOT NULL UNIQUE,
+	SQ_ARTIST_PHONE varchar2(20) NOT NULL UNIQUE,
 	-- 아티스트 프로필 사진 경로
 	SQ_ARTIST_PHOTO varchar2(300),
 	-- 회원 소개
