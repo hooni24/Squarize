@@ -45,6 +45,7 @@
                                 <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register" id="tab_register">Register</a></li>
                             </s:if>
                             <s:else>
+                                <li role="presentation"><a href="#updateSQmember" aria-controls="updateSQmember" role="tab" data-toggle="tab"  data-transition-parent="#updateSQmember" id="tab_updateSQmember">정보수정</a></li>
                             	<s:if test='#session.isArtist == "N"'>
                             		<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>
                             	</s:if>
@@ -71,8 +72,9 @@
                                 </div>
                                 
                             <!-- 회원가입 -->
+                                
                                 <div role="tabpanel" class="tab-pane" id="register">
-                                    <form role="form" method="post" id="form-register" action="registerSQmember?fromWhere=rent">
+                                    <form role="form" method="post" id="form-register" action="registerSQmember?fromWhere=seeking">
                                         <div class="form-group animate move_from_bottom_short" id="idInput">
                                             <input type="text" class="form-control" id="register-id" name="register-id" placeholder="ID">
                                            	<span id="id-check"></span>
@@ -113,6 +115,59 @@
                                     </form>
                                 </div>
                                 
+                                <!--회원정보 수정  -->
+                                <div role="tabpanel" class="tab-pane" id="updateSQmember">
+                                    <form role="form" method="post" id="form-update" action="updateSQmember.action?fromWhere=seeking" enctype="multipart/form-data">
+                                        <div class="form-group animate move_from_bottom_short" id="idInput">
+                                            <input type="text" class="form-control" id="update-id" name="sq_member.sq_member_id" disabled="disabled">
+                                        </div>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="text" class="form-control" id="update-name" name="sq_member.sq_member_name" disabled="disabled">
+                                        </div>
+                                        <!--end .form-group-->
+                                        
+                                        <div class="form-group">
+                                            <select id="update_favorite" size="3">
+                                            	<option>선호장르</option>
+                                            	<option>락</option>
+                                            	<option>발라드</option>
+                                            	<option>재즈</option>
+                                            	<option>힙합</option>
+                                            </select>
+                                        </div>
+                                        <!--end .form-group-->
+                                        
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="email" class="form-control" id="update-email" name="sq_memver.sq_member_email" >
+                                        </div>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="password" class="form-control" id="update-password" name="update-password" placeholder="password">
+                                        </div>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="password" class="form-control" id="update-confirm-password" name="update-confirm-password" placeholder="confirm-password">
+                                        </div>
+                                        <!--end .form-group-->
+                                        <s:if test='#session.isArtist == "Y"'>
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <input type="text" class="form-control" id="update-artist-phone" name="sq_artist.sq_artist_phone" >
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <textarea class="form-control" id="update-artist-intro" name="sq_artist.sq_artist_intro"  rows="8"></textarea>
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="photoInput">
+	                                            <input type="file" class="form-control" id="update-artist-photo" name="upload">
+	                                        </div>
+                                        </s:if>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <button type="button" class="btn btn-primary" id="update_btn">update</button>
+                                        </div>
+                                        <!--end .form-group-->
+                                    </form>
+                                </div>
                                 <!-- 로그아웃 -->
                                 <div role="tabpanel" class="tab-pane" id="logout">
                                 	<div class="form-group animate move_from_bottom_short">
@@ -162,7 +217,7 @@
                         <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header" id="main_register">Register</a></li>
                     </s:if>
                     <s:else>
-                    	<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area">${sessionScope.loginId } 님 환영합니다!</a></li>
+                    	<li><a href="#user-area" id="update" data-toggle="collapse" aria-expanded="false" data-tab="#" aria-controls="user-area">${sessionScope.loginId } 님 환영합니다!</a></li>
                         <li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>
                         <s:if test='#session.isArtist == "N"'>
 	                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>

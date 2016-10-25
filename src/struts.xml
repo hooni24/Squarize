@@ -14,7 +14,7 @@
 			<result>index.jsp</result>
 		</action>
 
-
+	
 
 
 <!-- 이 아래 액션들은 해당 메뉴기능 추가할때 종류에 따라 buskingAction.xml이나 seekingAction.xml로 이동..-->
