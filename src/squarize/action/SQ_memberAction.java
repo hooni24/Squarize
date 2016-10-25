@@ -218,9 +218,41 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * 포트폴리오 수정
 	 */
 	public String updatePortfolio(){
+		SQ_memberDAO dao = new SQ_memberDAO();
+		try {
+			if(upload != null || uploadMedia != null){	//사진이나 동영상 새로 올린게 있으면
+				SQ_portfolio oldPortfolio = dao.checkPortfolio((String) session.get("loginId"));
+				FileService fs = new FileService();
+				String basePath = getText("port.uploadpath");
+				String fullpath;
+				String savedfile;
+				
+				System.out.println("수정 이전 : " + oldPortfolio);
+				
+				if(upload != null){		//서버 사진파일 삭제
+					fullpath = basePath +"/"+ oldPortfolio.getSq_port_file();
+					fs.fileDelete(fullpath);
+					//새로운 사진파일 서버 저장
+					savedfile = fs.saveFile(upload, basePath, uploadFileName);
+					sq_portfolio.setSq_port_file(savedfile);
+				}
+				if(uploadMedia != null){	//서버 음원, 영상 파일 삭제
+					fullpath = basePath +"/"+ oldPortfolio.getSq_port_media();
+					fs.fileDelete(fullpath);
+					//새로운 사진파일 서버 저장
+					savedfile = fs.saveFile(uploadMedia, basePath, uploadMediaFileName);
+					sq_portfolio.setSq_port_media(savedfile);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		sq_portfolio.setSq_member_id((String) session.get("loginId"));
-		sq_portfolio = new SQ_memberDAO().updatePortfolio(sq_portfolio);
-		return SUCCESS;
+		sq_portfolio = dao.updatePortfolio(sq_portfolio);
+		
+		System.out.println("수정 이후 : " + sq_portfolio);
+		return fromWhere();
 	}
 	
 	/**

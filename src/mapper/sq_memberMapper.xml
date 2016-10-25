@@ -49,6 +49,12 @@
 	<update id="updatePortfolio" parameterType="SQ_portfolio">
 		UPDATE sq_portfolio
 		SET sq_port_inst = #{sq_port_inst}, sq_port_career = #{sq_port_career}, sq_port_pr = #{sq_port_pr}
+			<if test="sq_port_file != ''">
+				, sq_port_file = #{sq_port_file}
+			</if>
+			<if test="sq_port_media != ''">
+				, sq_port_media = #{sq_port_media}
+			</if>
 		WHERE sq_member_id = #{sq_member_id}
 	</update>
 	
