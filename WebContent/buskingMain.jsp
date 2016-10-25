@@ -272,8 +272,8 @@
 <![endif]-->
 
 <script>
-   var _latitude = 37.5564059;
-   var _longitude = 126.9259563;
+   var _latitude = 36.265778;
+   var _longitude = 127.884858;
 //     var jsonPath = 'assets/json/items.json';
     
 //     $.getJSON(jsonPath)
