@@ -15,12 +15,15 @@
 <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+<link rel="stylesheet" href="assets/css/layout.css" type="text/css">
 
 <title>SQUARIZE - SEEKING</title>
     <style>
     	.hidden{
     		display : none;
     	}
+    	
+    	
     </style>
 </head>
 
@@ -355,6 +358,9 @@
 		</div>
 		<!--end Page Content-->
 	</div>
+	<div class="loadingpage loading">
+		<div class="loading-img"></div>	
+	</div>
 
 		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="assets/js/sq_member.js"></script>
@@ -449,6 +455,7 @@
 		<!--[if lte IE 9]>
 <script type="text/javascript" src="assets/js/ie-scripts.js"></script>
 <![endif]-->
+
 	
 </body>
 </html>

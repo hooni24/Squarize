@@ -5,38 +5,32 @@
 	vertical-align: top;
 }
 
-.login{
-	font-size: 12px;
-	margin-top:10px;
-}
-.hidden{
-	visibility: hidden;
-	background: orange;
-	-webkit-transition:0.3s;
-	transition:0.3s;
-}
-.message{
-	margin-top:5px;
-	margin-right:30px;
-	font-size:15px;
-	color: rgba(0,0,0,0.5);
-}
-.select{
-	z-index:1000000;
-}
 
-#sq_artist{
-	margin-top:-5px;
-	margin-right:-30px;
-	    font-family: 'Roboto', sans-serif;
-	    font-size: 12px;
-	    font-weight: bold;
-	    
-}
 
-.nav-artist{
-	font-weight: bold;
-	color:rgba(0,0,0,0.5);
-	cursor:default;
-	
+.loadingpage{
+    		background: #ffffff;
+    		opacity:0.8;
+    		position:fixed;
+    		text-align:center;
+    		left:0;
+    		top:0;
+    		right:0;
+    		bottom:0;
+    		width:100%;
+    		height:100%;
+    		display:block;
+    		z-index:9999;
+    		filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000'); 
+}
+.loading{
+	display: none;
+	z-index: 0;
+}
+.loading-img{
+	background: url("../img/loading.gif");
+	margin:15% auto;
+	background-size:100%;
+	width:240px;
+	height:160px;
+	z-index:99999;
 }
