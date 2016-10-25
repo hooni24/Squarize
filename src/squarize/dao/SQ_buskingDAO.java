@@ -10,15 +10,37 @@ import squarize.vo.SQ_busking;
 
 public class SQ_buskingDAO {
 	private SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
-	private SqlSession ss = MybatisConfig.getSqlSessionFactory().openSession();
+	private SqlSession ss;
 	
 	public List<SQ_busking> buskingList(){
-		List<SQ_busking> result = ss.selectList("sq_memberMapper.selectAll");
-		return result;
+		try {
+			ss = factory.openSession();
+			return ss.selectList("sq_buskingMapper.selectAll");
+		} finally {
+			ss.close();
+		}
 	}
 	
 	public SQ_busking buskingDetail(int sq_busking_id){
-		SQ_busking result = ss.selectOne("sq_memberMapper.selectOne", sq_busking_id);
-		return result;
+		try {
+			ss = factory.openSession();
+			return ss.selectOne("sq_buskingMapper.selectOne", sq_busking_id);
+		} finally {
+			ss.close();
+		}
+	}
+
+	/**
+	 * 버스킹 정보 등록
+	 */
+	public void addBusking(SQ_busking SQ_busking) {
+		try {
+			ss = factory.openSession();
+			ss.insert("sq_buskingMapper.addBusking", SQ_busking);
+			ss.commit();
+		} finally {
+			ss.close();
+		}
+		
 	}
 }

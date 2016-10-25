@@ -14,6 +14,11 @@ $(function(){
 	    			, data : loginItem
 	    			, dataType : "json"
 	    			, success : function(resp){
+	    				
+	    				if(resp.email_auth=="N"){
+	    					alert("이메일인증확인 후 로그인해주십시오");
+	    					return false;
+	    				}
 	    				if(resp.loginId==null||resp.loginId==""){
 	    					alert("입력정보가 틀렸습니다.");
 	    					$('input#sign-in-id').val("");
@@ -50,7 +55,20 @@ $(function(){
 	    		});
     		});
     		
-    		
+    		$('.close').click(function(){
+    			$('#register-id').val("");
+				$('#register-name').val("");
+				$('#register-email').val("");
+				$('#register-password').val("");
+				$('input#sign-in-id').val("");
+				$('input#sign-in-pw').val("");
+				$('#register-confirm-password').val("");
+				$('#register_favorite option:eq("선호장르")').attr('selected','selected');
+				$('#id-check').html(' ');
+				$('#id-check').css('color','black');
+				$('#register-id').css('color','black');
+				$('a#tab_login').trigger('click');
+    		});
     		
     		//회원가입
     		$("button#register_btn").on("click", function(){
@@ -109,7 +127,7 @@ $(function(){
     				,url : 'registerSQmember'
     				,data : registerItem
     				,success : function(){
-    					alert("회원가입이 완료되었습니다. 로그인하여 주십시오");
+    					alert("회원인증 메일이 발송되었습니다. 메일인증 완료 후 로그인해주세요");
     					$('#register-id').val("");
     					$('#register-name').val("");
     					$('#register-email').val("");

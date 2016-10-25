@@ -178,7 +178,7 @@
         <div class="container">
             <div class="submit-container">
                 <a href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Search Filter</a>
-                <a href="submit_e.action" class="submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true"><i><img src="assets/img/plus.png" alt=""></i></a>
+                <a href="toAddBusking.action" class="submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true"><i><img src="assets/img/plus.png" alt=""></i></a>
             </div>
         </div>
     </header>
@@ -241,6 +241,7 @@
 </div>
 
          <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
+         <script type="text/javascript" src="assets/js/sq_member.js"></script>
          <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
          <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
          <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -260,7 +261,6 @@
          <script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
          <script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
          <script type="text/javascript" src="assets/js/custom.js"></script>
-         <script type="text/javascript" src="assets/js/sq_member.js"></script>
                      
          <script type="text/javascript" src="assets/js/functions.js"></script>
 
@@ -271,7 +271,7 @@
 <script>
    var _latitude = 37.5564059;
    var _longitude = 126.9259563;
-    var jsonPath = 'assets/json/items.json';
+//     var jsonPath = 'assets/json/items.json';
     
 //     $.getJSON(jsonPath)
 //      .done(function(json) {
@@ -295,7 +295,6 @@
          var jsonArray = new Array();
          
           $.each(list, function(index, item){
-//          	alert(item);
 //             jsonArray.push(eval("(" + item + ")"));
             jsonArray.push(JSON.parse(item));
          }); 

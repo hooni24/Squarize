@@ -206,7 +206,7 @@ function hoverOnGrid(){
 
 function loadPage(_this){
     var $contentLoader = $('.content-loader');
-    if( $(_this).attr('data-external') ){	//.att('속성'):속성값을 받아옴. .attr('속성','값');
+    if( $(_this).attr('data-external') ){   //.att('속성'):속성값을 받아옴. .attr('속성','값');
         $('.content').removeClass('fade_out');
         var parentElement = $(_this).attr('data-transition-parent');
         if( $('#loader').length == 0 ){
@@ -372,7 +372,7 @@ function rating(element){
 var mapStyles = [{"featureType":"administrative.locality","elementType":"all","stylers":[{"hue":"#2c2e33"},{"saturation":7},{"lightness":19},{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"simplified"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":-2},{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"hue":"#e9ebed"},{"saturation":-90},{"lightness":-8},{"visibility":"simplified"}]},{"featureType":"transit","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":10},{"lightness":69},{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":-78},{"lightness":67},{"visibility":"simplified"}]}];
 
 function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, externalCall){
-	var markerIcon;
+
     if( externalCall == true ){
         if( $('.content-container').attr('id') == 'item-detail' ){
             var path = '../../';
@@ -380,12 +380,10 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
         else {
             path = '../';
         }
-        /*var markerIcon = path + "img/marker.png";*/
-        markerIcon = path + "img/marker.png";
+        var markerIcon = path + "img/marker.png";
         loadScript( path + "js/richmarker-compiled.js",renderMap);
-    }	
-    else {	//external이 false : 여기로 옴....
-    	alert('여기맞지?');
+    }
+    else {
         markerIcon = "assets/img/marker.png";
         setTimeout(function() {
             renderMap();
@@ -394,10 +392,9 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
     }
 
     function renderMap(){
-    	alert("renderMap: "+_latitude+","+_longitude);	// 나옴..
         var mapCenter = new google.maps.LatLng(_latitude, _longitude);
         var mapOptions = {
-            zoom: 16,
+            zoom: 17,
             center: mapCenter,
             disableDefaultUI: true,
             scrollwheel: scrollwheel,
@@ -406,23 +403,25 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             zoomControl: false,
             draggable: true
         };
-        var mapElement = document.getElementById('map-simple');	//있음.
-        var map = new google.maps.Map(mapElement, mapOptions);	//여기까진 ok.
+        var mapElement = document.getElementById('map-simple');   //있음.
+        var map = new google.maps.Map(mapElement, mapOptions);
         google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
             $('#map-simple').addClass('idle');
-            google.maps.event.addListenerOnce(map, 'tilesloaded', function(){	// 지도 드래그시 다시로딩
+            /*google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
                 $('#map-simple').addClass('idle');
-            });
-       }); //addListenerOnce끝.
+                alert('이건또뭐???');
+            });*/
+        }); //addListenerOnce끝.
 
         // Google map marker content
-        var markerContent = document.createElement('DIV');	// 구조문서에 div만듦.
-        markerContent.innerHTML =	//새로 만든 div안에 class="map-marker인 아이를 만들어서 아이콘을 만들어 붙임.
+        var markerContent = document.createElement('DIV');   // 구조문서에 div만듦.
+        markerContent.innerHTML =   //새로 만든 div안에 class="map-marker인 아이를 만들어서 아이콘을 만들어 붙임.
             '<div class="map-marker">' +
                 '<div class="icon"><img src="' + markerIcon + '"></div>' +
                 '</div>';
         
         // Create marker on the map
+        
         var marker = new RichMarker({
             position: mapCenter,
             map: map,
@@ -431,7 +430,8 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             flat: true,
             icon: 'assets/img/marker.png'
         });
-        marker.content.className = 'marker-loaded';	//새로 만든 마커에다가 marker-loaded 클래스 추가
+        marker.content.className = 'marker-loaded';   //새로 만든 마커에다가 marker-loaded 클래스 추가
+//        });
     }
 
 }
@@ -723,7 +723,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             }
         });
     }
-} 													//googlemap
+}                                        //googlemap
 
 function redrawMap(map){
     google.maps.event.trigger(map, 'resize');

@@ -42,9 +42,7 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	 * 전체 대관모집 게시물 불러오기.
 	 */
 	public String getAllRent(){
-		//이 부분 또는 SQ_rentDAO().getAllRent()에 선호도에 따라 order by 정하는 알고리즘 필요. 일단은 올린 순서대로 뽑아옴
-
-		rentList = new SQ_rentDAO().getAllRent();
+		rentList = new SQ_rentDAO().getAllRent((String) session.get("loginId"));
 		return SUCCESS;
 	}
 	
@@ -67,15 +65,14 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 			}
 		}
 		new SQ_rentDAO().insertRent(rent);
-		
-		System.out.println(rent);
 		return SUCCESS;
 	}
 	
 	/**
-	 * 대관게시물 읽기
+	 * 대관게시물 읽기 + 읽은 게시물 장르에 1포인트 증가
 	 */
 	public String toRentDetail(){
+		rent.setSq_member_id((String) session.get("loginId"));
 		Object[] result = new SQ_rentDAO().getRentById(rent);
 		member = (SQ_member) result[0];
 		rent = (SQ_rent) result[1];
@@ -124,7 +121,6 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		rent_apply.setSq_rent_id(rent.getSq_rent_id());
 		rent_apply.setSq_member_id((String) session.get("loginId"));
 		rent_apply = new SQ_rentDAO().checkRentApply(rent_apply);
-		System.out.println(rent_apply);
 		return SUCCESS;
 	}
 	

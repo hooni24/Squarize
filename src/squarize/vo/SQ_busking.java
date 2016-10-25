@@ -11,11 +11,11 @@ public class SQ_busking {
 	private String genre;
 	private int rating;
 	private String teamname;
-	private String gallery;
-	private String gallery2;
-	private String gallery3;
-	private String gallery4;
-	private String gallery5;
+	private String gallery ="";
+	private String gallery2 = "";
+	private String gallery3 = "";
+	private String gallery4 = "";
+	private String gallery5 = "";
 	private String buskingdate;
 	private int runningtime;
 	private String description;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="sq_memberMapper">
+<mapper namespace="sq_buskingMapper">
 <!-- 	<select id="selectAll" resultType="SQ_busking"> -->
 <!-- 		select * from SQ_BUSKINGLIST -->
 <!-- 	</select> -->
@@ -14,4 +14,14 @@
 		select * from sq_buskinglist
 		where sq_busking_id = #{sq_busking_id}
 	</select>
+	
+	<insert id="addBusking" parameterType="SQ_busking">
+		INSERT INTO sq_buskinglist
+		VALUES (sq_busking_id_sq.nextval, #{id}, #{title}, #{location}, #{latitude}, #{longitude}, '사용안함', #{genre}, 0, #{teamname}, #{gallery}, null, null, null, null, #{buskingdate}, #{runningtime}, #{description})
+	</insert>
+	
+	
 </mapper>
+
+
+<!-- TO_DATE(buskingdate , 'yyyy-mm-dd hh')  -->
