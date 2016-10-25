@@ -82,7 +82,7 @@ public class SQ_rentDAO {
 	 */
 	public Object[] getRentById(SQ_rent rent){
 		try {
-			Object[] result = new Object[3];
+			Object[] result = new Object[4];
 			ss = factory.openSession();
 			SQ_favorite favorite = ss.selectOne("sq_favoriteMapper.getFavorite", rent.getSq_member_id());
 
@@ -98,6 +98,9 @@ public class SQ_rentDAO {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+			
+			result[3] = ss.selectOne("sq_rentMapper.checkRentApply2", rent);
+			System.out.println(rent);
 			
 			rent = ss.selectOne("sq_rentMapper.getRentById", rent);
 			result[0] = ss.selectOne("sq_rentMapper.getMemberById", rent.getSq_member_id());
@@ -219,6 +222,19 @@ public class SQ_rentDAO {
 		try {
 			ss = factory.openSession();
 			return ss.selectList("sq_rentMapper.getAllMyRent", loginId);
+		} finally {
+			ss.close();
+		}
+	}
+
+	/**
+	 * 대관 지원 취소
+	 */
+	public void rentApplyCancel(SQ_rent rent) {
+		try {
+			ss = factory.openSession();
+			ss.delete("sq_rentMapper.rentApplyCancel", rent);
+			ss.commit();
 		} finally {
 			ss.close();
 		}

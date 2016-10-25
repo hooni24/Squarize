@@ -55,8 +55,10 @@
 	                '<textarea id="career" class="form-control" rows="8" name="sq_portfolio.sq_port_career"></textarea><br><br>'+
 	                '<h1>자기소개(1000자 이내)</h1>'+
 	                '<textarea id="pr" class="form-control" rows="8" name="sq_portfolio.sq_port_pr"></textarea><br><br>'+
-	                '<h1>첨부파일(사진, 동영상, 음원)</h1>'+
-	                '<input type="file" id="upload" name="upload" ><br><br>'+
+	                '<h1>대표사진</h1>'+
+	                '<input type="file" id="upload" name="upload"><br><br>'+
+	                '<h1>첨부파일 (음원,동영상 등 20MB이하)</h1>'+
+	                '<input type="file" id="upload" name="uploadMedia" ><br><br>'+
             	'</form>'+
             	'<article class="center">'+
 	                '<div class="form-group">'+
@@ -91,8 +93,6 @@
 							alert("실패");
 						}
 					});
-					
-// 					location.href="deletePortfolio.action?sq_portfolio.sq_port_id="+port_id;
 				}
 			});
     		
@@ -105,38 +105,51 @@
     			$("a#update").css("display", "none");
     			$("a#delete").css("display", "none");
     			$("a#realUpdate").css("display", "inline-block");
+    			
+    			
+    			var updateFiles = '<h1>대표사진 수정</h1>'+
+                '<input type="file" id="upload" name="upload"><br><br>'+
+                '<h1>첨부파일 수정(음원,동영상 등 20MB이하)</h1>'+
+                '<input type="file" id="upload" name="uploadMedia" ><br><br>';
+    			
+    			$("article#test").before(updateFiles);
     		});
     		
-    		//포트폴리오 수정
+    		//포트폴리오 수정 submit (파일 ㅇㅇ)
     		$("a#realUpdate").on("click", function(){
-    			var inst = $("input#inst").val();
-    			var career = $("textarea#career").val();
-    			var pr = $("textarea#pr").val();
-    			if(valid(inst, career, pr)){
-	    			var item = {
-	    					"sq_portfolio.sq_port_inst" : inst
-	    					, "sq_portfolio.sq_port_career" : career
-	    					, "sq_portfolio.sq_port_pr" : pr
-	    			};
-	    			$.ajax({
-	    				url : "updatePortfolio"
-	    				, method : "post"
-	    				, data : item
-	    				, dataType : "json"
-	    				, success : function(resp){
-	    					$("#instH1").text("다루는 악기 - " + resp.sq_portfolio.sq_port_inst);
-	    					$("textarea#career").attr("readonly", true);
-	    	    			$("textarea#pr").attr("readonly", true);
-	    	    			$("a#update").css("display", "inline-block");
-	    	    			$("a#delete").css("display", "inline-block");
-	    	    			$("a#realUpdate").css("display", "none");
-	    				}
-	    				, error : function(){
-	    					alert("실패");
-	    				}
-	    			});
-    			}
+    			
     		});
+    		
+    		//포트폴리오 수정 ajax(파일 노노)
+//     		$("a#realUpdate").on("click", function(){
+//     			var inst = $("input#inst").val();
+//     			var career = $("textarea#career").val();
+//     			var pr = $("textarea#pr").val();
+//     			if(valid(inst, career, pr)){
+// 	    			var item = {
+// 	    					"sq_portfolio.sq_port_inst" : inst
+// 	    					, "sq_portfolio.sq_port_career" : career
+// 	    					, "sq_portfolio.sq_port_pr" : pr
+// 	    			};
+// 	    			$.ajax({
+// 	    				url : "updatePortfolio"
+// 	    				, method : "post"
+// 	    				, data : item
+// 	    				, dataType : "json"
+// 	    				, success : function(resp){
+// 	    					$("#instH1").text("다루는 악기 - " + resp.sq_portfolio.sq_port_inst);
+// 	    					$("textarea#career").attr("readonly", true);
+// 	    	    			$("textarea#pr").attr("readonly", true);
+// 	    	    			$("a#update").css("display", "inline-block");
+// 	    	    			$("a#delete").css("display", "inline-block");
+// 	    	    			$("a#realUpdate").css("display", "none");
+// 	    				}
+// 	    				, error : function(){
+// 	    					alert("실패");
+// 	    				}
+// 	    			});
+//     			}
+//     		});
     	});
     </script>
 </head>
@@ -193,12 +206,30 @@
 	                    	<textarea id="pr" class="form-control" rows="8" readonly="readonly">${sq_portfolio.sq_port_pr }</textarea>
 	                    </div>
 	                </article>
+	                	<s:if test='mediaExt=="mp3" || mediaExt=="MP3" || mediaExt=="ogg" || mediaExt=="OGG" || mediaExt=="wav" || mediaExt=="WAV"'>
+	                    	<h1>첨부파일</h1>
+	                    	<audio controls>
+								<source src="assets/downloadIMG/port/${sq_portfolio.sq_port_media }" type="audio/mpeg">
+							</audio>
+						</s:if>
+						<s:elseif test='mediaExt=="mov" || mediaExt=="MOV" || mediaExt=="wmv" || mediaExt=="WMV" || mediaExt=="mp4" || mediaExt=="MP4" || mediaExt=="AVI" || mediaExt=="avi" || mediaExt=="MPEG" || mediaExt=="mpeg"'>
+							<h1>첨부파일</h1>
+							<video width="600" height="300" controls>
+								<source src="assets/downloadIMG/port/${sq_portfolio.sq_port_media }" type="video/mp4">
+							</video>
+						</s:elseif>
+						<s:elseif test="mediaExt == ''">
+							<h2>업로드한 파일이 없습니다.</h2>
+						</s:elseif>
+						<s:else>
+							<h2>파일 형식이 잘못되었습니다. 다시 업로드해 주세요.</h2>
+						</s:else>
 	                <article class="center" id="test">
-<%-- 	                <s:if test="#session.loginId == sq_portfolio.sq_member_id "> --%>
+	                <s:if test="#session.loginId == sq_portfolio.sq_member_id ">
                     	<a class="btn btn-circle btn-lg aBlack" id="update">수정</a>&nbsp;&nbsp;&nbsp;
                     	<a class="btn btn-circle btn-lg aBlack" id="realUpdate">수정aa</a>&nbsp;&nbsp;&nbsp;
                     	<a class="btn btn-circle btn-lg aRed" id="delete">삭제</a>
-<%--                     </s:if> --%>
+                    </s:if>
                     
                     </article>
                     

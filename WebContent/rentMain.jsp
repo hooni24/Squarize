@@ -83,7 +83,7 @@
     		
     		//로그아웃
     		$("ul#main_menu").on("click", "a#main_logout", function(){
-    			location.href = "index.action";
+    			location.href = "logoutSQmember.action";
     		});
     		
     		/* //회원가입

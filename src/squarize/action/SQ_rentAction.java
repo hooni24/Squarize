@@ -77,6 +77,8 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		member = (SQ_member) result[0];
 		rent = (SQ_rent) result[1];
 		artist = (SQ_artist) result[2];
+		rent_apply = (SQ_rent_apply) result[3];
+		System.out.println(rent_apply);
 		return SUCCESS;
 	}
 	
@@ -132,6 +134,15 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		rent_apply.setSq_rent_id(rent.getSq_rent_id());
 		rent_apply.setSq_member_id((String) session.get("loginId"));
 		new SQ_rentDAO().rentApply(rent_apply);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 대관 지원 취소
+	 */
+	public String rentApplyCancel(){
+		rent.setSq_member_id((String) session.get("loginId"));
+		new SQ_rentDAO().rentApplyCancel(rent);
 		return SUCCESS;
 	}
 	

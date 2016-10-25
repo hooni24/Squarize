@@ -140,6 +140,15 @@
 				});
 			});
 			
+			//지원취소버튼 클릭
+			$("a#rent_apply_cancel").on("click", function(){
+				var con = confirm("정말 취소하시겠습니까?");
+				if(con){
+					var id = $("input#hidden").val();
+					location.href = "rentApplyCancel.action?rent.sq_rent_id="+id;
+				}
+			});
+			
 			
 			//지원자 보기 버튼 클릭
 			$("a#seeApply").on("click", function(){
@@ -311,7 +320,12 @@
                     	<a class="btn btn-circle btn-lg aRed" id="delete">삭제</a>
                     </s:if>
                     <s:else>
-	                    <a class="btn btn-circle btn-default btn-lg" id="rent_apply">지원</a>
+	                    <s:if test="rent_apply == null">
+		                    <a class="btn btn-circle btn-default btn-lg" id="rent_apply">지원</a>
+	                    </s:if>
+	                    <s:else>
+		                    <a class="btn btn-circle btn-default btn-lg" id="rent_apply_cancel">지원취소</a>
+	                   </s:else>
                     </s:else>
                 </article>
                 <!--end Add Review-->

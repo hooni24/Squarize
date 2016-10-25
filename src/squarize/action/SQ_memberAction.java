@@ -30,12 +30,17 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String isArtist;
 	private String fromWhere;
 	private String email_auth;
+	private String mediaExt;
 	
 	private SQ_favorite sq_favorite;
 	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
 	private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
+	
+	private File uploadMedia;					// 업로드할 파일(포트폴리오 음원,동영상). Form의 <file> 태그의 name. 
+	private String uploadMediaFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
+	private String uploadMediaContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
 	
 	/**
 	 * 아이디 중복검사 
@@ -132,7 +137,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * */
 	public String logoutSQmember() throws Exception{
 		session.clear();
-		return fromWhere();
+		return SUCCESS;
 	}
 	
 	/**
@@ -165,6 +170,14 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public String portfolioCheck(){
 		sq_portfolio = new SQ_memberDAO().portfolioCheck((String) session.get("loginId"));
 		sq_artist = new SQ_memberDAO().getArtistInfo((String) session.get("loginId"));
+		if(sq_portfolio != null){
+			String media = sq_portfolio.getSq_port_media();
+			if(media != null){
+				String[] medias = media.split("\\.");
+				mediaExt = medias[medias.length - 1];
+				System.out.println(mediaExt);
+			}
+		}
 		return SUCCESS;
 	}
 	
@@ -172,16 +185,20 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * 포트폴리오 등록
 	 */
 	public String makePortfolio(){
-		if (upload != null) { 
-			try {
-				FileService fs = new FileService();
-				String basePath = getText("port.uploadpath");
-				String savedfile;
+		FileService fs = new FileService();
+		String basePath = getText("port.uploadpath");
+		String savedfile;
+		try {
+			if (upload != null) { 
 				savedfile = fs.saveFile(upload, basePath, uploadFileName);
 				sq_portfolio.setSq_port_file(savedfile);
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
+			if (uploadMedia != null) { 
+				savedfile = fs.saveFile(uploadMedia, basePath, uploadMediaFileName);
+				sq_portfolio.setSq_port_media(savedfile);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		sq_portfolio.setSq_member_id((String) session.get("loginId"));
 		new SQ_memberDAO().makePortfolio(sq_portfolio);
@@ -323,6 +340,38 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 
 	public void setEmail_auth(String email_auth) {
 		this.email_auth = email_auth;
+	}
+
+	public File getUploadMedia() {
+		return uploadMedia;
+	}
+
+	public void setUploadMedia(File uploadMedia) {
+		this.uploadMedia = uploadMedia;
+	}
+
+	public String getUploadMediaFileName() {
+		return uploadMediaFileName;
+	}
+
+	public void setUploadMediaFileName(String uploadMediaFileName) {
+		this.uploadMediaFileName = uploadMediaFileName;
+	}
+
+	public String getUploadMediaContentType() {
+		return uploadMediaContentType;
+	}
+
+	public void setUploadMediaContentType(String uploadMediaContentType) {
+		this.uploadMediaContentType = uploadMediaContentType;
+	}
+
+	public String getMediaExt() {
+		return mediaExt;
+	}
+
+	public void setMediaExt(String mediaExt) {
+		this.mediaExt = mediaExt;
 	}
 	
 

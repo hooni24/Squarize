@@ -7,6 +7,7 @@ public class SQ_portfolio {
 	private String sq_port_career;
 	private String sq_port_pr;
 	private String sq_port_file = "";
+	private String sq_port_media = "";
 	
 	public SQ_portfolio() {}
 
@@ -58,12 +59,19 @@ public class SQ_portfolio {
 		this.sq_port_file = sq_port_file;
 	}
 
+	public String getSq_port_media() {
+		return sq_port_media;
+	}
+
+	public void setSq_port_media(String sq_port_media) {
+		this.sq_port_media = sq_port_media;
+	}
+
 	@Override
 	public String toString() {
 		return "SQ_portfolio [sq_port_id=" + sq_port_id + ", sq_member_id=" + sq_member_id + ", sq_port_inst="
 				+ sq_port_inst + ", sq_port_career=" + sq_port_career + ", sq_port_pr=" + sq_port_pr + ", sq_port_file="
-				+ sq_port_file + "]";
+				+ sq_port_file + ", sq_port_media=" + sq_port_media + "]";
 	}
 
-	
 }

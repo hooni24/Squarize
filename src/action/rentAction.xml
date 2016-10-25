@@ -37,6 +37,10 @@
 			<result type="redirect">toRentMain.action</result>
 		</action>
 		
+		<action name="rentApplyCancel" class="squarize.action.SQ_rentAction" method="rentApplyCancel">
+			<result type="redirect">toRentMain.action</result>
+		</action>
+		
 		<action name="checkRentApply" class="squarize.action.SQ_rentAction" method="checkRentApply">
 			<result type="json"></result>
 		</action>

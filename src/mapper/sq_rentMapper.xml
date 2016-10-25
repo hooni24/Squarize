@@ -57,7 +57,18 @@
 		VALUES (sq_rent_apply_id_sq.nextval, #{sq_rent_id}, #{sq_member_id})
 	</insert>
 	
+	<delete id="rentApplyCancel" parameterType="SQ_rent">
+			DELETE sq_rent_apply
+			WHERE sq_rent_id = #{sq_rent_id} AND sq_member_id = #{sq_member_id}
+	</delete>
+	
 	<select id="checkRentApply" parameterType="SQ_rent_apply" resultType="SQ_rent_apply">
+		SELECT *
+		FROM sq_rent_apply
+		WHERE sq_rent_id = #{sq_rent_id} AND sq_member_id = #{sq_member_id}
+	</select>
+	
+	<select id="checkRentApply2" parameterType="SQ_rent" resultType="SQ_rent_apply">
 		SELECT *
 		FROM sq_rent_apply
 		WHERE sq_rent_id = #{sq_rent_id} AND sq_member_id = #{sq_member_id}

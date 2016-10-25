@@ -32,7 +32,7 @@
 	
 	<insert id="makePortfolio" parameterType="SQ_portfolio">
 		INSERT INTO sq_portfolio
-		VALUES (sq_port_id_sq.nextval, #{sq_member_id}, #{sq_port_inst}, #{sq_port_career}, #{sq_port_pr}, #{sq_port_file})
+		VALUES (sq_port_id_sq.nextval, #{sq_member_id}, #{sq_port_inst}, #{sq_port_career}, #{sq_port_pr}, #{sq_port_file}, #{sq_port_media})
 	</insert>
 	
 	<select id="getArtistInfo" parameterType="String" resultType="SQ_artist">
