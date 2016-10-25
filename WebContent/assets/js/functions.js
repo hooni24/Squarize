@@ -375,7 +375,6 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
 
     if( externalCall == true ){
         if( $('.content-container').attr('id') == 'item-detail' ){
-        	alert('여기여기');
             var path = '../../';
         }
         else {
@@ -393,7 +392,6 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
     }
 
     function renderMap(){
-    	alert("renderMap: "+_latitude+","+_longitude);
         var mapCenter = new google.maps.LatLng(_latitude, _longitude);
         var mapOptions = {
             zoom: 17,
@@ -407,10 +405,8 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
         };
         var mapElement = document.getElementById('map-simple');	//있음.
         var map = new google.maps.Map(mapElement, mapOptions);
-        alert('ok0');
         google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
             $('#map-simple').addClass('idle');
-            alert("id가 map-simple인 div에 idle클래스 추가함.- ok1");
             /*google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
                 $('#map-simple').addClass('idle');
                 alert('이건또뭐???');
@@ -419,12 +415,10 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
 
         // Google map marker content
         var markerContent = document.createElement('DIV');	// 구조문서에 div만듦.
-        alert('ok2');
         markerContent.innerHTML =	//새로 만든 div안에 class="map-marker인 아이를 만들어서 아이콘을 만들어 붙임.
             '<div class="map-marker">' +
                 '<div class="icon"><img src="' + markerIcon + '"></div>' +
                 '</div>';
-        alert('ok3');
         
         // Create marker on the map
         
@@ -436,9 +430,7 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             flat: true,
             icon: 'assets/img/marker.png'
         });
-        alert('ok4'+marker);
         marker.content.className = 'marker-loaded';	//새로 만든 마커에다가 marker-loaded 클래스 추가
-        alert('ok5');
 //        });
     }
 

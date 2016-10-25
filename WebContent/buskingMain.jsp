@@ -271,7 +271,7 @@
 <script>
    var _latitude = 37.5564059;
    var _longitude = 126.9259563;
-    var jsonPath = 'assets/json/items.json';
+//     var jsonPath = 'assets/json/items.json';
     
 //     $.getJSON(jsonPath)
 //      .done(function(json) {
@@ -295,7 +295,6 @@
          var jsonArray = new Array();
          
           $.each(list, function(index, item){
-//          	alert(item);
 //             jsonArray.push(eval("(" + item + ")"));
             jsonArray.push(JSON.parse(item));
          }); 

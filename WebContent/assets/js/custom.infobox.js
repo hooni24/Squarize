@@ -2,8 +2,17 @@ function drawInfobox(infoboxContent, json, i){
 
 	var str = json.data[i].buskingdate;
 	var temp_buskingdate = str.substring(0,13);
+	
 	var str2 = json.data[i].description;
-	var temp_description = str2.substring(0,30) + '...';
+	if(str2.length > 30){
+		var temp_description = str2.substring(0,40) + '...';
+	}else{
+		var temp_description = str2.substring(0,40);
+	}
+	
+//	var kk = json.data[i].gallery;
+//	alert(kk);
+	
 	
     if( json.data[i].teamname )     { var teamname = '<div class="price average-color"><span>' + json.data[i].teamname + '</span></div>' }
         else                        { teamname = '' }
@@ -18,7 +27,7 @@ function drawInfobox(infoboxContent, json, i){
     if(json.data[i].location)       { var location = json.data[i].location }
         else                        { location = '' }
     if(json.data[i].gallery)     	{ var gallery = json.data[i].gallery }
-        else                        { gallery = '../img/default-item.jpg' }
+        else                        { gallery = '../img/default-item.png' }
     if(json.data[i].buskingdate)    { var buskingdate = temp_buskingdate }
 		else                        { buskingdate = '' }
     if(json.data[i].runningtime)    { var runningtime = json.data[i].runningtime }

@@ -59,7 +59,7 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 			      				"}";            
 			      		
 			      			buskingArraylist.add(source);
-					}                                                                           
+					}
       return SUCCESS;
    }
    

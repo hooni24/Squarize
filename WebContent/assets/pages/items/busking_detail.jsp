@@ -43,10 +43,7 @@
 			});
       	});
       
-  	
-  	
-      
-    </script>
+	    </script>
     
      <style type="text/css">
      .img{
@@ -73,7 +70,14 @@
                 <article class="animate move_from_bottom_short">
                     <div class="gallery">
                         <div class="image">
-                           	<img src="<s:property value="SQ_busking.gallery"/>" alt="">
+<%--                            	<img src="<s:property value="SQ_busking.gallery"/>" alt=""> --%>
+                           	
+                          	<s:if test="SQ_busking.gallery != ''">
+							<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery"/>"></a>
+                        	</s:if>
+							<s:if test="SQ_busking.gallery == ''">
+							<a href="javascript:imageChange()" class="picture"><img class="img" src="assets/img/default-item.png"></a>
+                        	</s:if>
                         </div>
                     </div>
                 </article>
@@ -97,15 +101,26 @@
 <!--                             <hr> -->
 <!--                             <a href="#person-detail" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="person-detail">Show Details</a> -->
 							<div>
-							<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery"/>"></a>
-							
-							<s:if test="SQ_busking.gallery2 != null">
-							<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery2"/>"></a>
-                        	</s:if>
-                        	
+								<s:if test="SQ_busking.gallery != ''">
+								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery"/>"></a>
+	                        	</s:if>
+								<s:if test="SQ_busking.gallery == ''">
+								<a href="javascript:imageChange()" class="picture"><img class="img" src="assets/img/default-item.png"></a>
+	                        	</s:if>
+	                        	
+								<s:if test="SQ_busking.gallery2 != ''">
+								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery2"/>"></a>
+	                        	</s:if>
+								<s:if test="SQ_busking.gallery3 != ''">
+								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery3"/>"></a>
+	                        	</s:if>
+								<s:if test="SQ_busking.gallery4 != ''">
+								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery4"/>"></a>
+	                        	</s:if>
+								<s:if test="SQ_busking.gallery5 != ''">
+								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery5"/>"></a>
+	                        	</s:if>
                         	</div>
-                        	
-                        	
                         </div>
                         <div class="collapse" id="person-detail">
                             <div class="details">
