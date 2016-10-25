@@ -88,7 +88,4 @@ public class SQ_member {
 	}
 
 	
-	
-	
-	
 }

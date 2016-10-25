@@ -105,6 +105,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 			session.put("loginId", sq_member.getSq_member_id());
 			session.put("isArtist", sq_member.getSq_member_isartist());
 			session.put("email_auth", sq_member.getSq_member_email_auth());
+			session.put("sq_member", sq_member);
 			loginId=(String) session.get("loginId");
 			isArtist=(String) session.get("isArtist");
 			email_auth=(String)session.get("email_auth");
@@ -129,6 +130,42 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		isArtist=(String)session.get("isArtist");
 		email_auth=(String)session.get("email_prof");
 		return SUCCESS;
+	}
+	
+	public String updateForm() throws Exception{
+		mdao=new SQ_memberDAO();
+		loginId=(String)session.get("loginId");
+		isArtist=(String)session.get("isArtist");
+		System.out.println("Action updateForm"+loginId);
+		sq_member=mdao.loginSQmember(loginId);
+		if(isArtist.equals("Y")){
+			sq_artist=mdao.getArtistInfo(loginId);
+			System.out.println("sq_artist="+sq_artist);
+		}
+		return SUCCESS;
+	}
+	
+	public String updateSQmember() throws Exception{
+		mdao=new SQ_memberDAO();
+
+		isArtist=(String)session.get("isArtist");
+		mdao.updateSQmember(sq_member,sq_artist);
+		System.out.println("hi"+fromWhere);
+		if (upload != null) { 
+			try {
+				FileService fs = new FileService();
+				String basePath = getText("artist.uploadpath");
+				String savedfile;
+				savedfile = fs.saveFile(upload, basePath, uploadFileName);
+				sq_artist.setSq_artist_photo(savedfile);
+				System.out.println(savedfile);
+				System.out.println("파일 넘길때 아티스트객체" + sq_artist);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return fromWhere();
 	}
 	
 	/**

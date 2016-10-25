@@ -40,7 +40,16 @@
     		<result type="json"></result>
     	</action>
     	
-    	
+    	<action name="updateForm"  class="squarize.action.SQ_memberAction" method="updateForm">
+			<result type="json"></result>
+		</action>
+		
+		<action name="updateSQmember" class="squarize.action.SQ_memberAction" method="updateSQmember">
+			<result type="redirect" name="seeking">toSeekingMain.action</result>
+    		<result type="redirect" name="rent">toRentMain.action</result>
+    		<result type="redirect" name="busking">toBuskingMain.action</result>
+		</action>
+		
     	
 
 		<action name="registerSQmember" class="squarize.action.SQ_memberAction" method="registerSQmember">
