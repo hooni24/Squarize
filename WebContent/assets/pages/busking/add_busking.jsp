@@ -166,7 +166,16 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <input type="date" class="form-control" id="buskingdate" name="SQ_busking.buskingdate">
-                        </div>   
+                            <select name="b_hour">
+                            <s:iterator var="i" begin="0" end="23">
+                            	<option value='<s:property value="i"/>'><s:property value="i"/> 시</option>
+                            </s:iterator>
+                            </select>
+                            <select name="b_min">
+                            	<option value="0">정각</option>
+                            	<option value="30">30분</option>
+                            </select>
+                        </div>
                     </div>
                     <!--end .col-md-4-->
                 </div>

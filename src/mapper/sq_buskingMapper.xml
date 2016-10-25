@@ -17,7 +17,7 @@
 	
 	<insert id="addBusking" parameterType="SQ_busking">
 		INSERT INTO sq_buskinglist
-		VALUES (sq_busking_id_sq.nextval, #{id}, #{title}, #{location}, #{latitude}, #{longitude}, '사용안함', #{genre}, 0, #{teamname}, #{gallery}, null, null, null, null, #{buskingdate}, #{runningtime}, #{description})
+		VALUES (sq_busking_id_sq.nextval, #{id}, #{title}, #{location}, #{latitude}, #{longitude}, '사용안함', #{genre}, 0, #{teamname}, #{gallery}, null, null, null, null, to_date(#{buskingdate}, 'YYYY/MM/DD HH24:Mi'), #{runningtime}, #{description})
 	</insert>
 	
 	
