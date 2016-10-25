@@ -45,10 +45,8 @@ public class SQ_memberDAO {
 	public void updateSQmember(SQ_member sq_member, SQ_artist sq_artist){
 		try {
 			ss = factory.openSession();
-			if(sq_artist.getSq_member_id()!=null){
-				ss.update("sq_memberMapper.updateSQartist", sq_artist);
-			}
-			ss.update("sq_memberMapper.updateSQartist", sq_member);
+			ss.update("sq_memberMapper.updateSQartist", sq_artist);
+			ss.update("sq_memberMapper.updateSQmember", sq_member);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

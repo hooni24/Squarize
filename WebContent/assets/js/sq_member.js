@@ -224,6 +224,8 @@ $(function(){
     		
     		//회원정보수정
     		$('#update').click(function(){
+    			$('#tab_updateSQmember').trigger('click');
+    			
     			var id=$('#update-id');
     			var name=$('#update-name');
     			var email=$('#update-email');
@@ -233,7 +235,6 @@ $(function(){
     			var phone = $("input#update-artist-phone");
     			var intro = $("textarea#update-artist-intro");
     			var file = $("input#update-artist-photo");
-    			$('#tab_updateSQmember').trigger('click');
     			
     			$.ajax({
     				method:'get'
@@ -250,7 +251,6 @@ $(function(){
     					file.val(sq_artist.sq_artist_photo);
     				}
     			});
-				
     		});
     		
     		//회원정보 수정 확인키 
@@ -267,45 +267,38 @@ $(function(){
     			var fileLength = file.length;
     			var ext = file.substring(fileLength-3, fileLength);	//확장자
     			
-    			
     			if(email.val().length<4 || email.val().length>20){
     				alert("이메일은 도메인포함 정확히 입력해주세요");
     				email.focus();
     				return false;
-    			}
-    			if(pw.val().length<4 || pw.val().length>8){
+    			}else if(pw.val().length<4 || pw.val().length>8){
     				alert("비밀번호는 4~8자로 입력하여주세요");
     				pw.focus();
     				return false;
-    			}
-    			if(pw.val() != pwConfirm.val()){
+    			}else if(pw.val() != pwConfirm.val()){
     				alert("비밀번호를 확인하여주십시오");
     				pw.focus();
     				return false;
-    			}
-    			if(favorite.val()=="선호장르"){
+    			}else if(favorite.val()=="선호장르"){
     				alert("선호장르를 선택하여주십시오");
     				return false;
-    			}
-    			
-    				if(isNaN(phone)){
-    					alert("전화번호는 숫자만 입력하세요");
-    					return false;
-    				}else if(fileLength < 1){
-    					alert("사진을 반드시 업로드해주세요");
-    					return false;
-    				}else if(!(ext == "png" || ext == "PNG" || ext == "jpg" || ext == "JPG")){
-    					alert("사진은 png나 jpg 파일만 업로드 가능합니다");
-    					return false;s
-    				}else if(intro.length < 1){
-    					alert("자기소개를 반드시 입력해 주세요");
-    					return false;
-    				
+    			}else if(isNaN(phone)){
+					alert("전화번호는 숫자만 입력하세요");
+					return false;
+				}else if(fileLength < 1){
+					alert("사진을 반드시 업로드해주세요");
+					return false;
+				}else if(!(ext == "png" || ext == "PNG" || ext == "jpg" || ext == "JPG")){
+					alert("사진은 png나 jpg 파일만 업로드 가능합니다");
+					return false;s
+				}else if(intro.length < 1){
+					alert("자기소개를 반드시 입력해 주세요");
+					return false;
     			}
     			$("form#form-update")[0].submit();
-    			
-    			
     		});
+    		
+    		
     		
     		
     	});

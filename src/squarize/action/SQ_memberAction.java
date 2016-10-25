@@ -147,24 +147,23 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	
 	public String updateSQmember() throws Exception{
 		mdao=new SQ_memberDAO();
-
-		isArtist=(String)session.get("isArtist");
-//		mdao.updateSQmember(sq_member,sq_artist);
-		System.out.println("hi"+fromWhere);
-		if (upload != null) { 
+		if (upload != null) {
 			try {
+				SQ_artist artist = mdao.getArtistInfo((String) session.get("loginId"));
 				FileService fs = new FileService();
 				String basePath = getText("artist.uploadpath");
-				String savedfile;
-				savedfile = fs.saveFile(upload, basePath, uploadFileName);
+				String fullpath = basePath + "/" + artist.getSq_artist_photo();
+				fs.fileDelete(fullpath);
+				String savedfile = fs.saveFile(upload, basePath, uploadFileName);
 				sq_artist.setSq_artist_photo(savedfile);
-				System.out.println(savedfile);
-				System.out.println("파일 넘길때 아티스트객체" + sq_artist);
-				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("a " + sq_member);
+		System.out.println("b " + sq_artist);
+		sq_artist.setSq_member_id(sq_member.getSq_member_id());
+		mdao.updateSQmember(sq_member,sq_artist);
 		return fromWhere();
 	}
 	
@@ -265,9 +264,6 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 				String basePath = getText("port.uploadpath");
 				String fullpath;
 				String savedfile;
-				
-				System.out.println("수정 이전 : " + oldPortfolio);
-				
 				if(upload != null){		//서버 사진파일 삭제
 					fullpath = basePath +"/"+ oldPortfolio.getSq_port_file();
 					fs.fileDelete(fullpath);
@@ -322,9 +318,12 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String email_prof(){
-		
 		return SUCCESS;
 	}
+	
+	
+	
+	
 	
 	public SQ_member getSq_member() {
 		return sq_member;

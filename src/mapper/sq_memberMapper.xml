@@ -24,12 +24,12 @@
 		INSERT INTO sq_artist 
 		VALUES (#{sq_member_id},#{sq_artist_phone},#{sq_artist_photo},#{sq_artist_intro})
 	</insert>
-	<update id="updateSQmember" parameterType="SQ_artist">
+	<update id="updateSQmember" parameterType="SQ_member">
 		UPDATE sq_member SET  
 		sq_member_pw=#{sq_member_pw},sq_member_email=#{sq_member_email},sq_member_favorite=#{sq_member_favorite},
 		WHERE sq_member_id=#{sq_member_id}
 	</update>
-	<update id="updateSQartist" parameterType="SQ_member">
+	<update id="updateSQartist" parameterType="SQ_artist">
 		UPDATE sq_artist SET
 		sq_artist_phone=#{sq_artist_phone},sq_artist_photo=#{sq_artist_photo},sq_artist_intro=#{sq_artist_intro}
 		Where sq_member_id=#{sq_member_id}

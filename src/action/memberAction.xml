@@ -51,8 +51,6 @@
     		<result type="redirect" name="rent">toRentMain.action</result>
     		<result type="redirect" name="busking">toBuskingMain.action</result>
 		</action>
-		
-    	
 
 		<action name="registerSQmember" class="squarize.action.SQ_memberAction" method="registerSQmember">
 			<result type="json"></result>

@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
-    <link href="css/grayscale.css" rel="stylesheet">
+    <link href="css/grayscale.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
     
     

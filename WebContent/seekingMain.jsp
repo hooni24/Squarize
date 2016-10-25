@@ -119,16 +119,16 @@
                                 <div role="tabpanel" class="tab-pane" id="updateSQmember">
                                     <form role="form" method="post" id="form-update" action="updateSQmember.action?fromWhere=seeking" enctype="multipart/form-data">
                                         <div class="form-group animate move_from_bottom_short" id="idInput">
-                                            <input type="text" class="form-control" id="update-id" name="sq_member.sq_member_id" disabled="disabled">
+                                            <input type="text" class="form-control" id="update-id" name="sq_member.sq_member_id" readonly>
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="update-name" name="sq_member.sq_member_name" disabled="disabled">
+                                            <input type="text" class="form-control" id="update-name" name="sq_member.sq_member_name" readonly>
                                         </div>
                                         <!--end .form-group-->
                                         
                                         <div class="form-group">
-                                            <select id="update_favorite" size="3">
+                                            <select id="update_favorite" size="3" name="sq_member.sq_member_favorite">
                                             	<option>선호장르</option>
                                             	<option>락</option>
                                             	<option>발라드</option>
@@ -139,7 +139,7 @@
                                         <!--end .form-group-->
                                         
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="email" class="form-control" id="update-email" name="sq_memver.sq_member_email" >
+                                            <input type="email" class="form-control" id="update-email" name="sq_member.sq_member_email" >
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
