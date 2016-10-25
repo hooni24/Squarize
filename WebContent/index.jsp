@@ -85,7 +85,7 @@
             </div>
             
             <div role="tabpanel" id="tabpanel">
-            <div id="user-area" class="accordion-body collapse in">
+            <div id="user-area" class="accordion-body collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-pills" role="tablist" id="tab_menu">
                             <!-- 여기부터 3개는 새로 생킨 탭에 있는 탭 제목 -->
