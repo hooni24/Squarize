@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import squarize.util.FileService;
 import squarize.util.MybatisConfig;
 import squarize.vo.SQ_artist;
+import squarize.vo.SQ_count;
 import squarize.vo.SQ_member;
 import squarize.vo.SQ_portfolio;
 
@@ -167,6 +168,15 @@ public class SQ_memberDAO {
 		try {
 			ss = factory.openSession();
 			return ss.selectOne("sq_memberMapper.portfolioCheck", loginId);
+		} finally {
+			ss.close();
+		}
+	}
+
+	public SQ_count mainCount() {
+		try {
+			ss = factory.openSession();
+			return ss.selectOne("sq_memberMapper.mainCount");
 		} finally {
 			ss.close();
 		}

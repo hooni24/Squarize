@@ -10,6 +10,7 @@ import org.eclipse.jdt.internal.compiler.batch.Main;
 import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.vo.SQ_artist;
+import squarize.vo.SQ_count;
 import squarize.vo.SQ_favorite;
 import squarize.dao.SQ_memberDAO;
 import squarize.util.FileService;
@@ -24,6 +25,8 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private SQ_member sq_member;//멤버 객체
 	private SQ_portfolio sq_portfolio;
 	private SQ_artist sq_artist;
+	private SQ_favorite sq_favorite;
+	private SQ_count count;
 	private String sq_member_id;
 	private String sq_member_pw;
 	private String loginId;
@@ -33,7 +36,6 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String mediaExt;
 	private String condition;
 	
-	private SQ_favorite sq_favorite;
 	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
@@ -42,6 +44,15 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private File uploadMedia;					// 업로드할 파일(포트폴리오 음원,동영상). Form의 <file> 태그의 name. 
 	private String uploadMediaFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
 	private String uploadMediaContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
+	
+	
+	/**
+	 * 메인페이지에 표시할 각 게시물 카운트
+	 */
+	public String mainCount(){
+		count = new SQ_memberDAO().mainCount();
+		return SUCCESS;
+	}
 	
 	/**
 	 * 아이디 중복검사 
@@ -452,6 +463,14 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 
 	public void setCondition(String condition) {
 		this.condition = condition;
+	}
+
+	public SQ_count getCount() {
+		return count;
+	}
+
+	public void setCount(SQ_count count) {
+		this.count = count;
 	}
 	
 

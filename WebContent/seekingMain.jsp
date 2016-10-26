@@ -17,14 +17,20 @@
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
 
+	
+<style>
+  	.hidden{
+  		display : none;
+  	}
+	body{
+		background-color: white; /*내용 본문 색깔*/
+	}
+  	.black_header{
+  		background-color: black !important;	/*내용 헤더 색깔*/
+  	}
+  </style>
+
 <title>SQUARIZE - SEEKING</title>
-    <style>
-    	.hidden{
-    		display : none;
-    	}
-    	
-    	
-    </style>
 </head>
 
 <body id="page-top" class="has-map">
@@ -206,7 +212,7 @@
         <!--end .inner-->
     </div>
     <!--end User area-->
-    <header class="animate" id="header">
+    <header class="animate black_header" id="header">
         <div class="container">
             <div class="header-inner">
                 <nav class="secondary">

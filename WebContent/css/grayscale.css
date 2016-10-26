@@ -75,7 +75,7 @@ a:focus {
   outline: none;
 }
 .navbar-custom a {
-  color: white;
+  color: white;  /*index 메뉴바 글자색깔*/
 }
 .navbar-custom .nav li a {
   -webkit-transition: background 0.3s ease-in-out;
@@ -106,14 +106,14 @@ a:focus {
     padding: 20px 0;
     border-bottom: none;
     letter-spacing: 1px;
-    background: transparent;
+    background: black;	/*index 헤더 맨위쪽일때 색깔 기본은 transparent*/
     -webkit-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
     -moz-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
     transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
   }
   .navbar-custom.top-nav-collapse {
     padding: 0;
-    background: black;
+    background: black;	/*index 헤더 색깔*/
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
 }
@@ -124,7 +124,7 @@ a:focus {
   padding: 100px 0;
   text-align: center;
   color: white;
-  background: url('../img/adam-elmakias-14.jpg') no-repeat bottom center scroll;
+  background: url('../img/HEAT_VASBYROCKFESTIVAL_17.jpg') no-repeat bottom center scroll;
   background-color: black;
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -47,6 +47,29 @@
     	.hidden{
     		display: none;
     	}
+    	div.circle{
+	    	margin: 10% 20px;
+    		width: 200px;
+    		height: 200px;
+    		display: inline-block;
+    		border-radius: 50%;
+    		border: 5px solid red;
+    		padding: 10px;
+    		text-align: center;
+    		font: 1.4em Montserrat;
+    		padding-top: 9%;
+    		cursor: pointer;
+    		transition-duration: 0.2s;
+    	}
+    	div.circle:hover{
+    		border-color: yellow;
+    		font: 1.8em Montserrat;
+    		padding-top: 8%;
+    	}
+    	body{
+    		background-color: white;		/*index 본문 색깔*/
+    		color: black;
+    	}
     </style>
     
     <script type="text/javascript">
@@ -60,6 +83,17 @@
 	    	});
 	    	$("a#main_makeArtist").on("click", function(){
 	    		$("a#tab_makeArtist").trigger("click");
+	    	});
+	    	
+	    	//링크 이동
+	    	$("div.busking_count").on("click", function(){
+	    		location.href = "toBuskingMain.action";
+	    	});
+	    	$("div.seeking_count").on("click", function(){
+	    		location.href = "toSeekingMain.action";
+	    	});
+	    	$("div.rent_count").on("click", function(){
+	    		location.href = "toRentMain.action";
 	    	});
 	    });
     </script>
@@ -80,7 +114,7 @@
                     Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                   	로고들어갈자리
+                   	작은 로고
                 </a>
             </div>
             
@@ -221,8 +255,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">로고</h1>
-                        <p class="intro-text">프로젝트 한줄소개</p>
+                        <h1 class="brand-heading">#불통 #정크랫 #취화선 #절레절레</h1>
+                        <p class="intro-text">밴드와 버스커를 위한 최고의 사이트</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -237,7 +271,28 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>About SQUARIZE</h2>
-                <p>구구절절 소개</p>
+                <p>
+                	우리는 감성적인 메인 페이지를 가지고 있습니다.<br>
+                	반갑습니다. 즐기세요.<br>
+                	우리는 당신을 위한 많은 것을 준비했습니다.<br>
+                	여러곳을 탐험해 보세요!<br>
+                	즐거운 모험이 당신을 기다립니다!!<br>
+                	자, 시작해볼까요?
+                </p>
+                <div class="count">
+	                <div class="circle busking_count">
+	                	${count.busking }<br>
+	                	FOR Busking
+	                </div>
+	                <div class="circle seeking_count">
+	                	${count.seeking }<br>
+	                	FOR Recruit
+	                </div>
+	                <div class="circle rent_count">
+	                	${count.rent }<br>
+	                	FOR Rent
+	                </div>
+	            </div>
             </div>
         </div>
     </section>
@@ -245,7 +300,7 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-        	<p>푸터</p>
+        	<p></p>
         </div>
     </footer>
 

@@ -357,13 +357,13 @@ commit;
 /* EXAMPLES */
 
 --SQ_MEMBER 생성
-INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', 'rock', 'N', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', 'rock', 'N', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('aa', '123', '김소똥', 'a@a.a', 'rock', 'Y', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('ss', '123', '김쥐똥', 'a@a.a', 'rock', 'Y', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('dd', '123', '김양똥', 'a@a.a', 'rock', 'Y', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'N', null, 'N');
+INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', 'rock', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', 'rock', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('aa', '123', '김소똥', 'a@a.a', 'rock', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('ss', '123', '김쥐똥', 'a@a.a', 'rock', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('dd', '123', '김양똥', 'a@a.a', 'rock', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'N', null, 'Y');
 
 --SQ_ARTIST 생성
 INSERT INTO SQ_ARTIST VALUES ('aa', 01011111111, null,'adfadsfd');
