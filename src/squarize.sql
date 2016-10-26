@@ -69,7 +69,7 @@ CREATE TABLE SQ_ARTIST
 	-- 회원 아이디 : 일반회원 ID
 	SQ_MEMBER_ID varchar2(15) NOT NULL,
 	-- 회원 전화번호
-	SQ_ARTIST_PHONE number(11) NOT NULL UNIQUE,
+	SQ_ARTIST_PHONE varchar2(20) NOT NULL UNIQUE,
 	-- 아티스트 프로필 사진 경로
 	SQ_ARTIST_PHOTO varchar2(300),
 	-- 회원 소개
@@ -367,12 +367,12 @@ INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y', null,
 INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'N', null, 'N');
 
 --SQ_ARTIST 생성
-INSERT INTO SQ_ARTIST VALUES ('aa', 01011111111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('ss', 01012111111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('dd', 01012411111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('123', 01017111111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('1234', 01018111111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('qq', 01012591111, null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('aa', '010-1111-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('ss', '010-1211-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('dd', '010-1241-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('123', '010-1711-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('1234', '010-1811-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('qq', '010-1259-1111', null,'adfadsfd');
 
 
 

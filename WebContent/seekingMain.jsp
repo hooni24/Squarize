@@ -15,15 +15,12 @@
 <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
 <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-<link rel="stylesheet" href="assets/css/layout.css" type="text/css">
 
 <title>SQUARIZE - SEEKING</title>
     <style>
     	.hidden{
     		display : none;
     	}
-    	
-    	
     </style>
 </head>
 
@@ -141,6 +138,7 @@
                                 
                             </div>
                         </div>
+                        
                     </div>
                     <!--end .col-md-3-->
                 </div>
@@ -228,7 +226,7 @@
 										data-transition-parent=".dropdown-menu">
 										<!-- 원래 id="type" multiple title="전체" : 여러개 선택 가능 -->
 										<option>전체</option>
-										<option value="sq_recruit.sq_recruit_part">세션</option>
+										<option value="sq_recruit.sq_recruit_part">파트</option>
 										<option value="sq_recruit.sq_recruit_genre">장르</option>
 										<option value="sq_member.sq_member_name">이름</option>
 									</select>
@@ -236,22 +234,31 @@
 								<!-- /.form-group -->
 							</div>
 							<!--/.col-md-6-->
-
-			<!-- 필요없는 요소 주석처리 -->
 							
                         <div class="col-md-3 col-sm-3">
-<!--                             <div class="row"> -->
-<!--                                 <div class="col-md-6 col-sm-6"> -->
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label for="bedrooms">검색 키워드</label>
                                         <div class="input-group counter">
-                                            <input type="text" class="form-control" id="recruit_search_keyword" name="recruit_search_keyword" placeholder="키워드 입력">
+                                            <input type="text" class="form-control" id="recruit_search_keyword" name="recruit_search_keyword" placeholder="키워드 입력"/>
                                         </div><!-- /input-group -->
                                     </div>
                                     <!-- /.form-group -->
-<!--                                 </div> -->
-<!--                                 /.col-md-3 -->
-<!--                             </div> -->
+                                </div>
+<!--                       /.col-md-3 -->
+								<div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="bedrooms"></label>
+                                        <div class="input-group counter">
+                                            	<a class="btn btn-default btn-sm show-filter search_icon" >
+                                            		<input id="recruit_search_byKeyword_but" type="image" src="assets/img/search.png" />                                            	
+                                            	</a>
+                                        </div><!-- /input-group -->
+                                    </div>
+                                    <!-- /.form-group -->
+                                </div>
+                            </div>
                         </div>
 
 							<div class="col-md-3 col-sm-3">
@@ -311,40 +318,43 @@
 				</div>
 			</div>
 
-			<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
-<!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
+	<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
 			<div class="masonry grid full-width animate">
+				<!-- 받아온 배열 돌리면서 찍어주기. -->
 				<s:iterator value="sq_recruit_list" var="each_recruit">
 					<div class="item move_from_bottom idle">
 						<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-	                <div class="inner">
-	                    <div class="image">
-	                        <div class="price average-color"><span>${sq_member_id}</span></div>
-	                        <s:if test="sq_recruit_photo == null">
-	                        	<img src="assets/img/main/seeking.jpg">
-	                        </s:if>
-	                        <s:else>
-	                        	<img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 -->
-	                    	</s:else>
-	                    </div>
-	                    <div class="item-content">
-	                        <header class="average-color">
-	                            <h2>${sq_recruit_title}</h2><!-- 제목 -->
-	                            <h3>${sq_recruit_part}</h3><!-- 파트 -->
-	                        </header>
-	                        <footer>
-	                            <dl>
-	                                <dt>연주 장르</dt>
-	                                <dd>${sq_recruit_genre}</dd>
-	                                <dt>연주 장소</dt>
-	                                <dd>${sq_recruit_location}</dd>
-	                                <dt>연주 일시</dt>
-	                                <dd>${sq_recruit_date}</dd>
-	                                <dt>구인 정보</dt>
-	                                <dd>${sq_recruit_info}</dd>
-	                            </dl>
-	                        </footer>
-	                    </div>
+	               		<div class="inner">
+		                    <div class="image">
+		                        <div class="price average-color"><span>${sq_member_id}</span></div>
+		                        <s:if test="#session.loginId != null && sq_recruit_photo == ''">
+		                        	<img src="assets/img/main/seeking.jpg">
+		                        </s:if>
+		                        <s:elseif test="#session.loginId != null && sq_recruit_photo != null">
+		                        	<img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 -->
+		                    	</s:elseif>
+		                    	<s:else>
+		                    		<h3>사진이 없어요...</h3>
+		                    	</s:else>
+		                    </div>
+		                    <div class="item-content">
+		                        <header class="average-color">
+		                            <h2>${sq_recruit_title}</h2><!-- 제목 -->
+		                            <h3>${sq_recruit_part}</h3><!-- 파트 -->
+		                        </header>
+		                        <footer>
+		                            <dl>
+		                                <dt>연주 장르</dt>
+		                                <dd>${sq_recruit_genre}</dd>
+		                                <dt>연주 장소</dt>
+		                                <dd>${sq_recruit_location}</dd>
+		                                <dt>연주 일시</dt>
+		                                <dd>${sq_recruit_date}</dd>
+		                                <dt>구인 정보</dt>
+		                                <dd>${sq_recruit_info}</dd>
+		                            </dl>
+		                        </footer>
+		                    </div>
 	                </div>
 	            </a>
 	        </div>
@@ -357,9 +367,6 @@
 	<!-- 나열부분 끝 -->
 		</div>
 		<!--end Page Content-->
-	</div>
-	<div class="loadingpage loading">
-		<div class="loading-img"></div>	
 	</div>
 
 		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
@@ -385,77 +392,15 @@
 
 		<script>
 		$("ul#main_menu").on("click", "a#main_logout", function(){
-			location.href = "logoutSQmember.action";
+			location.href = "logoutSQmember.action?fromWhere=seeking";
 		});
 		
 		</script>
 
 		
-		<%-- 
-		<script type="text/javascript">
-			/* DB정보 입력 */
-			$(function(){
-				
-				$.ajaxSettings.traditional = true;
-				$.ajax({
-					url : 'getResult_list'
-					, dataType : 'json'
-					, method : 'POST'
-					, success : function(response){
-						var sq_recruit_list = response.sq_recruit_list;
-						$.each(sq_recruit_list, function(index,recruit_one){
-							alert(recruit_one);
-							$('.price average-color > span').innerHTML = recruit_one.sq_member_id;
-							$('.price average-color ~ img').css('src',recruit_one.sq_recruit_photo);
-						});
-					
-					}
-					, error : function(response){
-						console.log(response);
-					}
-				});
-			});
-		</script>
-			 --%>
 			
-			
-			<%-- 
-			<div class="masonry grid full-width animate">
-				<div class="item move_from_bottom idle">
-				<a href="seeking/getRecruit_list" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                <div class="inner">
-                    <div class="image">
-                        <div class="price average-color"><span></span></div>
-                        <img src="" alt="">
-                    </div>
-                    <div class="item-content">
-                        <header class="average-color">
-                            <h2></h2>
-                            <h3></h3>
-                        </header>
-                        <footer>
-                            <dl>
-                                <dt></dt>
-                                <dd></dd>
-                                <dt></dt>
-                                <dd></dd>
-                                <dt></dt>
-                                <dd></dd>
-                                <dt></dt>
-                                <dd></dd>
-                            </dl>
-                        </footer>
-                    </div>
-                </div>
-            </a>
-        </div>
-         --%> 
-		
-		
 		<!--[if lte IE 9]>
 <script type="text/javascript" src="assets/js/ie-scripts.js"></script>
 <![endif]-->
-
-	
 </body>
 </html>
