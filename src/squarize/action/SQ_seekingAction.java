@@ -11,7 +11,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.dao.SQ_seekingDAO;
 import squarize.util.FileService;
-import squarize.vo.SQ_human;
 import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
 import squarize.vo.SQ_recruit_apply;
@@ -36,6 +35,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private SQ_recruit sq_recruit;
 	private SQ_recruit_apply sq_recruit_apply;
 	private SQ_portfolio sq_portfolio;
+	private int result;
 
 	private String loginId;
 	private SQ_seekingDAO sdao=new SQ_seekingDAO(); 
@@ -105,12 +105,8 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	public String insertRecruitApplication() throws Exception {
 		System.out.println("지원하기 insert");
 		SQ_seekingDAO dao = new SQ_seekingDAO();
-		int result = dao.insertApply(sq_recruit_apply);
-		if(result != 0){
-			return SUCCESS;
-		} else {
-			return ERROR;
-		}
+		result = dao.insertApply(sq_recruit_apply);
+		return SUCCESS;
 	}
 	
 	//구인정보 수정
@@ -137,13 +133,22 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		}
 	}
 	
-	// 해당 구인정보에 지원여부 확인
+	// 해당 구인정보에 지원여부 확인->포트폴리오 유무 확인 -> 지원등록/실패
 	public String checkApplied() throws Exception {
+		result = 0;
 		System.out.println("지원 여부 체크");
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		String apply_id = (String)session.get("loginId");
 		sq_recruit_apply.setSq_member_id(apply_id);
 		sq_recruit_apply = dao.checkApplied(sq_recruit_apply);
+		System.out.println("지원했냐? "+sq_recruit_apply);
+		if(sq_recruit_apply == null){
+			sq_portfolio = dao.checkPortfolio(apply_id);
+			if(sq_portfolio != null){
+				sq_recruit_apply.setSq_member_id(apply_id);
+				result = dao.insertApply(sq_recruit_apply);
+			}
+		}
 		return SUCCESS;
 	}
 	
@@ -250,6 +255,14 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 
 	public void setSq_portfolio(SQ_portfolio sq_portfolio) {
 		this.sq_portfolio = sq_portfolio;
+	}
+
+	public int getResult() {
+		return result;
+	}
+
+	public void setResult(int result) {
+		this.result = result;
 	}
 	
 }

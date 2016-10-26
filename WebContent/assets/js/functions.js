@@ -384,9 +384,9 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
         loadScript( path + "js/richmarker-compiled.js",renderMap);
     }
     else {
-        markerIcon = "assets/img/marker.png";
+        markerIcon = "assets/img/markers/marker.png";
         setTimeout(function() {
-            renderMap();
+        	renderMap();
         }, 1000);
 
     }
@@ -403,23 +403,21 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             zoomControl: false,
             draggable: true
         };
-        var mapElement = document.getElementById('map-simple');   //있음.
+        var mapElement = document.getElementById('map-simple');
         var map = new google.maps.Map(mapElement, mapOptions);
         google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
             $('#map-simple').addClass('idle');
-            /*google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+            google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
                 $('#map-simple').addClass('idle');
-                alert('이건또뭐???');
-            });*/
-        }); //addListenerOnce끝.
-
+            });
+        });
+       
         // Google map marker content
-        var markerContent = document.createElement('DIV');   // 구조문서에 div만듦.
+        var markerContent = document.createElement('DIV');   // 구조문서에 div 만듦.
         markerContent.innerHTML =   //새로 만든 div안에 class="map-marker인 아이를 만들어서 아이콘을 만들어 붙임.
             '<div class="map-marker">' +
                 '<div class="icon"><img src="' + markerIcon + '"></div>' +
-                '</div>';
-        
+            '</div>';
         // Create marker on the map
         
         var marker = new RichMarker({
@@ -430,10 +428,10 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             flat: true,
             icon: 'assets/img/marker.png'
         });
-        marker.content.className = 'marker-loaded';   //새로 만든 마커에다가 marker-loaded 클래스 추가
-//        });
+        alert('dho');
+        marker.content.className = 'marker-loaded';   //새로 만든 마커 content인 markekerContent DIV에 marker-loaded 클래스 추가
+        alert('dho');
     }
-
 }
 
 // Homepage Google Map -------------------------------------------------------------------------------------------------
@@ -495,9 +493,9 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
                 content: markerContent,
                 flat: true
             });
-
+            
             newMarkers.push(marker);
-
+            
             // Create infobox for marker
 
             var infoboxContent = document.createElement("div");

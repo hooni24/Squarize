@@ -102,9 +102,10 @@ public class SQ_seekingDAO {
 	}
 	
 	// 포트폴리오 작성여부 select
-	public SQ_portfolio checkPortfolio(int port_id){
+	public SQ_portfolio checkPortfolio(String member_id){
 		SQ_portfolio port = null;
-		
+		ss = factory.openSession();
+		port = ss.selectOne("sq_seekingMapper.selectOne_port", member_id);
 		return port;
 	}
 	

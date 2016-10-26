@@ -73,5 +73,9 @@
 		SELECT * FROM SQ_RECRUIT_APPLY
 			WHERE SQ_MEMBER_ID = #{sq_member_id} AND SQ_RECRUIT_ID = #{sq_recruit_id}
 	</select>
+	
+	<select id="selectOne_port" parameterType="string" resultType="SQ_portfolio">
+		SELECT * FROM SQ_PORTFOLIO WHERE SQ_MEMBER_ID = #{sq_member_id}
+	</select>
 </mapper>
 	
