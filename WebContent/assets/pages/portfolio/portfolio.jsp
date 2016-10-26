@@ -109,7 +109,7 @@
     			
     			var updateFiles = '<h1>대표사진 수정</h1>'+
                 '<input type="file" id="upload" name="upload"><br><br>'+
-                '<h1>첨부파일 수정(음원,동영상 등 20MB이하)</h1>'+
+                '<h1>첨부파일 수정 (음원,동영상 등 20MB이하)</h1>'+
                 '<input type="file" id="upload" name="uploadMedia" ><br><br>';
     			
     			$("article#test").before(updateFiles);
@@ -117,7 +117,7 @@
     		
     		//포트폴리오 수정 submit (파일 ㅇㅇ)
     		$("a#realUpdate").on("click", function(){
-    			
+    			$("form#update_form")[0].submit();
     		});
     		
     		//포트폴리오 수정 ajax(파일 노노)
@@ -162,6 +162,7 @@
 	</div>
 </s:if>
 <s:else>
+<form id='update_form' action='updatePortfolioSubmit.action?fromWhere=rent' method='post' enctype='multipart/form-data'>
 	<div id="about" class="content-container">
 	    <div class="row">
 	        <div class="col-md-12">
@@ -197,13 +198,13 @@
 	                <article class="animate move_from_bottom_short">
 	                    <div class="review block">
 	                    	<h1>약력</h1>
-	                    	<textarea id="career" class="form-control" rows="8" readonly="readonly">${sq_portfolio.sq_port_career }</textarea>
+	                    	<textarea id="career" class="form-control" rows="8" name="sq_portfolio.sq_port_career" readonly="readonly">${sq_portfolio.sq_port_career }</textarea>
 	                    </div>
 	                </article>
 	                <article class="animate move_from_bottom_short">
 	                    <div class="review block">
 	                    	<h1>자기소개</h1>
-	                    	<textarea id="pr" class="form-control" rows="8" readonly="readonly">${sq_portfolio.sq_port_pr }</textarea>
+	                    	<textarea id="pr" class="form-control" rows="8" name="sq_portfolio.sq_port_pr" readonly="readonly">${sq_portfolio.sq_port_pr }</textarea>
 	                    </div>
 	                </article>
 	                	<s:if test='mediaExt=="mp3" || mediaExt=="MP3" || mediaExt=="ogg" || mediaExt=="OGG" || mediaExt=="wav" || mediaExt=="WAV"'>
@@ -242,8 +243,8 @@
 	    <!--end .row-->
 	</div>
 	<!--end #item-detail-->
+</form>
 </s:else>
-
 <script>
     var element = document.querySelector('body');
 

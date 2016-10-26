@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sq_memberMapper">
+
+	<select id="mainCount" resultType="SQ_count">
+		SELECT (SELECT count(*) FROM sq_buskinglist) busking
+				, (SELECT count(*) FROM sq_recruit) seeking
+				, (SELECT count(*) FROM sq_rent) rent 
+		FROM dual
+	</select>
 	
 	<select id="loginSQmember" parameterType="String" resultType="SQ_member">
 		select * from sq_member where sq_member_id=#{sq_member_id}
@@ -24,7 +31,16 @@
 		INSERT INTO sq_artist 
 		VALUES (#{sq_member_id},#{sq_artist_phone},#{sq_artist_photo},#{sq_artist_intro})
 	</insert>
-	
+	<update id="updateSQmember" parameterType="SQ_member">
+		UPDATE sq_member SET  
+		sq_member_pw=#{sq_member_pw},sq_member_email=#{sq_member_email},sq_member_favorite=#{sq_member_favorite},
+		WHERE sq_member_id=#{sq_member_id}
+	</update>
+	<update id="updateSQartist" parameterType="SQ_artist">
+		UPDATE sq_artist SET
+		sq_artist_phone=#{sq_artist_phone},sq_artist_photo=#{sq_artist_photo},sq_artist_intro=#{sq_artist_intro}
+		Where sq_member_id=#{sq_member_id}
+	</update>
 	<update id="emailAuth" parameterType="String">
 		UPDATE sq_member SET sq_member_email_auth='Y' where sq_member_id=#{sq_member_id}
 	</update>
@@ -49,6 +65,12 @@
 	<update id="updatePortfolio" parameterType="SQ_portfolio">
 		UPDATE sq_portfolio
 		SET sq_port_inst = #{sq_port_inst}, sq_port_career = #{sq_port_career}, sq_port_pr = #{sq_port_pr}
+			<if test="sq_port_file != ''">
+				, sq_port_file = #{sq_port_file}
+			</if>
+			<if test="sq_port_media != ''">
+				, sq_port_media = #{sq_port_media}
+			</if>
 		WHERE sq_member_id = #{sq_member_id}
 	</update>
 	

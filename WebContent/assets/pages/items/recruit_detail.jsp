@@ -8,10 +8,11 @@
 	    <meta charset="UTF-8"/>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	   <!--  <link href="../../fonts/font-awesome.css" rel="stylesheet" type="text/css">
+	    <link href="../../fonts/font-awesome.css" rel="stylesheet" type="text/css">
 	    <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>
 	    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	    <link href="../css/style.css" rel="stylesheet" type="text/css"> -->
+	    <link href="../css/style.css" rel="stylesheet" type="text/css">
+	    <link href="../../css/style.css" rel="stylesheet" type="text/css">
 	
 	    <style>
 	        #map-simple { min-height: 240px; }
@@ -67,7 +68,7 @@
 			    var scrollwheel = true;
 			    var element = document.querySelector('body');	//body
 				
-			    if( hasClass(element, 'external') ){	//hasClass():아래에 선언돼 있음. body class="external" 임: false
+			    if( hasClass(element, 'external') ){	//hasClass():아래에 선언돼 있음. false
 			        var head = document.getElementsByTagName('head')[0];	// 가장 처음 나오는 head태그를 갖고 옴.
 			        var script = document.createElement('script');	//script 요소를 만듦.
 			        script.type = 'text/javascript';	//script 의 속성을 정해줌.
@@ -80,11 +81,7 @@
 			   //	    averageColor( $('.content-container') );
 			    }
 			
-			    function hasClass(element, cls) {	// ' 'external' '.indexOf(' 'external' ') == -1
-			    	alert(element);
-			    	alert(("-"+' ' + element.className + ' '+'-'));
-			    alert((' ' + cls + ' '));
-			    alert((' ' + cls + ' '.indexOf(' ' + cls + ' ')));
+			    function hasClass(element, cls) {
 			    	return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
 			    }
 			});

@@ -19,6 +19,8 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
    private Map<String, Object> session;
    private SQ_busking SQ_busking;
    private List<SQ_busking> buskingList;
+   private String b_hour;
+   private String b_min;
    
    private JSONObject jsonData;
    private String source;
@@ -81,6 +83,12 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 			}
 		}
 	   SQ_busking.setId((String) session.get("loginId"));
+	   
+	   String date = SQ_busking.getBuskingdate();
+	   String fullDate = date + " " + b_hour + ":" + b_min;
+	   SQ_busking.setBuskingdate(fullDate);
+	   
+	   System.out.println(fullDate);
 	   dao.addBusking(SQ_busking);
 	   return SUCCESS;
    }
@@ -137,5 +145,45 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 	
 	public void setSq_busking_id(int sq_busking_id) {
 		this.sq_busking_id = sq_busking_id;
+	}
+
+	public String getB_hour() {
+		return b_hour;
+	}
+
+	public void setB_hour(String b_hour) {
+		this.b_hour = b_hour;
+	}
+
+	public String getB_min() {
+		return b_min;
+	}
+
+	public void setB_min(String b_min) {
+		this.b_min = b_min;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
 	}
 }

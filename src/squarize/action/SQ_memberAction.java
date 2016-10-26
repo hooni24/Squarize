@@ -10,6 +10,7 @@ import org.eclipse.jdt.internal.compiler.batch.Main;
 import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.vo.SQ_artist;
+import squarize.vo.SQ_count;
 import squarize.vo.SQ_favorite;
 import squarize.dao.SQ_memberDAO;
 import squarize.util.FileService;
@@ -24,6 +25,8 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private SQ_member sq_member;//멤버 객체
 	private SQ_portfolio sq_portfolio;
 	private SQ_artist sq_artist;
+	private SQ_favorite sq_favorite;
+	private SQ_count count;
 	private String sq_member_id;
 	private String sq_member_pw;
 	private String loginId;
@@ -31,8 +34,8 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String fromWhere;
 	private String email_auth;
 	private String mediaExt;
+	private String condition;
 	
-	private SQ_favorite sq_favorite;
 	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
@@ -41,6 +44,15 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private File uploadMedia;					// 업로드할 파일(포트폴리오 음원,동영상). Form의 <file> 태그의 name. 
 	private String uploadMediaFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
 	private String uploadMediaContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
+	
+	
+	/**
+	 * 메인페이지에 표시할 각 게시물 카운트
+	 */
+	public String mainCount(){
+		count = new SQ_memberDAO().mainCount();
+		return SUCCESS;
+	}
 	
 	/**
 	 * 아이디 중복검사 
@@ -100,21 +112,21 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	public String loginSQmember() throws Exception{
 		mdao=new SQ_memberDAO();
 		sq_member=mdao.loginSQmember(sq_member_id);
-		System.out.println(sq_member);
-		if(sq_member.getSq_member_pw().equals(sq_member_pw)&&sq_member.getSq_member_email_auth().equals("Y")){
-			session.put("loginId", sq_member.getSq_member_id());
-			session.put("isArtist", sq_member.getSq_member_isartist());
-			session.put("email_auth", sq_member.getSq_member_email_auth());
-			loginId=(String) session.get("loginId");
-			isArtist=(String) session.get("isArtist");
-			email_auth=(String)session.get("email_auth");
-			System.out.println(email_auth);
-			
-		}else{
-			sq_member=null;
-			loginId="";
-			isArtist="";
-			email_auth="N";
+		if(sq_member != null){
+			if(sq_member.getSq_member_pw().equals(sq_member_pw)){
+				if(sq_member.getSq_member_email_auth().equals("Y")){
+					session.put("loginId", sq_member.getSq_member_id());
+					session.put("isArtist", sq_member.getSq_member_isartist());
+					session.put("email_auth", sq_member.getSq_member_email_auth());
+					condition = "login";
+				}else {
+				condition = "email";	
+				}
+			}else{
+				condition = "password";
+			}
+		}else {
+			condition = "id";
 		}
 		return SUCCESS;
 	}
@@ -131,12 +143,49 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	public String updateForm() throws Exception{
+		mdao=new SQ_memberDAO();
+		loginId=(String)session.get("loginId");
+		isArtist=(String)session.get("isArtist");
+		System.out.println("Action updateForm"+loginId);
+		sq_member=mdao.loginSQmember(loginId);
+		if(isArtist.equals("Y")){
+			sq_artist=mdao.getArtistInfo(loginId);
+			System.out.println("sq_artist="+sq_artist);
+		}
+		return SUCCESS;
+	}
+	
+	public String updateSQmember() throws Exception{
+		mdao=new SQ_memberDAO();
+		if (upload != null) {
+			try {
+				SQ_artist artist = mdao.getArtistInfo((String) session.get("loginId"));
+				FileService fs = new FileService();
+				String basePath = getText("artist.uploadpath");
+				String fullpath = basePath + "/" + artist.getSq_artist_photo();
+				fs.fileDelete(fullpath);
+				String savedfile = fs.saveFile(upload, basePath, uploadFileName);
+				sq_artist.setSq_artist_photo(savedfile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("a " + sq_member);
+		System.out.println("b " + sq_artist);
+		sq_artist.setSq_member_id(sq_member.getSq_member_id());
+		mdao.updateSQmember(sq_member,sq_artist);
+		return fromWhere();
+	}
+	
 	/**
 	 * logoutSQmember():로그아웃 메소드
 	 * 세션 정보를 비운다.
 	 * */
 	public String logoutSQmember() throws Exception{
 		session.clear();
+		if(fromWhere != null && fromWhere.equals("busking"))
+			return "busking";
 		return SUCCESS;
 	}
 	
@@ -218,9 +267,38 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * 포트폴리오 수정
 	 */
 	public String updatePortfolio(){
+		SQ_memberDAO dao = new SQ_memberDAO();
+		try {
+			if(upload != null || uploadMedia != null){	//사진이나 동영상 새로 올린게 있으면
+				SQ_portfolio oldPortfolio = dao.checkPortfolio((String) session.get("loginId"));
+				FileService fs = new FileService();
+				String basePath = getText("port.uploadpath");
+				String fullpath;
+				String savedfile;
+				if(upload != null){		//서버 사진파일 삭제
+					fullpath = basePath +"/"+ oldPortfolio.getSq_port_file();
+					fs.fileDelete(fullpath);
+					//새로운 사진파일 서버 저장
+					savedfile = fs.saveFile(upload, basePath, uploadFileName);
+					sq_portfolio.setSq_port_file(savedfile);
+				}
+				if(uploadMedia != null){	//서버 음원, 영상 파일 삭제
+					fullpath = basePath +"/"+ oldPortfolio.getSq_port_media();
+					fs.fileDelete(fullpath);
+					//새로운 사진파일 서버 저장
+					savedfile = fs.saveFile(uploadMedia, basePath, uploadMediaFileName);
+					sq_portfolio.setSq_port_media(savedfile);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		sq_portfolio.setSq_member_id((String) session.get("loginId"));
-		sq_portfolio = new SQ_memberDAO().updatePortfolio(sq_portfolio);
-		return SUCCESS;
+		sq_portfolio = dao.updatePortfolio(sq_portfolio);
+		
+		System.out.println("수정 이후 : " + sq_portfolio);
+		return fromWhere();
 	}
 	
 	/**
@@ -243,15 +321,20 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 				return "seeking";
 			case "busking" :
 				return "busking";
+			case "index" :
+				return "index";
 			}
 		}
 		return ERROR;
 	}
 	
 	public String email_prof(){
-		
 		return SUCCESS;
 	}
+	
+	
+	
+	
 	
 	public SQ_member getSq_member() {
 		return sq_member;
@@ -372,6 +455,22 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 
 	public void setMediaExt(String mediaExt) {
 		this.mediaExt = mediaExt;
+	}
+
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+	public SQ_count getCount() {
+		return count;
+	}
+
+	public void setCount(SQ_count count) {
+		this.count = count;
 	}
 	
 

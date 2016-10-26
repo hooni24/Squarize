@@ -16,6 +16,7 @@
     
     	
     	<action name="makePortfolio" class="squarize.action.SQ_memberAction" method="makePortfolio">
+    		<result type="redirect" name="index">index.action</result>
     		<result type="redirect" name="seeking">toSeekingMain.action</result>
     		<result type="redirect" name="rent">toRentMain.action</result>
     		<result type="redirect" name="busking">toBuskingMain.action</result>
@@ -29,12 +30,27 @@
     		<result type="json"></result>
     	</action>
     	
+    	<action name="updatePortfolioSubmit" class="squarize.action.SQ_memberAction" method="updatePortfolio">
+    		<result type="redirect" name="index">index.action</result>
+    		<result type="redirect" name="seeking">toSeekingMain.action</result>
+    		<result type="redirect" name="rent">toRentMain.action</result>
+    		<result type="redirect" name="busking">toBuskingMain.action</result>
+    	</action>
+    	
+    	
     	<action name="checkPortfolio" class="squarize.action.SQ_memberAction" method="checkPortfolio">
     		<result type="json"></result>
     	</action>
     	
-    	
-    	
+    	<action name="updateForm"  class="squarize.action.SQ_memberAction" method="updateForm">
+			<result type="json"></result>
+		</action>
+		
+		<action name="updateSQmember" class="squarize.action.SQ_memberAction" method="updateSQmember">
+			<result type="redirect" name="seeking">toSeekingMain.action</result>
+    		<result type="redirect" name="rent">toRentMain.action</result>
+    		<result type="redirect" name="busking">toBuskingMain.action</result>
+		</action>
 
 		<action name="registerSQmember" class="squarize.action.SQ_memberAction" method="registerSQmember">
 			<result type="json"></result>
@@ -46,6 +62,7 @@
 		
 		<action name="logoutSQmember" class="squarize.action.SQ_memberAction" method="logoutSQmember">
     		<result type="redirect">index.action</result>
+    		<result type="redirect" name="busking">toBuskingMain.action</result>
 		</action>
 		
 		<action name="idCheck" class="squarize.action.SQ_memberAction" method="idCheck">
@@ -57,6 +74,7 @@
 		</action>
 		
 		<action name="addArtist" class="squarize.action.SQ_memberAction" method="addArtist">
+			<result type="redirect" name="index">index.action</result>
 			<result type="redirect" name="seeking">toSeekingMain.action</result>
     		<result type="redirect" name="rent">toRentMain.action</result>
     		<result type="redirect" name="busking">toBuskingMain.action</result>

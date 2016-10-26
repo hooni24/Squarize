@@ -357,14 +357,13 @@ commit;
 /* EXAMPLES */
 
 --SQ_MEMBER 생성
-INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', 'rock', 'N', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', 'rock', 'N', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('aa', '123', '김소똥', 'a@a.a', 'rock', 'Y', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('ss', '123', '김쥐똥', 'a@a.a', 'rock', 'Y', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('dd', '123', '김양똥', 'a@a.a', 'rock', 'Y', null, 'N');
-INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y', null, 'N');
-
-INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'N', null, 'N');
+INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', 'rock', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', 'rock', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('aa', '123', '김소똥', 'a@a.a', 'rock', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('ss', '123', '김쥐똥', 'a@a.a', 'rock', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('dd', '123', '김양똥', 'a@a.a', 'rock', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'N', null, 'Y');
 
 --SQ_ARTIST 생성
 INSERT INTO SQ_ARTIST VALUES ('aa', '010-1111-1111', null,'adfadsfd');
@@ -414,6 +413,11 @@ INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '안즐거운밴드', sy
 
 
 INSERT INTO sq_favorite VALUES('aa', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('ss', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('dd', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('123', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('1234', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('qq', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 
 
 commit;

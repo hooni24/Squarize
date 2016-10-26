@@ -2,7 +2,6 @@ package squarize.vo;
 
 public class SQ_human {
 	private String sq_member_id;
-	private String sq_member_pw;
 	private String sq_member_name;
 	private String sq_member_email;
 	private String sq_member_favorite;
@@ -24,14 +23,6 @@ public class SQ_human {
 
 	public void setSq_member_id(String sq_member_id) {
 		this.sq_member_id = sq_member_id;
-	}
-
-	public String getSq_member_pw() {
-		return sq_member_pw;
-	}
-
-	public void setSq_member_pw(String sq_member_pw) {
-		this.sq_member_pw = sq_member_pw;
 	}
 
 	public String getSq_member_name() {
@@ -132,7 +123,7 @@ public class SQ_human {
 
 	@Override
 	public String toString() {
-		return "SQ_human [sq_member_id=" + sq_member_id + ", sq_member_pw=" + sq_member_pw + ", sq_member_name="
+		return "SQ_human [sq_member_id=" + sq_member_id + ", sq_member_name="
 				+ sq_member_name + ", sq_member_email=" + sq_member_email + ", sq_member_favorite=" + sq_member_favorite
 				+ ", sq_member_isartist=" + sq_member_isartist + ", sq_artist_phone=" + sq_artist_phone
 				+ ", sq_artist_photo=" + sq_artist_photo + ", sq_artist_intro=" + sq_artist_intro + ", sq_port_id="

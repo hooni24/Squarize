@@ -10,11 +10,11 @@
     <package name="default" namespace="/" extends="struts-default, json-default">
 <!--         <default-action-ref name="index" /> 당분간 디폴트사용 ㄴㄴ.. 헷갈림 방지-->
 
-		<action name="index">
+		<action name="index" class="squarize.action.SQ_memberAction" method="mainCount">
 			<result>index.jsp</result>
 		</action>
 
-
+	
 
 
 <!-- 이 아래 액션들은 해당 메뉴기능 추가할때 종류에 따라 buskingAction.xml이나 seekingAction.xml로 이동..-->

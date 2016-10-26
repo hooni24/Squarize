@@ -8,10 +8,10 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--<link href="../../fonts/font-awesome.css" rel="stylesheet" type="text/css">-->
-    <!--<link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>-->
-    <!--<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
-    <!--<link href="../../css/style.css" rel="stylesheet" type="text/css">-->
+<!--     <link href="../../fonts/font-awesome.css" rel="stylesheet" type="text/css"> -->
+<!--     <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'> -->
+<!--     <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
+<!--     <link href="../../css/style.css" rel="stylesheet" type="text/css"> -->
 	
  	<!-- 여기 -->
 	<script type="text/javascript" src="../../js/jquery-2.1.0.min.js"></script>
@@ -64,8 +64,8 @@
         <div class="col-md-8">
             <div class="inner">
                 <div class="items-switch">
-                    <a href="#" class=""><img src="assets/img/arrow-left.png"></a>
-                    <a href="#" class=""><img src="assets/img/arrow-right.png"></a>
+<!--                     <a href="#" class=""><img src="assets/img/arrow-left.png"></a> -->
+<!--                     <a href="#" class=""><img src="assets/img/arrow-right.png"></a> -->
                 </div>
                 <article class="animate move_from_bottom_short">
                     <div class="gallery">
@@ -157,7 +157,6 @@
                             <dt>장르</dt>
                             <dd><s:property value="SQ_busking.genre"/></dd>
                             <dt>일시</dt>
-<%--                             <dd><s:property value="SQ_busking.buskingdate"/></dd> --%>
                             <dd id="buskingdate"></dd>
                             <dt>공연시간</dt>
                             <dd><s:property value="SQ_busking.runningtime"/>분</dd>

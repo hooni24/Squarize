@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import squarize.util.FileService;
 import squarize.util.MybatisConfig;
 import squarize.vo.SQ_artist;
+import squarize.vo.SQ_count;
 import squarize.vo.SQ_member;
 import squarize.vo.SQ_portfolio;
 
@@ -40,6 +41,19 @@ public class SQ_memberDAO {
 			ss.close();
 		}
 		
+	}
+	
+	public void updateSQmember(SQ_member sq_member, SQ_artist sq_artist){
+		try {
+			ss = factory.openSession();
+			ss.update("sq_memberMapper.updateSQartist", sq_artist);
+			ss.update("sq_memberMapper.updateSQmember", sq_member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ss.commit();
+			ss.close();
+		}
 	}
 	
 	public boolean emailAuth(SQ_member sq_member){
@@ -154,6 +168,15 @@ public class SQ_memberDAO {
 		try {
 			ss = factory.openSession();
 			return ss.selectOne("sq_memberMapper.portfolioCheck", loginId);
+		} finally {
+			ss.close();
+		}
+	}
+
+	public SQ_count mainCount() {
+		try {
+			ss = factory.openSession();
+			return ss.selectOne("sq_memberMapper.mainCount");
 		} finally {
 			ss.close();
 		}

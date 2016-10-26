@@ -446,7 +446,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         }
         var mapCenter = new google.maps.LatLng(_latitude,_longitude);
         var mapOptions = {
-            zoom: 15,
+            zoom: 7,
             center: mapCenter,
             disableDefaultUI: false,
             scrollwheel: true,
