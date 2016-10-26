@@ -205,8 +205,8 @@ $(function(){
     			var fileLength = file.length;
     			var ext = file.substring(fileLength-3, fileLength);	//확장자
     			
-    			if(isNaN(phone)){
-    				alert("전화번호는 숫자만 입력하세요");
+    			if(phone.length < 1){
+    				alert("전화번호는 반드시 입력해 주세요");
     				return false;
     			}else if(fileLength < 1){
     				alert("사진을 반드시 업로드해주세요");
@@ -282,19 +282,21 @@ $(function(){
     			}else if(favorite.val()=="선호장르"){
     				alert("선호장르를 선택하여주십시오");
     				return false;
-    			}else if(isNaN(phone)){
-					alert("전화번호는 숫자만 입력하세요");
-					return false;
-				}else if(fileLength < 1){
-					alert("사진을 반드시 업로드해주세요");
-					return false;
-				}else if(!(ext == "png" || ext == "PNG" || ext == "jpg" || ext == "JPG")){
-					alert("사진은 png나 jpg 파일만 업로드 가능합니다");
-					return false;s
+    			}else if(phone.length < 1){
+    				alert("전화번호는 반드시 입력해 주세요");
+    				return false;
 				}else if(intro.length < 1){
 					alert("자기소개를 반드시 입력해 주세요");
 					return false;
     			}
+    			
+    			if(fileLength > 1){
+    				if(!(ext == "png" || ext == "PNG" || ext == "jpg" || ext == "JPG")){
+    					alert("사진은 png나 jpg 파일만 업로드 가능합니다");
+    					return false;
+    				}
+    			}
+    			
     			$("form#form-update")[0].submit();
     		});
     		

@@ -32,203 +32,12 @@
     </style>
     
     <script src="assets/js/jquery-2.1.0.min.js"></script>
-    <script src="assets/js/sq_member.js"></script>
     <script>
     	$(function(){
-    		/* //로그인 ajax
-    		$("button#sign-in-submit").on("click", function(){
-    			var id = $("input#sign-in-id").val();
-    			var pw = $("input#sign-in-pw").val();
-    			var loginItem = {"sq_member_id" : id, "sq_member_pw": pw};
-    			
-	    		$.ajax({
-	    			url : "loginSQmember"
-	    			, method : "post"
-	    			, data : loginItem
-	    			, dataType : "json"
-	    			, success : function(resp){
-	    				if(resp.loginId != ''){
-		    				$(".close").trigger("click");
-		    				$("#main_login").addClass("hidden");
-		    				$("#main_register").addClass("hidden");
-		    				
-		    				var welcome = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area">'+resp.loginId+' 님 환영합니다!</a></li>';
-		    				$("ul#main_menu").append(welcome);
-		    				
-		    				var logout = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>';
-		    				$("ul#main_menu").append(logout);
-	
-		    				if(resp.isArtist == 'N'){
-			    				var makeArtist = '<li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>';
-			    				$("ul#main_menu").append(makeArtist);
-		    				}
-		    				
-		    				$("#tab_login").addClass("hidden");
-		    				$("#tab_register").addClass("hidden");
-		    				
-		    				var tab_makeArtist = '<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>';
-		    				$("ul#tab_menu").append(tab_makeArtist);
-		    				$("a#tab_makeArtist").trigger("click");
-		    				
-		    				location.href = "toRentMain.action";
-	    				}else {
-	    					alert("비밀번호가 틀렸습니다");
-	    				}
-	    			}
-	    			, error : function(){
-	    				alert("실패");
-	    			}
-	    		});
-    		}); */
-    		
     		//로그아웃
     		$("ul#main_menu").on("click", "a#main_logout", function(){
-    			location.href = "index.action";
-    		});
-    		
-    		/* //회원가입
-    		$("button#register_btn").on("click", function(){
-    			var id=$('#register-id');
-    			var name=$('#register-name');
-    			var favorite=$('#register_favorite');
-    			var email=$('#register-email');
-    			var pw=$('#register-password');
-    			var pwConfirm=$('#register-confirm-password');
-    			
-   			    // 정규표현식으로 한글만 선택하도록 만듭니다.
-   			    var languageCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-   			    // 입력한 ID와 정규표현식을 비교하여 한글 여부를 판단합니다.
-   			    // test외에도 search ,exec , match등을 사용할 수 있습니다.
-   			    if (languageCheck.test(id.val())) {
-   			        alert("ID에 한글이 포함되어 있습니다.");
-   			        return false;
-   			    }else if(id.val().length<4 || id.val().length>8){
-    				alert("아이디는 4~8자로 입력해주세요");
-    				id.focus();
-    				return false;
-    			}
-    			if(idError=="t"){
-    				alert("사용중인 아이디입니다. 다시 확인해주십시오");
-    				id.focus();
-    				return false;
-    			}
-    			if(name.val().length<2 || name.val().length>5){
-    				alert("이름은 2~4자로 입력해주세요");
-    				name.focus();
-    				return false;
-    			}
-    			if(email.val().length<4 || email.val().length>20){
-    				alert("이메일은 도메인포함 정확히 입력해주세요");
-    				email.focus();
-    				return false;
-    			}
-    			if(pw.val().length<4 || pw.val().length>8){
-    				alert("비밀번호는 4~8자로 입력하여주세요");
-    				pw.focus();
-    				return false;
-    			}
-    			if(pw.val() != pwConfirm.val()){
-    				alert("비밀번호를 확인하여주십시오");
-    				pw.focus();
-    				return false;
-    			}
-    			if(favorite.val()=="선호장르"){
-    				alert("선호장르를 선택하여주십시오");
-    				return false;
-    			}
-    			
-    			var registerItem = {
-    					'sq_member.sq_member_id' : id.val()
-    					,'sq_member.sq_member_pw' : pw.val()
-    					,'sq_member.sq_member_name' : name.val()
-    					,'sq_member.sq_member_email' : email.val()
-    					,'sq_member.sq_member_favorite' : favorite.val()
-    					};
-    			
-    			$.ajax({
-    				method : 'post'
-    				,url : 'registerSQmember'
-    				,data : registerItem
-    				,success : function(){
-    					alert("이메일을 확인하시고 인증 URL을 눌러주세요");
-    					$('#register-id').val("");
-    					$('#register-name').val("");
-    					$('#register-email').val("");
-    					$('#register-password').val("");
-    					$('#register-confirm-password').val("");
-    					$('#register_favorite option:eq("선호장르")').attr('selected','selected');
-    					$('#id-check').html(' ');
-    					$('#id-check').css('color','black');
-    					$('#register-id').css('color','black');
-    					$('a#tab_login').trigger('click');
-    				}
-    				,error:function(){
-    					alert("회원가입실패");
-    				}
-    			});
-    		}); */
-    		
-    		/* //아이디 실시간 체크
-    		$('#register-id').on('focusout',function(){
-				var checkId=$('#register-id').val();
-				
-				if(checkId.length>3 && checkId.length<9){
-					$.ajax({
-						method:'post'
-						,url:'idCheck'
-						,data:{"sq_member_id":checkId}
-						,success:function(send){
-							if(checkId==""||checkId==null){
-								$('#id-check').html(" ");
-							}else if(send.sq_member!=null){
-								idError="t";
-								if(idError=="t"){
-									$('#id-check').html("사용중인 아이디입니다.");
-									$('#id-check').css('color','red');
-									$('#register-id').css('color','red');
-								}
-							}else if(send.sq_member==null){
-								$('#id-check').html("사용가능한 아이디입니다.");
-								idError="f";
-								$('#id-check').css('color','blue');
-								$('#register-id').css('color','blue');
-							} 
-						}
-						,error : function(){
-							alert("error");
-						}
-					});
-				}else {
-					$('#id-check').html("아이디는 4~8자로 입력해주세요.");
-					$('#id-check').css('color','red');
-					$('#register-id').css('color','red');
-				}
+				location.href = "logoutSQmember.action?fromWhere=rent";
 			});
-    		
-    		//아티스트 업그레이드
-    		$("button#makeArtist_submit").on("click", function(){
-    			var phone = $("input#add-artist-phone").val();
-    			var intro = $("textarea#add-artist-intro").val();
-    			var file = $("input#add-artist-photo").val();
-    			var fileLength = file.length;
-    			var ext = file.substring(fileLength-3, fileLength);	//확장자
-    			
-    			if(isNaN(phone)){
-    				alert("전화번호는 숫자만 입력하세요");
-    				return false;
-    			}else if(fileLength < 1){
-    				alert("사진을 반드시 업로드해주세요");
-    				return false;
-    			}else if(!(ext == "png" || ext == "PNG" || ext == "jpg" || ext == "JPG")){
-    				alert("사진은 png나 jpg 파일만 업로드 가능합니다");
-    				return false;
-    			}else if(intro.length < 1){
-    				alert("자기소개를 반드시 입력해 주세요");
-    				return false;
-    			}else {
-	    			$("form#form-makeArtist")[0].submit();
-    			}
-    		});
     		
     		var visible = true;
     		//돋보기 있다없다
@@ -239,7 +48,7 @@
     				$("a.search_icon").removeClass("hidden");
     			}
     			visible = !visible;
-    		}); */
+    		}); 
     		
     		//게시글 검색
     		$("a.search_icon").on("click", function(){
@@ -323,6 +132,7 @@
                                 <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register" id="tab_register">Register</a></li>
                             </s:if>
                             <s:else>
+                                <li role="presentation"><a href="#updateSQmember" aria-controls="updateSQmember" role="tab" data-toggle="tab"  data-transition-parent="#updateSQmember" id="tab_updateSQmember">정보수정</a></li>
                             	<s:if test='#session.isArtist == "N"'>
                             		<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>
                             	</s:if>
@@ -334,7 +144,7 @@
                                 <div role="tabpanel" class="tab-pane" id="sign-in">
                                     <form role="form" method="post" id="form-sign-in">
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="sign-in-id" name="id" placeholder="ID">
+                                            <input type="text" class="form-control" id="sign-in-id" name="sign-in-id" placeholder="ID">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
@@ -349,6 +159,7 @@
                                 </div>
                                 
                             <!-- 회원가입 -->
+                                
                                 <div role="tabpanel" class="tab-pane" id="register">
                                     <form role="form" method="post" id="form-register" action="registerSQmember?fromWhere=rent">
                                         <div class="form-group animate move_from_bottom_short" id="idInput">
@@ -391,6 +202,59 @@
                                     </form>
                                 </div>
                                 
+                                <!--회원정보 수정  -->
+                                <div role="tabpanel" class="tab-pane" id="updateSQmember">
+                                    <form role="form" method="post" id="form-update" action="updateSQmember.action?fromWhere=rent" enctype="multipart/form-data">
+                                        <div class="form-group animate move_from_bottom_short" id="idInput">
+                                            <input type="text" class="form-control" id="update-id" name="sq_member.sq_member_id" readonly>
+                                        </div>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="text" class="form-control" id="update-name" name="sq_member.sq_member_name" readonly>
+                                        </div>
+                                        <!--end .form-group-->
+                                        
+                                        <div class="form-group">
+                                            <select id="update_favorite" size="3" name="sq_member.sq_member_favorite">
+                                            	<option>선호장르</option>
+                                            	<option>락</option>
+                                            	<option>발라드</option>
+                                            	<option>재즈</option>
+                                            	<option>힙합</option>
+                                            </select>
+                                        </div>
+                                        <!--end .form-group-->
+                                        
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="email" class="form-control" id="update-email" name="sq_member.sq_member_email" readonly>
+                                        </div>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="password" class="form-control" id="update-password" name="update-password" placeholder="password">
+                                        </div>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="password" class="form-control" id="update-confirm-password" name="update-confirm-password" placeholder="confirm-password">
+                                        </div>
+                                        <!--end .form-group-->
+                                        <s:if test='#session.isArtist == "Y"'>
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <input type="text" class="form-control" id="update-artist-phone" name="sq_artist.sq_artist_phone" >
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <textarea class="form-control" id="update-artist-intro" name="sq_artist.sq_artist_intro"  rows="8"></textarea>
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="photoInput">
+	                                            <input type="file" class="form-control" id="update-artist-photo" name="upload">
+	                                        </div>
+                                        </s:if>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <button type="button" class="btn btn-primary" id="update_btn">update</button>
+                                        </div>
+                                        <!--end .form-group-->
+                                    </form>
+                                </div>
                                 <!-- 로그아웃 -->
                                 <div role="tabpanel" class="tab-pane" id="logout">
                                 	<div class="form-group animate move_from_bottom_short">
@@ -416,7 +280,6 @@
 	                                        </div>
 	                                    </form>
 	                                </div>
-<%--                                 </s:if> --%>
                                 
                             </div>
                         </div>
@@ -441,7 +304,7 @@
                         <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header" id="main_register">Register</a></li>
                     </s:if>
                     <s:else>
-                    	<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area">${sessionScope.loginId } 님 환영합니다!</a></li>
+                    	<li><a href="#user-area" id="update" data-toggle="collapse" aria-expanded="false" data-tab="#" aria-controls="user-area">${sessionScope.loginId } 님 환영합니다!</a></li>
                         <li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>
                         <s:if test='#session.isArtist == "N"'>
 	                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>
@@ -460,6 +323,7 @@
                         <li>
                             <a href="toRentMain.action" class="has-child">홈</a>
                             <ul>
+                                <li><a href="toBuskingMain.action">버스킹</a></li>
                                 <li><a href="toSeekingMain.action">구인글</a></li>
                                 <li><a href="toRentMain.action">대관글</a></li>
                             </ul>
@@ -469,13 +333,14 @@
                             <ul>
                                 <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
                                 <li><a href="getAllMyRent.action">내가 올린 글</a></li>
-		                        <li><a href="rentApplySituation.action" id="rent_apply_situation">내 지원현황</a></li>
+		                        <li><a href="rentApplySituation.action">내 지원현황</a></li>
                             </ul>
                         </li>
+                        <!-- 추가 메뉴 필요하면 아래 주석달린 li태그 참고해서 만드세요 -->
 <!--                         <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li> -->
-                        <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li>
-                        <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li>
-                        <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li>
+<!--                         <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li> -->
+<!--                         <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li> -->
+<!--                         <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li> -->
                     </ul>
                     <div class="toggle-nav">
                         <div class="dots">
@@ -648,6 +513,7 @@
 	<div class="loading-img"></div>	
 </div>
 
+<script type="text/javascript" src="assets/js/sq_member.js"></script>
 <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>

@@ -137,7 +137,7 @@
                                         <!--end .form-group-->
                                         
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="email" class="form-control" id="update-email" name="sq_member.sq_member_email" >
+                                            <input type="email" class="form-control" id="update-email" name="sq_member.sq_member_email" readonly>
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
@@ -232,19 +232,25 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="#" class="has-child">Home</a>
+                            <a href="toSeekingMain.action" class="has-child">홈</a>
                             <ul>
+                                <li><a href="toBuskingMain.action">버스킹</a></li>
                                 <li><a href="toSeekingMain.action">구인글</a></li>
                                 <li><a href="toRentMain.action">대관글</a></li>
-                                <li><a href="#">Something 3</a></li>
-                                <li><a href="#">Something 4</a></li>
                             </ul>
                         </li>
-                        <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
-                        <li><a href="rentApplySituation.action" id="rent_apply_situation">내 지원현황</a></li>
-                        <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li>
-                        <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li>
-                        <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li>
+                        <li>
+                            <a href="#" class="has-child">마이페이지</a>
+                            <ul>
+                                <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
+                                <li><a href="#">내가 올린 글</a></li>
+		                        <li><a href="#">내 지원현황</a></li>
+                            </ul>
+                        </li>
+                        <!-- 추가 메뉴 필요하면 아래 주석달린 li태그 참고해서 만드세요 -->
+<!--                         <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li> -->
+<!--                         <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li> -->
+<!--                         <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li> -->
                     </ul>
                     <div class="toggle-nav">
                         <div class="dots">
