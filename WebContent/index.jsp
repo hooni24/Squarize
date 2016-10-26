@@ -53,7 +53,7 @@
     		height: 200px;
     		display: inline-block;
     		border-radius: 50%;
-    		border: 5px solid red;
+    		border: 5px solid #b32400;
     		padding: 10px;
     		text-align: center;
     		font: 1.4em Montserrat;
@@ -74,7 +74,7 @@
     		font: bold 2em 맑은 고딕;
     	}
     	img#smallLogo{
-    		margin-top: -3%;
+    		margin-top: -2.5%;
     		width: 40%;
     	}
     	img#bigLogo{
