@@ -267,7 +267,7 @@ $(function(){
     			var fileLength = file.length;
     			var ext = file.substring(fileLength-3, fileLength);	//확장자
     			
-    			if(email.val().length<4 || email.val().length>20){
+    			if(email.val().length<4){
     				alert("이메일은 도메인포함 정확히 입력해주세요");
     				email.focus();
     				return false;
