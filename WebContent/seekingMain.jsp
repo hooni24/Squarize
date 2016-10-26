@@ -22,8 +22,6 @@
     	.hidden{
     		display : none;
     	}
-    	
-    	
     </style>
 </head>
 
@@ -363,16 +361,11 @@
 						</div>
 					</div>
 					<!--end Content Loader-->
-				</div>
-			</div>
-
-			<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
-<!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
-			<div class="masonry grid full-width animate">
+			<div class="masonry grid animate">
 				<s:iterator value="sq_recruit_list" var="each_recruit">
 					<div class="item move_from_bottom idle">
 						<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-	                <div class="inner">
+	               <div class="inner">
 	                    <div class="image">
 	                        <div class="price average-color"><span>${sq_member_id}</span></div>
 	                        <s:if test="sq_recruit_photo == null">
@@ -411,8 +404,14 @@
         </div>
 	<!-- 나열부분 끝 -->
 		</div>
+				</div>
+			<! -->
+			<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
+<!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
 		<!--end Page Content-->
 	</div>
+			</div>
+
 	<div class="loadingpage loading">
 		<div class="loading-img"></div>	
 	</div>

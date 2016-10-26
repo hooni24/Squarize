@@ -45,7 +45,17 @@
 		<action name="toAddSQrecruit">
 			<result>assets/pages/recruit/add_recruit.jsp</result>
 		</action>
+		<action name="recruit_update" class="squarize.action.SQ_seekingAction" method="recruit_update">
+			<result>assets/pages/recruit/update_recruit.jsp</result>
+		</action>
+		
 		<action name="insertSQrecruit" class="squarize.action.SQ_seekingAction" method="insertSQrecruit">
+			<result type="redirect">toSeekingMain.action</result>
+		</action>
+		<action name="updateSQrecruit">
+			<result type="redirect">toSeekingMain.action</result>
+		</action>
+		<action name="deleteSQrecruit" class="squarize.action.SQ_seekingAction" method="deleteSQrecruit">
 			<result type="redirect">toSeekingMain.action</result>
 		</action>
 		

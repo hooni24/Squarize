@@ -103,7 +103,7 @@ $(function(){
     				name.focus();
     				return false;
     			}
-    			if(email.val().length<4 || email.val().length>20){
+    			if(email.val().length<4){
     				alert("이메일은 도메인포함 정확히 입력해주세요");
     				email.focus();
     				return false;

@@ -126,7 +126,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		
 	}
 	//구인정보 삭제
-	public String deleteRecruit() throws Exception {
+	public String deleteSQRecruit() throws Exception {
 		System.out.println("구인정보 삭제");
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		int result = dao.deleteRecruit(sq_recruit.getSq_recruit_id());
@@ -146,6 +146,9 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		sq_recruit_apply = dao.checkApplied(sq_recruit_apply);
 		return SUCCESS;
 	}
+	
+	
+	
 	
 	//멤버의 getter & setter
 	@Override
