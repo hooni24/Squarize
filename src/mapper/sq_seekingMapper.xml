@@ -77,5 +77,9 @@
 	<select id="selectOne_port" parameterType="string" resultType="SQ_portfolio">
 		SELECT * FROM SQ_PORTFOLIO WHERE SQ_MEMBER_ID = #{sq_member_id}
 	</select>
+	
+	<select id="getSQrecruit" parameterType="String" resultType="SQ_recruit">
+		SELECT * FROM sq_recruit WHERE sq_recruit_id=#{recruit_id}
+	</select>
 </mapper>
 	

@@ -26,6 +26,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private List<SQ_rent> sq_rent_list;
 	private List<SQ_portfolio> sq_portfolio_list;
 	private List<SQ_recruit_artist> sq_applied_list;
+	
 
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
@@ -110,7 +111,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	}
 	
 	//구인정보 수정
-	public String updateRecruit() throws Exception {
+	public String updateSQrecruit() throws Exception {
 		System.out.println("구인정보 수정");
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		int result = dao.updateRecruit(sq_recruit);
@@ -121,8 +122,16 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		}
 		
 	}
+	//정보 가져올 메소드
+	public String recruit_update() throws Exception{
+		System.out.println("수정 정보뿌리자!");
+		SQ_seekingDAO dao = new SQ_seekingDAO();
+		sq_recruit=dao.getSQrecruit(sq_recruit.getSq_member_id());
+		return SUCCESS;
+	}
+	
 	//구인정보 삭제
-	public String deleteSQRecruit() throws Exception {
+	public String deleteSQrecruit() throws Exception {
 		System.out.println("구인정보 삭제");
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		int result = dao.deleteRecruit(sq_recruit.getSq_recruit_id());

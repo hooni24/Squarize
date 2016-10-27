@@ -9,42 +9,8 @@
     	.right_{text-aligh:right;}
    	</style>
    	<script>
-   	$(function(){
-   		$.ajax({
-   			method:'get'
-   			,url:'recruit_update'
-   			,
-   		});
-	   	var pos = {
-	      		lat: position.coords.latitude,				//현재좌표값 json생성
-	      		lng: position.coords.longitude
-			};
-		var myOptions = {
-				    		zoom: 15,							//지도옵션 json생성
-					    	center: pos,
-					    	mapTypeId: google.maps.MapTypeId.ROADMAP
-						};
-		var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);		//div#map-canvas에 지도 붙임 
-	
-		var infoWindow = new google.maps.InfoWindow({map: map});		//지도에 메세지창 생성
-	    infoWindow.setPosition(pos);									//현재 위치로 메세지창 이동
-	    infoWindow.setContent('드래그해서 정확한 위치로 이동하세요');								//메세지창 메세지 입력
-	    
-	    var image = {
-			            url : "assets/img/marker.png", //마커이미지 
-			            size : new google.maps.Size(67, 57), //마커사이즈
-			            origin : new google.maps.Point(0, 0),
-			            anchor : new google.maps.Point(43, 77)
-			        }; //마커로 사용할 이미지 정의
-	    
-	    marker = new google.maps.Marker({
-										    	position: pos,			//현재위치에 드래그가능한 마커 생성
-									     		map: map,
-									     		draggable: true,
-									     		icon: image
-									 		}); 
-	    map.setCenter(pos);
-	   	});
+
+	   	
    	</script>
 </head>
 

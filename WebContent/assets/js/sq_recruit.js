@@ -80,6 +80,38 @@
 			});//ajax
 		});	//submit클릭 on
 		
+		$('#update-btn').click(function(){
+			alert("hi");
+			$('#title1').html("<input type='text' name='sq_recruit.sq_recruit_title' id='title' value=${sq_recruit_artist.sq_recruit_title}/>");
+			$('dd#part').html("<select name='sq_recruit.sq_recruit_part' multiple title='part' id='part'><option>드럼</option><option>키보드</option><option>보컬</option><option>기타</option></select>");                                
+			$('dd#genre').html('<select name="sq_recruit.sq_recruit_genre" multiple title="genre" id="genre"><option>락</option><option>발라드</option><option>재즈</option><option>힙합</option></select>');
+            $('dd#limitDate').html('<input type="text" class="form-control" id="limitDate" name="sq_recruit.sq_recruit_date" value="${sq_recruit_artist.sq_recruit_input_date}">');                    
+            $('textarea#content').removeAttr('readonly'); 
+            $("div#file").append("<input type='file' id='upload' name='upload' >");
+            marker.setDraggable(true);
+            $('.center a').css('display','none');
+            $('.center a').html('<a href="#" class="btn btn-circle btn-default btn-lg detail-btn submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="update">확인</a>');
+			
+		});
+		
+		$('#update').click(function(){
+			var lat = marker.position.lat();		//위도경도 얻어옴
+			var lng = marker.position.lng();
+			$("input#lat_").val(lat);				//hidden에 넣음
+			$("input#lng_").val(lng);
+			
+			$.ajax({		//마커 부분 시, 동 으로 region에 저장 
+				url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8'
+				, method : "post"
+				, dataType: "json"
+				, success : function(resp){
+					var region = resp.results[0].address_components[3].long_name+" "+resp.results[0].address_components[2].long_name;
+					$("input#region_").val(region);
+	 				$("#form")[0].submit();
+				}//success펑션
+			});//ajax
+			
+		});
 		
 	});
 		

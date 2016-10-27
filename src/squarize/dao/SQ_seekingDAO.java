@@ -101,6 +101,21 @@ public class SQ_seekingDAO {
 		return applied;
 	}
 	
+	//수정위한 recruit 정보 불러오기 
+	public SQ_recruit getSQrecruit(String sq_recruit_id){
+		SQ_recruit result=null;
+		try {
+			ss = factory.openSession();
+			result=ss.selectOne("sq_seekingMapper.getSQrecruit", sq_recruit_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ss.commit();
+			ss.close();
+		}
+		return result;
+	}
+	
 	// 포트폴리오 작성여부 select
 	public SQ_portfolio checkPortfolio(String member_id){
 		SQ_portfolio port = null;
