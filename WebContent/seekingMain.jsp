@@ -378,7 +378,7 @@
 	                        	<img src="assets/img/main/seeking.jpg">
 	                        </s:if>
 	                        <s:else>
-	                        	<img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 -->
+	                        	<%-- <img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 --> --%>
 	                    	</s:else>
 	                    </div>
 	                    <div class="item-content">

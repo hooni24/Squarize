@@ -21,7 +21,7 @@
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>
 		<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-		
+		<script src="assets/js/sq_recruit.js"></script>
 		<script type="text/javascript">
 			$(function(){
 				var sq_recruit_id = $('#sq_recruit_id').val();
@@ -94,8 +94,9 @@
 	    <div class="row">
 	        <div class="col-md-8">
 	            <div class="inner">
-	            	<form id="form">
+	            	<form role="form" method="post" id="form" action="updateSQrecruit" enctype="multipart/form-data">
 	                <article class="animate move_from_bottom_short">
+	                	 <input type="hidden" value="${sq_recruit_artist.sq_recruit_id}" id="hidden" name="sq_recruit.sq_recruit_id">
 	                    <div class="gallery">
 	                        <div class="image">
 	                        	<s:if test="#session.loginId != null && sq_recruit_artist.sq_recruit_photo == null">
@@ -116,7 +117,7 @@
 	                    <h1 id="title1">${sq_recruit_artist.sq_recruit_title}</h1>
 	                    <h2 id="location"><i class="fa fa-map-marker"></i>${sq_recruit_artist.sq_recruit_location}</h2>
 	                    <figure class="price average-color"><span>${sq_recruit_artist.sq_member_id}</span></figure>
-	                    <textarea id="content" class="form-control" rows="4" readonly="readonly">${sq_recruit_artist.sq_recruit_info}</textarea>
+	                    <textarea id="content" class="form-control" rows="4" readonly="readonly" name="sq_recruit.sq_recruit_info">${sq_recruit_artist.sq_recruit_info}</textarea>
 	                    <input type="hidden" id="sq_recruit_id" name="sq_recruit_apply_id" value="${sq_recruit_artist.sq_recruit_id}"/>
 	                    <input type="hidden" id="sq_recruit_lat" value="${sq_recruit_artist.sq_recruit_latitude}" />
 	                    <input type="hidden" id="sq_recruit_lng" value="${sq_recruit_artist.sq_recruit_longitude}" />
@@ -143,7 +144,6 @@
 	                        </div>
 	                        <div class="collapse" id="person-detail">
 	                            <div class="details">
-	                                <p><textarea></textarea>
 	                                	<!-- 인사말 -->
 	                                </p>
 	                                <h3>Contact Me</h3>
@@ -171,9 +171,9 @@
 	                    <div class="block animate move_from_bottom_short">
 	                        <dl>
 	                            <dt>구인 파트</dt>
-	                            <dd id="part">${sq_recruit_artist.sq_recruit_part}</dd>
+	                            <dd id="part_tag">${sq_recruit_artist.sq_recruit_part}</dd>
 	                            <dt>연주 장르</dt>
-	                            <dd id="genre">${sq_recruit_artist.sq_recruit_genre}</dd>
+	                            <dd id="genre_tag">${sq_recruit_artist.sq_recruit_genre}</dd>
 	                            <dt>모집마감일</dt>
 	                            <%-- <dd>165m<sup>2</sup></dd> --%>
 	                            <dd id="limitDate">${sq_recruit_artist.sq_recruit_date}</dd>
@@ -201,6 +201,10 @@
                           <a href="deleteSQrecruit?sq_recruit.sq_recruit_id=${sq_recruit_artist.sq_recruit_id}" class="btn btn-circle btn-default btn-lg detail-btn submit-button" >삭제</a>
                       </article>
                    </s:if>
+	                <s:if test="#session.loginId != null && #session.loginId == sq_recruit_artist.sq_member_id">
+                      <div id="table-area"></div>
+                   </s:if>
+                   
 	                
 	                <!-- 아티스트로 로그인한 상태에서 로그인 아이디가 글쓴 아이디가 아닐 경우 지원할 수 있는 버튼추가. -->
 	                <s:elseif test="#session.loginId != null && #session.loginId != sq_recruit_artist.sq_member_id">

@@ -80,21 +80,37 @@
 			});//ajax
 		});	//submit클릭 on
 		
-		$('#update-btn').click(function(){
+		$('#lists').click(function(){
 			alert("hi");
-			$('#title1').html("<input type='text' name='sq_recruit.sq_recruit_title' id='title' value=${sq_recruit_artist.sq_recruit_title}/>");
-			$('dd#part').html("<select name='sq_recruit.sq_recruit_part' multiple title='part' id='part'><option>드럼</option><option>키보드</option><option>보컬</option><option>기타</option></select>");                                
-			$('dd#genre').html('<select name="sq_recruit.sq_recruit_genre" multiple title="genre" id="genre"><option>락</option><option>발라드</option><option>재즈</option><option>힙합</option></select>');
-            $('dd#limitDate').html('<input type="text" class="form-control" id="limitDate" name="sq_recruit.sq_recruit_date" value="${sq_recruit_artist.sq_recruit_input_date}">');                    
-            $('textarea#content').removeAttr('readonly'); 
-            $("div#file").append("<input type='file' id='upload' name='upload' >");
-            marker.setDraggable(true);
-            $('.center a').css('display','none');
-            $('.center a').html('<a href="#" class="btn btn-circle btn-default btn-lg detail-btn submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="update">확인</a>');
-			
+			$.ajax({
+				method:'post'
+				,url:'applied_list'
+				,datatype:'json'
+				,success:function(send){
+					var list=send.sq_applied_list;
+					var code1="<table><tr><th></th><th></th></tr></table>"
+				}
+			});
 		});
 		
-		$('#update').click(function(){
+		$('#update-btn').click(function(){
+			var title_value=$('#title1').text();
+			var limit_date=$('#limitDate').text();
+			var info=$('#content').val();
+			alert(info);
+			$('#title1').html("<input type='text' name='sq_recruit.sq_recruit_title' id='title' value='"+title_value+"'/>");
+			$('dd#part_tag').html("<select name='sq_recruit.sq_recruit_part' multiple title='part' id='part'><option>드럼</option><option>키보드</option><option>보컬</option><option>기타</option></select>");                                
+			$('dd#genre_tag').html('<select name="sq_recruit.sq_recruit_genre" multiple title="genre" id="genre"><option>락</option><option>발라드</option><option>재즈</option><option>힙합</option></select>');
+            $('dd#limitDate').html('<input type="text" class="form-control" id="limitDate" name="sq_recruit.sq_recruit_date" value="'+limit_date+'">');                    
+            $('textarea#content').removeAttr('readonly'); 
+            $("div#file").append("<input type='file' id='upload' name='upload' >");
+            $('.center a').css('display','none');
+            $('.center').html('<a href="#" class="btn btn-circle btn-default btn-lg detail-btn submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="update">확인</a>');
+            /*marker.setDraggable(true);*/
+		});
+		$('.center').on('click','#update',function(){
+			alert("hello");
+			/*
 			var lat = marker.position.lat();		//위도경도 얻어옴
 			var lng = marker.position.lng();
 			$("input#lat_").val(lat);				//hidden에 넣음
@@ -107,20 +123,24 @@
 				, success : function(resp){
 					var region = resp.results[0].address_components[3].long_name+" "+resp.results[0].address_components[2].long_name;
 					$("input#region_").val(region);
-	 				$("#form")[0].submit();
+	 				
 				}//success펑션
 			});//ajax
-			
+*/			if(validCheck()){
+				$("#form")[0].submit();
+			}
 		});
 		
-	});
+		});
+		
+		
 		
 		function validCheck(){
 			var title = $("input#title").val().length;
 			var part = $("#part").val();
 			var genre = $("#genre").val();
 			var limitDate = $("input#limitDate").val().length;
-			
+			alert(title+" 1 "+part+" 2  "+genre+"  3  "+limitDate+"  4  ")
 			if(title < 1){
 				alert("제목을 입력해주세요 ");
 				return false;

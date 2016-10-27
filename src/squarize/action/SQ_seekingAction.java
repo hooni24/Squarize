@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.core.async.DaemonThreadFactory;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.dao.SQ_seekingDAO;
 import squarize.util.FileService;
+import squarize.vo.SQ_human;
 import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
 import squarize.vo.SQ_recruit_apply;
@@ -23,6 +25,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	//seeking 페이지에서 썸네일로 뿌릴 list멤버
 //	private JsonObject json_object;
 	private List<SQ_recruit> sq_recruit_list;
+	private List<SQ_human>sq_apply_list;
 	private List<SQ_rent> sq_rent_list;
 	private List<SQ_portfolio> sq_portfolio_list;
 	private List<SQ_recruit_artist> sq_applied_list;
@@ -95,10 +98,16 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	}
 	
 	// 해당 구인정보에 등록된 지원자 리스트 갖고 오기.
-	public String selectRecruitApplyList() throws Exception {
+	/*public String selectRecruitApplyList() throws Exception {
 		System.out.println("지원자 리스트 selectAll");
 		SQ_seekingDAO dao = new SQ_seekingDAO();
-		sq_applied_list = dao.selectRecruitApply(sq_recruit_artist.getSq_recruit_id());
+		sq_applied_list = dao.(sq_recruit_artist.getSq_recruit_id());
+		return SUCCESS;
+	}*/
+	
+	public String getAllRecruitApply() throws Exception{
+		System.out.println("");
+		sq_apply_list=sdao.getAllRecruitApply(sq_recruit.getSq_recruit_id());
 		return SUCCESS;
 	}
 	
@@ -111,24 +120,28 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	}
 	
 	//구인정보 수정
-	public String updateSQrecruit() throws Exception {
+	public String updateSQRecruit() throws Exception {
+		System.out.println(sq_recruit);
+		SQ_seekingDAO dao = new SQ_seekingDAO();
 		System.out.println("구인정보 수정");
-		SQ_seekingDAO dao = new SQ_seekingDAO();
-		int result = dao.updateRecruit(sq_recruit);
-		if(result != 0){
-			return SUCCESS;
-		} else {
-			return ERROR;
-		}
-		
-	}
-	//정보 가져올 메소드
-	public String recruit_update() throws Exception{
-		System.out.println("수정 정보뿌리자!");
-		SQ_seekingDAO dao = new SQ_seekingDAO();
-		sq_recruit=dao.getSQrecruit(sq_recruit.getSq_member_id());
+		SQ_recruit recruit=dao.getSQrecruit(sq_recruit.getSq_recruit_id());
+		System.out.println(recruit);
+		/*if (upload != null) { 
+			try {
+				FileService fs = new FileService();
+				String basePath = getText("sq_recruit.uploadpath");
+				String savedfile;
+				savedfile = fs.saveFile(upload, basePath, uploadFileName);
+				sq_recruit.setSq_recruit_photo(savedfile);
+				sq_recruit.setSq_recruit_photo_original(uploadFileName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}*/
+		dao.updateSQRecruit(sq_recruit);
 		return SUCCESS;
 	}
+	
 	
 	//구인정보 삭제
 	public String deleteSQrecruit() throws Exception {
