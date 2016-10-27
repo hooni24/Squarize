@@ -106,7 +106,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	}*/
 	
 	public String getAllRecruitApply() throws Exception{
-		System.out.println("");
+		System.out.println("지원자리스트"+sq_recruit);
 		sq_apply_list=sdao.getAllRecruitApply(sq_recruit.getSq_recruit_id());
 		return SUCCESS;
 	}

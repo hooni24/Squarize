@@ -88,7 +88,7 @@
 				,datatype:'json'
 				,success:function(send){
 					var list=send.sq_applied_list;
-					var code1="<table><tr><th></th><th></th></tr></table>"
+					var code1="<table><tr>지원자 이름<th>연락처</th><th></th></tr></table>"
 				}
 			});
 		});
