@@ -35,14 +35,12 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private SQ_recruit sq_recruit;
 	private SQ_recruit_apply sq_recruit_apply;
 	private SQ_portfolio sq_portfolio;
+	private int sq_recruit_id;	//getter, setter필요.
 	private int result;
-
+	
 	private String loginId;
 	private SQ_seekingDAO sdao=new SQ_seekingDAO(); 
 
-	
-
-	
 	//SQ_seekingAction 기본 생성자
 	public SQ_seekingAction(){
 		System.out.println("SQ_seekingAction 생성 및 멤버초기화 됨.");	//후에 삭제
@@ -57,12 +55,11 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
-	//구인 상세정보
+	//구인 상세정보(해당 recruit_id를 보내서 그에 해당하는 sq_recruit_artist객체를 갖고 옴.
 	public String selectOne_SQ_recruit_artist() throws Exception {
 		System.out.println("구인 상세정보 갖고오기 - Action : " + sq_recruit_artist.getSq_recruit_id());
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		sq_recruit_artist = dao.selectOne_sq_recruit_artist(sq_recruit_artist.getSq_recruit_id());
-		System.out.println("recruit_detail : " + sq_recruit_artist);
 		return SUCCESS;
 	}
 
@@ -101,11 +98,52 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
+	// 지원 여부 확인하기.(지원하기 버튼 눌렀을 때)
+	public SQ_recruit_apply checkApplied() {
+		System.out.println("지원여부 확인하기.");
+		//지원여부 확인. 지원한 적 있으면, recruit_apply 객체 리턴.
+		System.out.println("loginId: "+(String)session.get("loginId"));
+		sq_recruit_artist.setSq_member_id((String)session.get("loginId"));
+		System.out.println("sq_recruit_artist : " + sq_recruit_artist);
+		SQ_seekingDAO dao = new SQ_seekingDAO();
+		SQ_recruit_apply checked_apply = dao.checkApplied(sq_recruit_artist);
+		return checked_apply;
+	}
+	
 	// 해당 구인 정보에 지원신청 insert
 	public String insertRecruitApplication() throws Exception {
 		System.out.println("지원하기 insert");
+		// 먼저 지원 여부 확인하기.
+		SQ_recruit_apply checked_apply = this.checkApplied();
+		System.out.println("checked_apply : "+checked_apply);
+		if(checked_apply != null) {
+			result = 0;
+		} else {
+			//지원한 적 없으면(checked_apply가 null) portfolio DB에서 portfolio 유무 확인. 
+			SQ_seekingDAO dao = new SQ_seekingDAO();
+			sq_portfolio = dao.checkPortfolio((String)session.get("loginId"));
+				if(sq_portfolio != null) {
+				//지원하기.(insert)
+				result = dao.insertApply(sq_recruit_apply);
+			} else {
+				//만약 포트폴리오가 없으면 -1리턴으로 받아서 포트폴리오 페이지 띄워주기.
+				result = -1;
+			}
+		}
+		return SUCCESS;
+	}
+	
+	// 해당 구인 정보에 지원신청 취소 delete
+	public String deleteRecruitApplication() throws Exception {
+		System.out.println("지원 취소하기 delete");
 		SQ_seekingDAO dao = new SQ_seekingDAO();
-		result = dao.insertApply(sq_recruit_apply);
+		// 지원한 적이 있는지 확인
+		SQ_recruit_apply checked_apply = this.checkApplied();
+		if(checked_apply != null) {
+			result = dao.deleteApply(checked_apply);
+		} else {
+			result = -1; //	지원한 적 없음.
+		}
 		return SUCCESS;
 	}
 	
@@ -132,26 +170,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 			return ERROR;
 		}
 	}
-	
-	// 해당 구인정보에 지원여부 확인->포트폴리오 유무 확인 -> 지원등록/실패
-	public String checkApplied() throws Exception {
-		result = 0;
-		System.out.println("지원 여부 체크");
-		SQ_seekingDAO dao = new SQ_seekingDAO();
-		String apply_id = (String)session.get("loginId");
-		sq_recruit_apply.setSq_member_id(apply_id);
-		sq_recruit_apply = dao.checkApplied(sq_recruit_apply);
-		System.out.println("지원했냐? "+sq_recruit_apply);
-		if(sq_recruit_apply == null){
-			sq_portfolio = dao.checkPortfolio(apply_id);
-			if(sq_portfolio != null){
-				sq_recruit_apply.setSq_member_id(apply_id);
-				result = dao.insertApply(sq_recruit_apply);
-			}
-		}
-		return SUCCESS;
-	}
-	
+
 	//멤버의 getter & setter
 	@Override
 	public void setSession(Map<String, Object> arg0) {
@@ -244,6 +263,14 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 
 	public void setSq_recruit_apply(SQ_recruit_apply sq_recruit_apply) {
 		this.sq_recruit_apply = sq_recruit_apply;
+	}
+	
+	public int getSq_recruit_id() {
+		return sq_recruit_id;
+	}
+
+	public void setSq_recruit_id(int sq_recruit_id) {
+		this.sq_recruit_id = sq_recruit_id;
 	}
 
 	public SQ_portfolio getSq_portfolio() {

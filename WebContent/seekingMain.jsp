@@ -245,11 +245,9 @@
                             <ul>
                                 <li><a href="toSeekingMain.action">구인글</a></li>
                                 <li><a href="toRentMain.action">대관글</a></li>
-                                <li><a href="#">Something 3</a></li>
-                                <li><a href="#">Something 4</a></li>
                             </ul>
                         </li>
-                        <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
+                        <li><a href="toPortfolio.action?fromWhere=seeking" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
                         <li><a href="rentApplySituation.action" id="rent_apply_situation">내 지원현황</a></li>
                         <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li>
                         <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li>

@@ -227,13 +227,14 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 				System.out.println(mediaExt);
 			}
 		}
-		return SUCCESS;
+		return fromWhere();
 	}
 	
 	/**
 	 * 포트폴리오 등록
 	 */
 	public String makePortfolio(){
+		System.out.println(fromWhere);
 		FileService fs = new FileService();
 		String basePath = getText("port.uploadpath");
 		String savedfile;

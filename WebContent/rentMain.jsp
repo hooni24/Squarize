@@ -467,7 +467,7 @@
                         <li>
                             <a href="#" class="has-child">마이페이지</a>
                             <ul>
-                                <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
+                                <li><a href="toPortfolio.action?fromWhere=rent" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
                                 <li><a href="getAllMyRent.action">내가 올린 글</a></li>
 		                        <li><a href="rentApplySituation.action" id="rent_apply_situation">내 지원현황</a></li>
                             </ul>

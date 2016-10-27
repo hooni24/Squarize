@@ -8,12 +8,14 @@
 	
 	<select id="selectOne_sq_recruit_artist" parameterType="int" resultType="SQ_recruit_artist">
 		SELECT  
-			SQ_R.SQ_MEMBER_ID, SQ_R.SQ_RECRUIT_ID,SQ_R.SQ_RECRUIT_TITLE,SQ_R.SQ_RECRUIT_LOCATION,SQ_R.SQ_RECRUIT_LATITUDE,SQ_R.SQ_RECRUIT_LONGITUDE
+			SQ_R.SQ_MEMBER_ID,SQ_M.SQ_MEMBER_NAME,SQ_M.SQ_MEMBER_EMAIL
+			,SQ_A.SQ_ARTIST_PHONE,SQ_A.SQ_ARTIST_PHOTO,SQ_A.SQ_ARTIST_INTRO 
+			,SQ_R.SQ_RECRUIT_ID,SQ_R.SQ_RECRUIT_TITLE,SQ_R.SQ_RECRUIT_LOCATION
+			,SQ_R.SQ_RECRUIT_LATITUDE,SQ_R.SQ_RECRUIT_LONGITUDE
 			,SQ_R.SQ_RECRUIT_PART, SQ_R.SQ_RECRUIT_GENRE
 			,SQ_R.SQ_RECRUIT_INPUT_DATE
 			,SQ_R.SQ_RECRUIT_DATE
 			,SQ_R.SQ_RECRUIT_INFO
-			,SQ_M.SQ_MEMBER_NAME,SQ_M.SQ_MEMBER_EMAIL,SQ_A.SQ_ARTIST_PHONE,SQ_A.SQ_ARTIST_PHOTO 
 		FROM 
 			SQ_RECRUIT SQ_R, SQ_MEMBER SQ_M, SQ_ARTIST SQ_A 
 		WHERE 
@@ -69,9 +71,14 @@
 		DELETE SQ_RECRUIT WHERE SQ_RECRUIT_ID = #{recruit_id}
 	</delete>
 	
-	<select id="selectOne_apply" parameterType="SQ_recruit_apply" resultType="SQ_recruit_apply">
+	<select id="selectOne_apply" parameterType="SQ_recruit_artist" resultType="SQ_recruit_apply">
 		SELECT * FROM SQ_RECRUIT_APPLY
 			WHERE SQ_MEMBER_ID = #{sq_member_id} AND SQ_RECRUIT_ID = #{sq_recruit_id}
+	</select>
+	
+	<select id="delete_apply" parameterType="int">
+		DELETE FROM SQ_RECRUIT_APPLY
+			WHERE SQ_RECRUIT_APPLY_ID = #{sq_recruit_apply_id}
 	</select>
 	
 	<select id="selectOne_port" parameterType="string" resultType="SQ_portfolio">

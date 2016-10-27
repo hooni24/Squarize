@@ -16,6 +16,12 @@
 	
 	    <style>
 	        #map-simple { min-height: 240px; }
+	        #applyThisRecruit {
+	        	background-image: url("assets/img/success_64px.png");
+	        }
+	        #cancelThisRecruit {
+	        	background-image: url("assets/img/cancel_64px.png");
+	        }
 	    </style>
 		
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
@@ -24,40 +30,55 @@
 		
 		<script type="text/javascript">
 			$(function(){
+				var session = '<s:property value="#session.loginId"/>';
+				alert(session);
 				var sq_recruit_id = $('#sq_recruit_id').val();
 		    	$('#applyThisRecruit').on('click', function(){	/* 지원하기 버튼 눌렀을 때 */
 					$.ajax({
-		    			url : 'checkApplied'
+		    			url : 'insertApply'
 		    			, method : 'POST'
-		    			, data : sq_recruit_id
+		    			, data : {"sq_recruit_artist.sq_recruit_id":sq_recruit_id}
 		    			, dataType : 'json'
 		    			, success : function(response){
 		    				// 지원여부 확인
 		    				var result = response.result;
 		    				if(result == 0){
 		    					alert("이미 지원하였습니다.");
-		    				} else {	// 지원한 적이 없다면, 작성된 포트폴리오가 있는지
-		    					$.ajax({
-		    						url : 'checkPortfolio'
-		    						, method : 'POST'
-		    						, dataType : 'json'
-		    						, success : function(response){
-		    							var result = response.result
-		    							if(result != 0) {	// 작성한 포트폴리오 있음.
-		    								alert('지원 완료!');
-		    							} else {	// 작성한 포트폴리오가 없으면, 작성 페이지 띄워주기.
-		    								alert("제출할 포트폴리오를 먼저 작성해주세요.");
-		    								$('#portfolio_menu').trigger('click');
-		    							}
-		    							
-		    						}
-		    					});
+		    					
+		    				} else if(result == -1) {
+		    					alert("제출할 포트폴리오를 먼저 작성해주세요.");
+		    					$('#portfolio_menu').trigger('click');
+		    				} else {
+		    					alert("지원 처리되었습니다.");
 		    					
 		    				}
 		    			}
 		    			
 		    		});
 				
+				});
+				
+				$('#cancelThisRecruit').on('click',function(){
+					$.ajax({
+						url : 'deleteApply'
+						, method : 'POST'
+						, data : {"sq_recruit_artist.sq_recruit_id":sq_recruit_id}
+						, dataType : 'json'
+						, success : function(response) {
+							//지원한 적 있었는지 확인할 것.
+							var result = response.result;
+							if(result == -1) {
+								alert("지원한 적이 없습니다.");
+							} else if (result == 0) {
+								alert("취소 실패. 나중에 다시 시도해주세요.");
+								
+							} else {
+								alert("취소되었습니다.");
+								
+								
+							}
+						}
+					});
 				});
 		    	//위치을 찍어줄 위경도를 갖고 온다.
 				//지도에 마커를 찍는다.
@@ -91,6 +112,15 @@
 <!-- **********************************************************여기부터 바디********************************************************* -->	
 	<body class="external">
 	<!-- *****구인 상세 정보 시작 DIV ***** -->
+	<%-- 
+	<s:if test="#session.loginId == null">
+		<a id="toArtistLogin">로그인이 필요한 페이지입니다.</a>	<!-- interceptor -->
+	</s:if>
+	 --%>
+	<s:if test="sq_recruit_artist == null">
+		<a id="toArtistLogin">해당 글은 삭제되었습니다.</a>	<!-- trigger로 실행할 것. -->
+	</s:if>
+	<s:else>
 	<div id="item-detail" class="content-container">
 	    <div class="row">
 	        <div class="col-md-8">
@@ -104,9 +134,6 @@
 	                        	<s:elseif test="#session.loginId != null && sq_recruit_artist.sq_recruit_photo != null">
 	                         	   <img src="${sq_recruit_artist.sq_recruit_photo}" alt="">
 	                        	</s:elseif>
-	                        	<s:else>
-	                        		<a id="toArtistLogin">아티스트 로그인이 필요한 페이지입니다.</a>	<!-- trigger로 실행할 것. -->
-	                        	</s:else>
 	                        </div>
 	                    </div>
 	                </article>
@@ -142,8 +169,14 @@
 	                        <div class="collapse" id="person-detail">
 	                            <div class="details">
 	                                <p>
-	                                	<!-- 인사말 -->
+		                            	<s:if test="sq_recruit_artist.sq_artist_intro != null">
+		                                	${sq_recruit_artist.sq_artist_intro}
+		                                </s:if>
+		                                <s:else>
+		                                	등록된 인사말이 없습니다.
+		                                </s:else>
 	                                </p>
+	                                
 	                                <h3>Contact Me</h3>
 	                                <form role="form" method="post" class="clearfix">
 	                                    <div class="form-group">
@@ -200,12 +233,14 @@
 		                </article>
 	                </s:if>
 	                
-	                <!-- 아티스트로 로그인한 상태에서 로그인 아이디가 글쓴 아이디가 아닐 경우 지원할 수 있는 버튼추가. -->
+	                <!-- 아티스트로 로그인한 상태에서 로그인 아이디가 글쓴 아이디가 아닐 경우 지원할 수 있는 버튼/ 지원했던 지원자는 취소버튼 추가. -->
 	                <s:elseif test="#session.loginId != null && #session.loginId != sq_recruit_artist.sq_member_id">
 	                	<article class="center" id="test">
-		                    <a id="applyThisRecruit" class="btn btn-circle btn-default btn-lg"><i class="fa fa-plus"></i></a>
+		                    <a id="applyThisRecruit" class="btn btn-circle btn-default btn-lg"></a>
+		                    <a id="cancelThisRecruit" class="btn btn-circle btn-default btn-lg"></a>
 		                </article>
 	                </s:elseif>
+	                
 	                
 	                <!-- 아티스트 로그인하지 않은 상태에서는 이 페이지에 접근 불가(인터셉터) -->
 	                
@@ -216,6 +251,6 @@
 	    <!--end .row-->
 	</div>
 	<!--end #item-detail-->
-		
+	</s:else>	
 	</body>
 </html>

@@ -428,9 +428,7 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             flat: true,
             icon: 'assets/img/marker.png'
         });
-        alert('dho');
         marker.content.className = 'marker-loaded';   //새로 만든 마커 content인 markekerContent DIV에 marker-loaded 클래스 추가
-        alert('dho');
     }
 }
 

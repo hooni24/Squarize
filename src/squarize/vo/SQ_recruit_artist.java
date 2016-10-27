@@ -6,6 +6,7 @@ public class SQ_recruit_artist {
 	private String sq_member_email;
 	private String sq_artist_photo;
 	private String sq_artist_phone;
+	private String sq_artist_intro;
 	private int sq_recruit_id;
 	private String sq_recruit_title;
 	private String sq_recruit_location;
@@ -58,6 +59,14 @@ public class SQ_recruit_artist {
 
 	public void setSq_artist_phone(String sq_artist_phone) {
 		this.sq_artist_phone = sq_artist_phone;
+	}
+
+	public String getSq_artist_intro() {
+		return sq_artist_intro;
+	}
+
+	public void setSq_artist_intro(String sq_artist_intro) {
+		this.sq_artist_intro = sq_artist_intro;
 	}
 
 	public int getSq_recruit_id() {
@@ -152,12 +161,13 @@ public class SQ_recruit_artist {
 	public String toString() {
 		return "SQ_recruit_artist [sq_member_id=" + sq_member_id + ", sq_member_name=" + sq_member_name
 				+ ", sq_member_email=" + sq_member_email + ", sq_artist_photo=" + sq_artist_photo + ", sq_artist_phone="
-				+ sq_artist_phone + ", sq_recruit_id=" + sq_recruit_id + ", sq_recruit_title=" + sq_recruit_title
-				+ ", sq_recruit_location=" + sq_recruit_location + ", sq_recruit_info=" + sq_recruit_info
-				+ ", sq_recruit_input_date=" + sq_recruit_input_date + ", sq_recruit_date=" + sq_recruit_date
-				+ ", sq_recruit_genre=" + sq_recruit_genre + ", sq_recruit_part=" + sq_recruit_part
-				+ ", sq_recruit_photo=" + sq_recruit_photo + ", sq_recruit_latitude=" + sq_recruit_latitude
-				+ ", sq_recruit_longitude=" + sq_recruit_longitude + "]";
+				+ sq_artist_phone + ", sq_artist_intro=" + sq_artist_intro + ", sq_recruit_id=" + sq_recruit_id
+				+ ", sq_recruit_title=" + sq_recruit_title + ", sq_recruit_location=" + sq_recruit_location
+				+ ", sq_recruit_info=" + sq_recruit_info + ", sq_recruit_input_date=" + sq_recruit_input_date
+				+ ", sq_recruit_date=" + sq_recruit_date + ", sq_recruit_genre=" + sq_recruit_genre
+				+ ", sq_recruit_part=" + sq_recruit_part + ", sq_recruit_photo=" + sq_recruit_photo
+				+ ", sq_recruit_latitude=" + sq_recruit_latitude + ", sq_recruit_longitude=" + sq_recruit_longitude
+				+ "]";
 	}
-	
+
 }

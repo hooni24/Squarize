@@ -22,7 +22,19 @@
 			<result type="json"></result>
 		</action>
 		
-		<action name="apply" class="squarize.action.SQ_seekingAction" method="insertRecruitApplication">
+		<action name="insertApply" class="squarize.action.SQ_seekingAction" method="insertRecruitApplication">
+			<result type="json"></result>
+		</action>
+		
+		<action name="checkApplied" class="squarize.action.SQ_seekingAction" method="checkApplied">
+			<result type="json"></result>
+		</action>
+		
+		<action name="checkPortfolio" class="squarize.action.SQ_seekingAction" method="checkPortfolio">
+			<result type="json"></result>
+		</action>
+		
+		<action name="deleteApply" class="squarize.action.SQ_seekingAction" method="deleteRecruitApplication">
 			<result type="json"></result>
 		</action>
 		
@@ -32,14 +44,6 @@
 		
 		<action name="recruit_delete" class="squarize.action.SQ_seekingAction" method="deleteRecruit">
 			<result type="redirect">toSeekingMain</result>
-		</action>
-		
-		<action name="checkApplied" class="squarize.action.SQ_seekingAction" method="checkApplied">
-			<result type="json"></result>
-		</action>
-		
-		<action name="checkPortfolio" class="squarize.action.SQ_seekingAction" method="checkPortfolio">
-			<result type="json"></result>
 		</action>
 		
 		<action name="toAddSQrecruit">

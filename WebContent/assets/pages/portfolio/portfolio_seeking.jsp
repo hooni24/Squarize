@@ -48,7 +48,7 @@
     		//포트폴리오 등록 화면 전환
     		$("a#makePort").on("click", function(){
     			var appendThing =
-                '<form id="forms" action="makePortfolio?fromWhere=rent" method="post" enctype="multipart/form-data">'+
+                '<form id="forms" action="makePortfolio?fromWhere=seeking" method="post" enctype="multipart/form-data">'+
 	                '<h1>다루는 악기</h1>'+
 	                '<input id="inst" type="text" name="sq_portfolio.sq_port_inst"><br><br>'+
 	                '<h1>약력(1000자 이내)</h1>'+
