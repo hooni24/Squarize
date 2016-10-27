@@ -1,7 +1,7 @@
 package squarize.vo;
 
 public class SQ_recruit {
-	private int sq_recruit_id=0;	//구인정보 고유번호
+	private int sq_recruit_id;	//구인정보 고유번호
 	private String sq_member_id="";	//회원 아이디 : 일반회원 ID
 	private String sq_recruit_title="";	//구인글 제목
 	private String sq_recruit_input_date="";	//구인정보 등록 날짜

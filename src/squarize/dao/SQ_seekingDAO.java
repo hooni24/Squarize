@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import squarize.util.MybatisConfig;
+import squarize.vo.SQ_human;
 import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
 import squarize.vo.SQ_recruit_apply;
@@ -62,12 +63,29 @@ public class SQ_seekingDAO {
 		}
 	}
 	
-	// 해당 구인정보에 지원한 지원자 리스트 전체 불러오기
+/*	// 해당 구인정보에 지원한 지원자 리스트 전체 불러오기
 	public List<SQ_recruit_artist> selectRecruitApply(int recruit_id){
 		List<SQ_recruit_artist> recruitList = null;
 		ss = factory.openSession();
 		recruitList = ss.selectList("sq_seekingMapper.selectList_applied", recruit_id);
 		if(ss != null) ss.close();
+		return recruitList;
+	}*/
+	
+	/**getAllRecruitApply()
+	 * o
+	 * */
+	public List<SQ_human> getAllRecruitApply(int sq_recruit_id){
+		List<SQ_human>recruitList=null;
+		try {
+			ss = factory.openSession();
+			recruitList=ss.selectList("sq_seekingMapper.getAllRecruitApply", sq_recruit_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ss.commit();
+			ss.close();
+		}
 		return recruitList;
 	}
 	
@@ -82,12 +100,18 @@ public class SQ_seekingDAO {
 	}
 	
 	// 구인정보 수정하기.
-	public int updateRecruit(SQ_recruit sq_recruit) {
+	public int updateSQRecruit(SQ_recruit sq_recruit) {
 		int result = 0;
-		ss = factory.openSession();
-		result = ss.update("sq_seekingMapper.updateRecruit", sq_recruit);
-		ss.commit();
-		if(ss != null) ss.close();
+		try {
+			ss = factory.openSession();
+			result = ss.update("sq_seekingMapper.updateSQRecruit", sq_recruit);
+			System.out.println(sq_recruit);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ss.commit();
+			if(ss != null) ss.close();
+		}
 		return result;
 	}
 	
@@ -109,6 +133,21 @@ public class SQ_seekingDAO {
 		System.out.println("applied : " + applied);
 		if(ss != null) ss.close();
 		return applied;
+	}
+	
+	//수정위한 recruit 정보 불러오기 
+	public SQ_recruit getSQrecruit(int sq_recruit_id){
+		SQ_recruit result=null;
+		try {
+			ss = factory.openSession();
+			result=ss.selectOne("sq_seekingMapper.getSQrecruit", sq_recruit_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ss.commit();
+			ss.close();
+		}
+		return result;
 	}
 	
 	// 포트폴리오 작성여부 select

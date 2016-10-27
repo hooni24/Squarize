@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
+    <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
 
     <title>SQUARIZE - BUSKING</title>
 	
@@ -24,6 +25,14 @@
     		overflow: scroll;
     	}
 	</style>
+	<script>
+		$(function(){
+			//로그아웃
+    		$("ul#main_menu").on("click", "a#main_logout", function(){
+				location.href = "logoutSQmember.action?fromWhere=busking";
+			});
+		});
+	</script>
 </head>
 
 <body id="page-top" class="fullscreen-map has-map">
@@ -37,53 +46,64 @@
                     <div class="col-md-3 col-md-offset-9">
                         <div role="tabpanel">
                             <!-- Nav tabs -->
-                            <ul class="nav nav-pills" role="tablist">
-                                <li role="presentation"><a href="#sign-in" aria-controls="sign-in" id="sign_in_btn" role="tab" data-toggle="tab" data-transition-parent="#sign-in">Sign In</a></li>
-                                <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register">Register</a></li>
+                            <ul class="nav nav-pills" role="tablist" id="tab_menu">
+                            <!-- 여기부터 3개는 새로 생킨 탭에 있는 탭 제목 -->
+                            <s:if test="#session.loginId == null">
+                                <li role="presentation"><a href="#sign-in" aria-controls="sign-in" role="tab" data-toggle="tab" data-transition-parent="#sign-in" id="tab_login">Login</a></li>
+                                <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register" id="tab_register">Register</a></li>
+                            </s:if>
+                            <s:else>
+                                <li role="presentation"><a href="#updateSQmember" aria-controls="updateSQmember" role="tab" data-toggle="tab"  data-transition-parent="#updateSQmember" id="tab_updateSQmember">정보수정</a></li>
+                            	<s:if test='#session.isArtist == "N"'>
+                            		<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>
+                            	</s:if>
+                            </s:else>
                             </ul>
-                              <ul class="nav nav-artist hidden">
-                                 <li role="presentation"><a href="#add-artist" aria-controls="add-artist" role="tab" data-toggle="tab"  data-transition-parent=".add-artist-pane">추가인증</a></li>
-                              </ul>
-                            <!-- Tab panes -->
+                            <!-- 각각 탭안에 있는 내용물들 -->
+                            <!-- 로그인 -->
                             <div class="tab-content">
-                               <div role="tabpanel" class="tab-pane" id="add-artist">
-                                  <form action="form" method="post" id="form-add-artist">
-                                     <div class="form-group animate move_from_bottom_short" id="phoneInput">
-                                            <input type="text" class="form-control" id="add-artist-phone" name="add-artist-phone" placeholder="PHONE">
-                                        </div>
-                                        <div class="form-group animate move_from_bottom_short" id="photoInput">
-                                            <input type="text" class="form-control" id="add-artist-photo" name="add-artist-photo" placeholder="PHOTO">
-                                        </div>
-                                        
-                                  </form>
-                               </div>
                                 <div role="tabpanel" class="tab-pane" id="sign-in">
                                     <form role="form" method="post" id="form-sign-in">
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="login-id" name="login-id" placeholder="ID">
+                                            <input type="text" class="form-control" id="sign-in-id" name="sign-in-id" placeholder="ID">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="password" class="form-control" id="login-pw" name="login-pw" placeholder="Password">
+                                            <input type="password" class="form-control" id="sign-in-pw" name="pw" placeholder="PW">
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <button type="button" class="btn btn-primary" id="login_btn">Sign In</button>
+                                            <button type="button" class="btn btn-primary" id="sign-in-submit">Log In</button>
                                         </div>
                                         <!--end .form-group-->
                                     </form>
                                 </div>
+                                
+                            <!-- 회원가입 -->
+                                
                                 <div role="tabpanel" class="tab-pane" id="register">
-                                   <form role="form" method="post" id="form-register" class="register-pane">
+                                    <form role="form" method="post" id="form-register" action="registerSQmember?fromWhere=busking">
                                         <div class="form-group animate move_from_bottom_short" id="idInput">
                                             <input type="text" class="form-control" id="register-id" name="register-id" placeholder="ID">
-                                              <span id="id-check"></span>
+                                           	<span id="id-check"></span>
                                         </div>
                                         <!--end .form-group-->
-                                         <div class="form-group animate move_from_bottom_short">
+                                        <div class="form-group animate move_from_bottom_short">
                                             <input type="text" class="form-control" id="register-name" name="register-name" placeholder="Name">
                                         </div>
-                                        <!--end .form-group-->                                        
+                                        <!--end .form-group-->
+                                        
+                                        <div class="form-group">
+                                            <select id="register_favorite" size="3">
+                                            	<option>선호장르</option>
+                                            	<option>락</option>
+                                            	<option>발라드</option>
+                                            	<option>재즈</option>
+                                            	<option>힙합</option>
+                                            </select>
+                                        </div>
+                                        <!--end .form-group-->
+                                        
                                         <div class="form-group animate move_from_bottom_short">
                                             <input type="email" class="form-control" id="register-email" name="register-email" placeholder="Email">
                                         </div>
@@ -97,20 +117,91 @@
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
-                                            <select id="register_favorite" class="select">
-                                               <option>선호장르</option>
-                                               <option>발라드</option>
-                                               <option>힙합</option>
-                                               <option>인디</option>
-                                            </select>
-                                        </div>
-                                        <!--end .form-group-->
-                                        <div class="form-group animate move_from_bottom_short">
                                             <button type="button" class="btn btn-primary" id="register_btn">Register</button>
                                         </div>
                                         <!--end .form-group-->
                                     </form>
                                 </div>
+                                
+                                <!--회원정보 수정  -->
+                                <div role="tabpanel" class="tab-pane" id="updateSQmember">
+                                    <form role="form" method="post" id="form-update" action="updateSQmember.action?fromWhere=busking" enctype="multipart/form-data">
+                                        <div class="form-group animate move_from_bottom_short" id="idInput">
+                                            <input type="text" class="form-control" id="update-id" name="sq_member.sq_member_id" readonly>
+                                        </div>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="text" class="form-control" id="update-name" name="sq_member.sq_member_name" readonly>
+                                        </div>
+                                        <!--end .form-group-->
+                                        
+                                        <div class="form-group">
+                                            <select id="update_favorite" size="3" name="sq_member.sq_member_favorite">
+                                            	<option>선호장르</option>
+                                            	<option>락</option>
+                                            	<option>발라드</option>
+                                            	<option>재즈</option>
+                                            	<option>힙합</option>
+                                            </select>
+                                        </div>
+                                        <!--end .form-group-->
+                                        
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="email" class="form-control" id="update-email" name="sq_member.sq_member_email" readonly>
+                                        </div>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="password" class="form-control" id="update-password" name="update-password" placeholder="password">
+                                        </div>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <input type="password" class="form-control" id="update-confirm-password" name="update-confirm-password" placeholder="confirm-password">
+                                        </div>
+                                        <!--end .form-group-->
+                                        <s:if test='#session.isArtist == "Y"'>
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <input type="text" class="form-control" id="update-artist-phone" name="sq_artist.sq_artist_phone" >
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <textarea class="form-control" id="update-artist-intro" name="sq_artist.sq_artist_intro"  rows="8"></textarea>
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="photoInput">
+	                                            <input type="file" class="form-control" id="update-artist-photo" name="upload">
+	                                        </div>
+                                        </s:if>
+                                        <!--end .form-group-->
+                                        <div class="form-group animate move_from_bottom_short">
+                                            <button type="button" class="btn btn-primary" id="update_btn">update</button>
+                                        </div>
+                                        <!--end .form-group-->
+                                    </form>
+                                </div>
+                                <!-- 로그아웃 -->
+                                <div role="tabpanel" class="tab-pane" id="logout">
+                                	<div class="form-group animate move_from_bottom_short">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                    </div>
+                                </div>
+                                
+                                <!-- 아티스트 인증 -->
+<%--                                 <s:if test='#session.isArtist == "N"'> --%>
+	                                <div role="tabpanel" class="tab-pane" id="makeArtist">
+	                                	<form role="form" method="post" id="form-makeArtist" action="addArtist?fromWhere=busking" enctype="multipart/form-data">
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <input type="text" class="form-control" id="add-artist-phone" name="sq_artist.sq_artist_phone" placeholder="PHONE (JUST NUMBER)">
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="phoneInput">
+	                                            <textarea class="form-control" id="add-artist-intro" name="sq_artist.sq_artist_intro" placeholder="INTRODUCE YOURSELF" rows="8"></textarea>
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short" id="photoInput">
+	                                            <input type="file" class="form-control" id="add-artist-photo" name="upload" placeholder="PHOTO">
+	                                        </div>
+	                                        <div class="form-group animate move_from_bottom_short">
+	                                            <button type="button" class="btn btn-primary" id="makeArtist_submit">Make Artist</button>
+	                                        </div>
+	                                    </form>
+	                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -127,16 +218,19 @@
         <div class="container">
             <div class="header-inner">
                 <nav class="secondary">
-                    <ul class="unlogin">
-                        <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#sign-in" data-transition-parent="#header">Sign In</a></li>
-                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header">Register</a></li>
-                    </ul>
-                    <ul class="login hidden">
-                       <li class="message"><span class="loginId"></span>님 로그인 중.</li>
-                       <%-- <s:if test='#session.isArtist=="N"'> --%>
-                          
-                    <%--    </s:if> --%>
-                       <li id="logout_btn"><a href="#logout">Logout</a></li>
+                    <ul id="main_menu">
+                    <!-- 메인페이지에 보이는 메뉴들 -->
+                    <s:if test="#session.loginId == null">
+                        <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#sign-in" data-transition-parent="#header" id="main_login">logIn</a></li>
+                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header" id="main_register">Register</a></li>
+                    </s:if>
+                    <s:else>
+                    	<li><a href="#user-area" id="update" data-toggle="collapse" aria-expanded="false" data-tab="#" aria-controls="user-area">${sessionScope.loginId } 님 환영합니다!</a></li>
+                        <li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>
+                        <s:if test='#session.isArtist == "N"'>
+	                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>
+	                    </s:if>
+                    </s:else>
                     </ul>
                 </nav>
                 <!--end Secondary navigation-->
@@ -148,18 +242,26 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="#" class="has-child">Home</a>
+                            <a href="toBuskingMain.action" class="has-child">홈</a>
                             <ul>
-                                <li><a href="#">Something 1</a></li>
-                                <li><a href="#">Something 2</a></li>
-                                <li><a href="#">Something 3</a></li>
-                                <li><a href="#">Something 4</a></li>
+                                <li><a href="toBuskingMain.action">버스킹</a></li>
+                                <li><a href="toSeekingMain.action">구인글</a></li>
+                                <li><a href="toRentMain.action">대관글</a></li>
                             </ul>
                         </li>
-                        <li><a href="about_e.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">About Us</a></li>
-                        <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li>
-                        <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li>
-                        <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li>
+                        <s:if test='#session.isArtist == "Y"'>
+	                        <li>
+	                            <a href="#" class="has-child">마이페이지</a>
+	                            <ul>
+	                                <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
+	                            </ul>
+	                        </li>
+                        </s:if>
+                        <!-- 추가 메뉴 필요하면 아래 주석달린 li태그 참고해서 만드세요 -->
+<!--                         <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li> -->
+<!--                         <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li> -->
+<!--                         <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li> -->
+<!--                         <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li> -->
                     </ul>
                     <div class="toggle-nav">
                         <div class="dots">
@@ -243,7 +345,6 @@
 	<div class="loading-img"></div>	
 </div>
 
-         <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
          <script type="text/javascript" src="assets/js/sq_member.js"></script>
          <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
          <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>

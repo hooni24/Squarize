@@ -15,6 +15,7 @@ public class SQ_human {
 	private String sq_port_pr;
 	private String sq_port_file = "";
 	
+	
 	public SQ_human() {}
 
 	public String getSq_member_id() {

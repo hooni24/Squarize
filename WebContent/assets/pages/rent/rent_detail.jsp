@@ -167,8 +167,9 @@
 								var appendThing = '<article class="person list">';
 								appendThing += '<div class="left average-color">';
 								appendThing += '<figure class="person-image image">';
-								if(item.sq_port_file == null){
-									appendThing += '<img src="assets/downloadIMG/artist/default.jpg">';
+								alert(item.sq_port_file);
+								if(item.sq_port_file == ""){
+									appendThing += '<img src="assets/img/person-01.jpg">';
 								}else {
 									appendThing += '<img src="assets/downloadIMG/port/'+item.sq_port_file+'">';
 								}

@@ -6,6 +6,16 @@
 		SELECT * FROM SQ_RECRUIT ORDER BY SQ_RECRUIT_ID DESC
 	</select>
 	
+	<select id="getAllRecruitApply" parameterType="int" resultType="SQ_human">
+		select * 
+			from sq_artist a, sq_member m,sq_portfolio p
+			where a.sq_member_id=m.sq_member_id
+				and m.sq_member_id=p.sq_member_id
+				and m.sq_member_id IN(select sq_member_id
+									from sq_recruit_apply
+									where sq_recruit_id=#{sq_recruit_id});
+	</select>
+	
 	<select id="selectOne_sq_recruit_artist" parameterType="int" resultType="SQ_recruit_artist">
 		SELECT  
 			SQ_R.SQ_MEMBER_ID,SQ_M.SQ_MEMBER_NAME,SQ_M.SQ_MEMBER_EMAIL
@@ -50,21 +60,25 @@
 				) 
 	</insert>
 	
-	<update id="updateRecruit" parameterType="SQ_recruit">
+	<update id="updateSQRecruit" parameterType="SQ_recruit">
 		UPDATE SQ_RECRUIT 
 			SET 
-				SQ_RECRUIT_TITLE = #{title}
-				, SQ_RECRUIT_PART = #{part}
-				, SQ_RECRUIT_PHOTO = #{photo}
-				, SQ_RECRUIT_PHOTO_ORIGINAL = #{original}
-				, SQ_RECRUIT_GENRE = #{genre}
-				, SQ_RECRUIT_DATE = #{date}
-				, SQ_RECRUIT_LOCATION = #{location}
-				, SQ_RECRUIT_LATITUDE = #{latitude}
-				, SQ_RECRUIT_LONGITUDE = #{longitude}
-				, SQ_RECRUIT_INFO = #{info}
+				SQ_RECRUIT_TITLE = #{sq_recruit_title}
+				, SQ_RECRUIT_PART = #{sq_recruit_part}
+				, SQ_RECRUIT_GENRE = #{sq_recruit_genre}
+				, SQ_RECRUIT_DATE = #{sq_recruit_date}
+				<if test="sq_recruit_info!=''">
+				, SQ_RECRUIT_INFO = #{sq_recruit_info}
+				</if>
+				<if test="sq_recruit_photo!=''">
+				, SQ_RECRUIT_PHOTO = #{sq_recruit_photo}
+				
+				</if>
+				<if test="sq_recruit_photo_original!=''">
+				, SQ_RECRUIT_PHOTO_ORIGINAL = #{sq_recruit_original}
+				</if>
 			WHERE
-				SQ_RECRUIT_ID = #{recruit_id}
+				SQ_RECRUIT_ID = #{sq_recruit_id}
 	</update>
 	
 	<delete id="deleteRecruit" parameterType="int">
@@ -83,6 +97,10 @@
 	
 	<select id="selectOne_port" parameterType="string" resultType="SQ_portfolio">
 		SELECT * FROM SQ_PORTFOLIO WHERE SQ_MEMBER_ID = #{sq_member_id}
+	</select>
+	
+	<select id="getSQrecruit" parameterType="int" resultType="SQ_recruit">
+		SELECT * FROM sq_recruit WHERE sq_recruit_id=#{recruit_id}
 	</select>
 </mapper>
 	

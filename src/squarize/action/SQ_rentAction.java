@@ -78,7 +78,6 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		rent = (SQ_rent) result[1];
 		artist = (SQ_artist) result[2];
 		rent_apply = (SQ_rent_apply) result[3];
-		System.out.println(rent_apply);
 		return SUCCESS;
 	}
 	

@@ -478,7 +478,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             markerContent.innerHTML =
                 '<div class="map-marker">' +
                     '<div class="icon">' +
-                    '<img src="assets/img/marker.png">' +
+                    '<img src="assets/img/marker3.png">' +
                     '</div>' +
                 '</div>';
 

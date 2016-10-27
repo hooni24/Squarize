@@ -42,3 +42,14 @@
 	cursor:default;
 	color:rgba(0,0,0,0.7);
 }
+
+.detail-btn{
+		color:rgba(0,0,0,0.7);
+		font-family: sans-serif;
+		font-weight: bold;
+		-web-transition:0.5s;
+		transition:0.5s;
+}
+.detail-btn:hover{
+	color:rgba(0,0,f,0.8)!important;
+}
