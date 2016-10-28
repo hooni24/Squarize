@@ -50,7 +50,7 @@
 		SELECT * FROM SQ_RECRUIT_ARTIST WHERE SQ_RECRUIT_ID = #{id}
 	</select>
 	
-	<insert id="insertApply" parameterType="SQ_recruit_apply">
+	<insert id="insertApply" parameterType="SQ_recruit_artist">
 		INSERT INTO SQ_RECRUIT_APPLY 
 			VALUES 
 				(

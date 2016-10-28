@@ -39,7 +39,6 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private SQ_recruit sq_recruit;
 	private SQ_recruit_apply sq_recruit_apply;
 	private SQ_portfolio sq_portfolio;
-	private int sq_recruit_id;	//getter, setter필요.
 	private int result;
 	
 	private String loginId;
@@ -133,7 +132,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		//지원여부 확인. 지원한 적 있으면, recruit_apply 객체 리턴.
 		System.out.println("loginId: "+(String)session.get("loginId"));
 		sq_recruit_artist.setSq_member_id((String)session.get("loginId"));
-		System.out.println("sq_recruit_artist : " + sq_recruit_artist);
+		System.out.println("checkApplied sq_recruit_artist : " + sq_recruit_artist);
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		SQ_recruit_apply checked_apply = dao.checkApplied(sq_recruit_artist);
 		return checked_apply;
@@ -144,21 +143,23 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		System.out.println("지원하기 insert");
 		// 먼저 지원 여부 확인하기.
 		SQ_recruit_apply checked_apply = this.checkApplied();
-		System.out.println("checked_apply : "+checked_apply);
+		System.out.println("insert checked_apply : "+checked_apply);
 		if(checked_apply != null) {
 			result = 0;
 		} else {
 			//지원한 적 없으면(checked_apply가 null) portfolio DB에서 portfolio 유무 확인. 
 			SQ_seekingDAO dao = new SQ_seekingDAO();
 			sq_portfolio = dao.checkPortfolio((String)session.get("loginId"));
-				if(sq_portfolio != null) {
+			System.out.println("checkProtfolio sq_portfolio : "+sq_portfolio);
+			if(sq_portfolio != null) {
 				//지원하기.(insert)
-				result = dao.insertApply(sq_recruit_apply);
+				result = dao.insertApply(sq_recruit_artist);
 			} else {
 				//만약 포트폴리오가 없으면 -1리턴으로 받아서 포트폴리오 페이지 띄워주기.
 				result = -1;
 			}
 		}
+		System.out.println("insert 결과 : "+result);
 		return SUCCESS;
 	}
 	
@@ -167,7 +168,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		System.out.println("지원 취소하기 delete");
 		// 지원한 적이 있는지 확인
 		SQ_recruit_apply checked_apply = this.checkApplied();
-		System.out.println(checked_apply);
+		System.out.println("delete checked_apply : " +checked_apply);
 		if(checked_apply != null) {
 			SQ_seekingDAO dao = new SQ_seekingDAO();
 			result = dao.deleteApply(checked_apply);
@@ -307,14 +308,6 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		this.sq_recruit_apply = sq_recruit_apply;
 	}
 	
-	public int getSq_recruit_id() {
-		return sq_recruit_id;
-	}
-
-	public void setSq_recruit_id(int sq_recruit_id) {
-		this.sq_recruit_id = sq_recruit_id;
-	}
-
 	public SQ_portfolio getSq_portfolio() {
 		return sq_portfolio;
 	}
