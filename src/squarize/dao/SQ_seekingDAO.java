@@ -90,10 +90,10 @@ public class SQ_seekingDAO {
 	}
 	
 	// 구인정보에 지원시 DB에 등록하기.
-	public int insertApply(SQ_recruit_apply recruit_apply){
+	public int insertApply(SQ_recruit_artist sq_recruit_artist){
 		int result = 0;
 		ss = factory.openSession();
-		result = ss.insert("sq_seekingMapper.insertApply", recruit_apply);
+		result = ss.insert("sq_seekingMapper.insertApply", sq_recruit_artist);
 		ss.commit();
 		if(ss != null) ss.close();
 		return result;
@@ -130,7 +130,7 @@ public class SQ_seekingDAO {
 		SQ_recruit_apply applied = null;
 		ss = factory.openSession();
 		applied = ss.selectOne("sq_seekingMapper.selectOne_apply", sq_recruit_artist);
-		System.out.println("applied : " + applied);
+		System.out.println("DAO checkedApplied : " + applied);
 		if(ss != null) ss.close();
 		return applied;
 	}
@@ -163,7 +163,7 @@ public class SQ_seekingDAO {
 	public int deleteApply(SQ_recruit_apply sq_recruit_apply){
 		int result = 0;
 		ss = factory.openSession();
-		result = ss.delete("delete_apply", sq_recruit_apply);
+		result = ss.delete("sq_seekingMapper.delete_apply", sq_recruit_apply);
 		ss.commit();
 		if(ss != null) ss.close();
 		return result;

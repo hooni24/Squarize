@@ -499,6 +499,34 @@
 				        </div>
 				        <!--end .item move_from_bottom idle  -->
 			        </s:iterator>
+			        
+			        
+			        
+			        <s:iterator value="adList" var="ad">
+				        <div class="item move_from_bottom idle">
+				            <a href="${sq_ad_url }" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+				                <div class="inner">
+				                    <div class="image">
+				                        <div class="price average-color"><span>광고</span></div>
+				                        <img src="assets/img/ad/${sq_ad_file }">
+				                    </div>
+				                    <div class="item-content">
+				                        <header class="average-color">
+				                            <h2>${sq_ad_title }</h2>
+				                        </header>
+				                    </div>
+				                    <!--end .item-content -->
+				                </div>
+				                <!--end .inner -->
+				            </a>
+				        </div>
+				        <!--end .item move_from_bottom idle  -->
+			        </s:iterator>
+			        
+			        
+			        
+			        
+			        
 			    </div>
 			    <!--end .masonry grid full-width animate -->
             </div>

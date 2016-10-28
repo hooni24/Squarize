@@ -27,11 +27,11 @@
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>
 		<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-		<script src="assets/js/sq_recruit.js"></script>
+		<script src="../../js/sq_recruit.js"></script>
 		<script type="text/javascript">
 			$(function(){
 				var sq_recruit_id = $('#sq_recruit_id').val();
-		    	$('#applyThisRecruit').on('click', function(){	/* 지원하기 버튼 눌렀을 때 */
+		    	$('a#applyThisRecruit').on('click', function(){	/* 지원하기 버튼 눌렀을 때 */
 					$.ajax({
 		    			url : 'insertApply'
 		    			, method : 'POST'
@@ -40,6 +40,7 @@
 		    			, success : function(response){
 		    				// 지원여부 확인
 		    				var result = response.result;
+		    				alert(result);
 		    				if(result == 0){
 		    					alert("이미 지원하였습니다.");
 		    				} else if(result == -1) {
@@ -47,15 +48,13 @@
 		    					$('#portfolio_menu').trigger('click');
 		    				} else {
 		    					alert("지원 처리되었습니다.");
-		    					$('a#close').trigger('click');
+		    	//				$('a#close').trigger('click');
 		    				}
 		    			}
-		    			
 		    		});
-				
 				});
 				
-				$('#cancelThisRecruit').on('click',function(){
+				$('a#cancelThisRecruit').on('click',function(){
 					$.ajax({
 						url : 'deleteApply'
 						, method : 'POST'
@@ -68,10 +67,10 @@
 								alert("지원한 적이 없습니다.");
 							} else if (result == 0) {
 								alert("취소 실패. 나중에 다시 시도해주세요.");
-								$('a#close').trigger('click');
+				//				$('a#close').trigger('click');
 							} else {
 								alert("취소되었습니다.");
-								$('a#close').trigger('click');
+				//				$('a#close').trigger('click');
 							}
 						}
 					});
