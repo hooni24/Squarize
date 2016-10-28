@@ -58,7 +58,9 @@ CREATE TABLE SQ_AD
 	-- 광고 이미지파일 경로
 	SQ_AD_FILE varchar2(50) NOT NULL,
 	-- 광고 누르면 이동할 URL
-	SQ_AD_URL varchar2(100) NOT NULL,
+	SQ_AD_URL varchar2(1000) NOT NULL,
+	-- 광고 파트 분류
+	SQ_AD_PART varchar2(30) NOT NULL,
 	PRIMARY KEY (SQ_AD_ID)
 );
 
