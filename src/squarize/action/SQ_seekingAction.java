@@ -26,11 +26,9 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 //	private JsonObject json_object;
 	private List<SQ_recruit> sq_recruit_list;
 	private List<SQ_human>sq_apply_list;
-	private List<SQ_rent> sq_rent_list;
 	private List<SQ_portfolio> sq_portfolio_list;
 	private List<SQ_recruit_artist> sq_applied_list;
 	
-
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
 	private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
@@ -93,73 +91,46 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
-	// 해당 구인정보에 등록된 지원자 리스트 갖고 오기.
-	/*public String selectRecruitApplyList() throws Exception {
-		System.out.println("지원자 리스트 selectAll");
-		SQ_seekingDAO dao = new SQ_seekingDAO();
-		sq_applied_list = dao.(sq_recruit_artist.getSq_recruit_id());
-		return SUCCESS;
-	}*/
-	
-	public String getAllRecruitApply() throws Exception{
-		System.out.println("지원자리스트"+sq_recruit);
-		sq_apply_list=sdao.getAllRecruitApply(sq_recruit.getSq_recruit_id());
-		return SUCCESS;
-	}
-	
-	/*// 해당 구인정보에 지원여부 확인->포트폴리오 유무 확인 -> 지원등록/실패
-	public String checkApplied() throws Exception {
-		result = 0;
-		System.out.println("지원 여부 체크");
-		SQ_seekingDAO dao = new SQ_seekingDAO();
-		String apply_id = (String)session.get("loginId");
-		sq_recruit_apply.setSq_member_id(apply_id);
-		sq_recruit_apply = dao.checkApplied(sq_recruit_apply);
-		System.out.println("지원했냐? "+sq_recruit_apply);
-		if(sq_recruit_apply == null){
-			sq_portfolio = dao.checkPortfolio(apply_id);
-			if(sq_portfolio != null){
-				sq_recruit_apply.setSq_member_id(apply_id);
-				result = dao.insertApply(sq_recruit_apply);
-			}
-		}
-		return SUCCESS;
-	}*/
+//	public String getAllRecruitApply() throws Exception{
+//		System.out.println("지원자리스트"+sq_recruit);
+//		sq_apply_list=sdao.getAllRecruitApply(sq_recruit.getSq_recruit_id());
+//		return SUCCESS;
+//	}
 	
 	// 지원 여부 확인하기.(지원하기 버튼 눌렀을 때)
 	public SQ_recruit_apply checkApplied() {
 		System.out.println("지원여부 확인하기.");
 		//지원여부 확인. 지원한 적 있으면, recruit_apply 객체 리턴.
-		System.out.println("loginId: "+(String)session.get("loginId"));
 		sq_recruit_artist.setSq_member_id((String)session.get("loginId"));
-		System.out.println("checkApplied sq_recruit_artist : " + sq_recruit_artist);
+		System.out.println("검색재료(아이디만 있으면 됌) : " + sq_recruit_artist);
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		SQ_recruit_apply checked_apply = dao.checkApplied(sq_recruit_artist);
 		return checked_apply;
 	}
 	
 	// 해당 구인 정보에 지원신청 insert
-	public String insertRecruitApplication() throws Exception {
-		System.out.println("지원하기 insert");
+	public String insertRecruitApplication() {
 		// 먼저 지원 여부 확인하기.
 		SQ_recruit_apply checked_apply = this.checkApplied();
-		System.out.println("insert checked_apply : "+checked_apply);
+		System.out.println("지원했는지 얻어온 결과 : "+checked_apply);
 		if(checked_apply != null) {
 			result = 0;
 		} else {
 			//지원한 적 없으면(checked_apply가 null) portfolio DB에서 portfolio 유무 확인. 
 			SQ_seekingDAO dao = new SQ_seekingDAO();
 			sq_portfolio = dao.checkPortfolio((String)session.get("loginId"));
-			System.out.println("checkProtfolio sq_portfolio : "+sq_portfolio);
+			System.out.println("지원여부 아닌 사람에게서 포트폴리오 객체 얻어옴(있니없니?) : "+sq_portfolio);
 			if(sq_portfolio != null) {
 				//지원하기.(insert)
+				System.out.println("검색재료로 들어가는 sq_recruit_artist : " + sq_recruit_artist);
 				result = dao.insertApply(sq_recruit_artist);
+				System.out.println("포트폴리오 있는 사람은 apply시키고 결과값 받아옴.(1이어야 함)" + result);
 			} else {
 				//만약 포트폴리오가 없으면 -1리턴으로 받아서 포트폴리오 페이지 띄워주기.
 				result = -1;
 			}
 		}
-		System.out.println("insert 결과 : "+result);
+		System.out.println("최종적으로 result에 담기는 숫자 : "+result);
 		return SUCCESS;
 	}
 	
@@ -228,13 +199,6 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		this.sq_recruit_list = sq_recruit_list;
 	}
 
-	public List<SQ_rent> getSq_rent_list() {
-		return sq_rent_list;
-	}
-
-	public void setSq_rent_list(List<SQ_rent> sq_rent_list) {
-		this.sq_rent_list = sq_rent_list;
-	}
 
 	public List<SQ_portfolio> getSq_portfolio_list() {
 		return sq_portfolio_list;

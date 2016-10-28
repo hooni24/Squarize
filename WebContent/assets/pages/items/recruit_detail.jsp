@@ -27,7 +27,7 @@
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>
 		<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-		<script src="assets/js/sq_recruit.js"></script>
+		<script src="../../js/sq_recruit.js"></script>
 		<script type="text/javascript">
 			$(function(){
 				var sq_recruit_id = $('#sq_recruit_id').val();
@@ -51,9 +51,7 @@
 		    	//				$('a#close').trigger('click');
 		    				}
 		    			}
-		    			
 		    		});
-				
 				});
 				
 				$('a#cancelThisRecruit').on('click',function(){
