@@ -65,15 +65,7 @@
 					var valid = validCheck();
 					if(valid){
 						alert("hi");
-						/* var title = $("input#title").val();
-						var part = $("textarea#part").val();
-						var limitDate = $("input#limitDate").val();
-						var genre = $("input#genre").val();
-						var photo = $("#recruit-pic").val();
-						var info = $("#info").val(); */
 						
-						/* $("input#real_concert_date").val(concert_date);
-						$("input#real_limit").val(limit); */
 		 				$("#form").submit();
 						alert("성공");
 					}//if(valid)
@@ -101,7 +93,7 @@
 		});
 		$('.center').on('click','#update',function(){
 			alert("hello");
-			/*
+			
 			var lat = marker.position.lat();		//위도경도 얻어옴
 			var lng = marker.position.lng();
 			$("input#lat_").val(lat);				//hidden에 넣음
@@ -117,7 +109,7 @@
 	 				
 				}//success펑션
 			});//ajax
-*/			if(validCheck()){
+			if(validCheck()){
 				$("#form")[0].submit();
 			}
 		});

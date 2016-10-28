@@ -446,7 +446,6 @@
 		$("ul#main_menu").on("click", "a#main_logout", function(){
 			location.href = "logoutSQmember.action";
 		});
-		
 		</script>
 
 		

@@ -23,12 +23,12 @@
 	        	background-image: url("assets/img/cancel_64px.png");
 	        }
 	    </style>
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
+		<script src="../../js/sq_recruit.js"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>
 		<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-		<script src="../../js/sq_recruit.js"></script>
 		<script type="text/javascript">
 			$(function(){
+				
 				var sq_recruit_id = $('#sq_recruit_id').val();
 		    	$('a#applyThisRecruit').on('click', function(){	/* 지원하기 버튼 눌렀을 때 */
 					$.ajax({
@@ -74,6 +74,95 @@
 						}
 					});
 				});
+				
+				$("button#submits").on("click", function(){
+					var lat = marker.position.lat();		//위도경도 얻어옴
+					var lng = marker.position.lng();
+					$("input#lat_").val(lat);				//hidden에 넣음
+					$("input#lng_").val(lng);
+					
+					$.ajax({		//마커 부분 시, 동 으로 region에 저장 
+						url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8'
+						, method : "post"
+						, dataType: "json"
+						, success : function(resp){//resp:
+							var region = resp.results[0].address_components[3].long_name+" "+resp.results[0].address_components[2].long_name;
+							$("input#region_").val(region);
+						
+							var valid = validCheck();
+							if(valid){
+								alert("hi");
+								
+				 				$("#form").submit();
+								alert("성공");
+							}//if(valid)
+						}//success펑션
+					});//ajax
+				});	//submit클릭 on
+				
+				
+				
+				$('#update-btn').click(function(){
+					alert("hi")
+					var marker;
+					var title_value=$('#title1').text();
+					var limit_date=$('#limitDate').text();
+					var info=$('#content').val();
+					alert(info);
+					$('#title1').html("<input type='text' name='sq_recruit.sq_recruit_title' id='title' value='"+title_value+"'/>");
+					$('dd#part_tag').html("<select name='sq_recruit.sq_recruit_part' multiple title='part' id='part'><option>드럼</option><option>키보드</option><option>보컬</option><option>기타</option></select>");                                
+					$('dd#genre_tag').html('<select name="sq_recruit.sq_recruit_genre" multiple title="genre" id="genre"><option>락</option><option>발라드</option><option>재즈</option><option>힙합</option></select>');
+		            $('dd#limitDate').html('<input type="text" class="form-control" id="limitDate" name="sq_recruit.sq_recruit_date" value="'+limit_date+'">');                    
+		            $('textarea#content').removeAttr('readonly'); 
+		            $("div#file").append("<input type='file' id='upload' name='upload' >");
+		            $('.center a').css('display','none');
+		            $('.center').html('<a href="#" class="btn btn-circle btn-default btn-lg detail-btn submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="update">확인</a>');
+		            marker.setDraggable(true);
+				});
+				$('.center').on('click','#update',function(){
+					alert("hello");
+					
+					/* var lat = 37.5//marker.position.lat();		//위도경도 얻어옴
+					var lng = 37.5//marker.position.lng();
+					$("input#lat_").val(lat);				//hidden에 넣음
+					$("input#lng_").val(lng);
+					
+					$.ajax({		//마커 부분 시, 동 으로 region에 저장 
+						url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8'
+						, method : "post"
+						, dataType: "json"
+						, success : function(resp){
+							var region = resp.results[0].address_components[3].long_name+" "+resp.results[0].address_components[2].long_name;
+							$("input#region_").val(region);
+			 				
+						}//success펑션
+					});//ajax */
+					if(validCheck()){
+						$("#form")[0].submit();
+					}
+				});
+				
+				
+				$('#applyList').click(function(){
+					alert("hi");
+					$.ajax({
+						method:'post'
+						,url:'AllRecruitApply'
+						,datatype:'json'
+						,success:function(send){
+							var list=send.sq_applied_list;
+							var code2;
+							var count=1;
+							var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>"
+							$.each(list,function(index,item){
+								code2+="<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_member_phone+"</td><td><a href='#' id='detail'></a></td></tr>";
+								count++;
+								alert(code2);
+							});
+						}
+					});
+				});
+				
 		    	//위치을 찍어줄 위경도를 갖고 온다.
 				//지도에 마커를 찍는다.
 				var _latitude = $('#sq_recruit_lat').val();
@@ -99,7 +188,32 @@
 			    function hasClass(element, cls) {
 			    	return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
 			    }
+			    
+			    
+			    
 			});
+			
+			function validCheck(){
+				var title = $("input#title").val().length;
+				var part = $("#part").val();
+				var genre = $("#genre").val();
+				var limitDate = $("input#limitDate").val().length;
+				alert(title+" 1 "+part+" 2  "+genre+"  3  "+limitDate+"  4  ")
+				if(title < 1){
+					alert("제목을 입력해주세요 ");
+					return false;
+				}else if(part==null){
+					alert("모집하고자 하는 파트 정보를 선택하세요");
+					return false;
+				}else if(genre==null){
+					alert("모집하고자 하는 장르 정보를 선택하세요");
+					return false;
+				}else if(limitDate!=10){
+					alert("날짜 형식은 YYYY/MM/DD입니다")
+					return false;
+				}
+				return true;
+			}
 		</script>
 	</head>
 	
@@ -229,7 +343,7 @@
 		                <article class="center" id="test">
 		                    <a id="applyList" class="btn btn-circle btn-default btn-lg"  >지원자목록</a>
 		                    <a id="update-btn" class="btn btn-circle btn-default btn-lg">수정</a>
-		                    <a href="deleteSQrecruit?sq_recruit.sq_recruit_id=${sq_recruit_apply.sq_recruit_id}" class="btn btn-circle btn-default btn-lg">삭제</a>
+		                    <a href="deleteSQrecruit?sq_recruit.sq_recruit_id=${sq_recruit_artist.sq_recruit_id}" class="btn btn-circle btn-default btn-lg">삭제</a>
 		                </article>
 	                </s:if>
 	                
