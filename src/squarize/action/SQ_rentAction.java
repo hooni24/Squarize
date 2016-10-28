@@ -44,7 +44,7 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	/**
 	 * 전체 대관모집 게시물 불러오기.
 	 */
-	public String getAllRent(){
+	public String allRent(){
 		String loginId = (String) session.get("loginId");
 		rentList = new SQ_rentDAO().getAllRent(loginId);
 		adList = new SQ_adDAO().getAdByFavorite(loginId);

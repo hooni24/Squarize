@@ -20,14 +20,14 @@ function drawInfobox(infoboxContent, json, i){
         else                        { id = '' }
     if(json.data[i].title)          { var title = json.data[i].title }
     	else                        { title = '' }
-    if(json.data[i].url)            { var url = json.data[i].url }
-        else                        { url = '' }
+//    if(json.data[i].url)            { var url = json.data[i].url }
+//        else                        { url = '' }
     if(json.data[i].genre)          { var genre = json.data[i].genre }
         else                        { genre = '' }
     if(json.data[i].location)       { var location = json.data[i].location }
         else                        { location = '' }
     if(json.data[i].gallery)     	{ var gallery = json.data[i].gallery }
-        else                        { gallery = '../img/default-item.png' }
+        else                        { gallery = '' }
     if(json.data[i].buskingdate)    { var buskingdate = temp_buskingdate }
 		else                        { buskingdate = '' }
     if(json.data[i].runningtime)    { var runningtime = json.data[i].runningtime }

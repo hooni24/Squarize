@@ -6,10 +6,18 @@
 <!-- 	</select> -->
 	<select id="selectAll" resultType="SQ_busking">
 		select SQ_BUSKING_ID, id, title, location, latitude, longitude, url, genre, rating, teamname, 
-		gallery, gallery2, gallery3, gallery4, gallery5, buskingdate, runningtime, description 
+		gallery, gallery2, gallery3, gallery4, gallery5, buskingdate, runningtime, description, end
 		from sq_buskinglist
+		where end > sysdate
 	</select>
 	
+	<select id="searchList" parameterType="String" resultType="SQ_busking">
+		select SQ_BUSKING_ID, id, title, location, latitude, longitude, url, genre, rating, teamname, 
+		gallery, gallery2, gallery3, gallery4, gallery5, buskingdate, runningtime, description, end
+		from sq_buskinglist
+		where genre = #{genre}
+	</select>
+
 	<select id="selectOne" parameterType="int" resultType="SQ_busking">
 		select * from sq_buskinglist
 		where sq_busking_id = #{sq_busking_id}
@@ -17,7 +25,8 @@
 	
 	<insert id="addBusking" parameterType="SQ_busking">
 		INSERT INTO sq_buskinglist
-		VALUES (sq_busking_id_sq.nextval, #{id}, #{title}, #{location}, #{latitude}, #{longitude}, '사용안함', #{genre}, 0, #{teamname}, #{gallery}, null, null, null, null, to_date(#{buskingdate}, 'YYYY/MM/DD HH24:Mi'), #{runningtime}, #{description})
+		VALUES (sq_busking_id_sq.nextval, #{id}, #{title}, #{location}, #{latitude}, #{longitude}, '사용안함', #{genre}, 0, #{teamname}, #{gallery}, null, null, null, null
+		, to_date(#{buskingdate}, 'YYYY/MM/DD HH24:Mi:ss'), #{runningtime}, #{description}, to_date(#{end}, 'YYYY/MM/DD HH24:Mi:ss'))
 	</insert>
 	
 	

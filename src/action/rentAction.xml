@@ -9,7 +9,7 @@
 
     <package name="rent" namespace="/" extends="struts-default, json-default">
     
-		<action name="toRentMain" class="squarize.action.SQ_rentAction" method="getAllRent">
+		<action name="toRentMain" class="squarize.action.SQ_rentAction" method="allRent">
 			<result>rentMain.jsp</result>
 		</action>
 		

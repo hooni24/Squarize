@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var date = getTimeStamp();
+document.write(date + '<br />');
+
+function getTimeStamp() {
+  var d = new Date();
+  var s =
+    leadingZeros(d.getFullYear(), 4) + '-' +
+    leadingZeros(d.getMonth() + 1, 2) + '-' +
+    leadingZeros(d.getDate(), 2) + ' ' +
+
+    leadingZeros(d.getHours(), 2) + ':' +
+    leadingZeros(d.getMinutes(), 2) + ':' +
+    leadingZeros(d.getSeconds(), 2);
+
+  return s;
+}
+
+function leadingZeros(n, digits) {
+  var zero = '';
+  n = n.toString();
+
+  if (n.length < digits) {
+    for (i = 0; i < digits - n.length; i++)
+      zero += '0';
+  }
+  return zero + n;
+}
+
+</script>
+
+
+
+
+<script type="text/javascript">
+// 			var now = new Date();
+// 			var todayAtMidn = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+// 			alert(todayAtMidn);
+// 			// Set start/end dates to a specified date (ISO format).
+// 			var startDate = new Date("2016-10-27T15:00:00Z");
+// 			var endDate = new Date("2016-10-28T15:00:00Z");
+// 			alert(endDate - startDate);
+// 			// Compare the two dates by comparing the millisecond
+// 			// representations.
+// 			if (endDate.getTime() - startDate.getTime() > 0) {
+				
+// 				document.write(endDate.getTime() - startDate.getTime());
+// 			}
+// 			else {
+// 				document.write("ㅋㅋ");
+// 			}
+			
+			
+// 			if (todayAtMidn.getTime() > startDate.getTime() && 
+// 			    todayAtMidn.getTime() < endDate.getTime()) {
+// 			    document.write("Specified date is within this range.");
+// 			}
+// 			else {
+// 			    document.write("Specified date is not in this range.");
+// 			}
+</script>
+</head>
+<body>
+
+</body>
+</html>

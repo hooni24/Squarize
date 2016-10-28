@@ -23,14 +23,14 @@
 			SQ_RECRUIT_ID DESC
 	</select>
 	
-	<select id="getAllRecruitApply" parameterType="int" resultType="SQ_human">
+	<select id="AllRecruitApply" parameterType="int" resultType="SQ_human">
 		select * 
 			from sq_artist a, sq_member m,sq_portfolio p
 			where a.sq_member_id=m.sq_member_id
 				and m.sq_member_id=p.sq_member_id
 				and m.sq_member_id IN(select sq_member_id
 									from sq_recruit_apply
-									where sq_recruit_id=#{sq_recruit_id});
+									where sq_recruit_id=#{sq_recruit_id})
 	</select>
 	
 	<select id="selectOne_sq_recruit_artist" parameterType="int" resultType="SQ_recruit_artist">

@@ -501,14 +501,19 @@
 			        </s:iterator>
 			        
 			        
-			        
-			        <s:iterator value="adList" var="ad">
+			        <s:iterator value="adList" var="rent">
 				        <div class="item move_from_bottom idle">
-				            <a href="${sq_ad_url }" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+				            <a href="${sq_ad_url }">
 				                <div class="inner">
 				                    <div class="image">
 				                        <div class="price average-color"><span>광고</span></div>
-				                        <img src="assets/img/ad/${sq_ad_file }">
+				                        <s:if test="sq_ad_file != ''">
+					                        <img src="assets/img/items/ad_photo/${sq_ad_file }" alt="">
+				                        </s:if>
+				                        <s:else>
+					                        <img src="assets/img/items/1.jpg" alt="">
+				                        </s:else>
+				                        
 				                    </div>
 				                    <div class="item-content">
 				                        <header class="average-color">
@@ -522,6 +527,7 @@
 				        </div>
 				        <!--end .item move_from_bottom idle  -->
 			        </s:iterator>
+			        
 			        
 			        
 			        
@@ -543,8 +549,8 @@
 	<div class="loading-img"></div>	
 </div>
 
-<script type="text/javascript" src="assets/js/sq_member.js"></script>
 <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="assets/js/sq_member.js"></script>
 <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>

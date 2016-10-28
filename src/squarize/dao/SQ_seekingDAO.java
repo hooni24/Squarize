@@ -75,11 +75,11 @@ public class SQ_seekingDAO {
 	/**getAllRecruitApply()
 	 * o
 	 * */
-	public List<SQ_human> getAllRecruitApply(int sq_recruit_id){
+	public List<SQ_human> AllRecruitApply(int sq_recruit_id){
 		List<SQ_human>recruitList=null;
 		try {
 			ss = factory.openSession();
-			recruitList=ss.selectList("sq_seekingMapper.getAllRecruitApply", sq_recruit_id);
+			recruitList=ss.selectList("sq_seekingMapper.AllRecruitApply", sq_recruit_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

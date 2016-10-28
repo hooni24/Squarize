@@ -19,6 +19,7 @@ public class SQ_busking {
 	private String buskingdate;
 	private int runningtime;
 	private String description;
+	private String end;
 
 	public SQ_busking() {
 		// TODO Auto-generated constructor stub
@@ -191,6 +192,13 @@ public class SQ_busking {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getEnd() {
+		return end;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
+	}
 
 	@Override
 	public String toString() {
@@ -198,7 +206,6 @@ public class SQ_busking {
 				+ location + ", latitude=" + latitude + ", longitude=" + longitude + ", url=" + url + ", genre=" + genre
 				+ ", rating=" + rating + ", teamname=" + teamname + ", gallery=" + gallery + ", gallery2=" + gallery2
 				+ ", gallery3=" + gallery3 + ", gallery4=" + gallery4 + ", gallery5=" + gallery5 + ", buskingdate="
-				+ buskingdate + ", runningtime=" + runningtime + ", description=" + description + "]";
+				+ buskingdate + ", runningtime=" + runningtime + ", description=" + description + ", end=" + end + "]";
 	}
-
 }

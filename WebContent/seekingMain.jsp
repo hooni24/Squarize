@@ -222,6 +222,7 @@
 	                        <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#sign-in" data-transition-parent="#header" id="main_login">logIn</a></li>
 	                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header" id="main_register">Register</a></li>
 	                    </s:if>
+
 	                    <s:else>
 	                    	<li><a href="#user-area" id="update" data-toggle="collapse" aria-expanded="false" data-tab="#" aria-controls="user-area">${sessionScope.loginId } 님 환영합니다!</a></li>
 	                        <li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>
@@ -284,29 +285,27 @@
 	        </div>
 	    </header>
 	    
-			<!-- 여기서 부터 content -->
-			<div class="page-content">
-				<div class="search collapse in" id="search-collapse">
-					<div class="container">
-						<form class="main-search" role="form" method="post" action="#">
-							<div class="row">
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<label for="type">검색 카테고리</label>
-										<select id="recruit_search_large" class="animate"
-											data-transition-parent=".dropdown-menu">
-											<!-- 원래 id="type" multiple title="전체" : 여러개 선택 가능 -->
-											<option value="">대분류 선택 후,</option>
-											<option value="sq_recruit.sq_recruit_inst">파트</option>
-											<option value="sq_recruit.sq_recruit_genre">장르</option>
-										</select>
-									</div>
-									<!-- /.form-group -->
+		<!-- 여기서 부터 content -->
+		<div class="page-content">
+			<div class="search collapse in" id="search-collapse">
+				<div class="container">
+					<form class="main-search" role="form" method="post" action="#">
+						<div class="row">
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label for="type">검색 카테고리</label>
+									<select name="recruit_search_category" id="recruit_search_category" class="animate"
+										data-transition-parent=".dropdown-menu">
+										<!-- 원래 id="type" multiple title="전체" : 여러개 선택 가능 -->
+										<option>전체</option>
+										<option value="sq_recruit.sq_recruit_part">세션</option>
+										<option value="sq_recruit.sq_recruit_genre">장르</option>
+										<option value="sq_member.sq_member_name">이름</option>
+									</select>
+
 								</div>
 								<!--/.col-md-6-->
 	
-				<!-- 필요없는 요소 주석처리 -->
-								
 	                        <div class="col-md-2 col-sm-2">
 	<!--                             <div class="row"> -->
 	<!--                                 <div class="col-md-6 col-sm-6"> -->
@@ -374,6 +373,7 @@
 	
 							</div>
 							<!--/.row-->
+							</div>
 						</form>
 						<!-- /.main-search -->
 	<!-- 				</div> -->
@@ -395,104 +395,95 @@
 					<s:iterator value="sq_recruit_list" var="each_recruit">
 						<div class="item move_from_bottom idle">
 							<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-		               <div class="inner">
-		                    <div class="image">
-		                        <div class="price average-color"><span>${sq_member_id}</span></div>
-		                        <s:if test="sq_recruit_photo == null">
-		                        	<img src="assets/img/main/seeking.jpg">
-		                        </s:if>
-		                        <s:else>
-		                        	<%-- <img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 --> --%>
-		                    	</s:else>
-		                    </div>
-		                    <div class="item-content">
-		                        <header class="average-color">
-		                            <h2>${sq_recruit_title}</h2><!-- 제목 -->
-		                            <h3>${sq_recruit_part}</h3><!-- 파트 -->
-		                        </header>
-		                        <footer>
-		                            <dl>
-		                                <dt>연주 장르</dt>
-		                                <dd>${sq_recruit_genre}</dd>
-		                                <dt>연주 장소</dt>
-		                                <dd>${sq_recruit_location}</dd>
-		                                <dt>연주 일시</dt>
-		                                <dd>${sq_recruit_date}</dd>
-		                                <dt>구인 정보</dt>
-		                                <dd>${sq_recruit_info}</dd>
-		                            </dl>
-		                        </footer>
-		                    </div>
-		                </div>
-		            </a>
-		        </div>
+				              <div class="inner">
+				                    <div class="image">
+				                        <div class="price average-color"><span>${sq_member_id}</span></div>
+				                        <s:if test="sq_recruit_photo == null">
+				                        	<img src="assets/img/seeking.jpg">
+				                        </s:if>
+				                        <s:else>
+				                        	<%-- <img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 --> --%>
+				                    	</s:else>
+				                    </div>
+				                    <div class="item-content">
+				                        <header class="average-color">
+				                            <h2>${sq_recruit_title}</h2><!-- 제목 -->
+				                            <h3>${sq_recruit_part}</h3><!-- 파트 -->
+				                        </header>
+				                        <footer>
+				                            <dl>
+				                                <dt>연주 장르</dt>
+				                                <dd>${sq_recruit_genre}</dd>
+				                                <dt>연주 장소</dt>
+				                                <dd>${sq_recruit_location}</dd>
+				                                <dt>연주 일시</dt>
+				                                <dd>${sq_recruit_date}</dd>
+				                                <dt>구인 정보</dt>
+				                                <dd>${sq_recruit_info}</dd>
+				                            </dl>
+				                        </footer>
+				                    	</div>
+					                </div>
+				           	 	</a>
+		       		 </div>
 	        <!--end .item-->
 	<!-- 요기까지 정보 넣기 -->
-	       
 	
-	 	</s:iterator>
-	        </div>
+	 			</s:iterator>
+	  		 </div>
 		<!-- 나열부분 끝 -->
-			</div>
-					</div>
-				<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
-	<!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
-			<!--end Page Content-->
 		</div>
-	<!-- 			</div> -->
+	</div>
+	<!--end Page Content-->
+		</div>
+		</div>
 	
 		<div class="loadingpage loading">
 			<div class="loading-img"></div>	
 		</div>
-	
-			<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
-			<script type="text/javascript" src="assets/js/sq_member.js"></script>
-			<script type="text/javascript" src="assets/js/sq_recruit.js"></script>
-			<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
-			<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-			<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
-			<script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
-			<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
-			<script type="text/javascript" src="assets/js/infobox.js"></script>
-			<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-			<script type="text/javascript" src="assets/js/markerclusterer.js"></script>
-			<script type="text/javascript" src="assets/js/smoothscroll.js"></script>
-			<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
-			<script type="text/javascript" src="assets/js/bootstrap-select.js"></script>
-			<script type="text/javascript" src="assets/js/icheck.min.js"></script>
-			<script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
-			<script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
-			<script type="text/javascript" src="assets/js/functions.js"></script>
-			<script type="text/javascript" src="assets/js/custom.js"></script>
-			<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
-			
-			<script>
-				$("ul#main_menu").on("click", "a#main_logout", function(){
-					location.href = "logoutSQmember.action";
+
+</div>
+		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="assets/js/sq_member.js"></script>
+		<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
+		<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
+		<script type="text/javascript" src="assets/js/infobox.js"></script>
+		<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
+		<script type="text/javascript" src="assets/js/markerclusterer.js"></script>
+		<script type="text/javascript" src="assets/js/smoothscroll.js"></script>
+		<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap-select.js"></script>
+		<script type="text/javascript" src="assets/js/icheck.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
+		<script type="text/javascript" src="assets/js/functions.js"></script>
+		<script type="text/javascript" src="assets/js/custom.js"></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
+
+		<script>
+			$("ul#main_menu").on("click", "a#main_logout", function(){
+				location.href = "logoutSQmember.action";
+			});
+				
+			$(function(){
+				$('recruit_search_large').change(function(){
+					
+					$('recruit_search_small').css('disabled','');
+					
+					if ($('recruit_search_large > option').val() == 'sq_recruit.sq_recruit_inst') {
+						$('recruit_search_small > option').end().append('<option>기타</option><option>드럼</option><option>키보드</option><option>보컬</option>');
+					} else if ($('recruit_search_large > option').val() == 'sq_recruit.sq_recruit_genre') {
+						$('recruit_search_small > option').end().append('<option>락</option><option>발라드</option><option>힙합</option><option>재즈</option>');
+					}
+					
 				});
+			});
 				
-				$('recruit_search_small').css('disabled','disabled');	//disabled="disabled"
-				
-				$(function(){
-					$('recruit_search_large').change(function(){
-						
-						$('recruit_search_small').css('disabled','');
-						if ($('recruit_search_large > option').val() == 'sq_recruit.sq_recruit_inst') {
-							$('recruit_search_small > option').end().append('<option>기타</option><option>드럼</option><option>키보드</option><option>보컬</option>');
-						} else if ($('recruit_search_large > option').val() == 'sq_recruit.sq_recruit_genre') {
-							$('recruit_search_small > option').end().append('<option>락</option><option>발라드</option><option>힙합</option><option>재즈</option>');
-						}
-						/* <!-- 장르일때 -->
-						<option>락</option>
-						<option>발라드</option>
-						<option>재즈</option>
-								<option>힙합</option> */
-						
-					});
-				});
-				
-			</script>
+		</script>
 	
 	</body>
-</html>
+</html>	
