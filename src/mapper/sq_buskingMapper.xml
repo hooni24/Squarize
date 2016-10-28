@@ -15,7 +15,7 @@
 		select SQ_BUSKING_ID, id, title, location, latitude, longitude, url, genre, rating, teamname, 
 		gallery, gallery2, gallery3, gallery4, gallery5, buskingdate, runningtime, description, end
 		from sq_buskinglist
-		where genre = #{genre}
+		where end > sysdate and genre = #{genre}
 	</select>
 
 	<select id="selectOne" parameterType="int" resultType="SQ_busking">
