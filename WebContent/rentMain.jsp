@@ -457,8 +457,9 @@
                     </div>
                 </div>
                 <!--end Content Loader-->
-                <div class="masonry grid  animate">
-			        <s:iterator value="rentList" var="rent">
+                
+                <div class="masonry grid animate">
+			        <s:iterator value="rentList" status="rentStatus">
 				        <div class="item move_from_bottom idle">
 				            <a href="toRentDetail.action?rent.sq_rent_id=${sq_rent_id }&rent.sq_rent_genre=${sq_rent_genre}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
 				                <div class="inner">
@@ -498,35 +499,70 @@
 				            </a>
 				        </div>
 				        <!--end .item move_from_bottom idle  -->
+				        
+				        
+				        <s:if test="#rentStatus.index % 15 == 0">		<!-- rentList의 index가 x로 나누어 떨어질때마다 광고 돌림(현재 15) -->
+				        	<s:iterator value="adList" status="adStatus">
+				        		<s:if test="#rentStatus.index/15 == #adStatus.index">	<!-- x로 나눈 몫이 광고리스트index와 같으면 해당광고 출력 -->
+							        <div class="item move_from_bottom idle">
+							            <a href="${sq_ad_url }">
+							                <div class="inner">
+							                    <div class="image">
+							                        <div class="price average-color"><span>광고  <s:property value="count"/> </span></div>
+							                        <s:if test="sq_ad_file != ''">
+								                        <img src="assets/img/items/ad_photo/${sq_ad_file }" alt="">
+							                        </s:if>
+							                        <s:else>
+								                        <img src="assets/img/items/1.jpg" alt="">
+							                        </s:else>
+							                        
+							                    </div>
+							                    <div class="item-content">
+							                        <header class="average-color">
+							                            <h2>${sq_ad_title }</h2>
+							                        </header>
+							                    </div>
+							                    <!--end .item-content -->
+							                </div>
+							                <!--end .inner -->
+							            </a>
+							        </div>
+							        <!--end .item move_from_bottom idle  -->
+						        </s:if>
+					        </s:iterator>
+				        </s:if>
+				        
+				        
+				        
 			        </s:iterator>
 			        
 			        
-			        <s:iterator value="adList" var="rent">
-				        <div class="item move_from_bottom idle">
-				            <a href="${sq_ad_url }">
-				                <div class="inner">
-				                    <div class="image">
-				                        <div class="price average-color"><span>광고</span></div>
-				                        <s:if test="sq_ad_file != ''">
-					                        <img src="assets/img/items/ad_photo/${sq_ad_file }" alt="">
-				                        </s:if>
-				                        <s:else>
-					                        <img src="assets/img/items/1.jpg" alt="">
-				                        </s:else>
+<%-- 			        <s:iterator value="adList" var="rent"> --%>
+<!-- 				        <div class="item move_from_bottom idle"> -->
+<%-- 				            <a href="${sq_ad_url }"> --%>
+<!-- 				                <div class="inner"> -->
+<!-- 				                    <div class="image"> -->
+<%-- 				                        <div class="price average-color"><span>광고</span></div> --%>
+<%-- 				                        <s:if test="sq_ad_file != ''"> --%>
+<%-- 					                        <img src="assets/img/items/ad_photo/${sq_ad_file }" alt=""> --%>
+<%-- 				                        </s:if> --%>
+<%-- 				                        <s:else> --%>
+<!-- 					                        <img src="assets/img/items/1.jpg" alt=""> -->
+<%-- 				                        </s:else> --%>
 				                        
-				                    </div>
-				                    <div class="item-content">
-				                        <header class="average-color">
-				                            <h2>${sq_ad_title }</h2>
-				                        </header>
-				                    </div>
-				                    <!--end .item-content -->
-				                </div>
-				                <!--end .inner -->
-				            </a>
-				        </div>
-				        <!--end .item move_from_bottom idle  -->
-			        </s:iterator>
+<!-- 				                    </div> -->
+<!-- 				                    <div class="item-content"> -->
+<!-- 				                        <header class="average-color"> -->
+<%-- 				                            <h2>${sq_ad_title }</h2> --%>
+<!-- 				                        </header> -->
+<!-- 				                    </div> -->
+<!-- 				                    end .item-content -->
+<!-- 				                </div> -->
+<!-- 				                end .inner -->
+<!-- 				            </a> -->
+<!-- 				        </div> -->
+<!-- 				        end .item move_from_bottom idle  -->
+<%-- 			        </s:iterator> --%>
 			        
 			        
 			        
