@@ -49,7 +49,6 @@ public class SQ_adDAO {
 			}
 			
 			return ss.selectList("sq_favoriteMapper.getAdByFavorite", keyword);
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
