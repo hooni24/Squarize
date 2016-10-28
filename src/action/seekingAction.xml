@@ -38,9 +38,6 @@
 			<result type="json"></result>
 		</action>
 		
-		<action name="recruit_update">
-			<result type="redirect">getRecruit_detail</result>
-		</action>
 		
 		<action name="recruit_delete" class="squarize.action.SQ_seekingAction" method="deleteRecruit">
 			<result type="redirect">toSeekingMain</result>
@@ -48,9 +45,6 @@
 		
 		<action name="toAddSQrecruit">
 			<result>assets/pages/recruit/add_recruit.jsp</result>
-		</action>
-		<action name="recruit_update" class="squarize.action.SQ_seekingAction" method="recruit_update">
-			<result>assets/pages/recruit/update_recruit.jsp</result>
 		</action>
 		
 		<action name="insertSQrecruit" class="squarize.action.SQ_seekingAction" method="insertSQrecruit">

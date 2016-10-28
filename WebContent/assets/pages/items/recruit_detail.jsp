@@ -27,7 +27,7 @@
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>
 		<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-		
+		<script src="assets/js/sq_recruit.js"></script>
 		<script type="text/javascript">
 			$(function(){
 				var sq_recruit_id = $('#sq_recruit_id').val();
@@ -121,29 +121,33 @@
 	    <div class="row">
 	        <div class="col-md-8">
 	            <div class="inner">
-	                <article class="animate move_from_bottom_short">
-	                    <div class="gallery">
-	                        <div class="image">
-	                        	<s:if test="#session.loginId != null && sq_recruit_artist.sq_recruit_photo == null">
-	                        		<img src="assets/img/default-item.png" alt="">
-	                        	</s:if>
-	                        	<s:elseif test="#session.loginId != null && sq_recruit_artist.sq_recruit_photo != null">
-	                         	   <img src="${sq_recruit_artist.sq_recruit_photo}" alt="">
-	                        	</s:elseif>
-	                        </div>
-	                    </div>
-	                </article>
-	                
-	                <article class="animate move_from_bottom_short">
-	                    <h1>${sq_recruit_artist.sq_recruit_title}</h1>
-	                    <h2><i class="fa fa-map-marker"></i>${sq_recruit_artist.sq_recruit_location}</h2>
-	                    <figure class="price average-color"><span>${sq_recruit_artist.sq_member_id}</span></figure>
-	                    <p>${sq_recruit_artist.sq_recruit_info}</p>
-	                    <input type="hidden" id="sq_recruit_id" name="sq_recruit_apply_id" value="${sq_recruit_artist.sq_recruit_id}"/>
-	                    <input type="hidden" id="sq_recruit_lat" value="${sq_recruit_artist.sq_recruit_latitude}" />
-	                    <input type="hidden" id="sq_recruit_lng" value="${sq_recruit_artist.sq_recruit_longitude}" />
-	                </article>
-	                <!--end Description-->
+	                <form id="form" action="updateSQrecruit" method="post" enctype="multipart/form-data">
+		                <article class="animate move_from_bottom_short">
+		                    <div class="gallery">
+		                        <div class="image">
+		                        	<s:if test="#session.loginId != null && sq_recruit_artist.sq_recruit_photo == null">
+		                        		<img src="assets/img/default-item.png" alt="">
+		                        	</s:if>
+		                        	<s:elseif test="#session.loginId != null && sq_recruit_artist.sq_recruit_photo != null">
+		                         	   <img src="${sq_recruit_artist.sq_recruit_photo}" alt="">
+		                        		
+		                        	</s:elseif>
+		                        	
+		                        </div>
+		                    </div>
+		                </article>
+	                	<article class="animate move_from_bottom_short">
+	                		<div id="file"></div>
+		                	<input type="hidden" name="sq_recruit.sq_recruit_id" value=${sq_recruit_artist.sq_recruit_id}>
+		                    <h1 id="title1">${sq_recruit_artist.sq_recruit_title}</h1>
+		                    <h2><i class="fa fa-map-marker"></i>${sq_recruit_artist.sq_recruit_location}</h2>
+		                    <figure class="price average-color"><span>${sq_recruit_artist.sq_member_id}</span></figure>
+		                    <p><textarea id="content" readonly="readonly">${sq_recruit_artist.sq_recruit_info}</textarea></p>
+		                    <input type="hidden" id="sq_recruit_id" name="sq_recruit_apply_id" value="${sq_recruit_artist.sq_recruit_id}"/>
+		                    <input type="hidden" id="sq_recruit_lat" value="${sq_recruit_artist.sq_recruit_latitude}" />
+		                    <input type="hidden" id="sq_recruit_lng" value="${sq_recruit_artist.sq_recruit_longitude}" />
+		                </article>
+	               		 <!--end Description-->
 	                
 	                <article class="sidebar">
 	                    <div class="person animate move_from_bottom_short">
@@ -198,12 +202,12 @@
 	                    <div class="block animate move_from_bottom_short">
 	                        <dl>
 	                            <dt>구인 파트</dt>
-	                            <dd>${sq_recruit_artist.sq_recruit_part}</dd>
+	                            <dd id="part_tag">${sq_recruit_artist.sq_recruit_part}</dd>
 	                            <dt>연주 장르</dt>
-	                            <dd>${sq_recruit_artist.sq_recruit_genre}</dd>
-	                            <dt>연주 일시</dt>
+	                            <dd id="genre_tag">${sq_recruit_artist.sq_recruit_genre}</dd>
+	                            <dt>모집마감</dt>
 	                            <%-- <dd>165m<sup>2</sup></dd> --%>
-	                            <dd>${sq_recruit_artist.sq_recruit_date}</dd>
+	                            <dd id="limitDate">${sq_recruit_artist.sq_recruit_date}</dd>
 	                            <dt>등록 날짜</dt>
 	                            <dd>${sq_recruit_artist.sq_recruit_input_date}</dd>
 	                        </dl>
@@ -211,7 +215,7 @@
 	                </article>
 	                <!--end Sidebar-->
 	                
-	          <!--end Features-->
+	          		<!--end Features-->
 			
 					<!-- 지도에 위치 표시  -->
 	                <article>
@@ -219,13 +223,15 @@
 	                    <div id="map-simple"></div>	<!-- idle클래스 추가 -->
 	                </article>
 	                <!--end Map-->
-	                
+	                		
+                </form>
+	                	                
 	                <!-- 아티스트로 로그인한 상태에서 로그인아이디와 글쓴 아이디가 같을 경우 지원자 리스트를 볼 수 있는 버튼을 추가. -->
 	                <s:if test="#session.loginId != null && #session.loginId == sq_recruit_artist.sq_member_id">
 		                <article class="center" id="test">
-		                    <a id="apply_list" href="applied_list" class="btn btn-circle btn-default btn-lg"><i class="fa fa-plus"></i></a>
-		                    <a id="update_recruit" href="recruit_update?sq_recruit_apply.sq_recruit_id=${sq_recruit_artist.sq_recruit_id}" class="btn btn-circle btn-default btn-lg"><i class="fa fa-plus"></i></a>
-		                    <a id="delete_recruit" href="recruit_delete?sq_recruit_apply.sq_recruit_id=${sq_recruit_artist.sq_recruit_id}" class="btn btn-circle btn-default btn-lg"><i class="fa fa-plus"></i></a>
+		                    <a id="apply_list" href="applied_list" class="btn btn-circle btn-default btn-lg" id="lists">지원자목록</a>
+		                    <a href="#" class="btn btn-circle btn-default btn-lg" id="update-btn">수정</a>
+		                    <a href="recruit_delete" class="btn btn-circle btn-default btn-lg">삭제</a>
 		                </article>
 	                </s:if>
 	                
