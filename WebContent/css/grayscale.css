@@ -294,14 +294,16 @@ footer p {
   margin: 0;
 }
 ::-moz-selection {
-  text-shadow: none;
+  text-shadow: black;
   background: #fcfcfc;
   background: rgba(255, 255, 255, 0.2);
+	background: black;
 }
 ::selection {
-  text-shadow: none;
+  text-shadow: white;
   background: #fcfcfc;
   background: rgba(255, 255, 255, 0.2);
+	background: black;
 }
 img::selection {
   background: transparent;

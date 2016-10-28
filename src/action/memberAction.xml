@@ -11,7 +11,9 @@
     	
     
     	<action name="toPortfolio" class="squarize.action.SQ_memberAction" method="portfolioCheck">
-    		<result>assets/pages/portfolio/portfolio.jsp</result>
+    		<result name="seeking">assets/pages/portfolio/portfolio_seeking.jsp</result>
+    		<result name="rent">assets/pages/portfolio/portfolio.jsp</result>
+    		<result name="busking">assets/pages/portfolio/portfolio_busking.jsp</result>
     	</action>
     
     	

@@ -2,10 +2,13 @@ package squarize.dao;
 
 import java.util.List;
 
+import javax.el.PropertyNotFoundException;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import squarize.util.MybatisConfig;
+import squarize.vo.SQ_human;
 import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
 import squarize.vo.SQ_recruit_apply;
@@ -34,8 +37,15 @@ public class SQ_seekingDAO {
 		SQ_recruit_artist sq_recruit_artist = null;
 //		factory = MybatisConfig.getSqlSessionFactory();
 		ss = factory.openSession();
-		sq_recruit_artist = ss.selectOne("sq_seekingMapper.selectOne_sq_recruit_artist",sq_recruit_id);
-		if(ss != null) ss.close();
+		try {
+			sq_recruit_artist = ss.selectOne("sq_seekingMapper.selectOne_sq_recruit_artist",sq_recruit_id);
+		} catch (PropertyNotFoundException e) {
+			System.out.println("존재하지 않는 파일 - 확인 필요함.");
+		} finally {
+			if(ss != null) {
+				ss.close();
+			}
+		}
 		return sq_recruit_artist;
 	}
 	
@@ -53,32 +63,55 @@ public class SQ_seekingDAO {
 		}
 	}
 	
-	// 해당 구인정보에 지원한 지원자 리스트 전체 불러오기
+/*	// 해당 구인정보에 지원한 지원자 리스트 전체 불러오기
 	public List<SQ_recruit_artist> selectRecruitApply(int recruit_id){
 		List<SQ_recruit_artist> recruitList = null;
 		ss = factory.openSession();
 		recruitList = ss.selectList("sq_seekingMapper.selectList_applied", recruit_id);
 		if(ss != null) ss.close();
 		return recruitList;
+	}*/
+	
+	/**getAllRecruitApply()
+	 * o
+	 * */
+	public List<SQ_human> AllRecruitApply(int sq_recruit_id){
+		List<SQ_human>recruitList=null;
+		try {
+			ss = factory.openSession();
+			recruitList=ss.selectList("sq_seekingMapper.AllRecruitApply", sq_recruit_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ss.commit();
+			ss.close();
+		}
+		return recruitList;
 	}
 	
 	// 구인정보에 지원시 DB에 등록하기.
-	public int insertApply(SQ_recruit_apply recruit_apply){
+	public int insertApply(SQ_recruit_artist sq_recruit_artist){
 		int result = 0;
 		ss = factory.openSession();
-		result = ss.insert("sq_seekingMapper.insertApply", recruit_apply);
+		result = ss.insert("sq_seekingMapper.insertApply", sq_recruit_artist);
 		ss.commit();
 		if(ss != null) ss.close();
 		return result;
 	}
 	
 	// 구인정보 수정하기.
-	public int updateRecruit(SQ_recruit sq_recruit) {
+	public int updateSQRecruit(SQ_recruit sq_recruit) {
 		int result = 0;
-		ss = factory.openSession();
-		result = ss.update("sq_seekingMapper.updateRecruit", sq_recruit);
-		ss.commit();
-		if(ss != null) ss.close();
+		try {
+			ss = factory.openSession();
+			result = ss.update("sq_seekingMapper.updateSQRecruit", sq_recruit);
+			System.out.println(sq_recruit);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ss.commit();
+			if(ss != null) ss.close();
+		}
 		return result;
 	}
 	
@@ -93,21 +126,48 @@ public class SQ_seekingDAO {
 	}
 	
 	// 지원 여부 확인을 위한 select
-	public SQ_recruit_apply checkApplied(SQ_recruit_apply recruit_apply){
+	public SQ_recruit_apply checkApplied(SQ_recruit_artist sq_recruit_artist){
 		SQ_recruit_apply applied = null;
 		ss = factory.openSession();
-		applied = ss.selectOne("sq_seekingMapper.selectOne_apply", recruit_apply);
+		applied = ss.selectOne("sq_seekingMapper.selectOne_apply", sq_recruit_artist);
+		System.out.println("DAO checkedApplied : " + applied);
 		if(ss != null) ss.close();
 		return applied;
 	}
 	
+	//수정위한 recruit 정보 불러오기 
+	public SQ_recruit getSQrecruit(int sq_recruit_id){
+		SQ_recruit result=null;
+		try {
+			ss = factory.openSession();
+			result=ss.selectOne("sq_seekingMapper.getSQrecruit", sq_recruit_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ss.commit();
+			ss.close();
+		}
+		return result;
+	}
+	
 	// 포트폴리오 작성여부 select
-	public SQ_portfolio checkPortfolio(int port_id){
+	public SQ_portfolio checkPortfolio(String member_id){
 		SQ_portfolio port = null;
-		
+		ss = factory.openSession();
+		port = ss.selectOne("sq_seekingMapper.selectOne_port", member_id);
+		if(ss != null) ss.close();
 		return port;
 	}
 	
+	// 지원취소 
+	public int deleteApply(SQ_recruit_apply sq_recruit_apply){
+		int result = 0;
+		ss = factory.openSession();
+		result = ss.delete("sq_seekingMapper.delete_apply", sq_recruit_apply);
+		ss.commit();
+		if(ss != null) ss.close();
+		return result;
+	}
 	/*public static void main(String[] args) {
 		SQ_seekingDAO sdao= new SQ_seekingDAO();
 		SQ_recruit sq_recruit=new SQ_recruit(0,"a","a","2012/10/11","a","a","a","a","a","a","a","a","a");

@@ -13,4 +13,12 @@
 		SET sq_favorite_genre = #{sq_favorite_genre}
 		WHERE sq_member_id = #{sq_member_id}
 	</update>
+	
+	
+	<select id="getAdByFavorite" parameterType="String" resultType="SQ_ad">
+		SELECT *
+		FROM sq_ad
+		WHERE sq_ad_part = #{keyword}
+	</select>
+	
 </mapper>

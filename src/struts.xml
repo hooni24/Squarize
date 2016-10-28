@@ -8,7 +8,7 @@
     <constant name="struts.devMode" value="true" />
 
     <package name="default" namespace="/" extends="struts-default, json-default">
-<!--         <default-action-ref name="index" /> 당분간 디폴트사용 ㄴㄴ.. 헷갈림 방지-->
+        <!-- <default-action-ref name="index" /> 당분간 디폴트사용 ㄴㄴ.. 헷갈림 방지 -->
 
 		<action name="index" class="squarize.action.SQ_memberAction" method="mainCount">
 			<result>index.jsp</result>

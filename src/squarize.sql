@@ -58,7 +58,9 @@ CREATE TABLE SQ_AD
 	-- 광고 이미지파일 경로
 	SQ_AD_FILE varchar2(50) NOT NULL,
 	-- 광고 누르면 이동할 URL
-	SQ_AD_URL varchar2(100) NOT NULL,
+	SQ_AD_URL varchar2(1000) NOT NULL,
+	-- 광고 파트 분류
+	SQ_AD_PART varchar2(30) NOT NULL,
 	PRIMARY KEY (SQ_AD_ID)
 );
 
@@ -366,12 +368,12 @@ INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', 'rock', 'Y', null,
 INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', 'rock', 'N', null, 'Y');
 
 --SQ_ARTIST 생성
-INSERT INTO SQ_ARTIST VALUES ('aa', 01011111111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('ss', 01012111111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('dd', 01012411111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('123', 01017111111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('1234', 01018111111, null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('qq', 01012591111, null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('aa', '010-1111-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('ss', '010-1211-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('dd', '010-1241-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('123', '010-1711-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('1234', '010-1811-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('qq', '010-1259-1111', null,'adfadsfd');
 
 
 
@@ -402,8 +404,6 @@ INSERT INTO SQ_RECRUIT_APPLY VALUES (SQ_RECRUIT_APPLY_ID_SQ.nextval, 1, 'aa');
 
 
 
-
-
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '즐거운밴드', sysdate+7, sysdate, sysdate+5, '같이해요', null, null, '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'ss', '반가운밴드', sysdate+6, sysdate, sysdate+5, '같이해요', null, null, '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '서울밴드', sysdate+10, sysdate, sysdate+8, '같이해요', null, null, '서울특별시 중랑구', '힙합', '1', '1', 37.59015412293465, 127.08782174306634);
@@ -418,6 +418,17 @@ INSERT INTO sq_favorite VALUES('dd', '{"락":0, "발라드":0, "재즈":0, "힙�
 INSERT INTO sq_favorite VALUES('123', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 INSERT INTO sq_favorite VALUES('1234', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 INSERT INTO sq_favorite VALUES('qq', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+
+
+
+INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '오렌지앰프', 'amp.jpg', 'http://freebud.co.kr/', '기타');
+INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '전자드럼', 'drum.jpg', 'http://freebud.co.kr/', '드럼');
+INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '기타 1+1', 'guitar.jpg', 'http://freebud.co.kr/', '기타');
+INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '키보드할인', 'keyboard.jpg', 'http://freebud.co.kr/', '키보드');
+INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '마이크', 'mic.jpg', 'http://freebud.co.kr/', '보컬');
+INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '스틱 세일', 'stick.jpg', 'http://freebud.co.kr/', '드럼');
+
+
 
 
 commit;

@@ -4,6 +4,7 @@ public class SQ_count {
 	private String busking;
 	private String seeking;
 	private String rent;
+	private String member;
 	
 	public SQ_count() {}
 
@@ -29,6 +30,14 @@ public class SQ_count {
 
 	public void setRent(String rent) {
 		this.rent = rent;
+	}
+
+	public String getMember() {
+		return member;
+	}
+
+	public void setMember(String member) {
+		this.member = member;
 	}
 
 	@Override

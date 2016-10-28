@@ -9,9 +9,11 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import squarize.dao.SQ_adDAO;
 import squarize.dao.SQ_rentDAO;
 import squarize.util.FileService;
 import squarize.util.RangeCalc;
+import squarize.vo.SQ_ad;
 import squarize.vo.SQ_artist;
 import squarize.vo.SQ_human;
 import squarize.vo.SQ_member;
@@ -25,6 +27,7 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	private SQ_artist artist;
 	private SQ_rent_apply rent_apply;
 	private List<SQ_rent> rentList = null;
+	private List<SQ_ad> adList;
 	private List<SQ_human> humanList;
 	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
@@ -41,8 +44,10 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 	/**
 	 * 전체 대관모집 게시물 불러오기.
 	 */
-	public String getAllRent(){
-		rentList = new SQ_rentDAO().getAllRent((String) session.get("loginId"));
+	public String allRent(){
+		String loginId = (String) session.get("loginId");
+		rentList = new SQ_rentDAO().getAllRent(loginId);
+		adList = new SQ_adDAO().getAdByFavorite(loginId);
 		return SUCCESS;
 	}
 	
@@ -78,7 +83,6 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 		rent = (SQ_rent) result[1];
 		artist = (SQ_artist) result[2];
 		rent_apply = (SQ_rent_apply) result[3];
-		System.out.println(rent_apply);
 		return SUCCESS;
 	}
 	
@@ -265,6 +269,14 @@ public class SQ_rentAction extends ActionSupport implements SessionAware {
 
 	public void setRange(int range) {
 		this.range = range;
+	}
+
+	public List<SQ_ad> getAdList() {
+		return adList;
+	}
+
+	public void setAdList(List<SQ_ad> adList) {
+		this.adList = adList;
 	}
 
 

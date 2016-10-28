@@ -109,7 +109,7 @@ public String addBusking(){
 	   if (upload != null) { 
 			try {
 				FileService fs = new FileService();
-				String basePath = getText("rent.uploadpath");
+				String basePath = getText("busking.uploadpath");
 				String savedfile;
 				savedfile = fs.saveFile(upload, basePath, uploadFileName);
 				SQ_busking.setGallery(savedfile);

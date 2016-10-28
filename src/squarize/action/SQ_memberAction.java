@@ -158,9 +158,9 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	
 	public String updateSQmember() throws Exception{
 		mdao=new SQ_memberDAO();
+		SQ_artist artist = mdao.getArtistInfo((String) session.get("loginId"));
 		if (upload != null) {
 			try {
-				SQ_artist artist = mdao.getArtistInfo((String) session.get("loginId"));
 				FileService fs = new FileService();
 				String basePath = getText("artist.uploadpath");
 				String fullpath = basePath + "/" + artist.getSq_artist_photo();
@@ -170,9 +170,9 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}else {
+			sq_artist.setSq_artist_photo(artist.getSq_artist_photo());
 		}
-		System.out.println("a " + sq_member);
-		System.out.println("b " + sq_artist);
 		sq_artist.setSq_member_id(sq_member.getSq_member_id());
 		mdao.updateSQmember(sq_member,sq_artist);
 		return fromWhere();
@@ -227,13 +227,14 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 				System.out.println(mediaExt);
 			}
 		}
-		return SUCCESS;
+		return fromWhere();
 	}
 	
 	/**
 	 * 포트폴리오 등록
 	 */
 	public String makePortfolio(){
+		System.out.println(fromWhere);
 		FileService fs = new FileService();
 		String basePath = getText("port.uploadpath");
 		String savedfile;

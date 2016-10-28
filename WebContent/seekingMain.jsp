@@ -17,20 +17,12 @@
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
 
-	
-<style>
-  	.hidden{
-  		display : none;
-  	}
-	body{
-		background-color: white; /*내용 본문 색깔*/
-	}
-  	.black_header{
-  		background-color: black !important;	/*내용 헤더 색깔*/
-  	}
-  </style>
-
 <title>SQUARIZE - SEEKING</title>
+    <style>
+    	.hidden{
+    		display : none;
+    	}
+    </style>
 </head>
 
 <body id="page-top" class="has-map">
@@ -145,7 +137,7 @@
                                         <!--end .form-group-->
                                         
                                         <div class="form-group animate move_from_bottom_short">
-                                            <input type="email" class="form-control" id="update-email" name="sq_member.sq_member_email" >
+                                            <input type="email" class="form-control" id="update-email" name="sq_member.sq_member_email" readonly>
                                         </div>
                                         <!--end .form-group-->
                                         <div class="form-group animate move_from_bottom_short">
@@ -212,7 +204,7 @@
         <!--end .inner-->
     </div>
     <!--end User area-->
-    <header class="animate black_header" id="header">
+    <header class="animate" id="header">
         <div class="container">
             <div class="header-inner">
                 <nav class="secondary">
@@ -240,19 +232,25 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="#" class="has-child">Home</a>
+                            <a href="toSeekingMain.action" class="has-child">홈</a>
                             <ul>
+                                <li><a href="toBuskingMain.action">버스킹</a></li>
                                 <li><a href="toSeekingMain.action">구인글</a></li>
                                 <li><a href="toRentMain.action">대관글</a></li>
-                                <li><a href="#">Something 3</a></li>
-                                <li><a href="#">Something 4</a></li>
                             </ul>
                         </li>
-                        <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
-                        <li><a href="rentApplySituation.action" id="rent_apply_situation">내 지원현황</a></li>
-                        <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li>
-                        <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li>
-                        <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li>
+                        <li>
+                            <a href="#" class="has-child">마이페이지</a>
+                            <ul>
+                                <li><a href="toPortfolio.action?fromWhere=seeking" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
+                                <li><a href="#">내가 올린 글</a></li>
+		                        <li><a href="#">내 지원현황</a></li>
+                            </ul>
+                        </li>
+                        <!-- 추가 메뉴 필요하면 아래 주석달린 li태그 참고해서 만드세요 -->
+<!--                         <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li> -->
+<!--                         <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li> -->
+<!--                         <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li> -->
                     </ul>
                     <div class="toggle-nav">
                         <div class="dots">
@@ -369,23 +367,18 @@
 						</div>
 					</div>
 					<!--end Content Loader-->
-				</div>
-			</div>
-
-			<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
-<!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
-			<div class="masonry grid full-width animate">
+			<div class="masonry grid animate">
 				<s:iterator value="sq_recruit_list" var="each_recruit">
 					<div class="item move_from_bottom idle">
 						<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-	                <div class="inner">
+	               <div class="inner">
 	                    <div class="image">
 	                        <div class="price average-color"><span>${sq_member_id}</span></div>
 	                        <s:if test="sq_recruit_photo == null">
 	                        	<img src="assets/img/main/seeking.jpg">
 	                        </s:if>
 	                        <s:else>
-	                        	<img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 -->
+	                        	<%-- <img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 --> --%>
 	                    	</s:else>
 	                    </div>
 	                    <div class="item-content">
@@ -417,8 +410,13 @@
         </div>
 	<!-- 나열부분 끝 -->
 		</div>
+				</div>
+			<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
+<!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
 		<!--end Page Content-->
 	</div>
+			</div>
+
 	<div class="loadingpage loading">
 		<div class="loading-img"></div>	
 	</div>
@@ -448,7 +446,6 @@
 		$("ul#main_menu").on("click", "a#main_logout", function(){
 			location.href = "logoutSQmember.action";
 		});
-		
 		</script>
 
 		
@@ -519,4 +516,4 @@
 
 	
 </body>
-</html>
+</html>	

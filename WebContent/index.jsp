@@ -53,7 +53,7 @@
     		height: 200px;
     		display: inline-block;
     		border-radius: 50%;
-    		border: 5px solid red;
+    		border: 5px solid #b32400;
     		padding: 10px;
     		text-align: center;
     		font: 1.4em Montserrat;
@@ -62,13 +62,23 @@
     		transition-duration: 0.2s;
     	}
     	div.circle:hover{
-    		border-color: yellow;
+    		border-color: #ffa64d;
     		font: 1.8em Montserrat;
     		padding-top: 8%;
     	}
     	body{
     		background-color: white;		/*index 본문 색깔*/
     		color: black;
+    	}
+    	p.member_count{
+    		font: bold 2em 맑은 고딕;
+    	}
+    	img#smallLogo{
+    		margin-top: -2.5%;
+    		width: 40%;
+    	}
+    	img#bigLogo{
+    		width: 100%;
     	}
     </style>
     
@@ -114,7 +124,7 @@
                     Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                   	작은 로고
+                   	<img id="smallLogo" src="assets/img/white1.png">
                 </a>
             </div>
             
@@ -228,7 +238,7 @@
             <!-- 메뉴바에 생기는 링크들 -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a class="page-scroll" href="#about">About</a></li>
+                    <li><a class="page-scroll" href="#about_">About</a></li>
                     <s:if test="#session.loginId == null">
 	                    <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="tabpanel" data-tab="#sign-in" data-transition-parent="#tabpanel" id="main_login">Log In</a></li>
 	                    <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#tabpanel" id="main_register">Register</a></li>
@@ -255,7 +265,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">#불통 #정크랫 #취화선 #절레절레</h1>
+                        <h1 class="brand-heading"><img id="bigLogo" src="assets/img/white1.png"></h1>
                         <p class="intro-text">밴드와 버스커를 위한 최고의 사이트</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
@@ -270,7 +280,7 @@
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About SQUARIZE</h2>
+                <h2 id="about_">About SQUARIZE</h2>
                 <p>
                 	우리는 감성적인 메인 페이지를 가지고 있습니다.<br>
                 	반갑습니다. 즐기세요.<br>
@@ -292,6 +302,7 @@
 	                	${count.rent }<br>
 	                	FOR Rent
 	                </div>
+	                <p class="member_count">벌써 ${count.member }명이 즐기고 있습니다! 어서 참여하세요!</p>
 	            </div>
             </div>
         </div>

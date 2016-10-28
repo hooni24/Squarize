@@ -14,7 +14,7 @@ if( hasClass(element, 'external') ){
 }
 else {
     simpleMap(_latitude, _longitude,draggableMarker, scrollwheel);
-    rating();
+ //   rating();
     averageColor( $('.content-container') );
 }
 

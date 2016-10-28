@@ -164,8 +164,8 @@ $(function(){
 		var fileLength = file.length;
 		var ext = file.substring(fileLength-3, fileLength);	//확장자
 		
-		if(isNaN(phone)){
-			alert("전화번호는 숫자만 입력하세요");
+		if(phone.length < 1){
+			alert("전화번호는 반드시 입력해 주세요");
 			return false;
 		}else if(fileLength < 1){
 			alert("사진을 반드시 업로드해주세요");
