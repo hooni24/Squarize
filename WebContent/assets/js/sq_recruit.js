@@ -3,6 +3,7 @@
  */
 	$(function(){
 		// Try HTML5 geolocation.
+		alert("hi");
 		var marker;		//submit할때 마커좌표 얻기위해 전역변수로 설정
 		if (navigator.geolocation) {	//gps사용 가능 브라우져이면
 			
@@ -80,27 +81,10 @@
 			});//ajax
 		});	//submit클릭 on
 		
-		$('#lists').click(function(){
-			alert("hi");
-			$.ajax({
-				method:'post'
-				,url:'getAllRecruitApply'
-				,datatype:'json'
-				,success:function(send){
-					var list=send.sq_applied_list;
-					var code2;
-					var count=1;
-					var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>"
-					$.each(list,function(index,item){
-						code2+="<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_member_phone+"</td><td><a href='#' id='detail'></a></td></tr>";
-						count++;
-						alert(code2);
-					});
-				}
-			});
-		});
+		
 		
 		$('#update-btn').click(function(){
+			alert("hi")
 			var title_value=$('#title1').text();
 			var limit_date=$('#limitDate').text();
 			var info=$('#content').val();
@@ -136,6 +120,27 @@
 */			if(validCheck()){
 				$("#form")[0].submit();
 			}
+		});
+		
+		
+		$('#applyList').click(function(){
+			alert("hi");
+			$.ajax({
+				method:'post'
+				,url:'AllRecruitApply'
+				,datatype:'json'
+				,success:function(send){
+					var list=send.sq_applied_list;
+					var code2;
+					var count=1;
+					var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>"
+					$.each(list,function(index,item){
+						code2+="<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_member_phone+"</td><td><a href='#' id='detail'></a></td></tr>";
+						count++;
+						alert(code2);
+					});
+				}
+			});
 		});
 		
 		});

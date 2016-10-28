@@ -23,7 +23,6 @@
 	        	background-image: url("assets/img/cancel_64px.png");
 	        }
 	    </style>
-		
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>
 		<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
@@ -228,9 +227,9 @@
 	                <!-- 아티스트로 로그인한 상태에서 로그인아이디와 글쓴 아이디가 같을 경우 지원자 리스트를 볼 수 있는 버튼을 추가. -->
 	                <s:if test="#session.loginId != null && #session.loginId == sq_recruit_artist.sq_member_id">
 		                <article class="center" id="test">
-		                    <a id="apply_list" href="applied_list" class="btn btn-circle btn-default btn-lg" id="lists">지원자목록</a>
-		                    <a href="#" class="btn btn-circle btn-default btn-lg" id="update-btn">수정</a>
-		                    <a href="recruit_delete" class="btn btn-circle btn-default btn-lg">삭제</a>
+		                    <a id="applyList" class="btn btn-circle btn-default btn-lg"  >지원자목록</a>
+		                    <a id="update-btn" class="btn btn-circle btn-default btn-lg">수정</a>
+		                    <a href="deleteSQrecruit?sq_recruit.sq_recruit_id=${sq_recruit_apply.sq_recruit_id}" class="btn btn-circle btn-default btn-lg">삭제</a>
 		                </article>
 	                </s:if>
 	                

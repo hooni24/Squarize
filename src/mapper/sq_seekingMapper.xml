@@ -6,7 +6,7 @@
 		SELECT * FROM SQ_RECRUIT ORDER BY SQ_RECRUIT_ID DESC
 	</select>
 	
-	<select id="getAllRecruitApply" parameterType="int" resultType="SQ_human">
+	<select id="AllRecruitApply" parameterType="int" resultType="SQ_human">
 		select * 
 			from sq_artist a, sq_member m,sq_portfolio p
 			where a.sq_member_id=m.sq_member_id
