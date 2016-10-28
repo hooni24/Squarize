@@ -239,7 +239,6 @@
                                 <li><a href="toRentMain.action">대관글</a></li>
                             </ul>
                         </li>
-
                         <li>
                             <a href="#" class="has-child">마이페이지</a>
                             <ul>
@@ -252,7 +251,6 @@
 <!--                         <li><a href="persons_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Agents</a></li> -->
 <!--                         <li><a href="faq_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li> -->
 <!--                         <li><a href="contact_e.action" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Contact</a></li> -->
-
                     </ul>
                     <div class="toggle-nav">
                         <div class="dots">
@@ -413,7 +411,6 @@
 	<!-- 나열부분 끝 -->
 		</div>
 				</div>
-			<! -->
 			<!-- 구인정보 및 대관정보 썸네일 나열부분 시작 -->
 <!-- DB에서 정보 받아와서 돌리면서 추가할 부분 -->
 		<!--end Page Content-->
@@ -426,7 +423,6 @@
 
 		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="assets/js/sq_member.js"></script>
-		<script type="text/javascript" src="assets/js/sq_recruit.js"></script>
 		<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 		<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -521,4 +517,4 @@
 
 	
 </body>
-</html>
+</html>	
