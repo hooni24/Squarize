@@ -280,7 +280,7 @@
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2 id="about_">About SQUARIZE</h2>
+                <h2>About SQUARIZE</h2>
                 <p>
                 	우리는 감성적인 메인 페이지를 가지고 있습니다.<br>
                 	반갑습니다. 즐기세요.<br>
@@ -289,7 +289,7 @@
                 	즐거운 모험이 당신을 기다립니다!!<br>
                 	자, 시작해볼까요?
                 </p>
-                <div class="count">
+                <div class="count" id="about_">
 	                <div class="circle busking_count">
 	                	${count.busking }<br>
 	                	FOR Busking
