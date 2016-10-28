@@ -144,30 +144,33 @@
 				
 				
 				$('#applyList').click(function(){
-					var id=$('#sq_recruit_id').val();
-					alert(id);
+					/* var id=$('#sq_recruit_id').val();
+					alert(id); */
 					$.ajax({
 						method:'post'
 						,url:'AllRecruitApply'
-						,data:{'sq_recruit.sq_recruit_id':id}
+						,data:{'sq_recruit.sq_recruit_id':$('#sq_recruit_id').val()}
 						,datatype:'json'
 						,success:function(send){
-							var list=send.sq_applied_list;
+							var list=send.sq_apply_list;
 							alert(list);
-							var code2;
+							var code2="";
 							var count=1;
-							var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>";
-							if(list==null){
+							/* if(list==null){
 								alert("지원자가 없습니다.");
 								
-							}else{
+							}else{ */
+								alert("hi");
 								$.each(list,function(index,item){
+									code2=code2+"<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_artist_phone+"</td><td><a href='#' id='detail'>클릭</a></td></tr>";
 									alert(code2);
-									code2=code2+"<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_member_phone+"</td><td><a href='#' id='detail'></a></td></tr>";
+									
 									count++;
 								});
-							}					
-							alert(count);
+							/* } */
+							alert(code2);
+							var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>";
+							$(code1).appendTo('#table');
 						}
 					});
 				});

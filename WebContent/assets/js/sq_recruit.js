@@ -117,9 +117,12 @@
 		
 		$('#applyList').click(function(){
 			alert("hi");
+			var id=$('#sq_recruit_id').val();
+			alert(id);
 			$.ajax({
 				method:'post'
 				,url:'AllRecruitApply'
+				,data:{'sq_recruit.sq_recruit_id':id}
 				,datatype:'json'
 				,success:function(send){
 					var list=send.sq_applied_list;
