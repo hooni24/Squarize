@@ -380,11 +380,11 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
         else {
             path = '../';
         }
-        var markerIcon = path + "img/marker.png";
+        var markerIcon = path + "img/marker_blue.png";
         loadScript( path + "js/richmarker-compiled.js",renderMap);
     }
     else {
-        markerIcon = "assets/img/marker.png";
+        markerIcon = "assets/img/marker_blue.png";
         setTimeout(function() {
             renderMap();
         }, 1000);
@@ -428,7 +428,7 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             draggable: draggableMarker,
             content: markerContent,
             flat: true,
-            icon: 'assets/img/marker.png'
+            icon: 'assets/img/marker_blue.png'
         });
         marker.content.className = 'marker-loaded';   //새로 만든 마커에다가 marker-loaded 클래스 추가
 //        });
@@ -453,7 +453,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             disableDefaultUI: false,
             scrollwheel: true,
             styles: mapStyles,
-            mapTypeControlOptions: {
+            mapTypeControlOptions: {	
                 style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
                 position: google.maps.ControlPosition.BOTTOM_CENTER
             },
@@ -471,20 +471,89 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         var activeMarker = false;
         var lastClicked = false;
 
+        //현재시간 불러오기
+        var datedate = getTimeStamp();
+        function getTimeStamp() {
+          var d = new Date();
+          var s =
+        	    leadingZeros(d.getFullYear(), 4) + '-' +
+        	    leadingZeros(d.getMonth() + 1, 2) + '-' +
+        	    leadingZeros(d.getDate(), 2) + ' ' +
+
+        	    leadingZeros(d.getHours(), 2) + ':' +
+        	    leadingZeros(d.getMinutes(), 2) + ':' +
+        	    leadingZeros(d.getSeconds(), 2);
+
+          return s;
+        }
+
+        function leadingZeros(n, digits) {
+          var zero = '';
+          n = n.toString();
+
+          if (n.length < digits) {
+            for (i = 0; i < digits - n.length; i++)
+              zero += '0';
+          }
+          return zero + n;
+        }
+        
         for (var i = 0; i < json.data.length; i++) {
 
             // Google map marker content
-
-            if( json.data[i].color ) var color = json.data[i].color;
-            else color = '';
-
+        	if( json.data[i].buskingdate ) var buskingdate = json.data[i].buskingdate;
+        	else buskingdate = '';
+        	if( json.data[i].end ) var end = json.data[i].end;
+        	else end = '';
+        	
+//        	86400000 하루차이의 시간의 양
+        	var now = new Date(datedate);
+//			var nowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+			var buskingDate = new Date(buskingdate);
+			var endDate = new Date(end);
+//			alert(buskingDate);
+//        	alert(now);
             var markerContent = document.createElement('DIV');
             markerContent.innerHTML =
                 '<div class="map-marker">' +
                     '<div class="icon">' +
                     '<img src="assets/img/marker.png">' +
-                    '</div>' +
+                    '</div>' +	
                 '</div>';
+          
+            if (endDate.getTime() - now.getTime() < 0){
+            	continue;
+            }
+            
+            if (86400000 < buskingDate.getTime() - now.getTime() && buskingDate.getTime() - now.getTime() < 86400000*3) {
+//            	alert("첫번째 영역" + (buskingDate.getTime() - now.getTime()));
+                markerContent.innerHTML =
+                    '<div class="map-marker">' +
+                        '<div class="icon">' +
+                        '<img src="assets/img/marker.png">' +
+                        '</div>' +	
+                    '</div>';
+            } else if (0 < buskingDate.getTime() - now.getTime() && buskingDate.getTime() - now.getTime() <= 86400000){
+//            	alert("두번째 영역" + (buskingDate.getTime() - now.getTime()));
+            	markerContent.innerHTML =
+            		'<div class="map-marker">' +
+            		'<div class="icon">' +
+            		'<img src="assets/img/marker_red.png">' +
+            		'</div>' +
+            		'</div>';
+            } else{
+//            } if ((buskingDate.getTime() - now.getTime() <= 0) && (0 < (endDate.getTime() - now.getTime()))){
+//            	alert("세번째 영역" + (buskingDate.getTime()));
+//            	alert("세번째 영역" + (now.getTime()));
+//            	alert("세번째 영역" + (endDate.getTime()));
+            	markerContent.innerHTML =
+            		'<div class="map-marker">' +
+            		'<div class="icon">' +
+            		'<img src="assets/img/marker_purple.png">' +
+            		'</div>' +
+            		'</div>';
+            }
+            
 
             // Create marker on the map
 

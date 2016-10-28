@@ -172,7 +172,7 @@
                             </s:iterator>
                             </select>
                             <select name="b_min">
-                            	<option value="0">정각</option>
+                            	<option value="00">정각</option>
                             	<option value="30">30분</option>
                             </select>
                         </div>

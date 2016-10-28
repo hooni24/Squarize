@@ -24,6 +24,7 @@
     		overflow: scroll;
     	}
 	</style>
+	
 </head>
 
 <body id="page-top" class="fullscreen-map has-map">
@@ -192,7 +193,14 @@
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label for="type">Genre</label><br>
-                                <input type="text" class="animate" id="type">
+<!--                                 <input type="text" class="animate" id="type"> -->
+                                <select class="animate" id="type">
+                                	<option>선호장르</option>
+                                	<option>락</option>
+                                	<option>발라드</option>
+                                	<option>재즈</option>
+                                	<option>힙합</option>
+                                </select>
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -206,6 +214,14 @@
                                         <button class="btn btn-default animate" type="button"><i class="fa fa-map-marker geolocation" data-toggle="tooltip" data-placement="bottom" title="Find my position"></i></button>
                                     </span>
                                 </div>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="form-group">
+                            	 <br>
+<!--                                  <a href="#" class="btn btn-default btn-sm show-filter">초기화</a> -->
+                            <a href="#search-collapse" id="reset" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Reset</a>
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -271,7 +287,7 @@
 <script type="text/javascript" src="assets/js/ie-scripts.js"></script>
 <![endif]-->
 
-<script>
+<script type="text/javascript">
    var _latitude = 36.265778;
    var _longitude = 127.884858;
 //     var jsonPath = 'assets/json/items.json';
@@ -287,6 +303,80 @@
 //          console.log(error);
 //      });
    
+   
+//    var searchResult;
+
+   //select box를 클릭했을 때 실행
+   $(function(){
+	   $("#type").change(function(){
+		   var genre = $('#type option:selected()').val();
+		   var item = {"searchResult": genre};		   
+		   
+		   if(genre == '선호장르'){
+			   $.ajax({
+				      url : "toBuskingList"
+				      , method : "post"
+				      , dataType : "json"
+				      , success : function(resp){
+				         var list = resp.buskingArraylist;
+				         var jsonArray = new Array();
+				          $.each(list, function(index, item){
+				            jsonArray.push(JSON.parse(item));
+				         }); 
+				         var finalJson = {"data" : jsonArray};
+				         createHomepageGoogleMap(_latitude,_longitude,finalJson);
+				      }
+				      , error : function(){
+				         alert("실패");
+				      } 
+				   });
+		   }else{
+			   $.ajax({
+				      url : "toSearchList"
+				      , method : "post"
+				      , data : item
+				      , dataType : "json"
+				      , success : function(resp){
+				         var list = resp.buskingArraylist;
+				         var jsonArray = new Array();
+				          $.each(list, function(index, item){
+				            jsonArray.push(JSON.parse(item));
+				         }); 
+				         var finalJson = {"data" : jsonArray};      //data : {   [   {  }, {   }   ]   }
+				         createHomepageGoogleMap(_latitude,_longitude,finalJson);
+				      }
+				      , error : function(){
+				         alert("실패");
+				      } 
+			   });
+		   }
+	   });
+ 	});
+   
+   //초기화를 클릭했을 때 실행
+   $(function(){
+	   $("#reset").click(function(){
+		   $.ajax({
+			      url : "toBuskingList"
+			      , method : "post"
+			      , dataType : "json"
+			      , success : function(resp){
+			         var list = resp.buskingArraylist;
+			         var jsonArray = new Array();
+			          $.each(list, function(index, item){
+			            jsonArray.push(JSON.parse(item));
+			         }); 
+			         var finalJson = {"data" : jsonArray};
+			         createHomepageGoogleMap(_latitude,_longitude,finalJson);
+			      }
+			      , error : function(){
+			         alert("실패");
+			      } 
+			   });
+	   });
+ 	});
+   
+   //페이지가 시작되자마자 실행
    $.ajax({
       url : "toBuskingList"
       , method : "post"

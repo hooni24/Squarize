@@ -199,7 +199,7 @@
 	        var gcenter = [ [ lat, lng, 4 ] ]; //지도의 중앙
 	        var latlng = [ [ lat, lng, "여기에요~" ] ]; //마커를 위해 위치 객체 생성(배열가능, 여기서는 경도,위도 순서)
 	        var image = {
-	            url : "assets/img/marker.png", //마커이미지 
+	            url : "assets/img/marker3.png", //마커이미지 
 	            size : new google.maps.Size(67, 57), //마커사이즈
 	            origin : new google.maps.Point(0, 0),
 	            anchor : new google.maps.Point(43, 77)
