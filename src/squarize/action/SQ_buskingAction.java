@@ -2,7 +2,11 @@ package squarize.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,12 +35,42 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
    private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
    private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
    private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
+   private String genre;
    
    
    public String execute(){
 	   return SUCCESS;
    }
 
+   public String searchList(){
+	   System.out.println(genre);
+	   buskingList = new ArrayList<>();
+	      buskingList = dao.searchList(genre);
+	      buskingArraylist = new ArrayList<>();
+	      
+				      	for (int i = 0; i < buskingList.size(); i++) {                              
+				      		source = "{"+                                                           
+				      				"\"sq_busking_id\": " + buskingList.get(i).getSq_busking_id() +", "+        
+				      				"\"id\": \"" + buskingList.get(i).getId() +"\", "+                  
+				      				"\"title\": \""+ buskingList.get(i).getTitle() + "\", "+                           
+				      				"\"location\": \"" + buskingList.get(i).getLocation()+"\", "+                                     
+				      				"\"latitude\": "+buskingList.get(i).getLatitude()+", "+                                   
+				      				"\"longitude\": "+buskingList.get(i).getLongitude()+", "+                                 
+				      				"\"url\": \""+ buskingList.get(i).getUrl()+"\", "+                   
+				      				"\"genre\": \""+ buskingList.get(i).getGenre()+"\", "+                                        
+				      				"\"rating\": "+ buskingList.get(i).getRating()+", "+                                              
+				      				"\"teamname\": \"" + buskingList.get(i).getTeamname() +"\", "+                                              
+				      				"\"gallery\": \""+ buskingList.get(i).getGallery()+"\", "+                    
+				      				"\"buskingdate\": \""+ buskingList.get(i).getBuskingdate()+"\", "+                               
+				      				"\"runningtime\": \""+ buskingList.get(i).getRunningtime()+"\", "+                               
+				      				"\"description\": \""+ buskingList.get(i).getDescription()+"\""+                     
+				      				"}";            
+				      		
+				      			buskingArraylist.add(source);
+						}
+	      return SUCCESS;
+   }
+   
    public String buskingList(){
       buskingList = new ArrayList<>();
       buskingList = dao.buskingList();
@@ -70,7 +104,8 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 	   return SUCCESS;
    }
    
-   public String addBusking(){
+   @SuppressWarnings("deprecation")
+public String addBusking(){
 	   if (upload != null) { 
 			try {
 				FileService fs = new FileService();
@@ -85,10 +120,31 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 	   SQ_busking.setId((String) session.get("loginId"));
 	   
 	   String date = SQ_busking.getBuskingdate();
-	   String fullDate = date + " " + b_hour + ":" + b_min;
+	   String fullDate = date + " " + b_hour + ":" + b_min + ":00";
 	   SQ_busking.setBuskingdate(fullDate);
-	   
 	   System.out.println(fullDate);
+	   //////////////////////////////////
+	   
+	    String start = fullDate;
+	    String end = null;
+	    try {
+	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	        Date beginDate = formatter.parse(start);
+
+	        if(SQ_busking.getRunningtime() == 60){
+	        	long finishTime = beginDate.getTime() + 3600000;
+	        	end = formatter.format(finishTime);
+	        	System.out.println("end: " + end);
+	        }else if(SQ_busking.getRunningtime() == 120){
+	        	long finishTime = beginDate.getTime() + 7200000;
+	        	end = formatter.format(finishTime);
+	        	System.out.println("end: " + end);
+	        }
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
+	   SQ_busking.setEnd(end);
+	   System.out.println("뭐가 들었니?: " + SQ_busking);
 	   dao.addBusking(SQ_busking);
 	   return SUCCESS;
    }
@@ -186,4 +242,13 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 	public void setUploadContentType(String uploadContentType) {
 		this.uploadContentType = uploadContentType;
 	}
+
+	public String getSearchResult() {
+		return genre;
+	}
+
+	public void setSearchResult(String searchResult) {
+		this.genre = searchResult;
+	}
+	
 }

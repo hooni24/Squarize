@@ -21,6 +21,15 @@ public class SQ_buskingDAO {
 		}
 	}
 	
+	public List<SQ_busking> searchList(String genre){
+		try {
+			ss = factory.openSession();
+			return ss.selectList("sq_buskingMapper.searchList", genre);
+		} finally {
+			ss.close();
+		}
+	}
+
 	public SQ_busking buskingDetail(int sq_busking_id){
 		try {
 			ss = factory.openSession();

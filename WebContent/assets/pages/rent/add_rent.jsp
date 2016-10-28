@@ -32,7 +32,7 @@
 			    infoWindow.setContent('드래그해서 정확한 위치로 이동하세요');								//메세지창 메세지 입력
 			    
 			    var image = {
-					            url : "assets/img/marker.png", //마커이미지
+					            url : "assets/img/marker3.png", //마커이미지
 					            size : new google.maps.Size(67, 57), //마커사이즈
 					            origin : new google.maps.Point(0, 0),
 					            anchor : new google.maps.Point(43, 77)
