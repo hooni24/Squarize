@@ -84,11 +84,18 @@
 			alert("hi");
 			$.ajax({
 				method:'post'
-				,url:'applied_list'
+				,url:'getAllRecruitApply'
 				,datatype:'json'
 				,success:function(send){
 					var list=send.sq_applied_list;
-					var code1="<table><tr>지원자 이름<th>연락처</th><th></th></tr></table>"
+					var code2;
+					var count=1;
+					var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>"
+					$.each(list,function(index,item){
+						code2+="<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_member_phone+"</td><td><a href='#' id='detail'></a></td></tr>";
+						count++;
+						alert(code2);
+					});
 				}
 			});
 		});

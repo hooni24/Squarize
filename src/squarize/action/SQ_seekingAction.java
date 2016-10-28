@@ -17,7 +17,6 @@ import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
 import squarize.vo.SQ_recruit_apply;
 import squarize.vo.SQ_recruit_artist;
-import squarize.vo.SQ_rent;
 
 public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
@@ -26,7 +25,6 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 //	private JsonObject json_object;
 	private List<SQ_recruit> sq_recruit_list;
 	private List<SQ_human>sq_apply_list;
-	private List<SQ_rent> sq_rent_list;
 	private List<SQ_portfolio> sq_portfolio_list;
 	private List<SQ_recruit_artist> sq_applied_list;
 	
@@ -102,7 +100,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}*/
 	
-	public String getAllRecruitApply() throws Exception{
+	public String AllRecruitApply() throws Exception{
 		System.out.println("지원자리스트"+sq_recruit);
 		sq_apply_list=sdao.getAllRecruitApply(sq_recruit.getSq_recruit_id());
 		return SUCCESS;
@@ -225,14 +223,6 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 
 	public void setSq_recruit_list(List<SQ_recruit> sq_recruit_list) {
 		this.sq_recruit_list = sq_recruit_list;
-	}
-
-	public List<SQ_rent> getSq_rent_list() {
-		return sq_rent_list;
-	}
-
-	public void setSq_rent_list(List<SQ_rent> sq_rent_list) {
-		this.sq_rent_list = sq_rent_list;
 	}
 
 	public List<SQ_portfolio> getSq_portfolio_list() {

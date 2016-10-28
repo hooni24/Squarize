@@ -17,9 +17,9 @@
 		<action name="getRecruit_detail" class="squarize.action.SQ_seekingAction" method="selectOne_SQ_recruit_artist">
 			<result>assets/pages/items/recruit_detail.jsp</result>
 		</action>
-		
-		<action name="applied_list" class="squarize.action.SQ_seekingAction" method="selectRecruitApplyList">
-			<result type="json"></result>
+
+		<action name="getAllRecruitApply" class="squarize.action.SQ_seekingAction" method="getAllRecruitApply">
+			<result type="jsons"></result>
 		</action>
 		
 		<action name="insertApply" class="squarize.action.SQ_seekingAction" method="insertRecruitApplication">

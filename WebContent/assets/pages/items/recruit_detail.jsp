@@ -235,6 +235,10 @@
 		                </article>
 	                </s:if>
 	                
+	                 <s:if test="#session.loginId != null && #session.loginId == sq_recruit_artist.sq_member_id">
+	                 	<div id="table"></div>
+	                 </s:if>
+	                
 	                <!-- 아티스트로 로그인한 상태에서 로그인 아이디가 글쓴 아이디가 아닐 경우 지원할 수 있는 버튼/ 지원했던 지원자는 취소버튼 추가. -->
 	                <s:elseif test="#session.loginId != null && #session.loginId != sq_recruit_artist.sq_member_id">
 	                	<article class="center" id="test">
