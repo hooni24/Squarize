@@ -13,7 +13,7 @@
 				and m.sq_member_id=p.sq_member_id
 				and m.sq_member_id IN(select sq_member_id
 									from sq_recruit_apply
-									where sq_recruit_id=#{sq_recruit_id});
+									where sq_recruit_id=#{sq_recruit_id})
 	</select>
 	
 	<select id="selectOne_sq_recruit_artist" parameterType="int" resultType="SQ_recruit_artist">

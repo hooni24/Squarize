@@ -144,21 +144,30 @@
 				
 				
 				$('#applyList').click(function(){
-					alert("hi");
+					var id=$('#sq_recruit_id').val();
+					alert(id);
 					$.ajax({
 						method:'post'
 						,url:'AllRecruitApply'
+						,data:{'sq_recruit.sq_recruit_id':id}
 						,datatype:'json'
 						,success:function(send){
 							var list=send.sq_applied_list;
+							alert(list);
 							var code2;
 							var count=1;
-							var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>"
-							$.each(list,function(index,item){
-								code2+="<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_member_phone+"</td><td><a href='#' id='detail'></a></td></tr>";
-								count++;
-								alert(code2);
-							});
+							var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>";
+							if(list==null){
+								alert("지원자가 없습니다.");
+								
+							}else{
+								$.each(list,function(index,item){
+									alert(code2);
+									code2=code2+"<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_member_phone+"</td><td><a href='#' id='detail'></a></td></tr>";
+									count++;
+								});
+							}					
+							alert(count);
 						}
 					});
 				});
@@ -250,7 +259,7 @@
 		                </article>
 	                	<article class="animate move_from_bottom_short">
 	                		<div id="file"></div>
-		                	<input type="hidden" name="sq_recruit.sq_recruit_id" value=${sq_recruit_artist.sq_recruit_id}>
+		                	<input type="hidden" name="sq_recruit.sq_recruit_id" id="sq_recruit_id" value=${sq_recruit_artist.sq_recruit_id}>
 		                    <h1 id="title1">${sq_recruit_artist.sq_recruit_title}</h1>
 		                    <h2><i class="fa fa-map-marker"></i>${sq_recruit_artist.sq_recruit_location}</h2>
 		                    <figure class="price average-color"><span>${sq_recruit_artist.sq_member_id}</span></figure>
