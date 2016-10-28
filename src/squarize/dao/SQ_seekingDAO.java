@@ -90,10 +90,10 @@ public class SQ_seekingDAO {
 	}
 	
 	// 구인정보에 지원시 DB에 등록하기.
-	public int insertApply(SQ_recruit_artist recruit_artist){
+	public int insertApply(SQ_recruit_artist sq_recruit_artist){
 		int result = 0;
 		ss = factory.openSession();
-		result = ss.insert("sq_seekingMapper.insertApply", recruit_artist);
+		result = ss.insert("sq_seekingMapper.insertApply", sq_recruit_artist);
 		ss.commit();
 		if(ss != null) ss.close();
 		return result;
