@@ -48,7 +48,7 @@
 		    					$('#portfolio_menu').trigger('click');
 		    				} else {
 		    					alert("지원 처리되었습니다.");
-		    	//				$('a#close').trigger('click');
+		    					$('a#close').trigger('click');
 		    				}
 		    			}
 		    		});
@@ -67,10 +67,10 @@
 								alert("지원한 적이 없습니다.");
 							} else if (result == 0) {
 								alert("취소 실패. 나중에 다시 시도해주세요.");
-				//				$('a#close').trigger('click');
+								$('a#close').trigger('click');
 							} else {
 								alert("취소되었습니다.");
-				//				$('a#close').trigger('click');
+								$('a#close').trigger('click');
 							}
 						}
 					});
@@ -93,8 +93,6 @@
 			    }
 			    else {
 			        simpleMap(_latitude, _longitude,draggableMarker, scrollwheel);	// funcitons.js의 simpleMap을 실행.
-			   //   rating();	//별점메소드 실행
-			   //	    averageColor( $('.content-container') );
 			    }
 			
 			    function hasClass(element, cls) {
