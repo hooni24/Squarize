@@ -30,8 +30,6 @@
 		
 		<script type="text/javascript">
 			$(function(){
-				var session = '<s:property value="#session.loginId"/>';
-				alert(session);
 				var sq_recruit_id = $('#sq_recruit_id').val();
 		    	$('#applyThisRecruit').on('click', function(){	/* 지원하기 버튼 눌렀을 때 */
 					$.ajax({
@@ -44,13 +42,12 @@
 		    				var result = response.result;
 		    				if(result == 0){
 		    					alert("이미 지원하였습니다.");
-		    					
 		    				} else if(result == -1) {
 		    					alert("제출할 포트폴리오를 먼저 작성해주세요.");
 		    					$('#portfolio_menu').trigger('click');
 		    				} else {
 		    					alert("지원 처리되었습니다.");
-		    					
+		    					$('a#close').trigger('click');
 		    				}
 		    			}
 		    			
@@ -71,10 +68,10 @@
 								alert("지원한 적이 없습니다.");
 							} else if (result == 0) {
 								alert("취소 실패. 나중에 다시 시도해주세요.");
-								
+								$('a#close').trigger('click');
 							} else {
 								alert("취소되었습니다.");
-								
+								$('a#close').trigger('click');
 							}
 						}
 					});

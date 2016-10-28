@@ -165,10 +165,11 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	// 해당 구인 정보에 지원신청 취소 delete
 	public String deleteRecruitApplication() throws Exception {
 		System.out.println("지원 취소하기 delete");
-		SQ_seekingDAO dao = new SQ_seekingDAO();
 		// 지원한 적이 있는지 확인
 		SQ_recruit_apply checked_apply = this.checkApplied();
+		System.out.println(checked_apply);
 		if(checked_apply != null) {
+			SQ_seekingDAO dao = new SQ_seekingDAO();
 			result = dao.deleteApply(checked_apply);
 		} else {
 			result = -1; //	지원한 적 없음.
