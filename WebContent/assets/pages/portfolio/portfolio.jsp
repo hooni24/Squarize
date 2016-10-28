@@ -31,11 +31,8 @@
     <script>
     
     //무결성 체크
-    function valid(inst, career, pr){
-    	if(inst.length < 1 || inst.length > 8){
-			alert("악기명은 1~8글자로 입력해주세요");
-			return false;
-		}else if(career.length < 1 || career.length > 1000){
+    function valid(career, pr){
+		if(career.length < 1 || career.length > 1000){
 			alert("약력은 1~1000글자로 입력해주세요");
 			return false;
 		}else if(pr.length < 1 || pr.length > 1000){
@@ -50,7 +47,7 @@
     			var appendThing =
                 '<form id="forms" action="makePortfolio?fromWhere=rent" method="post" enctype="multipart/form-data">'+
 	                '<h1>다루는 악기</h1>'+
-	                '<input id="inst" type="text" name="sq_portfolio.sq_port_inst"><br><br>'+
+	                '<select id="inst" name="sq_portfolio.sq_port_inst"><option>기타</option><option>드럼</option><option>키보드</option><option>보컬</option></select><br><br>'+
 	                '<h1>약력(1000자 이내)</h1>'+
 	                '<textarea id="career" class="form-control" rows="8" name="sq_portfolio.sq_port_career"></textarea><br><br>'+
 	                '<h1>자기소개(1000자 이내)</h1>'+
@@ -70,11 +67,10 @@
     		
     		//포트폴리오 무결성체크후 등록
     		$("div#makePortForm").on("click", "#submits", function(){
-    			var inst = $("input#inst").val();
     			var career = $("textarea#career").val();
     			var pr = $("textarea#pr").val();
     			
-    			if(valid(inst, career, pr))
+    			if(valid(career, pr))
 	    			$("#forms")[0].submit();
     		});
     		
@@ -98,7 +94,7 @@
     		
     		//포트폴리오 수정창 띄우기
     		$("a#update").on("click", function(){
-    			alert(window.location.search);
+    			var inst = $("span#real_inst").text();
     			$("#instH1").html("<input type='text' id='inst' name='sq_portfolio.sq_port_inst' value='"+inst+"'>");
     			$("textarea#career").attr("readonly", false);
     			$("textarea#pr").attr("readonly", false);
@@ -192,7 +188,7 @@
 	                            <img src="assets/downloadIMG/artist/${sq_artist.sq_artist_photo }">
                             </s:else>
 	                        </figure>
-	                        <h1 id="instH1">다루는 악기 - ${sq_portfolio.sq_port_inst }</h1>
+	                        <h1 id="instH1">다루는 악기 - <span id="real_inst">${sq_portfolio.sq_port_inst }</span></h1>
 	                    </div>
 	                </article>
 	                <article class="animate move_from_bottom_short">

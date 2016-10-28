@@ -253,7 +253,7 @@
 	                        <li>
 	                            <a href="#" class="has-child">마이페이지</a>
 	                            <ul>
-	                                <li><a href="toPortfolio.action" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
+	                                <li><a href="toPortfolio.action?fromWhere=busking" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
 	                            </ul>
 	                        </li>
                         </s:if>
