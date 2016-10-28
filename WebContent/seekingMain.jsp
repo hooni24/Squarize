@@ -302,147 +302,150 @@
 										<option value="sq_recruit.sq_recruit_genre">장르</option>
 										<option value="sq_member.sq_member_name">이름</option>
 									</select>
-
 								</div>
-								<!--/.col-md-6-->
+							</div>
+							<!--/.col-md-3 col-sm-3-->
 	
 	                        <div class="col-md-2 col-sm-2">
-	<!--                             <div class="row"> -->
-	<!--                                 <div class="col-md-6 col-sm-6"> -->
-	                                    <div class="form-group">
-	                                        <label for="bedrooms"></label>
-	                                        <select id="recruit_search_small" class="animate"
-											data-transition-parent=".dropdown-menu">
-											<!-- 원래 id="type" multiple title="전체" : 여러개 선택 가능 -->
-												<option value="">소분류 선택</option>
-												<!-- 파트일때 -->
-												
-											</select>
-											
-	                                    </div>
-	                                   <!-- /.form-group -->
-	<!--                                 </div> -->
-	<!--                                 /.col-md-3 -->
-	<!--                             </div> -->
-	                        </div>
-	
-								<div class="col-md-3 col-sm-3" id="divBtn">
-									<div class="form-group">
-										
-										<div class="input-group counter" id="divSubmitBtn">
-											<input type="submit" class="form-control" id="recruit_searching" value="검색">
-	                                    </div>
+                            	<div class="form-group">
+                                    <label for="bedrooms"></label>
+                                    <select id="recruit_search_small" class="animate" data-transition-parent=".dropdown-menu">
+										<!-- 원래 id="type" multiple title="전체" : 여러개 선택 가능 -->
+										<option value="">소분류 선택</option>
+										<!-- 파트일때 -->
 									
-									</div>
-									<!-- /.form-group -->
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<label for="location">위치로 검색</label>
-										<div class="input-group location">
-											<input type="text" class="form-control" id="location"
-												placeholder="지역명 입력"> <span class="input-group-btn">
-												<button class="btn btn-default animate" type="button">
-													<i class="fa fa-map-marker geolocation"
-														data-toggle="tooltip" data-placement="bottom"
-														title="내 위치 선택"></i>
-												</button>
-											</span>
-										</div>
-									</div>
-									<!-- /.form-group -->
-								</div>
+									</select>
+                                  </div>
+                                 <!-- /.form-group -->
+	                        </div>
+	                        <!-- .col-md-2 col-sm-2 -->
 	
-								<!-- 반경설정 코드 추가 필요(price 부분 반경으로 변경하기) -->
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<label>반경설정</label>
-										<!-- <div class="ui-slider" id="price-slider" data-value-min="400" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before"> -->
-										<div class="ui-slider" id="price-slider" data-value-min="3" data-value-max="15" data-value-type="price" data-currency="km" data-currency-placement="after">
-	                                    <div class="values clearfix">
-	                                        <input class="value-min" name="value-min[]" readonly>
-	                                        <input class="value-max" name="value-max[]" readonly>
-	                                    </div>
-	                                    <div class="element"></div>
-	                                </div>
-									</div>
-									<!-- /.form-group -->
+							<div class="col-md-3 col-sm-3" id="divBtn">
+								<div class="form-group">
+									<div class="input-group counter" id="divSubmitBtn">
+										<input type="submit" class="form-control" id="recruit_searching" value="검색">
+                                    </div>
 								</div>
-								<!--/.col-md-6-->
-								<!-- 반경설정 끝 -->
+								<!-- /.form-group -->
+							</div>
+							<!-- .col-md-3 col-sm-3 -->
+							
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label for="location">위치로 검색</label>
+									<div class="input-group location">
+										<input type="text" class="form-control" id="location"
+											placeholder="지역명 입력"> <span class="input-group-btn">
+											<button class="btn btn-default animate" type="button">
+												<i class="fa fa-map-marker geolocation"
+													data-toggle="tooltip" data-placement="bottom"
+													title="내 위치 선택"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+								<!-- /.form-group -->
+							</div>
+							<!-- .col-md-3 col-sm-3 -->
 	
+							<!-- 반경설정 코드 추가 필요(price 부분 반경으로 변경하기) -->
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label>반경설정</label>
+									<!-- <div class="ui-slider" id="price-slider" data-value-min="400" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before"> -->
+									<div class="ui-slider" id="price-slider" data-value-min="3" data-value-max="15" data-value-type="price" data-currency="km" data-currency-placement="after">
+                                    <div class="values clearfix">
+                                        <input class="value-min" name="value-min[]" readonly>
+                                        <input class="value-max" name="value-max[]" readonly>
+                                    </div>
+                                    <div class="element"></div>
+                                </div>
+								</div>
+								<!-- /.form-group -->
 							</div>
-							<!--/.row-->
-							</div>
-						</form>
-						<!-- /.main-search -->
-	<!-- 				</div> -->
-					<!--end .container-->
-				</div>
-				<!--end .search-->
+							<!--/.col-md-6-->
+							<!-- 반경설정 끝 -->
 	
-				<div class="content-inner">
-					<div class="container" id="main-container">
-						<div class="content-loader">
-							<div class="content fade_in animate">
-								<a href="#" class="close" id="close"><img
-									src="assets/img/close.png" alt=""></a>
-								<!--external content goes here-->
-							</div>
 						</div>
-						<!--end Content Loader-->
-				<div class="masonry grid animate">
-					<s:iterator value="sq_recruit_list" var="each_recruit">
-						<div class="item move_from_bottom idle">
-							<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-				              <div class="inner">
-				                    <div class="image">
-				                        <div class="price average-color"><span>${sq_member_id}</span></div>
-				                        <s:if test="sq_recruit_photo == null">
-				                        	<img src="assets/img/seeking.jpg">
-				                        </s:if>
-				                        <s:else>
-				                        	<%-- <img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 --> --%>
-				                    	</s:else>
-				                    </div>
-				                    <div class="item-content">
-				                        <header class="average-color">
-				                            <h2>${sq_recruit_title}</h2><!-- 제목 -->
-				                            <h3>${sq_recruit_part}</h3><!-- 파트 -->
-				                        </header>
-				                        <footer>
-				                            <dl>
-				                                <dt>연주 장르</dt>
-				                                <dd>${sq_recruit_genre}</dd>
-				                                <dt>연주 장소</dt>
-				                                <dd>${sq_recruit_location}</dd>
-				                                <dt>연주 일시</dt>
-				                                <dd>${sq_recruit_date}</dd>
-				                                <dt>구인 정보</dt>
-				                                <dd>${sq_recruit_info}</dd>
-				                            </dl>
-				                        </footer>
+						<!--/.row-->
+					</form>
+					<!-- /.main-search -->
+				</div>
+				<!--.container-->
+			</div>
+			<!-- .search collapse in 서치메뉴 -->
+			
+			<div class="content-inner">
+				<div class="container" id="main-container">
+					<div class="content-loader">
+						<div class="content fade_in animate">
+							<a href="#" class="close" id="close"><img
+								src="assets/img/close.png" alt=""></a>
+							<!--external content goes here-->
+						</div>
+					</div>
+					<!--end Content Loader-->
+					<div class="masonry grid animate">
+						<s:iterator value="sq_recruit_list" var="each_recruit">
+							<div class="item move_from_bottom idle">
+								<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+					              	<div class="inner">
+					                    <div class="image">
+					                        <div class="price average-color"><span>${sq_member_id}</span></div>
+					                        <s:if test="sq_recruit_photo == null">
+					                        	<img src="assets/img/seeking.jpg">
+					                        </s:if>
+					                        <s:else>
+					                        	<%-- <img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 --> --%>
+					                    	</s:else>
+					                    </div>
+					                    <div class="item-content">
+					                        <header class="average-color">
+					                            <h2>${sq_recruit_title}</h2><!-- 제목 -->
+					                            <h3>${sq_recruit_part}</h3><!-- 파트 -->
+					                        </header>
+					                        <footer>
+					                            <dl>
+					                                <dt>연주 장르</dt>
+					                                <dd>${sq_recruit_genre}</dd>
+					                                <dt>연주 장소</dt>
+					                                <dd>${sq_recruit_location}</dd>
+					                                <dt>연주 일시</dt>
+					                                <dd>${sq_recruit_date}</dd>
+					                                <dt>구인 정보</dt>
+					                                <dd>${sq_recruit_info}</dd>
+					                            </dl>
+					                        </footer>
 				                    	</div>
+				                    	<!-- .item-content -->
 					                </div>
+					                <!-- .inner -->
 				           	 	</a>
-		       		 </div>
-	        <!--end .item-->
-	<!-- 요기까지 정보 넣기 -->
-	
-	 			</s:iterator>
-	  		 </div>
-		<!-- 나열부분 끝 -->
+			       			</div>
+			       			<!-- .item move_from_bottom idle -->
+							<!-- 요기까지 정보 넣기 -->
+		 				</s:iterator>
+		  		 	</div>
+		  		 	<!-- .masonry grid animate -->
+					<!-- 나열부분 끝 -->
+				</div>
+				<!-- .container -->
+			</div>
+			<!-- .content-inner -->
 		</div>
+		<!-- .page-content -->
 	</div>
-	<!--end Page Content-->
-		</div>
-		</div>
+	<!-- #page-wrapper -->
 	
-		<div class="loadingpage loading">
-			<div class="loading-img"></div>	
-		</div>
+	<div class="loadingpage loading">
+		<div class="loading-img"></div>	
+	</div>
 
-</div>
+
+
+
+
+
 		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="assets/js/sq_member.js"></script>
 		<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
