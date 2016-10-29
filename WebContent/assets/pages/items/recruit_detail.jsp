@@ -22,6 +22,30 @@
 	        #cancelThisRecruit {
 	        	background-image: url("assets/img/cancel_64px.png");
 	        }
+	        #content{
+	        	cursor:default;
+	        }
+	        table{
+	        	text-align: center;
+	        	width:100%;
+	        	border: 1px solid rgba(0,0,0,0.8);
+	        	position:relative;
+	        }
+	        table *{
+	        	position:relative;
+	        }
+	        th{
+	        	text-align: center;
+	        	background-color:rgba(0,0,0,0.2);
+	        }
+	        #toTitle{
+	        text-align: center;
+	        font-weight: bold;
+	        margin: 0 auto;
+	        }
+	        .title{
+	        	font-weight: bold;
+	        }
 	    </style>
 		<script src="../../js/sq_recruit.js"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>
@@ -159,21 +183,56 @@
 							/* if(list==null){
 								alert("지원자가 없습니다.");
 								
-							}else{ */
+							}else{ */ 
 								alert("hi");
 								$.each(list,function(index,item){
-									code2=code2+"<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_artist_phone+"</td><td><a href='#' id='detail'>클릭</a></td></tr>";
-									alert(code2);
+									var appendThing = '<article class="person list">';
+									appendThing += '<div class="left average-color">';
+									appendThing += '<figure class="person-image image">';
+									if(item.sq_port_file == ""){
+										appendThing += '<img src="assets/img/person-01.jpg">';
+									}else {
+										appendThing += '<img src="assets/downloadIMG/port/'+item.sq_port_file+'">';
+									}
+									appendThing += '</figure>';
+									appendThing += '<aside class="number">'+item.sq_member_name+'</aside>';
+									appendThing += '<aside>아이디 : '+item.sq_member_id+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연락처 : '+item.sq_artist_phone+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이메일 : '+item.sq_member_email+'</aside>';
+									appendThing += '<h3>다루는 악기 - '+item.sq_port_inst+'</h3>';
+									appendThing += '<span class="detail title">경력</span><p class="detail control-form" rows="8" readonly>'+item.sq_port_career+'</p><hr/>';
+									appendThing += '<div><span class="detail title">자기소개</span><p class="detail control-form" rows="8" readonly>'+item.sq_port_pr+'</p></div></hr>';
+									appendThing += '<a href="#result" id="toTitle">목록으로</a>';
+									appendThing += '</div>';
+									appendThing += '</article>';
+									$("div#result").append(appendThing);
 									
-									count++;
+									
+									/* var file="";
+									if(item.sq_port_file == ""){
+										file='<figure class="person-image image"><img src="assets/img/person-01.jpg"></figure>'
+									}else {
+										file='<figure class="person-image image"><img src="assets/downloadIMG/port/'+item.sq_port_file+'"></figure>';
+									}
+									var detailCon="<div><h3>"+item.sq_member_name+"</h3>"+file+"</td><p>email 주소 : "+item.sq_member_email+"<br/><hr/>"+item.sq_port_pr+"<hr/><p><span>"+item.sq_port_inst+"<span></div>";
+									var detail="<tr rowspan='5' id=retail"+count+" style='display: none' style='display: relative'><td colspan='4'>"+detailCon+"</td></tr>"
+		
+									code2+="<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_artist_phone+"</td><td><a href='#' id='detail'>상세보기</a></td></tr>"+detail;
+									count++; */
 								});
-							/* } */
-							alert(code2);
+							
+							/* alert(code2);
 							var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>";
 							$(code1).appendTo('#table');
+									alert(1); */
 						}
 					});
 				});
+				
+							/* /* $('#table').on('click','#detail',function(){
+								$.ajax({
+									method:'post'
+									,url:
+								});
+							}); */ 
 				
 		    	//위치을 찍어줄 위경도를 갖고 온다.
 				//지도에 마커를 찍는다.
@@ -264,7 +323,7 @@
 		                    <h1 id="title1">${sq_recruit_artist.sq_recruit_title}</h1>
 		                    <h2><i class="fa fa-map-marker"></i>${sq_recruit_artist.sq_recruit_location}</h2>
 		                    <figure class="price average-color"><span>${sq_recruit_artist.sq_member_id}</span></figure>
-		                    <p><textarea id="content" readonly="readonly">${sq_recruit_artist.sq_recruit_info}</textarea></p>
+		                    <p><textarea id="content" class="form-control" readonly="readonly">${sq_recruit_artist.sq_recruit_info}</textarea></p>
 		                    <input type="hidden" id="sq_recruit_id" name="sq_recruit_apply_id" value="${sq_recruit_artist.sq_recruit_id}"/>
 		                    <input type="hidden" id="sq_recruit_lat" value="${sq_recruit_artist.sq_recruit_latitude}" />
 		                    <input type="hidden" id="sq_recruit_lng" value="${sq_recruit_artist.sq_recruit_longitude}" />
@@ -359,6 +418,7 @@
 	                
 	                 <s:if test="#session.loginId != null && #session.loginId == sq_recruit_artist.sq_member_id">
 	                 	<div id="table"></div>
+	                 	<div id="result"></div>
 	                 </s:if>
 	                
 	                <!-- 아티스트로 로그인한 상태에서 로그인 아이디가 글쓴 아이디가 아닐 경우 지원할 수 있는 버튼/ 지원했던 지원자는 취소버튼 추가. -->

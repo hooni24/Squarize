@@ -116,9 +116,7 @@
 		
 		
 		$('#applyList').click(function(){
-			alert("hi");
 			var id=$('#sq_recruit_id').val();
-			alert(id);
 			$.ajax({
 				method:'post'
 				,url:'AllRecruitApply'
@@ -130,9 +128,14 @@
 					var count=1;
 					var code1="<table><tr><th>번호</th><th>지원자 이름</th><th>연락처</th><th>상세보기</th></tr>"+code2+"</table>"
 					$.each(list,function(index,item){
-						code2+="<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_member_phone+"</td><td><a href='#' id='detail'></a></td></tr>";
-						count++;
-						alert(code2);
+						var file="";
+						if(item.sq_port_file == ""){
+							file='<figure class="person-image image"><img src="assets/img/person-01.jpg"></figure>'
+						}else {
+							file='<figure class="person-image image"><img src="assets/downloadIMG/port/'+item.sq_port_file+'"></figure>';
+						}
+						var detail="<tr rowspan='5' id=retail"+count+"><td colspan='4'><h3>"+item.sq_member_name+"</h3>"+item.file+"</td>email 주소 : "+item.sq_member_email+"<br/><hr/>"+item.sq_port_pr+"<hr/><span>"+item.sq_port_inst+"<span></tr>"
+						code2+="<tr><input type='hidden' id='sq_member_id' value='"+item.sq_member_id+"'/><td>"+count+"</td><td>"+item.sq_member_name+"</td><td>"+item.sq_member_phone+"</td><td><a href='#' id='detail'></a></td></tr>"+detail;
 					});
 				}
 			});
