@@ -80,6 +80,9 @@
     	img#bigLogo{
     		width: 100%;
     	}
+    	.navbar-header{
+    		width: 45%;
+    	}
     </style>
     
     <script type="text/javascript">
@@ -105,6 +108,16 @@
 	    	$("div.rent_count").on("click", function(){
 	    		location.href = "toRentMain.action";
 	    	});
+	    	
+	    	//인터셉터로 팅겼을때 해야할 명령별 분기
+	    	var toDo = $("input#toDo_hidden").val();
+	    	if(toDo == 'login'){
+	    		alert("로그인이 필요한 서비스입니다.");
+	    		$("a#main_login").trigger("click");
+	    	}else if(toDo == 'makeArtist'){
+	    		alert("아티스트 인증이 필요한 서비스입니다.");
+	    		$("a#main_makeArtist").trigger("click");
+	    	}
 	    });
     </script>
     
@@ -318,6 +331,9 @@
 	<div class="loadingpage loading">
 		<div class="loading-img"></div>	
 	</div>
+	
+	
+	<input type="hidden" id="toDo_hidden" value="${toDo }"/>
 	
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>

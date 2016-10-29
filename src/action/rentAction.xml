@@ -9,51 +9,82 @@
 
     <package name="rent" namespace="/" extends="struts-default, json-default">
     
+    	<interceptors>
+        	<!-- 커스텀 인터셉터 -->
+        	<interceptor name="loginInterceptor" class="squarize.interceptor.LoginInterceptor" />
+        	<interceptor name="artistInterceptor" class="squarize.interceptor.ArtistInterceptor" />
+        	
+        	<!-- 커스텀 인터셉터 스택 -->
+			<interceptor-stack name="artistStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="loginInterceptor"/>
+				<interceptor-ref name="artistInterceptor"/>
+			</interceptor-stack>
+        </interceptors>
+
+        <global-results>
+			<result name="error">error.jsp</result>
+			<result name="login" type="redirect">index.action?toDo=login</result>
+			<result name="NO_ARTIST" type="redirect">index.action?toDo=makeArtist</result>
+		</global-results>
+    
 		<action name="toRentMain" class="squarize.action.SQ_rentAction" method="allRent">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result>rentMain.jsp</result>
 		</action>
 		
 		<action name="toAddRent" class="squarize.action.SQ_rentAction">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result>assets/pages/rent/add_rent.jsp</result>
 		</action>
 		
 		<action name="insertRent" class="squarize.action.SQ_rentAction" method="insertRent">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result type="redirect">toRentMain.action</result>
 		</action>
 		
 		<action name="toRentDetail" class="squarize.action.SQ_rentAction" method="toRentDetail">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result>assets/pages/rent/rent_detail.jsp</result>
 		</action>
 		
 		<action name="deleteRent" class="squarize.action.SQ_rentAction" method="deleteRent">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result type="redirect">toRentMain.action</result>
 		</action>
 		
 		<action name="updateRent" class="squarize.action.SQ_rentAction" method="updateRent">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result type="redirect">toRentMain.action</result>
 		</action>
 		
 		<action name="rentApply" class="squarize.action.SQ_rentAction" method="rentApply">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result type="redirect">toRentMain.action</result>
 		</action>
 		
 		<action name="rentApplyCancel" class="squarize.action.SQ_rentAction" method="rentApplyCancel">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result type="redirect">toRentMain.action</result>
 		</action>
 		
 		<action name="checkRentApply" class="squarize.action.SQ_rentAction" method="checkRentApply">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result type="json"></result>
 		</action>
 		
 		<action name="searchRent" class="squarize.action.SQ_rentAction" method="searchRent">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result type="json"></result>
 		</action>
 		
 		<action name="searchRentRedirect" class="squarize.action.SQ_rentAction" method="searchRent">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result>rentMain.jsp</result>
 		</action>
 		
 		<action name="getAllMyRent" class="squarize.action.SQ_rentAction" method="getAllMyRent">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result>rentMain.jsp</result>
 		</action>
 		
@@ -63,10 +94,12 @@
 		
 		
 		<action name="rentApplySituation" class="squarize.action.SQ_rentAction" method="rentApplySituation">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result>rentMain.jsp</result>
 		</action>
 		
 		<action name="seeRentApply" class="squarize.action.SQ_rentAction" method="seeRentApply">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result type="json"></result>
 		</action>		
     </package>
