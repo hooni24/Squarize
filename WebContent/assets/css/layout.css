@@ -27,11 +27,15 @@
 	z-index: 0;
 }
 .loading-img{
-	background: url("../img/loading.gif");
-	margin:15% auto;
+	position:absolute;
+	background: url("../img/loading1.gif");
+	left:50%;
+	top:50%;
+	margin-left:-150px;
+	margin-top:-100px;
 	background-size:100%;
-	width:240px;
-	height:160px;
+	width:300px;
+	height:200px;
 	z-index:99999;
 }
 #form-update{
