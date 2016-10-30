@@ -28,7 +28,7 @@
 }
 .loading-img{
 	position:absolute;
-	background: url("../img/loading1.gif");
+	background: url("../img/loading.gif");
 	left:50%;
 	top:50%;
 	margin-left:-150px;
