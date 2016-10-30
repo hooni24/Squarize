@@ -29,7 +29,7 @@ public class JavaWebCrawller {
 	}
 	
 	public static void main(String[] args) throws ClientProtocolException, IOException {
-		String targetURL = "http://en.wikipedia.org/";
+		String targetURL = "https://ko.wikipedia.org/wiki/윤도현밴드";
 		
 		// 1. 가져오기전 시간 찍기
 		System.out.println(" Start Date : " + getCurrentData());
@@ -77,15 +77,18 @@ public class JavaWebCrawller {
 	    System.out.println(" End Date : " + getCurrentData());
 	    
 	    
-	    //a태그의 href속성을 elements로 받아와서 for문돌면서 링크 뽑아냄
-	    Elements elm = doc2.select("a[href]");
+//	    //a태그의 href속성을 elements로 받아와서 for문돌면서 링크 뽑아냄
+//	    Elements elm = doc2.select("a[href]");
+//	    
+//	    for (Element l : elm) {
+//			System.out.println("link : " + l.attr("abs:href"));
+//		}
 	    
-	    for (Element l : elm) {
-			System.out.println("link : " + l.attr("abs:href"));
+	    String[] words = sb.toString().split(" ");
+	    
+	    for (int i = 0; i < words.length; i++) {
+			System.out.println(words[i]);
 		}
-	    
-	    
-	    
 	    
 	    
 	}

@@ -73,9 +73,20 @@
 		//장소 포커스 잃으면 지도에 마커 재생성
 		$("input#region").on("focusout", function(){
 			var region = $("input#region").val();
+			
+// 			var swPoint = new google.maps.LatLng({lat:32.8, lng:125.0});
+// 			var nePoint = new google.maps.LatLng({lat:39.0, lng:129.5});
+			
+			var latlngbounds = new google.maps.LatLngBounds({lat:32.8, lng:125.0}, {lat:39.0, lng:129.5});
+			alert(latlngbounds);
+			
+			var item = {bounds : latlngbounds};
+			alert(item);
+			
 			$.ajax({		//마커 부분 시, 동 으로 region에 저장 
 				url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+region+'&key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8'
 				, method : "post"
+// 				, data : item
 				, dataType: "json"
 				, success : function(resp){
 					var targetLat = resp.results[0].geometry.location.lat;

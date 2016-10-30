@@ -33,7 +33,7 @@
     
     <script src="assets/js/jquery-2.1.0.min.js"></script>
     <script>
-    	$(function(){
+    	$(function(){z
     		//로그아웃
     		$("ul#main_menu").on("click", "a#main_logout", function(){
 				location.href = "logoutSQmember.action?fromWhere=rent";
