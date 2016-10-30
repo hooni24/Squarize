@@ -44,6 +44,7 @@ public class SQ_buskingDAO {
 	 */
 	public void addBusking(SQ_busking SQ_busking) {
 		try {
+			System.out.println(SQ_busking.toString());
 			ss = factory.openSession();
 			ss.insert("sq_buskingMapper.addBusking", SQ_busking);
 			ss.commit();

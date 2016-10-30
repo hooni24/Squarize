@@ -5,15 +5,15 @@
 <html>
 <head>
 
-<!-- 	<link href="assets/fonts/font-awesome.css" rel="stylesheet" type="text/css"> -->
-<!--     <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'> -->
-<!--     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="assets/css/bootstrap-select.min.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="assets/css/style.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="assets/css/layout.css" type="text/css"> -->
-<%--     <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script> --%>
+	<link href="assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
+    <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
     <title></title>
     
     <style>
@@ -158,7 +158,33 @@
 </script>
 </head>
 <body>
-
+<!--     <div class="page-content"> -->
+<!--         <div class="search collapse" id="search-collapse"> 여기 class에서 in 을 뺏더니 접혀 있음. 나중에 문제 생기면 in 넣어야하는지 의심 -->
+<!--             <div class="container"> -->
+<!-- 								<form class="main-search" role="form" method="post" action="#"> -->
+<!-- 									<div class="row"> -->
+<!-- 										<div class="col-md-3 col-sm-3"> -->
+<!-- 											<div class="form-group"> -->
+<!-- 												<label for="location">Location</label> -->
+<!-- 												<div class="input-group location"> -->
+<!-- 													<input type="text" class="form-control" id="location" -->
+<%-- 														placeholder="Enter Location"> <span --%>
+<%-- 														class="input-group-btn"> --%>
+<!-- 														<button class="btn btn-default animate" type="button"> -->
+<!-- 															<i class="fa fa-map-marker geolocation" -->
+<!-- 																data-toggle="tooltip" data-placement="bottom" -->
+<!-- 																title="Find my position"></i> -->
+<!-- 														</button> -->
+<%-- 													</span> --%>
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 											/.form-group -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</form> -->
+<!-- 								</div> -->
+<!-- 								</div> -->
+<!-- 								</div> -->
 <div id="submit-page">
     <div class="inner">
         <h1 id="temp">버스킹 등록</h1>
@@ -263,7 +289,7 @@
 <!--                             </div> -->
 <!--                         </div> -->
                 <!--end .col-md-4-->
-            </div>
+				</div>
             <!--end .row-->
             
             <article>
@@ -299,29 +325,30 @@
             </article>
             <!--end terms-->
         </form>
+        
     </div>
     <!--end .row-->
 </div>
 <!--end #item-detail-->
-<%--  		 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/sq_member.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/jquery.average-color.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script> --%>
-<%--          <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/infobox.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/richmarker-compiled.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/markerclusterer.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/smoothscroll.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/bootstrap-select.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/icheck.min.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/jquery.inview.min.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/custom.js"></script> --%>
-<%--          <script type="text/javascript" src="assets/js/functions.js"></script> --%>
+ 		 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8"></script>
+         <script type="text/javascript" src="assets/js/sq_member.js"></script>
+         <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
+         <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+         <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+         <script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
+         <script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
+         <script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
+         <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
+         <script type="text/javascript" src="assets/js/infobox.js"></script>
+         <script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
+         <script type="text/javascript" src="assets/js/markerclusterer.js"></script>
+         <script type="text/javascript" src="assets/js/smoothscroll.js"></script>
+         <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+         <script type="text/javascript" src="assets/js/bootstrap-select.js"></script>
+         <script type="text/javascript" src="assets/js/icheck.min.js"></script>
+         <script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script>
+         <script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
+         <script type="text/javascript" src="assets/js/custom.js"></script>
+         <script type="text/javascript" src="assets/js/functions.js"></script>
 </body>
 </html>

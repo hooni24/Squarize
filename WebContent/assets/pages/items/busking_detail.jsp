@@ -122,31 +122,31 @@
 	                        	</s:if>
                         	</div>
                         </div>
-                        <div class="collapse" id="person-detail">
-                            <div class="details">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum, sem ut sollicitudin consectetur, augue diam ornare massa
-                                </p>
-                                <h3>Contact Me</h3>
-                                <form role="form" method="post" class="clearfix">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="person-name" name="person-name" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="person-email" name="person-email" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="2" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-link dark pull-right">Send Message</button>
-                                    </div>
-                                </form>
+<!--                         <div class="collapse" id="person-detail"> -->
+<!--                             <div class="details"> -->
+<!--                                 <p> -->
+<!--                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum, sem ut sollicitudin consectetur, augue diam ornare massa -->
+<!--                                 </p> -->
+<!--                                 <h3>Contact Me</h3> -->
+<!--                                 <form role="form" method="post" class="clearfix"> -->
+<!--                                     <div class="form-group"> -->
+<!--                                         <input type="text" class="form-control" id="person-name" name="person-name" placeholder="Name"> -->
+<!--                                     </div> -->
+<!--                                     <div class="form-group"> -->
+<!--                                         <input type="email" class="form-control" id="person-email" name="person-email" placeholder="Email"> -->
+<!--                                     </div> -->
+<!--                                     <div class="form-group"> -->
+<!--                                         <textarea class="form-control" rows="2" placeholder="Message"></textarea> -->
+<!--                                     </div> -->
+<!--                                     <div class="form-group"> -->
+<!--                                         <button type="submit" class="btn btn-link dark pull-right">Send Message</button> -->
+<!--                                     </div> -->
+<!--                                 </form> -->
 
-                            </div>
-                            <!--end .details-->
-                        </div>
-                        <!--end .collapse-->
+<!--                             </div> -->
+<!--                             end .details -->
+<!--                         </div> -->
+<!--                         end .collapse -->
                     </div>
                     <!--end .person-->
                     <div class="block animate move_from_bottom_short">
