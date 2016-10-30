@@ -113,6 +113,7 @@ public String addBusking(){
 				String savedfile;
 				savedfile = fs.saveFile(upload, basePath, uploadFileName);
 				SQ_busking.setGallery(savedfile);
+				System.out.println(SQ_busking.getGallery());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -123,8 +124,7 @@ public String addBusking(){
 	   String fullDate = date + " " + b_hour + ":" + b_min + ":00";
 	   SQ_busking.setBuskingdate(fullDate);
 	   System.out.println(fullDate);
-	   //////////////////////////////////
-	   
+	   ////////////////////////////////// 공연시작시간과 러닝타임으로 끝나는 시간 가져오기
 	    String start = fullDate;
 	    String end = null;
 	    try {
