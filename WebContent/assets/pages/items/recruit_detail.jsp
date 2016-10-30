@@ -16,12 +16,6 @@
 	
 	    <style>
 	        #map-simple { min-height: 240px; }
-	        #applyThisRecruit {
-	        	background-image: url("assets/img/success_64px.png");
-	        }
-	        #cancelThisRecruit {
-	        	background-image: url("assets/img/cancel_64px.png");
-	        }
 	    </style>
 		<script src="../../js/sq_recruit.js"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>
@@ -39,7 +33,6 @@
 		    			, success : function(response){
 		    				// 지원여부 확인
 		    				var result = response.result;
-		    				alert(result);
 		    				if(result == 0){
 		    					alert("이미 지원하였습니다.");
 		    				} else if(result == -1) {
@@ -53,7 +46,7 @@
 		    		});
 				});
 				
-				$('a#cancelThisRecruit').on('click',function(){
+				$('a#cancelThisRecruit').on('click',function(){ /* 지원하기 취소 */
 					$.ajax({
 						url : 'deleteApply'
 						, method : 'POST'
@@ -364,8 +357,8 @@
 	                <!-- 아티스트로 로그인한 상태에서 로그인 아이디가 글쓴 아이디가 아닐 경우 지원할 수 있는 버튼/ 지원했던 지원자는 취소버튼 추가. -->
 	                <s:elseif test="#session.loginId != null && #session.loginId != sq_recruit_artist.sq_member_id">
 	                	<article class="center" id="test">
-		                    <a id="applyThisRecruit" class="btn btn-circle btn-default btn-lg"></a>
-		                    <a id="cancelThisRecruit" class="btn btn-circle btn-default btn-lg"></a>
+		                    <a id="applyThisRecruit" class="btn btn-circle btn-default btn-lg">지원하기</a>
+		                    <a id="cancelThisRecruit" class="btn btn-circle btn-default btn-lg">지원취소</a>
 		                </article>
 	                </s:elseif>
 	                

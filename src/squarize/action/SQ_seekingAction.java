@@ -190,6 +190,11 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		}
 	}
 	
+	public String recruit_search_byKeyword() throws Exception {
+		
+		return SUCCESS;
+	}
+	
 	//멤버의 getter & setter
 	@Override
 	public void setSession(Map<String, Object> arg0) {

@@ -27,9 +27,10 @@
 	    		width: auto;
 	    	}
 	    	
-	    	#divSubmitBtn {
+	    	#divSubmitBtn, #for_small_list {
 	    		padding-top: 20px;
 	    	}
+	    
 	    </style>
 	</head>
 	
@@ -289,32 +290,29 @@
 		<div class="page-content">
 			<div class="search collapse in" id="search-collapse">
 				<div class="container">
-					<form class="main-search" role="form" method="post" action="#">
+					<form class="main-search" role="form" method="post" action="recruit_search_byKeyword">
 						<div class="row">
 							<div class="col-md-3 col-sm-3">
 								<div class="form-group">
 									<label for="type">검색 카테고리</label>
+									<!-- select - option 을 쓰면, bootstrap 함수가 돌면서 동적로 div-ul-li-a-sapn-i태그의 쌍을 붙이면서 button으로 만듦. -->
 									<select name="recruit_search_category" id="recruit_search_category" class="animate"
 										data-transition-parent=".dropdown-menu">
 										<!-- 원래 id="type" multiple title="전체" : 여러개 선택 가능 -->
-										<option>전체</option>
-										<option value="sq_recruit.sq_recruit_part">세션</option>
+										<option>대분류</option>
+										<option value="sq_recruit.sq_recruit_part">파트</option>
 										<option value="sq_recruit.sq_recruit_genre">장르</option>
-										<option value="sq_member.sq_member_name">이름</option>
 									</select>
 								</div>
 							</div>
 							<!--/.col-md-3 col-sm-3-->
 	
-	                        <div class="col-md-2 col-sm-2">
-                            	<div class="form-group">
-                                    <label for="bedrooms"></label>
-                                    <select id="recruit_search_small" class="animate" data-transition-parent=".dropdown-menu">
-										<!-- 원래 id="type" multiple title="전체" : 여러개 선택 가능 -->
-										<option value="">소분류 선택</option>
-										<!-- 파트일때 -->
-									
-									</select>
+	                        <div class="col-md-2 col-sm-2" id="for_small_list">
+                            	<div class="form-group" id="for_small_list2">
+                                    <label for="type" id="hidden_select"></label>
+                                   
+ <!--                                    	숨겨뒀다가 활성화시키기.(jquery에서 동적으로 붙으면, bootstrap class 적용이 안됨.) -->
+
                                   </div>
                                  <!-- /.form-group -->
 	                        </div>
@@ -323,7 +321,7 @@
 							<div class="col-md-3 col-sm-3" id="divBtn">
 								<div class="form-group">
 									<div class="input-group counter" id="divSubmitBtn">
-										<input type="submit" class="form-control" id="recruit_searching" value="검색">
+										<input type="submit" class="form-control" id="recruit_searching" value="검색" onsubmit="javascript:searching();">
                                     </div>
 								</div>
 								<!-- /.form-group -->
@@ -379,8 +377,7 @@
 				<div class="container" id="main-container">
 					<div class="content-loader">
 						<div class="content fade_in animate">
-							<a href="#" class="close" id="close"><img
-								src="assets/img/close.png" alt=""></a>
+							<a href="#" class="close" id="close"><img src="assets/img/close.png" alt=""></a>
 							<!--external content goes here-->
 						</div>
 					</div>
@@ -392,8 +389,8 @@
 					              	<div class="inner">
 					                    <div class="image">
 					                        <div class="price average-color"><span>${sq_member_id}</span></div>
-					                        <s:if test="sq_recruit_photo == null">
-					                        	<img src="assets/img/seeking.jpg">
+					                        <s:if test="sq_recruit_photo == ''">
+					                        	<img src="assets/img/main/seeking.jpg">
 					                        </s:if>
 					                        <s:else>
 					                        	<%-- <img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 --> --%>
@@ -441,11 +438,6 @@
 		<div class="loading-img"></div>	
 	</div>
 
-
-
-
-
-
 		<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
 		<script type="text/javascript" src="assets/js/sq_member.js"></script>
 		<script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
@@ -472,20 +464,129 @@
 				location.href = "logoutSQmember.action";
 			});
 				
-			$(function(){
-				$('recruit_search_large').change(function(){
-					
-					$('recruit_search_small').css('disabled','');
-					
-					if ($('recruit_search_large > option').val() == 'sq_recruit.sq_recruit_inst') {
-						$('recruit_search_small > option').end().append('<option>기타</option><option>드럼</option><option>키보드</option><option>보컬</option>');
-					} else if ($('recruit_search_large > option').val() == 'sq_recruit.sq_recruit_genre') {
-						$('recruit_search_small > option').end().append('<option>락</option><option>발라드</option><option>힙합</option><option>재즈</option>');
-					}
-					
-				});
-			});
 				
+			$(function(){
+				
+				$("select#recruit_search_category").change(function(){
+					var large = $("#recruit_search_category > option:selected").val();
+					if (large == "sq_recruit.sq_recruit_part") {
+						$('#for_small_list').html(
+                            						'<label for="type" id="hidden_select"></label>'+
+													'<select id="recruit_search_small" style="display: none;padding-top:20px;">'+
+	                                 				'<option>소분류</option>'+
+	                                 				'</select><div class="btn-group bootstrap-select open">'+
+	                                 				'<button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_small" title="소분류" aria-expanded="true">'+
+	                                 				'<span class="filter-option pull-left">소분류</span>&nbsp;<span class="caret"></span></button>'+
+	                                 				'<div class="dropdown-menu open idle slide_in" style="max-height: 710px; overflow: hidden; min-height: 0px;">'+
+	                                 				'<ul class="dropdown-menu inner selectpicker idle" role="menu" style="max-height: 710px; overflow-y: auto; min-height: 0px;">'+
+	                                 				'<li rel="0" class="selected">'+
+                                     				'<a tabindex="0" class="" style=""><span class="text">락</span><i class="glyphicon glyphicon-ok icon-ok check-mark">'+
+                                     				'</i></a></li>'+
+                                     				'<li rel="0" class="selected">'+
+                                     				'<a tabindex="0" class="" style=""><span class="text">발라드</span><i class="glyphicon glyphicon-ok icon-ok check-mark">'+
+                                     				'</i></a></li>'+
+                                     				'<li rel="0" class="selected">'+
+                                     				'<a tabindex="0" class="" style=""><span class="text">재즈</span><i class="glyphicon glyphicon-ok icon-ok check-mark">'+
+                                     				'</i></a></li>'+
+                                     				'<li rel="0" class="selected">'+
+                                     				'<a tabindex="0" class="" style=""><span class="text">힙합</span><i class="glyphicon glyphicon-ok icon-ok check-mark">'+
+                                     				'</i></a></li>'+
+	                                 				'</ul></div></div>'+
+	                                 				'</div>'
+                                    				);
+					} else if (large == "sq_recruit.sq_recruit_genre") {
+						$('#for_small_list').html(
+                            						'<label for="type" id="hidden_select"></label>'+
+													'<select id="recruit_search_small" style="display: none;padding-top:20px;">'+
+	                                 				'<option>소분류</option>'+
+	                                 				'</select><div class="btn-group bootstrap-select open">'+
+	                                 				'<button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_small" title="소분류" aria-expanded="true">'+
+	                                 				'<span class="filter-option pull-left">소분류</span>&nbsp;<span class="caret"></span></button>'+
+	                                 				'<div class="dropdown-menu open idle slide_in" style="max-height: 710px; overflow: hidden; min-height: 0px;">'+
+	                                 				'<ul class="dropdown-menu inner selectpicker idle" role="menu" style="max-height: 710px; overflow-y: auto; min-height: 0px;">'+
+	                                 				'<li rel="0" class="selected">'+
+                                     				'<a tabindex="0" class="" style=""><span class="text">보컬</span><i class="glyphicon glyphicon-ok icon-ok check-mark">'+
+                                     				'</i></a></li>'+
+                                     				'<li rel="0" class="selected">'+
+                                     				'<a tabindex="0" class="" style=""><span class="text">기타</span><i class="glyphicon glyphicon-ok icon-ok check-mark">'+
+                                     				'</i></a></li>'+
+                                     				'<li rel="0" class="selected">'+
+                                     				'<a tabindex="0" class="" style=""><span class="text">키보드</span><i class="glyphicon glyphicon-ok icon-ok check-mark">'+
+                                     				'</i></a></li>'+
+                                     				'<li rel="0" class="selected">'+
+                                     				'<a tabindex="0" class="" style=""><span class="text">드럼</span><i class="glyphicon glyphicon-ok icon-ok check-mark">'+
+                                     				'</i></a></li>'+
+	                                 				'</ul></div></div>'+
+	                                 				'</div>'
+                                    			);
+					} else {
+						$('#for_small_list').html(
+	                         						'<label for="type" id="hidden_select"></label>'+
+													'<select id="recruit_search_small" style="display: none;padding-top:20px;">'+
+	                                 				'<option>소분류</option>'+
+	                                 				'</select><div class="btn-group bootstrap-select open">'+
+	                                 				'<button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_small" title="소분류" aria-expanded="true">'+
+	                                 				'<span class="filter-option pull-left">소분류</span>&nbsp;<span class="caret"></span></button>'+
+	                                 				'<div class="dropdown-menu open idle slide_in" style="max-height: 710px; overflow: hidden; min-height: 0px;">'+
+	                                 				'</div></div>'+
+	                                 				'</div>'
+                                 				);
+					}
+				});
+				
+			});	
+			
+			function searching(){
+				var category = $('#recruit_search_category').val();
+				var s_category = $('#recruit_search_small').val();
+				if (category == 'sq_recruit.sq_recruit_part') {
+					alert(s_category);
+				} else if (category == 'sq_recruit.sq_recruit_genre') {
+				
+				}
+				return true;
+			}	
+
+// 				$("select#recruit_search_part").hide();
+// 				$("select#recruit_search_genre").hide();
+// 			$(function(){
+// 			//	$("select#recruit_search_small").css('display',none);
+				
+// 				$("select#recruit_search_category").change(function(){
+// 					var large = $("#recruit_search_category > option:selected").val();
+// 					if (large == "sq_recruit.sq_recruit_part") {
+// 						$('#for_small_list2').append(
+//                             						'<div class="btn-group bootstrap-select animate" data-transition-parent=".dropdown-menu"><button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_category" title="소분류" aria-expanded="false"><span class="filter-option pull-left">소분류</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open slide_out" style="max-height: 731px; overflow: hidden; min-height: 0px;"><ul class="dropdown-menu inner selectpicker idle" role="menu" style="max-height: 731px; overflow-y: auto; min-height: 0px;"><li rel="0" class="selected"><a tabindex="0" class="" style=""><span class="text">소분류</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="1" class=""><a tabindex="0" class="" style=""><span class="text">기타</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="2"><a tabindex="0" class="" style=""><span class="text">보컬</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="2"><a tabindex="0" class="" style=""><span class="text">드럼</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="2"><a tabindex="0" class="" style=""><span class="text">키보드</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li></ul></div></div>'
+//                                     				);
+// 					} else if (large == "sq_recruit.sq_recruit_genre") {
+// 						$('#for_small_list').append(
+//                             						'<label for="type" id="hidden_select"></label>'+
+// 													'<select id="recruit_search_small" style="display: none;padding-top:20px;">'+
+//                                     				'<option>소분류</option>'+
+//                                     				'</select><div class="btn-group bootstrap-select open">'+
+//                                     				'<button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_small" title="장르" aria-expanded="true">'+
+//                                     				'<span class="filter-option pull-left">소분류</span>&nbsp;<span class="caret"></span></button>'+
+//                                     				'<div class="dropdown-menu open idle slide_in" style="max-height: 710px; overflow: hidden; min-height: 0px;">'+
+//                                     				'<ul class="dropdown-menu inner selectpicker idle" role="menu" style="max-height: 710px; overflow-y: auto; min-height: 0px;"><li rel="0" class="selected">'+
+//                                     				'<a tabindex="0" class="" style=""><span class="text">락</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li></ul></div></div>'+
+//                                     				'</div>'
+//                                     			);
+// 					} else {
+// 						$('#for_small_list').html(
+// 	                         						'<label for="type" id="hidden_select"></label>'+
+// 													'<select id="recruit_search_small" style="display: none;padding-top:20px;">'+
+// 	                                 				'<option>소분류</option>'+
+// 	                                 				'</select><div class="btn-group bootstrap-select open">'+
+// 	                                 				'<button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_small" title="소분류" aria-expanded="true">'+
+// 	                                 				'<span class="filter-option pull-left">소분류</span>&nbsp;<span class="caret"></span></button>'+
+// 	                                 				'<div class="dropdown-menu open idle slide_in" style="max-height: 710px; overflow: hidden; min-height: 0px;">'+
+// 	                                 				'</div></div>'+
+// 	                                 				'</div>'
+//                                  				);
+// 					}
+// 				});
+				
+// 			});
 		</script>
 	
 	</body>
