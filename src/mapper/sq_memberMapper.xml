@@ -3,7 +3,7 @@
 <mapper namespace="sq_memberMapper">
 
 	<select id="mainCount" resultType="SQ_count">
-		SELECT (SELECT count(*) FROM sq_buskinglist) busking
+		SELECT (SELECT count(*) FROM sq_buskinglist where end > sysdate) busking
 				, (SELECT count(*) FROM sq_recruit) seeking
 				, (SELECT count(*) FROM sq_rent) rent 
 				, (SELECT count(*) FROM sq_member) member

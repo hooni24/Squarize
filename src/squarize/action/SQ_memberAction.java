@@ -35,6 +35,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String email_auth;
 	private String mediaExt;
 	private String condition;
+	private String toDo;
 	
 	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
@@ -472,6 +473,14 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 
 	public void setCount(SQ_count count) {
 		this.count = count;
+	}
+
+	public String getToDo() {
+		return toDo;
+	}
+
+	public void setToDo(String toDo) {
+		this.toDo = toDo;
 	}
 	
 

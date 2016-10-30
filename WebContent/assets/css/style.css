@@ -568,7 +568,7 @@ ul.bullets li:before {
 
 /* 3. Classes */
 .content-inner {
-  position: absolute;
+  position: relative;
   width: 100%;
 }
 

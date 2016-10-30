@@ -16,7 +16,7 @@ public class ArtistInterceptor extends AbstractInterceptor {
 		
 		String isArtist = (String) session.get("isArtist");
 		
-		if(isArtist == null){
+		if(isArtist == null || isArtist.equals("N")){
 			return "NO_ARTIST";
 		}
 		return invocation.invoke();

@@ -4,12 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 	<link href="assets/fonts/font-awesome.css" rel="stylesheet" type="text/css"> -->
+<!--     <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'> -->
+<!--     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="assets/css/bootstrap-select.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="assets/css/style.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="assets/css/layout.css" type="text/css"> -->
+<%--     <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script> --%>
     <title></title>
     
     <style>
     	.right_{text-align: right;}
     </style>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8"></script>
+		
 <script>
 	$(function(){
 		// Try HTML5 geolocation.
@@ -31,14 +41,14 @@
 				map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);		//div#map-canvas에 지도 붙임 
 		
 				infoWindow = new google.maps.InfoWindow({map: map});		//지도에 메세지창 생성
-			    infoWindow.setPosition(pos);									//현재 위치로 메세지창 이동
-			    infoWindow.setContent('드래그해서 정확한 위치로 이동하세요');								//메세지창 메세지 입력
+			    infoWindow.setPosition(pos);								//현재 위치로 메세지창 이동
+			    infoWindow.setContent('드래그해서 정확한 위치로 이동하세요');			//메세지창 메세지 입력
 			    
 			    image = {
 					            url : "assets/img/marker.png", //마커이미지
 					            size : new google.maps.Size(67, 57), //마커사이즈
 					            origin : new google.maps.Point(0, 0),
-					            anchor : new google.maps.Point(43, 77)
+					            anchor : new google.maps.Point(15, 35)
 					        }; //마커로 사용할 이미지 정의
 			    
 			    marker = new google.maps.Marker({
@@ -50,7 +60,7 @@
 			    map.setCenter(pos);											//지도 현재위치로 center설정
 		  	}, function() {
 		  		alert("위치정보 사용에 동의하지 않으면 등록할 수 없습니다.");
-		  		//서브밋버튼 hiddn으로 만드는거 해야함
+		  		//서브밋버튼 hidden으로 만드는거 해야함
 		    	handleLocationError(true, infoWindow, map.getCenter());
 		  	});
 		} else {
@@ -79,7 +89,7 @@
 					infoWindow.close();											//인포윈도우 제거
 					infoWindow = new google.maps.InfoWindow({map: map});		//지도에 메세지창 생성
 			   	 	infoWindow.setPosition(pos);								//현재 위치로 메세지창 이동
-				    infoWindow.setContent('드래그해서 정확한 위치로 이동하세요');	//메세지창 메세지 입력
+				    infoWindow.setContent('드래그해서 정확한 위치로 이동하세요');			//메세지창 메세지 입력
 					marker = new google.maps.Marker({							//새 위치에 드래그가능한 마커 생성
 				    	position: pos,			
 			     		map: map,
@@ -102,6 +112,7 @@
 			var valid = validCheck();
 			if(valid){
 				$("form#busking_form")[0].submit();
+				
 			}//if(valid)
 		});	//submit클릭 on
 	});
@@ -113,7 +124,7 @@
 			var buskingdate = $("input#buskingdate");
 			var region = $("input#region");
 			
-			alert(region.val());
+// 			alert(region.val());
 			
 			if(teamname.val().length < 1){
 				alert("아티스트명을 입력하세요");
@@ -229,6 +240,17 @@
                     	<input type="text" id="region" name="SQ_busking.location" placeholder="알기쉽게 적어주세요">
                     </div>
                 </div>
+<!--                 <div class="col-md-3 col-sm-3"> -->
+<!--                             <div class="form-group"> -->
+<!--                                 <label for="location">Location</label> -->
+<!--                                 <div class="input-group location"> -->
+<!--                                     <input type="text" class="form-control" id="location" placeholder="Enter Location"> -->
+<%--                                     <span class="input-group-btn"> --%>
+<!--                                         <button class="btn btn-default animate" type="button"><i class="fa fa-map-marker geolocation" data-toggle="tooltip" data-placement="bottom" title="Find my position"></i></button> -->
+<%--                                     </span> --%>
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
                 <!--end .col-md-4-->
             </div>
             <!--end .row-->
@@ -270,6 +292,25 @@
     <!--end .row-->
 </div>
 <!--end #item-detail-->
-
+<%--  		 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/sq_member.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/jquery.average-color.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script> --%>
+<%--          <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/infobox.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/richmarker-compiled.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/markerclusterer.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/smoothscroll.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/bootstrap-select.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/icheck.min.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/jquery.inview.min.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/custom.js"></script> --%>
+<%--          <script type="text/javascript" src="assets/js/functions.js"></script> --%>
 </body>
 </html>

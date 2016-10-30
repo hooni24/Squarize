@@ -95,7 +95,7 @@ function gridOffsetLeft(){
         if( $('.masonry.full-width').length ){
             $('.masonry.full-width').css('left', $('.masonry.full-width').offset().left + 30 );
         }
-    }
+    } 
 }
 
 function removeOffsetLeft(){
@@ -467,7 +467,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         var activeMarker = false;
         var lastClicked = false;
 
-        //현재시간 불러오기
+        //현재시간 불러오기(yyyy-mm-dd hh:mm:ss) 형식으로
         var datedate = getTimeStamp();
         function getTimeStamp() {
           var d = new Date();
@@ -510,12 +510,12 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 //			alert(buskingDate);
 //        	alert(now);
             var markerContent = document.createElement('DIV');
-            markerContent.innerHTML =
-                '<div class="map-marker">' +
-                    '<div class="icon">' +
-                    '<img src="assets/img/marker.png">' +
-                    '</div>' +	
-                '</div>';
+//            markerContent.innerHTML =
+//                '<div class="map-marker">' +
+//                    '<div class="icon">' +
+//                    '<img src="assets/img/marker.png">' +
+//                    '</div>' +	
+//                '</div>';
           
             if (endDate.getTime() - now.getTime() < 0){
             	continue;
@@ -526,16 +526,16 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
                 markerContent.innerHTML =
                     '<div class="map-marker">' +
                         '<div class="icon">' +
-                        '<img src="assets/img/marker.png">' +
+                        	'<img src="assets/img/marker.png">' +
                         '</div>' +	
                     '</div>';
             } else if (0 < buskingDate.getTime() - now.getTime() && buskingDate.getTime() - now.getTime() <= 86400000){
 //            	alert("두번째 영역" + (buskingDate.getTime() - now.getTime()));
             	markerContent.innerHTML =
             		'<div class="map-marker">' +
-            		'<div class="icon">' +
-            		'<img src="assets/img/marker_red.png">' +
-            		'</div>' +
+	            		'<div class="icon">' +
+	            			'<img src="assets/img/marker_red.png">' +
+	            		'</div>' +
             		'</div>';
             } else{
 //            } if ((buskingDate.getTime() - now.getTime() <= 0) && (0 < (endDate.getTime() - now.getTime()))){
@@ -544,9 +544,9 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 //            	alert("세번째 영역" + (endDate.getTime()));
             	markerContent.innerHTML =
             		'<div class="map-marker">' +
-            		'<div class="icon">' +
-            		'<img src="assets/img/marker_purple.png">' +
-            		'</div>' +
+	            		'<div class="icon">' +
+	            			'<img src="assets/img/marker_purple.png">' +
+	            		'</div>' +
             		'</div>';
             }
             
