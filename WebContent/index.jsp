@@ -137,7 +137,7 @@
                     Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                   	<img id="smallLogo" src="assets/img/white1.png">
+                   	<img id="smallLogo" src="img/smalllogo.png">
                 </a>
             </div>
             
@@ -278,7 +278,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading"><img id="bigLogo" src="assets/img/white1.png"></h1>
+                        <h1 class="brand-heading"><img id="bigLogo" src="img/biglogo.png"></h1>
                         <p class="intro-text">밴드와 버스커를 위한 최고의 사이트</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
