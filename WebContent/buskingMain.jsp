@@ -304,14 +304,14 @@
                             </div>
                             <!-- /.form-group -->
                         </div>
-<!--                          <div class="col-md-3 col-sm-3">
+                          <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                             	 <br>
                                  <a href="#" class="btn btn-default btn-sm show-filter">초기화</a>
                             <a href="#search-collapse" id="reset" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Reset</a>
                             </div>
-                            /.form-group
-                        </div> -->
+<!--                             /.form-group -->
+                        </div>
                     </div>
                     <!--/.row-->
                 </form>

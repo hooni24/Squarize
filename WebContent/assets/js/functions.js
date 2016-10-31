@@ -633,7 +633,12 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
                     removeAnimation('.infobox');
                 }
             })(marker, i));
-        }
+        }//497번째 줄에 있는 for문
+        
+        
+        
+        
+        
 
         // Close infobox after click on map
 
