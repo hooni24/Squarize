@@ -20,12 +20,6 @@
 
     <title>SQUARIZE - BUSKING</title>
 	
-	<style type="text/css">
-	    	html{
-    		overflow: scroll;
-    	}
-	</style>
-	
 	<script>
 		$(function(){
 			//로그아웃
@@ -277,7 +271,6 @@
             <!--end .header-inner-->
         </div>
         <!--end .container-->
-        <!--end .search-->
         <div class="container">
             <div class="submit-container">
                 <a href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Search Filter</a>
@@ -288,7 +281,7 @@
     <!--end Header-->
 
     <div class="page-content">
-        <div class="search collapse" id="search-collapse"> <!-- 여기 class에서 in 을 뺏더니 접혀 있음. 나중에 문제 생기면 in 넣어야하는지 의심 -->
+        <div class="search collapse in" id="search-collapse"> <!-- 여기 class에서 in 을 뺏더니 접혀 있음. 나중에 문제 생기면 in 넣어야하는지 의심 -->
             <div class="container">
                 <form class="main-search" role="form" method="post" action="#">
                     <div class="row">
@@ -336,12 +329,12 @@
         </div>
         <!--end .search-->
 
-        <div class="content-inner">
+        <div class="content-inner" id="some">
             <div class="container" id="main-container">
                 <div class="content-loader">
                     <div class="content fade_in animate">
                         <a href="#" class="close" id="close"><img src="assets/img/close.png" alt=""></a>
-                        <!--external content goes here-->
+                        external content goes here
                     </div>
                 </div>
                 <!--end Content Loader-->
