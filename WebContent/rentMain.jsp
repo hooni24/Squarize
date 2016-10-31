@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 
-<html lang="en-US">
+<html>
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,10 +33,23 @@
     
     <script src="assets/js/jquery-2.1.0.min.js"></script>
     <script>
-    	$(function(){z
+    	$(function(){
     		//로그아웃
     		$("ul#main_menu").on("click", "a#main_logout", function(){
-				location.href = "logoutSQmember.action?fromWhere=rent";
+				location.href = "logoutSQmember.action";
+
+				//다음블로그검색 실험 해보던 흔적 (지우지 마세요)
+// 				$.ajax({
+// 					url : "https://apis.daum.net/search/blog?apikey=2ba358e7175589841462162b0d81f9aa&q=다음카카오&output=json"
+// 					, method : "GET"
+// 					, dataType : "json"
+// 					, success : function(){
+// 						alert("성공");
+// 					}
+// 					, error : function(){
+// 						alert("실패");
+// 					}
+// 				});
 			});
     		
     		var visible = true;
@@ -564,8 +577,8 @@
 <script type="text/javascript" src="assets/js/jquery.color-2.1.2.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.average-color.js"></script>
 <script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="assets/js/infobox.js"></script>
-<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
+<%-- <script type="text/javascript" src="assets/js/infobox.js"></script> --%>
+<%-- <script type="text/javascript" src="assets/js/richmarker-compiled.js"></script> --%>
 <script type="text/javascript" src="assets/js/markerclusterer.js"></script>
 <script type="text/javascript" src="assets/js/smoothscroll.js"></script>
 <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>

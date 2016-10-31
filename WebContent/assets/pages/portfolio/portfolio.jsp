@@ -27,6 +27,13 @@
 		a#realUpdate{
 			display: none;
 		}
+		select#inst{
+			font : 1.3em 맑은 고딕;
+			background-color: transparent;
+			border: none;
+			border-bottom: 1px solid gray;
+			padding: 12px;
+		}
     </style>
     <script>
     

@@ -255,6 +255,7 @@
                     <s:if test="#session.loginId == null">
 	                    <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="tabpanel" data-tab="#sign-in" data-transition-parent="#tabpanel" id="main_login">Log In</a></li>
 	                    <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#tabpanel" id="main_register">Register</a></li>
+	                    <li><a class="page-scroll" href="toBuskingMain.action">Busking</a></li>
                     </s:if>
                     <s:else>
                     	<s:if test='#session.isArtist == "N"'>

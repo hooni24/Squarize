@@ -398,7 +398,7 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             center: mapCenter,
             disableDefaultUI: true,
             scrollwheel: scrollwheel,
-            styles: mapStyles,
+//            styles: mapStyles,
             panControl: false,
             zoomControl: false,
             draggable: true
@@ -448,7 +448,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             center: mapCenter,
             disableDefaultUI: false,
             scrollwheel: true,
-            styles: mapStyles,
+//            styles: mapStyles,
             mapTypeControlOptions: {	
                 style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
                 position: google.maps.ControlPosition.BOTTOM_CENTER

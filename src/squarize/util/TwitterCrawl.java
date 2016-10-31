@@ -15,7 +15,7 @@ public class TwitterCrawl {
 	public static void main(String[] args) {
 		try {
 		    Twitter twitter = TwitterFactory.getSingleton();
-		    Query query = new Query("scit마스터");
+		    Query query = new Query("ㅇㅇㅇ");
 		    QueryResult result;
 				result = twitter.search(query);
 			ArrayList<String> searchResult = new ArrayList<>();
