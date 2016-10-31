@@ -120,6 +120,13 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 					session.put("isArtist", sq_member.getSq_member_isartist());
 					session.put("email_auth", sq_member.getSq_member_email_auth());
 					condition = "login";
+					System.out.println("session.loginId: "+session.get("loginId"));
+					System.out.println("session.isArtist: "+session.get("isArtist"));
+					System.out.println("session.email_auth: "+session.get("email_auth"));
+					loginId=(String)session.get("loginId");
+					isArtist=(String)session.get("isArtist");
+					email_auth=(String)session.get("email_auth");
+					
 				}else {
 				condition = "email";	
 				}
