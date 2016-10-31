@@ -16,12 +16,6 @@
 	
 	    <style>
 	        #map-simple { min-height: 240px; }
-	        #applyThisRecruit {
-	        	background-image: url("assets/img/success_64px.png");
-	        }
-	        #cancelThisRecruit {
-	        	background-image: url("assets/img/cancel_64px.png");
-	        }
 	        #content{
 	        	cursor:default;
 	        }

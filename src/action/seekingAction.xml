@@ -8,56 +8,88 @@
     <constant name="struts.devMode" value="true" />
 
     <package name="seeking" namespace="/" extends="struts-default, json-default">
-    
+    	
+    	<interceptors>
+        	<!-- 커스텀 인터셉터 -->
+        	<interceptor name="loginInterceptor" class="squarize.interceptor.LoginInterceptor" />
+        	<interceptor name="artistInterceptor" class="squarize.interceptor.ArtistInterceptor" />
+        	
+        	<!-- 커스텀 인터셉터 스택 -->
+			<interceptor-stack name="artistStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="loginInterceptor"/>
+				<interceptor-ref name="artistInterceptor"/>
+			</interceptor-stack>
+        </interceptors>
+
+        <global-results>
+			<result name="error">error.jsp</result>
+			<result name="login" type="redirect">index.action?toDo=login</result>
+			<result name="NO_ARTIST" type="redirect">index.action?toDo=makeArtist</result>
+		</global-results>
 
 		<action name="toSeekingMain" class="squarize.action.SQ_seekingAction" method="selectAll_SQ_recruit">
+			<interceptor-ref name="artistStack" />
 			<result>seekingMain.jsp</result>
 		</action>
 		
 		<action name="getRecruit_detail" class="squarize.action.SQ_seekingAction" method="selectOne_SQ_recruit_artist">
+			<interceptor-ref name="artistStack" />
 			<result>assets/pages/items/recruit_detail.jsp</result>
 		</action>
 
 		<action name="AllRecruitApply" class="squarize.action.SQ_seekingAction" method="AllRecruitApply">
+			<interceptor-ref name="artistStack" />
 			<result type="json"></result>
 		</action>
 		
 		<action name="insertApply" class="squarize.action.SQ_seekingAction" method="insertRecruitApplication">
+			<interceptor-ref name="artistStack" />
 			<result type="json"></result>
 		</action>
 		
 		<action name="checkApplied" class="squarize.action.SQ_seekingAction" method="checkApplied">
+			<interceptor-ref name="artistStack" />
 			<result type="json"></result>
 		</action>
 		
 		<action name="checkPortfolio" class="squarize.action.SQ_seekingAction" method="checkPortfolio">
+			<interceptor-ref name="artistStack" />
 			<result type="json"></result>
 		</action>
 		
 		<action name="deleteApply" class="squarize.action.SQ_seekingAction" method="deleteRecruitApplication">
+			<interceptor-ref name="artistStack" />
 			<result type="json"></result>
 		</action>
 		
-		
-		<action name="recruit_delete" class="squarize.action.SQ_seekingAction" method="deleteRecruit">
+		<action name="recruit_delete" class="squarize.action.SQ_seekingAction" method="deleteRecruit">	
+			<interceptor-ref name="artistStack" />
 			<result type="redirect">toSeekingMain</result>
 		</action>
 		
 		<action name="toAddSQrecruit">
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result>assets/pages/recruit/add_recruit.jsp</result>
 		</action>
 		
 		<action name="insertSQrecruit" class="squarize.action.SQ_seekingAction" method="insertSQrecruit">
+			<interceptor-ref name="artistStack" />
 			<result type="redirect">toSeekingMain.action</result>
 		</action>
+		
 		<action name="updateSQrecruit" class="squarize.action.SQ_seekingAction" method="updateSQRecruit">
+			<interceptor-ref name="artistStack" />
 			<result type="redirect" >toSeekingMain.action</result>
 		</action>
+		
 		<action name="deleteSQrecruit" class="squarize.action.SQ_seekingAction" method="deleteSQrecruit">
+			<interceptor-ref name="artistStack" />
 			<result type="redirect">toSeekingMain.action</result>
 		</action>
 		
 		<action name="recruit_search_byKeyword" class="squarize.action.SQ_seekingAction" method="recruit_search_byKeyword">
+			<interceptor-ref name="artistStack" />
 			<result type="json"></result>
 		</action>
 		
