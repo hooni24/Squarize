@@ -16,18 +16,10 @@
     <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
-    <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
-
+    
+    
     <title>SQUARIZE - BUSKING</title>
 	
-	<script>
-		$(function(){
-			//로그아웃
-    		$("ul#main_menu").on("click", "a#main_logout", function(){
-				location.href = "logoutSQmember.action?fromWhere=busking";
-			});
-		});
-	</script>
 </head>
 
 <body id="page-top" class="fullscreen-map has-map">
@@ -358,6 +350,7 @@
 	<div class="loading-img"></div>	
 </div>
 
+		 <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
          <script type="text/javascript" src="assets/js/sq_member.js"></script>
          <script type="text/javascript" src="assets/js/imagesloaded.pkgd.min.js"></script>
          <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
@@ -406,6 +399,11 @@
 
    //select box를 클릭했을 때 실행
    $(function(){
+	 //로그아웃
+		$("ul#main_menu").on("click", "a#main_logout", function(){
+			location.href = "logoutSQmember.action?fromWhere=busking";
+		});
+	 
 	   $("#type").change(function(){
 		   var genre = $('#type option:selected()').val();
 		   var item = {"searchResult": genre};		   
