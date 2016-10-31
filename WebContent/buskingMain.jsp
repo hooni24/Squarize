@@ -334,7 +334,7 @@
                 <div class="content-loader">
                     <div class="content fade_in animate">
                         <a href="#" class="close" id="close"><img src="assets/img/close.png" alt=""></a>
-                        external content goes here
+<!--                         external content goes here -->
                     </div>
                 </div>
                 <!--end Content Loader-->
