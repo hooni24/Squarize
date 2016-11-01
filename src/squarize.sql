@@ -364,16 +364,25 @@ commit;
 INSERT INTO SQ_MEMBER VALUES ('aa', '123', '김소똥', 'a@a.a', '락', 'Y', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('ss', '123', '김쥐똥', 'a@a.a', '발라드', 'Y', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('dd', '123', '김양똥', 'a@a.a', '재즈', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', '락', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', '힙합', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', '재즈', 'Y', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', '발라드', 'Y', null, 'Y');
 
-INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', '락', 'N', null, 'Y');
-INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', '힙합', 'N', null, 'Y');
-INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', '재즈', 'N', null, 'Y');
-INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', '발라드', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('qwe', '123', '김똥1', 'a@a.a', '발라드', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('asd', '123', '김똥2', 'a@a.a', '발라드', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('zxc', '123', '김똥3', 'a@a.a', '발라드', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('cxz', '123', '김똥4', 'a@a.a', '발라드', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('dsa', '123', '김똥5', 'a@a.a', '발라드', 'N', null, 'Y');
 
 --SQ_ARTIST 생성
-INSERT INTO SQ_ARTIST VALUES ('aa', '010-1111-1111', null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('ss', '010-1211-1111', null,'adfadsfd');
-INSERT INTO SQ_ARTIST VALUES ('dd', '010-1241-1111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('aa', '010-1111-1011', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('ss', '010-1211-1151', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('dd', '010-1241-1118', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('123', '010-1216-1131', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('1234', '010-1271-5111', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('qq', '010-1291-1161', null,'adfadsfd');
+INSERT INTO SQ_ARTIST VALUES ('nnn', '010-1271-1211', null,'adfadsfd');
 
 
 
@@ -404,20 +413,41 @@ INSERT INTO SQ_RECRUIT_APPLY VALUES (SQ_RECRUIT_APPLY_ID_SQ.nextval, 1, 'aa');
 
 
 
-INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '즐거운밴드', sysdate+7, sysdate, sysdate+5, '같이해요', null, null, '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
-INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'ss', '반가운밴드', sysdate+6, sysdate, sysdate+5, '같이해요', null, null, '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
-INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '서울밴드', sysdate+10, sysdate, sysdate+8, '같이해요', null, null, '서울특별시 중랑구', '힙합', '1', '1', 37.59015412293465, 127.08782174306634);
-INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '안즐거운밴드', sysdate+9, sysdate, sysdate+7, '같이해요', null, null, '대한민국 광명시', '락', '1', '1', 37.48071088450467, 126.86225869374994);
 
 
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '즐거운밴드', sysdate+7, sysdate, sysdate+5, '같이해요', 'ex (1).jpg', 'ex (1).jpg', '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '반가운밴드', sysdate+6, sysdate, sysdate+5, '같이해요', 'ex (2).jpg', 'ex (2).jpg', '서울특별시 강남구', '재즈', '1', '1', 37.510674, 127.060012599);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '서울밴드', sysdate+10, sysdate, sysdate+8, '같이해요', 'ex (3).jpg', 'ex (3).jpg', '서울특별시 중랑구', '힙합', '1', '1', 37.59015412293465, 127.08782174306634);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '안즐거운밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (4).jpg', 'ex (4).jpg', '경기도 광명시', '발라드', '1', '1', 37.48071088450467, 126.86225869374994);
+
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'ss', '드루와밴드', sysdate+7, sysdate, sysdate+5, '드루와바', 'ex (5).jpg', 'ex (5).jpg', '경기도 수원시', '락', '1', '1', 37.293493, 127.029621);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'ss', '저리가밴드', sysdate+6, sysdate, sysdate+5, '저리가라 오지마', 'ex (6).jpg', 'ex (6).jpg', '경기도 수원시', '발라드', '1', '1', 37.282976, 126.977865);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'ss', '아가밴드', sysdate+10, sysdate, sysdate+8, '같이해요', 'ex (7).jpg', 'ex (7).jpg', '경기도 수원시', '재즈', '1', '1', 37.271024, 127.037689);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'ss', '이리온나밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (8).jpg', 'ex (8).jpg', '경기도 수원시', '힙합', '1', '1', 37.285435, 127.018892);
+
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'dd', '취하자밴드', sysdate+7, sysdate, sysdate+5, '같이해요', 'ex (9).jpg', 'ex (9).jpg', '대전광역시 유성구', '재즈', '1', '1', 36.373931, 127.338327);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'dd', '취화선밴드', sysdate+6, sysdate, sysdate+5, '같이해요', 'ex (10).jpg', 'ex (10).jpg', '대전광역시 대덕구', '발라드', '1', '1', 36.406872, 127.442719);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'dd', '안취한밴드', sysdate+10, sysdate, sysdate+8, '같이해요', 'ex (11).jpg', 'ex (11).jpg', '대전광역시 동구', '힙합', '1', '1', 36.339595, 127.429756);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'dd', '술과밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (12).jpg', 'ex (12).jpg', '대전광역시 유성구', '락', '1', '1', 36.340424, 127.339478);
+
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '123', '형님밴드', sysdate+7, sysdate, sysdate+5, '같이해요', 'ex (13).jpg', 'ex (13).jpg', '부산광역시 동래구', '재즈', '1', '1', 35.205224, 129.075538);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '123', '뜨거운밴드', sysdate+6, sysdate, sysdate+5, '같이해요', 'ex (14).jpg', 'ex (14).jpg', '부산광역시 사상구', '락', '1', '1', 35.160906, 128.985332);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '123', '차가운밴드', sysdate+10, sysdate, sysdate+8, '같이해요', 'ex (15).jpg', 'ex (15).jpg', '부산광역시 연제구', '힙합', '1', '1', 35.180310, 129.084034);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '123', '미지근한밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (16).jpg', 'ex (16).jpg', '부산광역시 영도구', '발라드', '1', '1', 35.074242, 129.062545);
+
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '쿵해쪄밴드', sysdate+7, sysdate, sysdate+5, '같이해요', 'ex (17).jpg', 'ex (17).jpg', '광주광역시 북구', '락', '1', '1', 35.179725, 126.877198);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '콩해쪄밴드', sysdate+6, sysdate, sysdate+5, '같이해요', 'ex (18).jpg', 'ex (18).jpg', '광주광역시 북구', '재즈', '1', '1', 35.161672, 126.930463);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '한대맞자밴드', sysdate+10, sysdate, sysdate+8, '같이해요', 'ex (19).jpg', 'ex (19).jpg', '광주광역시 광산구', '힙합', '1', '1', 35.198365, 126.815705);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '두대맞자밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (20).jpg', 'ex (20).jpg', '광주광역시 남구', '발라드', '1', '1', 35.125081, 126.915018);
 
 
-INSERT INTO sq_favorite VALUES('aa', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
-INSERT INTO sq_favorite VALUES('ss', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
-INSERT INTO sq_favorite VALUES('dd', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
-INSERT INTO sq_favorite VALUES('123', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
-INSERT INTO sq_favorite VALUES('1234', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
-INSERT INTO sq_favorite VALUES('qq', '{"락":0, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('aa', '{"락":10, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('ss', '{"락":0, "발라드":10, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('dd', '{"락":0, "발라드":0, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('123', '{"락":10, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('1234', '{"락":0, "발라드":0, "재즈":0, "힙합":10}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('qq', '{"락":0, "발라드":0, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+INSERT INTO sq_favorite VALUES('nnn', '{"락":0, "발라드":10, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 
 
 

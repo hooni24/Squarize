@@ -126,7 +126,7 @@
 				<if test="sq_rent_limit != ''">
 					AND sq_rent_concert_date &lt;= #{sq_rent_limit}
 				</if>
-		</where> 
+		</where>
 	</select>
 	
 	

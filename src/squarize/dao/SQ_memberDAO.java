@@ -1,7 +1,10 @@
 package squarize.dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -89,7 +92,34 @@ public class SQ_memberDAO {
 			int inserted = ss.insert("sq_memberMapper.insertSQArtist", sq_artist);
 			if(inserted > 0){
 				ss.commit();
-				int favoriteMade = ss.insert("sq_memberMapper.registerSQmemberAddFavorite", sq_artist);
+				
+				
+				SQ_member member = ss.selectOne("sq_memberMapper.loginSQmember", sq_artist.getSq_member_id());
+				String memberFavorite = member.getSq_member_favorite();	//가입할때 선택한 장르 나옴
+				
+				String favoriteTable = "";	//선택한 선호장르에 따라 10점씩 기본점수로 줌
+//				JSONObject favoriteJSON = new JSONObject();
+//				favoriteJSON.put("락", 0);
+//				favoriteJSON.put("발라드", 0);
+//				favoriteJSON.put("재즈", 0);
+//				favoriteJSON.put("힙합", 0);
+				
+				switch (memberFavorite) {
+				case "락":	favoriteTable = "{\"락\":10, \"발라드\":0, \"재즈\":0, \"힙합\":0}";
+					break;
+				case "발라드":favoriteTable = "{\"락\":0, \"발라드\":10, \"재즈\":0, \"힙합\":0}";
+					break;
+				case "재즈":	favoriteTable = "{\"락\":0, \"발라드\":0, \"재즈\":10, \"힙합\":0}";
+					break;
+				case "힙합":	favoriteTable = "{\"락\":0, \"발라드\":0, \"재즈\":0, \"힙합\":10}";
+					break;
+				}
+				
+				HashMap<String, String> item = new HashMap<>();
+				item.put("memberId", sq_artist.getSq_member_id());
+				item.put("favorite", favoriteTable);
+				
+				int favoriteMade = ss.insert("sq_memberMapper.registerSQmemberAddFavorite", item);
 				if(favoriteMade > 0)
 					ss.commit();
 				else {
