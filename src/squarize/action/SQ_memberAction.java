@@ -319,6 +319,15 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	}
 	
 	/**
+	 * 지원자 목록 볼때 ajax로 해당 포트폴리오 정보 가져오기
+	 */
+	public String applyPort(){
+		sq_portfolio = new SQ_memberDAO().applyPort(sq_portfolio.getSq_port_id());
+		System.out.println(sq_portfolio);
+		return SUCCESS;
+	}
+	
+	/**
 	 * 어디서 왔니?
 	 */
 	public String fromWhere(){

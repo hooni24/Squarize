@@ -27,6 +27,13 @@
 		a#realUpdate{
 			display: none;
 		}
+		select#inst{
+			font : 1.3em 맑은 고딕;
+			background-color: transparent;
+			border: none;
+			border-bottom: 1px solid gray;
+			padding: 12px;
+		}
     </style>
     <script>
     
@@ -50,7 +57,7 @@
     			var appendThing =
                 '<form id="forms" action="makePortfolio?fromWhere=seeking" method="post" enctype="multipart/form-data">'+
 	                '<h1>다루는 악기</h1>'+
-	                '<input id="inst" type="text" name="sq_portfolio.sq_port_inst"><br><br>'+
+	                '<select id="inst" name="sq_portfolio.sq_port_inst"><option>기타</option><option>드럼</option><option>키보드</option><option>보컬</option></select><br><br>'+
 	                '<h1>약력(1000자 이내)</h1>'+
 	                '<textarea id="career" class="form-control" rows="8" name="sq_portfolio.sq_port_career"></textarea><br><br>'+
 	                '<h1>자기소개(1000자 이내)</h1>'+

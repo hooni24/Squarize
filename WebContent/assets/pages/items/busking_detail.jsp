@@ -34,7 +34,7 @@
       	$(function(){
 			$("#buskingdate").append(temp);
 			
-			$(".img").click(function(){
+			$(".img_small").click(function(){
 // 				var img = document.getElementById("");
 // 				alert(img.src);
 				var src = $(this).attr("src");
@@ -48,11 +48,13 @@
      <style type="text/css">
      .img{
      	margin: 5px;
-     	/* width: 10px;
-     	height: 30px;
-     	float: left;
-     	display: inline; */
+     	max-width: 80%;
+		height: auto ;
     } 
+     .img_small{
+     	max-width: 30%;
+     	
+     }
     </style> 
 	
     <title>534 Roosevelt Street</title>
@@ -73,7 +75,7 @@
 <%--                            	<img src="<s:property value="SQ_busking.gallery"/>" alt=""> --%>
                            	
                           	<s:if test="SQ_busking.gallery != ''">
-							<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery"/>"></a>
+							<a href="javascript:imageChange()" class="picture"><img class="img" src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery"/>"></a>
                         	</s:if>
 							<s:if test="SQ_busking.gallery == ''">
 							<a href="javascript:imageChange()" class="picture"><img class="img" src="assets/img/default-item.png"></a>
@@ -92,9 +94,9 @@
                 <article class="sidebar">
                     <div class="person animate move_from_bottom_short">
                         <div class="inner average-color">
-                            <figure class="person-image">
-                                <img src="<s:property value="SQ_busking.gallery"/>" alt="">
-                            </figure>
+<!--                             <figure class="person-image"> -->
+<%--                                 <img src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery"/>" alt=""> --%>
+<!--                             </figure> -->
 <!--                             <header>Catherine Brown</header> -->
 <!--                             <a href="tel:818-832-5258">818-832-5258</a> -->
 <!--                             <a href="mailto:catherine.brown@example.com">catherine.brown@example.com</a> -->
@@ -102,23 +104,23 @@
 <!--                             <a href="#person-detail" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="person-detail">Show Details</a> -->
 							<div>
 								<s:if test="SQ_busking.gallery != ''">
-								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery"/>"></a>
+								<a href="javascript:imageChange()" class="picture"><img class="img_small" src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery"/>"></a>
 	                        	</s:if>
 								<s:if test="SQ_busking.gallery == ''">
-								<a href="javascript:imageChange()" class="picture"><img class="img" src="assets/img/default-item.png"></a>
+								<a href="javascript:imageChange()" class="picture"><img class="img_small" src="assets/img/default-item.png"></a>
 	                        	</s:if>
 	                        	
 								<s:if test="SQ_busking.gallery2 != ''">
-								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery2"/>"></a>
+								<a href="javascript:imageChange()" class="picture"><img class="img_small" src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery2"/>"></a>
 	                        	</s:if>
 								<s:if test="SQ_busking.gallery3 != ''">
-								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery3"/>"></a>
+								<a href="javascript:imageChange()" class="picture"><img class="img_small" src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery3"/>"></a>
 	                        	</s:if>
 								<s:if test="SQ_busking.gallery4 != ''">
-								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery4"/>"></a>
+								<a href="javascript:imageChange()" class="picture"><img class="img_small" src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery4"/>"></a>
 	                        	</s:if>
 								<s:if test="SQ_busking.gallery5 != ''">
-								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery5"/>"></a>
+								<a href="javascript:imageChange()" class="picture"><img class="img_small" src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery5"/>"></a>
 	                        	</s:if>
                         	</div>
                         </div>

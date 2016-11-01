@@ -367,7 +367,7 @@ INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', '락', 'Y', nu
 INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', '힙합', 'Y', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', '재즈', 'Y', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', '발라드', 'Y', null, 'Y');
-
+INSERT INTO SQ_MEMBER VALUES ('jhs1', '123', '현솨', 'a@a.a', '힙합', 'Y', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('qwe', '123', '김똥1', 'a@a.a', '발라드', 'N', null, 'N');
 INSERT INTO SQ_MEMBER VALUES ('asd', '123', '김똥2', 'a@a.a', '발라드', 'N', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('zxc', '123', '김똥3', 'a@a.a', '발라드', 'N', null, 'Y');
@@ -382,7 +382,7 @@ INSERT INTO SQ_ARTIST VALUES ('123', '010-1216-1131', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('1234', '010-1271-5111', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('qq', '010-1291-1161', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('nnn', '010-1271-1211', null,'adfadsfd');
-
+INSERT INTO SQ_ARTIST VALUES ('jhs1', '010-1271-1213', null,'adfadsfd');
 
 
 --테스트용
@@ -439,6 +439,23 @@ INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '콩해쪄밴드', sys
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '한대맞자밴드', sysdate+10, sysdate, sysdate+8, '같이해요', 'ex (19).jpg', 'ex (19).jpg', '광주광역시 광산구', '힙합', '1', '1', 35.198365, 126.815705);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '두대맞자밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (20).jpg', 'ex (20).jpg', '광주광역시 남구', '발라드', '1', '1', 35.125081, 126.915018);
 
+--버스킹리스트
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '놀러오세요', 
+'홍대입구', '37.4464559', '126.4559563', 
+'사용안함', '발라드', 0, '대일밴드',
+'ex (3).jpg', 'ex (4).jpg', null, null, null, sysdate+1,
+120, '안녕하세요 적당히 바람이 시원해 기분이 너무 좋아요 유후!', sysdate+1+(1/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '놀러오세요', 
+'홍대입구', '37.4464659', '126.4559763', 
+'사용안함', '발라드', 0, '취화선',
+'ex (2).jpg', 'ex (5).jpg', null, null, null, sysdate+2,
+120, '도조 요로시쿠 오네가이시마수', sysdate+2+(1/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '놀러오세요', 
+'홍대입구', '37.4464859', '126.4559963', 
+'사용안함', '발라드', 0, '취화선',
+'ex (5).jpg', 'ex (6).jpg', null, null, null, sysdate,
+120, '도조 요로시쿠 오네가이시마수', sysdate+(2/24));
+
 
 --포트폴리오
 INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, 'ss', '기타', '1988년 기타를 들고 태어남', '저는 많이 활약했어요', 'portFile (1).jpg', 'portMedia (1).MOV');
@@ -464,7 +481,7 @@ INSERT INTO sq_favorite VALUES('123', '{"락":10, "발라드":0, "재즈":0, "�
 INSERT INTO sq_favorite VALUES('1234', '{"락":0, "발라드":0, "재즈":0, "힙합":10}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 INSERT INTO sq_favorite VALUES('qq', '{"락":0, "발라드":0, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 INSERT INTO sq_favorite VALUES('nnn', '{"락":0, "발라드":10, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
-
+INSERT INTO sq_favorite VALUES('jhs1', '{"락":0, "발라드":10, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 
 
 INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '오렌지앰프', 'amp.jpg', 'http://freebud.co.kr/', '기타');

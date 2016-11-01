@@ -217,6 +217,15 @@ public class SQ_memberDAO {
 			ss.close();
 		}
 	}
+
+	public SQ_portfolio applyPort(int sq_port_id) {
+		try {
+			ss = factory.openSession();
+			return ss.selectOne("sq_memberMapper.applyPort", sq_port_id);
+		} finally {
+			ss.close();
+		}
+	}
 }
 
 

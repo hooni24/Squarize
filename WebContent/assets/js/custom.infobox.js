@@ -28,6 +28,7 @@ function drawInfobox(infoboxContent, json, i){
         else                        { location = '' }
     if(json.data[i].gallery)     	{ var gallery = json.data[i].gallery }
         else                        { gallery = '' }
+//    				alert(gallery);
     if(json.data[i].buskingdate)    { var buskingdate = temp_buskingdate }
 		else                        { buskingdate = '' }
     if(json.data[i].runningtime)    { var runningtime = json.data[i].runningtime }
@@ -44,7 +45,7 @@ function drawInfobox(infoboxContent, json, i){
             '<a href="toDetailInformation.action?sq_busking_id='+sq_busking_id+'" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
                 '<div class="image">' +
                 teamname +
-                    '<img src="'+ gallery +'" alt="">' +
+                    '<img src="assets/downloadIMG/busking/'+gallery+'"	>' +
                 '</div>' +
                 '<header class="average-color">' +
                     '<h1 class="animate move_from_top_short">'+ title +'</h1>' +

@@ -20,6 +20,7 @@
     #markerImage{
     	text-align: center;	
     }
+  
     </style>
     
     <title>SQUARIZE - BUSKING</title>

@@ -164,7 +164,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		System.out.println("구인정보 수정");
 		SQ_recruit recruit=dao.getSQrecruit(sq_recruit.getSq_recruit_id());
 		System.out.println(recruit);
-		/*if (upload != null) { 
+		if (upload != null) { 
 			try {
 				FileService fs = new FileService();
 				String basePath = getText("sq_recruit.uploadpath");
@@ -175,7 +175,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}*/
+		}
 		dao.updateSQRecruit(sq_recruit);
 		return SUCCESS;
 	}
@@ -194,6 +194,15 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	}
 	
 	//구인정보 검색
+	public String getAllMyApply() throws Exception {
+		System.out.println("지원내역 보기 ");
+		SQ_seekingDAO dao=new SQ_seekingDAO();
+		loginId=(String)session.get("loginId");
+		sq_recruit_list=dao.getAllMyApply(loginId);
+		System.out.println(sq_recruit_list);
+		return SUCCESS;
+	}
+	
 	public String recruit_search_byKeyword() throws Exception {
 		System.out.println("구인검색 Action");
 		RangeCalc calc = new RangeCalc(range);

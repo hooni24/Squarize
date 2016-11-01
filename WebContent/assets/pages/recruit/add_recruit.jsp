@@ -51,9 +51,40 @@
 											 		}); 
 			    map.setCenter(pos);											//지도 현재위치로 center설정
 		  	}, function() {
-		  		alert("위치정보 사용에 동의하지 않으면 등록할 수 없습니다.");
-// 		  		location.href = "toRentMain.action";
-		    	handleLocationError(true, infoWindow, map.getCenter());
+
+		  		//위치정보 사용 못할때 강제로 코엑스 찍음
+		  		
+		  		var pos = {
+			      		lat: 37.511818,				//현재좌표값 json생성
+			      		lng: 127.062542
+		    		};
+			var myOptions = {
+					    		zoom: 15,							//지도옵션 json생성
+						    	center: pos,
+						    	mapTypeId: google.maps.MapTypeId.ROADMAP
+							};
+			var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);		//div#map-canvas에 지도 붙임 
+	
+			var infoWindow = new google.maps.InfoWindow({map: map});		//지도에 메세지창 생성
+		    infoWindow.setPosition(pos);									//현재 위치로 메세지창 이동
+		    infoWindow.setContent('드래그해서 정확한 위치로 이동하세요');								//메세지창 메세지 입력
+		    
+		    var image = {
+				            url : "assets/img/marker.png", //마커이미지
+				            size : new google.maps.Size(67, 57), //마커사이즈
+				            origin : new google.maps.Point(0, 0),
+				            anchor : new google.maps.Point(43, 77)
+				        }; //마커로 사용할 이미지 정의
+		    
+		    marker = new google.maps.Marker({
+											    	position: pos,			//현재위치에 드래그가능한 마커 생성
+										     		map: map,
+										     		draggable: true,
+										     		icon: image
+										 		}); 
+		    map.setCenter(pos);		
+		    
+		    
 		  	});
 		} else {
 		  	// Browser doesn't support Geolocation
