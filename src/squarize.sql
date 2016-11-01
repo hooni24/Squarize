@@ -367,7 +367,7 @@ INSERT INTO SQ_MEMBER VALUES ('123', '123', '김개똥', 'a@a.a', '락', 'Y', nu
 INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', '힙합', 'Y', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', '재즈', 'Y', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', '발라드', 'Y', null, 'Y');
-
+INSERT INTO SQ_MEMBER VALUES ('jhs1', '123', '현솨', 'a@a.a', '힙합', 'Y', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('qwe', '123', '김똥1', 'a@a.a', '발라드', 'N', null, 'N');
 INSERT INTO SQ_MEMBER VALUES ('asd', '123', '김똥2', 'a@a.a', '발라드', 'N', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('zxc', '123', '김똥3', 'a@a.a', '발라드', 'N', null, 'Y');
@@ -382,7 +382,7 @@ INSERT INTO SQ_ARTIST VALUES ('123', '010-1216-1131', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('1234', '010-1271-5111', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('qq', '010-1291-1161', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('nnn', '010-1271-1211', null,'adfadsfd');
-
+INSERT INTO SQ_ARTIST VALUES ('jhs1', '010-1271-1213', null,'adfadsfd');
 
 
 --테스트용
@@ -481,7 +481,7 @@ INSERT INTO sq_favorite VALUES('123', '{"락":10, "발라드":0, "재즈":0, "�
 INSERT INTO sq_favorite VALUES('1234', '{"락":0, "발라드":0, "재즈":0, "힙합":10}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 INSERT INTO sq_favorite VALUES('qq', '{"락":0, "발라드":0, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 INSERT INTO sq_favorite VALUES('nnn', '{"락":0, "발라드":10, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
-
+INSERT INTO sq_favorite VALUES('jhs1', '{"락":0, "발라드":10, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 
 
 INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '오렌지앰프', 'amp.jpg', 'http://freebud.co.kr/', '기타');
