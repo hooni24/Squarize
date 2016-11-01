@@ -251,7 +251,7 @@
             <!-- 메뉴바에 생기는 링크들 -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a class="page-scroll" href="#about_">About</a></li>
+                    <li><a class="page-scroll" href="#about_-">About</a></li>
                     <s:if test="#session.loginId == null">
 	                    <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="tabpanel" data-tab="#sign-in" data-transition-parent="#tabpanel" id="main_login">Log In</a></li>
 	                    <li><a href="#user-area" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#tabpanel" id="main_register">Register</a></li>
@@ -294,7 +294,7 @@
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About SQUARIZE</h2>
+                <h2 id="about_-">About SQUARIZE</h2>
                 <p>
                 	우리는 감성적인 메인 페이지를 가지고 있습니다.<br>
                 	반갑습니다. 즐기세요.<br>
