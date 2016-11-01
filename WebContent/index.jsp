@@ -75,7 +75,7 @@
     	}
     	img#smallLogo{
     		margin-top: -2.5%;
-    		width: 40%;
+    		width: 50%;
     	}
     	img#bigLogo{
     		width: 100%;
