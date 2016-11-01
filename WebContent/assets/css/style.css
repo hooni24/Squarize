@@ -307,7 +307,7 @@ ul.bullets li:before {
 #page-wrapper > header {
   -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.1);
   -moz-transition: 0.4s;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -315,7 +315,7 @@ ul.bullets li:before {
   -ms-transform: translateZ(0);
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  background-color: #fff;
+  background-color: rgba(0,0,0,0.8);
   margin-bottom: 50px;
   z-index: 1;
 }
@@ -409,9 +409,9 @@ ul.bullets li:before {
   font-size: 12px;
 }
 #page-wrapper > header .header-inner nav ul li ul {
-  -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.15);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.15);
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
   -moz-transition: 0.4s;
@@ -421,7 +421,7 @@ ul.bullets li:before {
   -ms-transform: translateY(10px);
   -webkit-transform: translateY(10px);
   transform: translateY(10px);
-  background-color: #fff;
+  background-color: #262626;
   left: 0;
   padding-left: 0px;
   padding-top: 40px;
@@ -530,7 +530,7 @@ ul.bullets li:before {
   -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: rgba(0,0,0,0.8);
 }
 #page-wrapper #user-area .close {
   top: 20px;
@@ -858,7 +858,7 @@ ul.bullets li:before {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   background-color: transparent;
-  color: #626262;
+  color: rgba(255,255,255,0.7);
 }
 .nav-pills li.active a:hover, .nav-pills li.active a:active, .nav-pills li.active a:focus {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
@@ -1243,8 +1243,8 @@ ul.bullets li:before {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   background-color: #fff;
 }
-.btn.btn-default {
-  color: #009cff;
+#header.container.btn.btn-default {
+  color: #009cff !important;
 }
 .btn.btn-default:hover {
   background-color: #fafafa;
@@ -3100,4 +3100,11 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
     width: 100%;
     padding: 30px;
   }
+}
+
+#header .container a{
+	color:rgba(255,255,255,0.7);
+}
+#header .container a:hover{
+	color:#009cff !important;
 }
