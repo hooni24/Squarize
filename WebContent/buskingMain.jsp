@@ -16,7 +16,11 @@
     <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
-    
+    <style type="text/css">
+    #markerImage{
+    	text-align: center;	
+    }
+    </style>
     
     <title>SQUARIZE - BUSKING</title>
 	
@@ -323,6 +327,12 @@
 
         <div class="content-inner" id="some">
             <div class="container" id="main-container">
+            	<br>
+				<div id="markerImage">
+						<img src="assets/img/marker_blue.png"> 3일전
+						<img src="assets/img/marker_red.png"> 1일전
+						<img src="assets/img/marker_green.png"> 라이브
+				</div>
                 <div class="content-loader">
                     <div class="content fade_in animate">
                         <a href="#" class="close" id="close"><img src="assets/img/close.png" alt=""></a>

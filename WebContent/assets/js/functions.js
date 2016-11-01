@@ -526,7 +526,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
                 markerContent.innerHTML =
                     '<div class="map-marker">' +
                         '<div class="icon">' +
-                        	'<img src="assets/img/marker.png">' +
+                        	'<img src="assets/img/marker_blue.png">' +
                         '</div>' +	
                     '</div>';
             } else if (0 < buskingDate.getTime() - now.getTime() && buskingDate.getTime() - now.getTime() <= 86400000){
