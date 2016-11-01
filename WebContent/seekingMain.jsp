@@ -538,7 +538,7 @@
                             						'<label for="type" id="hidden_select"></label>'+
 	                                 				'<div class="btn-group bootstrap-select open">'+
 	                                 				'<button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_small" title="소분류" aria-expanded="true">'+
-	                                 				'<span class="filter-option pull-left" id="small_part">소분류</span>&nbsp;<span class="caret"></span></button>'+
+	                                 				'<span class="filter-option pull-left">소분류</span>&nbsp;<span class="caret"></span></button>'+
 	                                 				'</div>'
 	                                 			);
 	               }
@@ -549,9 +549,7 @@
 					var big = $("input#big_").val();
 					var small = $("input#small_").val();
 	    			var region = $("input#location").val();
-	    			alert(region);
 	    			var range = $("input#range").val().split("k")[0];
-	    			alert(range);
     				var lat;
     				var lng;
 	    			if(region.length < 1) {
@@ -566,16 +564,15 @@
 	    				, success : function(resp){
 				    					lat = resp.results[0].geometry.location.lat;
 				    					lng = resp.results[0].geometry.location.lng;
-				    					alert(lat);
+										$("input#small_").val(small);
+										$("input#big_").val(big);
+										$("input#lat_hidden").val(lat);
+					   					$("input#lng_hidden").val(lng);
+					   					$("input#range_hidden").val(range);
+										$('form#search_form')[0].submit();
 									}
 					});
 					
-					$("input#small_").val(small);
-					$("input#big_").val(big);
-					$("input#lat_hidden").val(lat);
-   					$("input#lng_hidden").val(lng);
-   					$("input#range_hidden").val(range);
-					$('form#search_form')[0].submit();
 				});	
 			});
 		</script>

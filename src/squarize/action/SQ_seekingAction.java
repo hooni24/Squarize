@@ -26,7 +26,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	//seeking 페이지에서 썸네일로 뿌릴 list멤버
 //	private JsonObject json_object;
 	private List<SQ_recruit> sq_recruit_list;
-	private List<SQ_human>sq_apply_list;
+	private List<SQ_human> sq_apply_list;
 	private List<SQ_portfolio> sq_portfolio_list;
 	private List<SQ_recruit_artist> sq_applied_list;
 	
@@ -193,6 +193,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		}
 	}
 	
+	//구인정보 검색
 	public String recruit_search_byKeyword() throws Exception {
 		System.out.println("구인검색 Action");
 		RangeCalc calc = new RangeCalc(range);

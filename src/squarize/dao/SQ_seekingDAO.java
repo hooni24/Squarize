@@ -172,7 +172,8 @@ public class SQ_seekingDAO {
 	public List<SQ_recruit> search_recruit(SQ_recruit sq_recruit){
 		List<SQ_recruit> list = null;
 		ss = factory.openSession();
-		list = ss.selectList("sq_seekingMapper.search_byKeword", sq_recruit);
+		list = ss.selectList("sq_seekingMapper.search_byKeyword", sq_recruit);
+		if(ss != null) ss.close();
 		return list;
 	}
 	
