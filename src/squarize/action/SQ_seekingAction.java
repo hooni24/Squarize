@@ -37,6 +37,9 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private SQ_recruit_apply sq_recruit_apply;
 	private SQ_portfolio sq_portfolio;
 	private int result;
+	private int range;	// 검색반경
+	private String small_keyword;	//recruit_search소분류
+	private String big_keyword;		//recruit_search대분류
 	
 	private String loginId;
 	private SQ_seekingDAO sdao=new SQ_seekingDAO(); 
@@ -99,8 +102,6 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
-
-
 	
 	// 지원 여부 확인하기.(지원하기 버튼 눌렀을 때)
 	public SQ_recruit_apply checkApplied() {
@@ -191,7 +192,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	}
 	
 	public String recruit_search_byKeyword() throws Exception {
-		
+		System.out.println("구인검색 Action");
 		return SUCCESS;
 	}
 	
@@ -304,6 +305,29 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	public void setSq_apply_list(List<SQ_human> sq_apply_list) {
 		this.sq_apply_list = sq_apply_list;
 	}
-	
+
+	public String getSmall_keyword() {
+		return small_keyword;
+	}
+
+	public void setSmall_keyword(String small_keyword) {
+		this.small_keyword = small_keyword;
+	}
+
+	public String getBig_keyword() {
+		return big_keyword;
+	}
+
+	public void setBig_keyword(String big_keyword) {
+		this.big_keyword = big_keyword;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+	}
 	
 }

@@ -280,14 +280,14 @@
                         <div class="col-md-3 col-sm-3">
                              <div class="form-group">
                                 <label for="type">Genre</label><br>
-                                <input type="text" class="animate" id="type">
-<%--                                 <select class="animate" id="type"> --%>
-<!--                                 	<option>선호장르</option> -->
-<!--                                 	<option>락</option> -->
-<!--                                 	<option>발라드</option> -->
-<!--                                 	<option>재즈</option> -->
-<!--                                 	<option>힙합</option> -->
-<%--                                 </select> --%>
+<!--                                 <input type="text" class="animate" id="type"> -->
+                                <select class="animate" id="type">
+                                	<option>선호장르</option>
+                                	<option>락</option>
+                                	<option>발라드</option>
+                                	<option>재즈</option>
+                                	<option>힙합</option>
+                                </select>
                             </div>
                             <!-- /.form-group -->
                         </div>

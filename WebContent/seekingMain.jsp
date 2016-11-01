@@ -200,7 +200,6 @@
 		                                        </div>
 		                                    </form>
 		                                </div>
-	                                
 	                            </div>
 	                        </div>
 	                    </div>
@@ -290,7 +289,7 @@
 		<div class="page-content">
 			<div class="search collapse in" id="search-collapse">
 				<div class="container">
-					<form class="main-search" role="form" method="post" onsubmit="return searching();" action="recruit_search_byKeyword">
+					<form id="search_form" class="main-search" role="form" method="post" action="recruit_search_byKeyword">
 						<div class="row">
 							<div class="col-md-3 col-sm-3">
 								<div class="form-group">
@@ -323,14 +322,13 @@
 							
 							<div class="col-md-3 col-sm-3">
 								<div class="form-group">
-									<label for="location">위치로 검색</label>
+									<label for="location">위치</label>
 									<div class="input-group location">
-										<input type="text" class="form-control" id="location"
-											placeholder="지역명 입력"> <span class="input-group-btn">
+										<input type="text" class="form-control" id="location" placeholder="지역명 입력">
+										<span class="input-group-btn">
 											<button class="btn btn-default animate" type="button">
-												<i class="fa fa-map-marker geolocation"
-													data-toggle="tooltip" data-placement="bottom"
-													title="내 위치 선택"></i>
+												<i class="fa fa-map-marker geolocation"	data-toggle="tooltip" data-placement="bottom"
+													title="내 위치 찾기"></i>
 											</button>
 										</span>
 									</div>
@@ -343,11 +341,9 @@
 							<div class="col-md-2 col-sm-2">
 								<div class="form-group">
 									<label>반경설정</label>
-									<!-- <div class="ui-slider" id="price-slider" data-value-min="400" data-value-max="5000" data-value-type="price" data-currency="$" data-currency-placement="before"> -->
 									<div class="ui-slider" id="price-slider" data-value-min="3" data-value-max="15" data-value-type="price" data-currency="km" data-currency-placement="after">
                                     <div class="values clearfix">
-                                        <input class="value-min" name="value-min[]" readonly>
-                                        <input class="value-max" name="value-max[]" readonly>
+                                        <input class="value-max" id="value-max" readonly>
                                     </div>
                                     <div class="element"></div>
                                 </div>
@@ -359,7 +355,7 @@
 							<div class="col-md-3 col-sm-3" id="divBtn">
 								<div class="form-group">
 									<div class="input-group counter" id="divSubmitBtn">
-										<input type="submit" class="form-control" id="recruit_searching" value="검색"/>
+										<input id="searchBtn" type="button" class="form-control" value="검색"/>	<!-- 검색버튼 -->
                                     </div>
 								</div>
 								<!-- /.form-group -->
@@ -368,6 +364,9 @@
 						<!--/.row-->
 						<input type="hidden" id="small_" name="small_keyword">
 						<input type="hidden" id="big_" name="big_keyword">
+						<input type="hidden" name="sq_recruit.sq_recruit_latitude" id="lat_hidden">
+	                    <input type="hidden" name="sq_recruit.sq_recruit_longitude" id="lng_hidden">
+	                    <input type="hidden" name="range" id="range_hidden">
 					</form>
 					<!-- /.main-search -->
 				</div>
@@ -485,13 +484,14 @@
 				$("select#recruit_search_category").change(function(){
 					var large = $("select#recruit_search_category").val();
 					$("input#big_").val(large);
+// 					alert($("input#big_").val());
 					if (large == "장르") {
-// 						$("input#big_").val(selected);
+ 						$("input#big_").val(large);
 						$('#for_small_list').html(
                             						'<label for="type" id="hidden_select"></label>'+
-													'<select id="recruit_search_small" style="display: none;padding-top:20px;">'+
-	                                 				'<option>소분류</option>'+
-	                                 				'</select><div class="btn-group bootstrap-select open">'+
+// 													'<select id="recruit_search_small" style="display: none;padding-top:20px;">'+
+// 	                                 				'<option>소분류</option></select>'+
+	                                 				'<div class="btn-group bootstrap-select open">'+
 	                                 				'<button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_small" title="소분류" aria-expanded="true">'+
 	                                 				'<span class="filter-option pull-left" id="small_genre">소분류</span>&nbsp;<span class="caret"></span></button>'+
 	                                 				'<div class="dropdown-menu open idle slide_in" style="max-height: 710px; overflow: hidden; min-height: 0px;">'+
@@ -514,9 +514,7 @@
 					} else if (large == "파트") {
 						$('#for_small_list').html(
                             						'<label for="type" id="hidden_select"></label>'+
-													'<select id="recruit_search_small" style="display: none;padding-top:20px;">'+
-	                                 				'<option>소분류</option>'+
-	                                 				'</select><div class="btn-group bootstrap-select open">'+
+	                                 				'<div class="btn-group bootstrap-select open">'+
 	                                 				'<button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_small" title="소분류" aria-expanded="true">'+
 	                                 				'<span class="filter-option pull-left" id="small_part">소분류</span>&nbsp;<span class="caret"></span></button>'+
 	                                 				'<div class="dropdown-menu open idle slide_in" style="max-height: 710px; overflow: hidden; min-height: 0px;">'+
@@ -536,34 +534,32 @@
 	                                 				'</ul></div></div>'+
 	                                 				'</div>'
                                     			);
-					} else {
+                    } else {
 						$('#for_small_list').html(
-	                         						'<label for="type" id="hidden_select"></label>'+
-													'<select id="recruit_search_small" style="display: none;padding-top:20px;">'+
-	                                 				'<option>소분류</option>'+
-	                                 				'</select><div class="btn-group bootstrap-select open">'+
+                            						'<label for="type" id="hidden_select"></label>'+
+	                                 				'<div class="btn-group bootstrap-select open">'+
 	                                 				'<button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="recruit_search_small" title="소분류" aria-expanded="true">'+
-	                                 				'<span class="filter-option pull-left">소분류</span>&nbsp;<span class="caret"></span></button>'+
-	                                 				'<div class="dropdown-menu open idle slide_in" style="max-height: 710px; overflow: hidden; min-height: 0px;">'+
-	                                 				'</div></div>'+
+	                                 				'<span class="filter-option pull-left" id="small_part">소분류</span>&nbsp;<span class="caret"></span></button>'+
 	                                 				'</div>'
-                                 				);
-					}
-				});
-			});	
+	                                 			);
+	               }
 			
-			function searching(){
-				var category = $('#recruit_search_category').val();
-				var s_category = $('#recruit_search_small').val();
-				if (category == 'sq_recruit.sq_recruit_part') {
-					alert(s_category);
-				} else if (category == 'sq_recruit.sq_recruit_genre') {
+				});
 				
-				}
-				return true;
-			}	
-
-
+				$('input#searchBtn').on('click', function(){
+					var search_location = $('#location').val();
+					var range_max = $("input#value-max").val().split("k")[0];
+					var selected = $("ul#part_sel li").children().children().html();
+					var large = $("select#recruit_search_category").val();
+					if(search_location == ''){
+						alert("지역을 입력해주세요.");
+						return false;
+					}
+					$('form#search_form').submit();
+					return true;
+				});
+			});
+			
 		</script>
 	
 	</body>
