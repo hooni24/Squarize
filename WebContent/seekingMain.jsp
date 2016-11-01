@@ -343,7 +343,7 @@
 									<label>반경설정</label>
 									<div class="ui-slider" id="price-slider" data-value-min="3" data-value-max="15" data-value-type="price" data-currency="km" data-currency-placement="after">
                                     <div class="values clearfix">
-                                        <input class="value-max" id="value-max" readonly>
+                                        <input class="value-max" id="range" readonly>
                                     </div>
                                     <div class="element"></div>
                                 </div>
@@ -355,7 +355,7 @@
 							<div class="col-md-3 col-sm-3" id="divBtn">
 								<div class="form-group">
 									<div class="input-group counter" id="divSubmitBtn">
-										<input id="searchBtn" type="button" class="form-control" value="검색"/>	<!-- 검색버튼 -->
+										<button id="searchBtn" class="form-control">검색</button>	<!-- 검색버튼 -->
                                     </div>
 								</div>
 								<!-- /.form-group -->
@@ -466,7 +466,6 @@
 				location.href = "logoutSQmember.action";
 			});
 				
-				
 			$(function(){
                               			
 				$('#for_small_list').on("click", "ul#genre_sel li",function(){
@@ -544,22 +543,37 @@
 	                                 			);
 	               }
 			
-				});
+				});	//검색-대분류->소분류
 				
-				$('input#searchBtn').on('click', function(){
-					var search_location = $('#location').val();
-					var range_max = $("input#value-max").val().split("k")[0];
-					var selected = $("ul#part_sel li").children().children().html();
-					var large = $("select#recruit_search_category").val();
-					if(search_location == ''){
-						alert("지역을 입력해주세요.");
-						return false;
-					}
-					$('form#search_form').submit();
-					return true;
-				});
+				$('button#searchBtn').on('click', function(){
+					var genre = $("select#genre").val();
+	    			var region = $("input#location").val();
+	    			alert(region);
+	    			var range = $("input#range").val().split("k")[0];
+	    			alert(range);
+    				var lat;
+    				var lng;
+	    			if(region.length < 1) {
+	    				alert("지역을 반드시 입력하세요");
+	    				return false;
+	    			}
+	    			
+	    			$.ajax({
+	    				url : "https://maps.googleapis.com/maps/api/geocode/json?address="+region+"&key=AIzaSyAcZEsXq59r_WkhHw_uyjJsbE_zJvOspz8"
+	    				, method : "post"
+	    				, dataType : "json"
+	    				, success : function(resp){
+				    					lat = resp.results[0].geometry.location.lat;
+				    					lng = resp.results[0].geometry.location.lng;
+				    					alert(lat);
+									}
+					});
+					$("input#lat_hidden").val(lat);
+   					$("input#lng_hidden").val(lng);
+   					$("input#range_hidden").val(range);
+					$('form#search_form')[0].submit();
+				});	
 			});
-			
 		</script>
 	
 	</body>

@@ -10,8 +10,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import squarize.dao.SQ_rentDAO;
 import squarize.dao.SQ_seekingDAO;
 import squarize.util.FileService;
+import squarize.util.RangeCalc;
 import squarize.vo.SQ_human;
 import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
@@ -193,6 +195,13 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	
 	public String recruit_search_byKeyword() throws Exception {
 		System.out.println("구인검색 Action");
+		System.out.println(range);
+		RangeCalc calc = new RangeCalc(range);
+		sq_recruit.setSq_recruit_latitude(calc.getLatRange()+"");
+		sq_recruit.setSq_recruit_longitude(calc.getLngRange()+"");
+		sq_recruit.setRange(range);
+		SQ_seekingDAO dao = new SQ_seekingDAO();
+		sq_recruit_list = dao.search_recruit(sq_recruit);
 		return SUCCESS;
 	}
 	

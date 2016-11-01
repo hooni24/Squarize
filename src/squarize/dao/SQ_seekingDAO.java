@@ -168,6 +168,14 @@ public class SQ_seekingDAO {
 		if(ss != null) ss.close();
 		return result;
 	}
+	
+	public List<SQ_recruit> search_recruit(SQ_recruit sq_recruit){
+		List<SQ_recruit> list = null;
+		ss = factory.openSession();
+		list = ss.selectList("sq_seekingMapper.search_byKeword", sq_recruit);
+		return list;
+	}
+	
 	/*public static void main(String[] args) {
 		SQ_seekingDAO sdao= new SQ_seekingDAO();
 		SQ_recruit sq_recruit=new SQ_recruit(0,"a","a","2012/10/11","a","a","a","a","a","a","a","a","a");

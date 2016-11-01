@@ -90,7 +90,7 @@
 		
 		<action name="recruit_search_byKeyword" class="squarize.action.SQ_seekingAction" method="recruit_search_byKeyword">
 			<interceptor-ref name="artistStack" />
-			<result type="json"></result>
+			<result>seekingMain.jsp</result>
 		</action>
 		
     </package>
