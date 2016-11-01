@@ -80,17 +80,23 @@ public class SQ_memberDAO {
 			ss.close();
 		}
 		return result;
-		
 	}
 	
 	public void addSQArtist(SQ_artist sq_artist){
 		ss=factory.openSession();
 		try{
 			ss.update("sq_memberMapper.addSQArtist", sq_artist.getSq_member_id());
-			ss.insert("sq_memberMapper.insertSQArtist", sq_artist);
-			ss.commit();
-			ss.insert("sq_memberMapper.registerSQmemberAddFavorite", sq_artist);
-			ss.commit();
+			int inserted = ss.insert("sq_memberMapper.insertSQArtist", sq_artist);
+			if(inserted > 0){
+				ss.commit();
+				int favoriteMade = ss.insert("sq_memberMapper.registerSQmemberAddFavorite", sq_artist);
+				if(favoriteMade > 0)
+					ss.commit();
+				else {
+					ss.delete("sq_memberMapper.deleteSQArtist", sq_artist);
+					ss.commit();
+				}
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{

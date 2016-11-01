@@ -42,6 +42,10 @@
 		sq_artist_phone=#{sq_artist_phone},sq_artist_photo=#{sq_artist_photo},sq_artist_intro=#{sq_artist_intro}
 		Where sq_member_id=#{sq_member_id}
 	</update>
+	<delete id="deleteSQArtist" parameterType="SQ_artist">
+		DELETE sq_artist 
+		WHERE sq_member_id = #{sq_member_id}	
+	</delete>
 	<update id="emailAuth" parameterType="String">
 		UPDATE sq_member SET sq_member_email_auth='Y' where sq_member_id=#{sq_member_id}
 	</update>
