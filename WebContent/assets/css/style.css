@@ -1244,7 +1244,7 @@ ul.bullets li:before {
   background-color: #fff;
 }
 #header.container.btn.btn-default {
-  color: #009cff !important;
+  color: #009cff;
 }
 .btn.btn-default:hover {
   background-color: #fafafa;
@@ -3106,5 +3106,8 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
 	color:rgba(255,255,255,0.7);
 }
 #header .container a:hover{
+	color:#009cff !important;
+}
+.show-filter{
 	color:#009cff !important;
 }
