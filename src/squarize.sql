@@ -413,7 +413,7 @@ INSERT INTO SQ_RECRUIT_APPLY VALUES (SQ_RECRUIT_APPLY_ID_SQ.nextval, 1, 'aa');
 
 
 
-
+--대관 게시물 등록
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '즐거운밴드', sysdate+7, sysdate, sysdate+5, '같이해요', 'ex (1).jpg', 'ex (1).jpg', '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '반가운밴드', sysdate+6, sysdate, sysdate+5, '같이해요', 'ex (2).jpg', 'ex (2).jpg', '서울특별시 강남구', '재즈', '1', '1', 37.510674, 127.060012599);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '서울밴드', sysdate+10, sysdate, sysdate+8, '같이해요', 'ex (3).jpg', 'ex (3).jpg', '서울특별시 중랑구', '힙합', '1', '1', 37.59015412293465, 127.08782174306634);
@@ -440,7 +440,7 @@ INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '한대맞자밴드', 
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '두대맞자밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (20).jpg', 'ex (20).jpg', '광주광역시 남구', '발라드', '1', '1', 35.125081, 126.915018);
 
 
-
+--포트폴리오
 INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, 'ss', '기타', '1988년 기타를 들고 태어남', '저는 많이 활약했어요', 'portFile (1).jpg', 'portMedia (1).MOV');
 INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, 'dd', '기타', '1989년 드럼을 들고 태어남', '저는 많이 활약했어요', 'portFile (2).jpg', 'portMedia (2).MOV');
 INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, '123', '기타', '1990년 키보드를 들고 태어남', '저는 많이 활약했어요', 'portFile (3).jpg', 'portMedia (3).MOV');
