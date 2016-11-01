@@ -295,7 +295,7 @@
 								<div class="form-group">
 									<label for="type">검색 카테고리</label>
 									<!-- select - option 을 쓰면, bootstrap 함수가 돌면서 동적로 div-ul-li-a-sapn-i태그의 쌍을 붙이면서 button으로 만듦. -->
-									<select name="recruit_search_category" id="recruit_search_category" class="animate"
+									<select id="recruit_search_category" class="animate"
 										data-transition-parent=".dropdown-menu">
 										<!-- 원래 id="type" multiple title="전체" : 여러개 선택 가능 -->
 										<option>대분류</option>
@@ -546,7 +546,8 @@
 				});	//검색-대분류->소분류
 				
 				$('button#searchBtn').on('click', function(){
-					var genre = $("select#genre").val();
+					var big = $("input#big_").val();
+					var small = $("input#small_").val();
 	    			var region = $("input#location").val();
 	    			alert(region);
 	    			var range = $("input#range").val().split("k")[0];
@@ -568,6 +569,9 @@
 				    					alert(lat);
 									}
 					});
+					
+					$("input#small_").val(small);
+					$("input#big_").val(big);
 					$("input#lat_hidden").val(lat);
    					$("input#lng_hidden").val(lng);
    					$("input#range_hidden").val(range);

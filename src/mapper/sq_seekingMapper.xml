@@ -121,12 +121,13 @@
 	</select>
 	
 	<select id="search_byKeword" parameterType="SQ_recruit" resultType="SQ_recruit">
+		
 		SELECT 
 			SQ_RECRUIT.SQ_RECRUIT_ID
 			,SQ_RECRUIT.SQ_MEMBER_ID 
 			,SQ_RECRUIT.SQ_RECRUIT_TITLE
-			,TO_CHAR(SQ_RECRUIT.SQ_RECRUIT_INPUT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_INPUT_DATE"
-			,TO_CHAR(SQ_RECRUIT.SQ_RECRUIT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_DATE"
+			,TO_CHAR(sq_recruit.SQ_RECRUIT_INPUT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_INPUT_DATE"
+			,TO_CHAR(sq_recruit.SQ_RECRUIT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_DATE"
 			,SQ_RECRUIT.SQ_RECRUIT_PHOTO
 			,SQ_RECRUIT.SQ_RECRUIT_PHOTO_ORIGINAL
 			,SQ_RECRUIT.SQ_RECRUIT_PART
@@ -153,20 +154,17 @@
 			      	(SQ_RECRUIT_LONGITUDE BETWEEN #{sq_recruit_longitude}-#{range} AND #{sq_recruit_longitude}+#{range}) ORDER BY DISTANCE)	<!-- //2// -->
 			      	 TMP)	<!-- //1// --> 
 			      	 DIST
-			<where>
-				SQ_RECRUIT.SQ_RECRUIT_ID = DIST.SQ_RECRUIT_ID 
-				AND 
-					DISTANCE &lt;= #{range}
-				
-				<if test="sq_recruit.sq_recruit_genre != ''">
-					AND SQ_RECRUIT.SQ_RECRUIT_GENRE = #{sq_recruit_genre}
-				</if>
-				
-				<if test="sq_recruit.sq_recruit_part != ''">
-					AND SQ_RECRUIT.SQ_RECRUIT_PART = #{sq_recruit_part}
-				</if>
-			</where>
-			ORDER BY DISTANCE
+		WHERE
+			SQ_RECRUIT.SQ_RECRUIT_ID = DIST.SQ_RECRUIT_ID 
+			AND 
+				DISTANCE &lt;= #{range}
+			<if test="sq_recruit_genre != '' and sq_recruit_genre != null">
+				AND SQ_RECRUIT.SQ_RECRUIT_GENRE = #{sq_recruit_genre}
+			</if>
+			<if test="sq_recruit_part != '' and sq_recruit_part != null">
+				AND SQ_RECRUIT.SQ_RECRUIT_PART = #{sq_recruit_part}
+			</if>
+		ORDER BY DISTANCE
 	</select>
 </mapper>
 	
