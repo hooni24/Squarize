@@ -23,7 +23,6 @@ begin
 end DISTNACE_WGS84;
 
 
-
 /* Drop Tables */
 
 DROP TABLE SQ_AD CASCADE CONSTRAINTS;
@@ -369,7 +368,7 @@ INSERT INTO SQ_MEMBER VALUES ('1234', '123', '김말똥', 'a@a.a', '힙합', 'Y'
 INSERT INTO SQ_MEMBER VALUES ('qq', '123', '김양', 'a@a.a', '재즈', 'Y', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('nnn', '123', '김똥', 'a@a.a', '발라드', 'Y', null, 'Y');
 
-INSERT INTO SQ_MEMBER VALUES ('qwe', '123', '김똥1', 'a@a.a', '발라드', 'N', null, 'Y');
+INSERT INTO SQ_MEMBER VALUES ('qwe', '123', '김똥1', 'a@a.a', '발라드', 'N', null, 'N');
 INSERT INTO SQ_MEMBER VALUES ('asd', '123', '김똥2', 'a@a.a', '발라드', 'N', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('zxc', '123', '김똥3', 'a@a.a', '발라드', 'N', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('cxz', '123', '김똥4', 'a@a.a', '발라드', 'N', null, 'Y');
@@ -439,6 +438,23 @@ INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '쿵해쪄밴드', sys
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '콩해쪄밴드', sysdate+6, sysdate, sysdate+5, '같이해요', 'ex (18).jpg', 'ex (18).jpg', '광주광역시 북구', '재즈', '1', '1', 35.161672, 126.930463);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '한대맞자밴드', sysdate+10, sysdate, sysdate+8, '같이해요', 'ex (19).jpg', 'ex (19).jpg', '광주광역시 광산구', '힙합', '1', '1', 35.198365, 126.815705);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '두대맞자밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (20).jpg', 'ex (20).jpg', '광주광역시 남구', '발라드', '1', '1', 35.125081, 126.915018);
+
+
+
+INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, 'ss', '기타', '1988년 기타를 들고 태어남', '저는 많이 활약했어요', 'portFile (1).jpg', 'portMedia (1).MOV');
+INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, 'dd', '기타', '1989년 드럼을 들고 태어남', '저는 많이 활약했어요', 'portFile (2).jpg', 'portMedia (2).MOV');
+INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, '123', '기타', '1990년 키보드를 들고 태어남', '저는 많이 활약했어요', 'portFile (3).jpg', 'portMedia (3).MOV');
+
+
+
+--형님밴드 지원자들
+INSERT INTO sq_rent_apply VALUES(sq_rent_apply_id_sq.nextval, 1, 'dd');
+INSERT INTO sq_rent_apply VALUES(sq_rent_apply_id_sq.nextval, 1, 'ss');
+INSERT INTO sq_rent_apply VALUES(sq_rent_apply_id_sq.nextval, 1, '123');
+
+
+
+
 
 
 INSERT INTO sq_favorite VALUES('aa', '{"락":10, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );

@@ -165,7 +165,6 @@
 								var appendThing = '<article class="person list">';
 								appendThing += '<div class="left average-color">';
 								appendThing += '<figure class="person-image image">';
-								alert(item.sq_port_file);
 								if(item.sq_port_file == ""){
 									appendThing += '<img src="assets/img/person-01.jpg">';
 								}else {
