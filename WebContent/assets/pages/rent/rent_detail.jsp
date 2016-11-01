@@ -188,27 +188,6 @@
 						var humanList = resp.humanList;
 						var title = '<h1>지원자 목록</h1><div id="persons-list" class="content-container"><div class="inner">';
 						$("div#result").append(title);
-// 							$.each(humanList, function(index, item){
-// 								var appendThing = '<article class="person list">';
-// 								appendThing += '<div class="left average-color">';
-// 								appendThing += '<figure class="person-image image">';
-// 								if(item.sq_port_file == ""){
-// 									appendThing += '<img src="assets/img/person-01.jpg">';
-// 								}else {
-// 									appendThing += '<img src="assets/downloadIMG/port/'+item.sq_port_file+'">';
-// 								}
-// 								appendThing += '</figure>';
-// 								appendThing += '<aside class="number">'+item.sq_member_name+'</aside>';
-// 								appendThing += '<aside>아이디 : '+item.sq_member_id+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연락처 : '+item.sq_artist_phone+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이메일 : '+item.sq_member_email+'</aside>';
-// 								appendThing += '<h3>다루는 악기 - '+item.sq_port_inst+'</h3>';
-// 								appendThing += '<span class="detail">경력</span><textarea class="detail" rows="8" readonly>'+item.sq_port_career+'</textarea>';
-// 								appendThing += '<span class="detail">자기소개</span><textarea class="detail" rows="8" readonly>'+item.sq_port_pr+'</textarea>';
-// 								appendThing += '<a href="#result" id="toTitle">목록으로</a>';
-// 								appendThing += '</div>';
-// 								appendThing += '</article>';
-// 								$("div#result").append(appendThing);
-// 							});
-
 
 							$.each(humanList, function(index, item){
 								var appendThing = 	'<div id="big"><article class="person list">'
