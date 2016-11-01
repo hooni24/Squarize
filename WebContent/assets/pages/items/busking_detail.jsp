@@ -73,7 +73,7 @@
 <%--                            	<img src="<s:property value="SQ_busking.gallery"/>" alt=""> --%>
                            	
                           	<s:if test="SQ_busking.gallery != ''">
-							<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery"/>"></a>
+							<a href="javascript:imageChange()" class="picture"><img class="img" src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery"/>"></a>
                         	</s:if>
 							<s:if test="SQ_busking.gallery == ''">
 							<a href="javascript:imageChange()" class="picture"><img class="img" src="assets/img/default-item.png"></a>
@@ -92,9 +92,9 @@
                 <article class="sidebar">
                     <div class="person animate move_from_bottom_short">
                         <div class="inner average-color">
-                            <figure class="person-image">
-                                <img src="<s:property value="SQ_busking.gallery"/>" alt="">
-                            </figure>
+<!--                             <figure class="person-image"> -->
+<%--                                 <img src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery"/>" alt=""> --%>
+<!--                             </figure> -->
 <!--                             <header>Catherine Brown</header> -->
 <!--                             <a href="tel:818-832-5258">818-832-5258</a> -->
 <!--                             <a href="mailto:catherine.brown@example.com">catherine.brown@example.com</a> -->
@@ -102,7 +102,7 @@
 <!--                             <a href="#person-detail" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="person-detail">Show Details</a> -->
 							<div>
 								<s:if test="SQ_busking.gallery != ''">
-								<a href="javascript:imageChange()" class="picture"><img class="img" src="<s:property value="SQ_busking.gallery"/>"></a>
+								<a href="javascript:imageChange()" class="picture"><img class="img" src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery"/>"></a>
 	                        	</s:if>
 								<s:if test="SQ_busking.gallery == ''">
 								<a href="javascript:imageChange()" class="picture"><img class="img" src="assets/img/default-item.png"></a>
