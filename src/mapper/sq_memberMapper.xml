@@ -56,6 +56,12 @@
 		VALUES (sq_port_id_sq.nextval, #{sq_member_id}, #{sq_port_inst}, #{sq_port_career}, #{sq_port_pr}, #{sq_port_file}, #{sq_port_media})
 	</insert>
 	
+	<select id="applyPort" parameterType="int" resultType="SQ_portfolio">
+		SELECT *
+		FROM sq_portfolio
+		WHERE sq_port_id = #{sq_port_id}
+	</select>
+	
 	<select id="getArtistInfo" parameterType="String" resultType="SQ_artist">
 		SELECT *
 		FROM sq_artist

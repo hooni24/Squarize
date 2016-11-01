@@ -52,6 +52,33 @@
 		a.hidden{
 			display: none;
 		}
+		div#img_ib{
+			display: inline-block;
+			cursor: pointer;
+		}
+		article.person{
+			transition-duration: 0.4s;
+		}
+		article.person:hover{
+			background-color: #e6fff2;
+		}
+		div.vert{
+			font: bold 2em 맑은 고딕;
+		}
+		div#detail_apply{
+			font: 1.4em 맑은 고딕;
+		}
+		textarea#apply_ta{
+			background-color: transparent;
+			border: none;
+			margin: 8% 0;
+			border-bottom: 1px solid black;
+			width: 80%;
+			height: 150px;
+		}
+		span#span_title{
+			font-weight: bold;
+		}
 	</style>
 	
 	<script>
@@ -161,30 +188,120 @@
 						var humanList = resp.humanList;
 						var title = '<h1>지원자 목록</h1><div id="persons-list" class="content-container"><div class="inner">';
 						$("div#result").append(title);
+// 							$.each(humanList, function(index, item){
+// 								var appendThing = '<article class="person list">';
+// 								appendThing += '<div class="left average-color">';
+// 								appendThing += '<figure class="person-image image">';
+// 								if(item.sq_port_file == ""){
+// 									appendThing += '<img src="assets/img/person-01.jpg">';
+// 								}else {
+// 									appendThing += '<img src="assets/downloadIMG/port/'+item.sq_port_file+'">';
+// 								}
+// 								appendThing += '</figure>';
+// 								appendThing += '<aside class="number">'+item.sq_member_name+'</aside>';
+// 								appendThing += '<aside>아이디 : '+item.sq_member_id+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연락처 : '+item.sq_artist_phone+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이메일 : '+item.sq_member_email+'</aside>';
+// 								appendThing += '<h3>다루는 악기 - '+item.sq_port_inst+'</h3>';
+// 								appendThing += '<span class="detail">경력</span><textarea class="detail" rows="8" readonly>'+item.sq_port_career+'</textarea>';
+// 								appendThing += '<span class="detail">자기소개</span><textarea class="detail" rows="8" readonly>'+item.sq_port_pr+'</textarea>';
+// 								appendThing += '<a href="#result" id="toTitle">목록으로</a>';
+// 								appendThing += '</div>';
+// 								appendThing += '</article>';
+// 								$("div#result").append(appendThing);
+// 							});
+
+
 							$.each(humanList, function(index, item){
-								var appendThing = '<article class="person list">';
-								appendThing += '<div class="left average-color">';
-								appendThing += '<figure class="person-image image">';
-								if(item.sq_port_file == ""){
-									appendThing += '<img src="assets/img/person-01.jpg">';
-								}else {
-									appendThing += '<img src="assets/downloadIMG/port/'+item.sq_port_file+'">';
-								}
-								appendThing += '</figure>';
-								appendThing += '<aside class="number">'+item.sq_member_name+'</aside>';
-								appendThing += '<aside>아이디 : '+item.sq_member_id+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연락처 : '+item.sq_artist_phone+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이메일 : '+item.sq_member_email+'</aside>';
-								appendThing += '<h3>다루는 악기 - '+item.sq_port_inst+'</h3>';
-								appendThing += '<span class="detail">경력</span><textarea class="detail" rows="8" readonly>'+item.sq_port_career+'</textarea>';
-								appendThing += '<span class="detail">자기소개</span><textarea class="detail" rows="8" readonly>'+item.sq_port_pr+'</textarea>';
-								appendThing += '<a href="#result" id="toTitle">목록으로</a>';
-								appendThing += '</div>';
-								appendThing += '</article>';
+								var appendThing = 	'<div id="big"><article class="person list">'
+												+		'<input type="hidden" value="'+item.sq_port_id+'">'
+												+		'<div id="img_ib">'
+												+			'<figure class="person-image image">';
+												if(item.sq_port_file != ""){
+													appendThing += '<img src="assets/downloadIMG/port/'+item.sq_port_file+'">';
+												}else {
+													appendThing += '<img src="assets/img/person-01.jpg">';
+												}
+									appendThing	+=			'</figure>'
+												
+												+		'</div>'
+												+		'<div id="img_ib" class="vert closed">'
+												+			'<br><span id="apply_title">'
+												+				'<div id="img_ib"><figure class="person-image image">';
+												
+												if(item.sq_port_inst == '기타'){
+													appendThing +='<img src="assets/img/items/guitar.png">'
+												}else if(item.sq_port_inst == '드럼'){
+													appendThing +='<img src="assets/img/items/drum.png">'
+												}else if(item.sq_port_inst == '키보드'){
+													appendThing +='<img src="assets/img/items/keyboard.png">'
+												}else if(item.sq_port_inst == '보컬'){
+													appendThing +='<img src="assets/img/items/mic.png">'
+												}
+												
+									appendThing +=				'</figure></div>'
+												+				'&nbsp;&nbsp;&nbsp;이름 : ' + item.sq_member_name 
+												+				'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 : ' + item.sq_artist_phone
+												+			'</span>'
+												+		'</div>'
+												+	'</article></div>';
 								$("div#result").append(appendThing);
 							});
 						$("div#result").append('</div></div>');
 						location.href = "#result";
 					}
 				});
+			});
+			
+			//상세정보 클릭시 아래 붙이는 작업
+			$("div#result").on("click", "div#img_ib", function(){
+				var isClosed = $(this).hasClass("closed");
+				var targetPortId = $(this).parent().children().first().val();
+				var detail = "";
+				if(isClosed){
+					$.ajax({
+						url : "getApplyPort.action"
+						, method : "post"
+						, data : {"sq_portfolio.sq_port_id" : targetPortId}
+						, dataType : "json"
+						, async: false
+						, success : function(resp){
+							detail = 	'<div id="detail_apply">'
+									+		'<div><span id="span_title">지원자 약력</span>'
+									+			'<textarea id="apply_ta" readonly="readonly">' + resp.sq_portfolio.sq_port_career
+									+			'</textarea>'
+									+		'</div>'
+									+		'<div><span id="span_title">자기소개</span>'
+									+			'<textarea id="apply_ta" readonly="readonly">' + resp.sq_portfolio.sq_port_pr
+									+			'</textarea>'
+									+		'</div>'
+									+		'<div><span id="span_title">참고자료</span><br><br>';
+							var fullname = resp.sq_portfolio.sq_port_media;
+							var nameArray = fullname.split(".");
+							var ext = nameArray[nameArray.length - 1];
+							
+							if(ext=="mp3" || ext=="MP3" || ext=="ogg" || ext=="OGG" || ext=="wav" || ext=="WAV"){
+								detail +=	'<audio controls>'
+										+		'<source src="assets/downloadIMG/port/' + resp.sq_portfolio.sq_port_media + '" type="audio/mpeg">'
+										+	'</audio>'
+							}else if (ext=="mov" || ext=="MOV" || ext=="wmv" || ext=="WMV" || ext=="mp4" || ext=="MP4" || ext=="AVI" || ext=="avi" || ext=="MPEG" || ext=="mpeg"){
+								detail +=	'<video width="600" height="300" controls>'
+										+		'<source src="assets/downloadIMG/port/' + resp.sq_portfolio.sq_port_media + '" type="video/mp4">'
+										+	'</video>'
+							}
+									
+							detail +=	'</div>'
+									+	'</div>';
+						}
+						, error : function(){
+							alert("실패");
+						}
+					});
+					
+					$(this).parent().after(detail);
+					$(this).removeClass("closed");
+				}else {
+					$(this).addClass("closed");
+					$(this).parent().parent().children().last().remove();
+				}
 			});
 			
 			
