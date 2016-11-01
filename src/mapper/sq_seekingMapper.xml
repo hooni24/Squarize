@@ -53,6 +53,12 @@
 			SQ_M.SQ_MEMBER_ID = SQ_A.SQ_MEMBER_ID
 	</select>
 	
+	<select id="getAllMyApply" parameterType="String" resultType="SQ_recruit">
+		select * 
+		from sq_recruit 
+		where sq_recruit_id in (select sq_recruit_id from sq_recruit_apply where sq_member_id=#{loginId} )
+	</select>
+	
 	<insert id="insertSQrecruit" parameterType="SQ_recruit">
 		INSERT INTO sq_recruit
 		(sq_recruit_id, sq_member_id,sq_recruit_title,sq_recruit_input_date,sq_recruit_part,sq_recruit_photo,sq_recruit_photo_original,sq_recruit_genre,sq_recruit_date,sq_recruit_location,sq_recruit_latitude,sq_recruit_longitude,sq_recruit_info)

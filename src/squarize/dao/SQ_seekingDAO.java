@@ -72,6 +72,22 @@ public class SQ_seekingDAO {
 		return recruitList;
 	}*/
 	
+	public List<SQ_recruit> getAllMyApply(String loginId){
+		List<SQ_recruit> result=null;
+		try {
+			ss = factory.openSession();
+			result = ss.selectList("sq_seekingMapper.getAllMyApply", loginId);
+			System.out.println("result: " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ss.rollback();
+		} finally {
+			ss.commit();
+			ss.close();
+		}
+		return result;
+	}
+	
 	/**getAllRecruitApply()
 	 * o
 	 * */

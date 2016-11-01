@@ -254,7 +254,7 @@
 	                            <ul>
 	                                <li><a href="toPortfolio.action?fromWhere=seeking" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
 	                                <li><a href="#">내가 올린 글</a></li>
-			                        <li><a href="#">내 지원현황</a></li>
+			                        <li><a href="getAllMyApply.action">내 지원현황</a></li>
 	                            </ul>
 	                        </li>
 	                        <!-- 추가 메뉴 필요하면 아래 주석달린 li태그 참고해서 만드세요 -->
@@ -577,6 +577,8 @@
    					$("input#range_hidden").val(range);
 					$('form#search_form')[0].submit();
 				});	
+				
+				
 			});
 		</script>
 	
