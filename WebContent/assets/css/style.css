@@ -3111,8 +3111,3 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
 .show-filter{
 	color:#009cff !important;
 }
-img .smallLogo{
-    		display: inline-block;
-    		margin-top: -2.5%;
-    		width: 40%;
-}
