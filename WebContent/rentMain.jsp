@@ -329,7 +329,7 @@
                 <nav class="main">
                     <div class="brand">
                         <a href="index.action">
-                            <img src="img/smalllogo.png" alt="brand">
+                            <img class="smallLogo" src="img/smalllogo.png">
                         </a>
                     </div>
                     <ul>
