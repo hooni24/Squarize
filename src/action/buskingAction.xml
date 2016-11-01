@@ -27,7 +27,7 @@
 		</action>
 		
 		<action name="toAddBusking" class="squarize.action.SQ_buskingAction">
-			<interceptor-ref name="artistStack"></interceptor-ref>
+<!-- 			<interceptor-ref name="artistStack"></interceptor-ref> -->
 			<result>assets/pages/busking/add_busking.jsp</result>
 		</action>
 		

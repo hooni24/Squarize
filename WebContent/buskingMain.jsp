@@ -273,7 +273,7 @@
     <!--end Header-->
 
     <div class="page-content">
-        <div class="search collapse in" id="search-collapse"> <!-- 여기 class에서 in 을 뺏더니 접혀 있음. 나중에 문제 생기면 in 넣어야하는지 의심 -->
+        <div class="search collapse" id="search-collapse"> <!-- 여기 class에서 in 을 뺏더니 접혀 있음. 나중에 문제 생기면 in 넣어야하는지 의심 -->
             <div class="container">
                 <form class="main-search" role="form" method="post" action="#">
                     <div class="row">
