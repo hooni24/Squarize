@@ -440,21 +440,22 @@ INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '한대맞자밴드', 
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '두대맞자밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (20).jpg', 'ex (20).jpg', '광주광역시 남구', '발라드', '1', '1', 35.125081, 126.915018);
 
 --버스킹리스트
-INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '놀러오세요', 
-'홍대입구', '37.4464559', '126.4559563', 
-'사용안함', '발라드', 0, '대일밴드',
-'ex (3).jpg', 'ex (4).jpg', null, null, null, sysdate+1,
-120, '안녕하세요 적당히 바람이 시원해 기분이 너무 좋아요 유후!', sysdate+1+(1/24));
-INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '놀러오세요', 
-'홍대입구', '37.4464659', '126.4559763', 
-'사용안함', '발라드', 0, '취화선',
-'ex (2).jpg', 'ex (5).jpg', null, null, null, sysdate+2,
-120, '도조 요로시쿠 오네가이시마수', sysdate+2+(1/24));
-INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '놀러오세요', 
-'홍대입구', '37.555056', '126.925839', 
-'사용안함', '발라드', 0, '취화선',
-'ex (5).jpg', 'ex (6).jpg', null, null, null, sysdate,
-120, '도조 요로시쿠 오네가이시마수', sysdate+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '불타는 이밤', 
+'홍대입구', '37.541056', '126.929839', 
+'사용안함', '발라드', 0, '밴드 오브 브라더스',
+'ex (13).jpg', 'ex (14).jpg', null, null, null, sysdate+1,
+120, '반갑습니다', sysdate+1+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '오늘밤은 저희가 책임집니다.', 
+'홍대입구', '37.641056', '126.929839', 
+'사용안함', '발라드', 0, '밴드 오브 브라더스',
+'ex (15).jpg', 'ex (16).jpg', null, null, null, sysdate+3,
+120, '이길아선생님 짱', sysdate+3+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '불타는 이밤', 
+'홍대입구', '37.541056', '126.929839', 
+'사용안함', '발라드', 0, '밴드 오브 브라더스',
+'ex (13).jpg', 'ex (14).jpg', null, null, null, sysdate+1,
+120, '반갑습니다', sysdate+1+(2/24));
+
 
 
 --포트폴리오
