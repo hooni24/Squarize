@@ -9,6 +9,25 @@
 
     <package name="busking" namespace="/" extends="struts-default, json-default">
     
+    	<interceptors>
+        	<!-- 커스텀 인터셉터 -->
+        	<interceptor name="loginInterceptor" class="squarize.interceptor.LoginInterceptor" />
+        	<interceptor name="artistInterceptor" class="squarize.interceptor.ArtistInterceptor" />
+        	
+        	<!-- 커스텀 인터셉터 스택 -->
+			<interceptor-stack name="artistStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="loginInterceptor"/>
+				<interceptor-ref name="artistInterceptor"/>
+			</interceptor-stack>
+        </interceptors>
+
+        <global-results>
+			<result name="error">error.jsp</result>
+			<result name="login" type="redirect">index.action?toDo=login</result>
+			<result name="NO_ARTIST" type="redirect">index.action?toDo=makeArtist</result>
+		</global-results>
+    
 		<action name="toBuskingMain" >
 			<result>buskingMain.jsp</result>
 		</action>
@@ -27,7 +46,7 @@
 		</action>
 		
 		<action name="toAddBusking" class="squarize.action.SQ_buskingAction">
-<!-- 			<interceptor-ref name="artistStack"></interceptor-ref> -->
+			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result>assets/pages/busking/add_busking.jsp</result>
 		</action>
 		

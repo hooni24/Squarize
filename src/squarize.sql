@@ -451,7 +451,7 @@ INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '놀러오�
 'ex (2).jpg', 'ex (5).jpg', null, null, null, sysdate+2,
 120, '도조 요로시쿠 오네가이시마수', sysdate+2+(1/24));
 INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '놀러오세요', 
-'홍대입구', '37.4464859', '126.4559963', 
+'홍대입구', '37.555056', '126.925839', 
 '사용안함', '발라드', 0, '취화선',
 'ex (5).jpg', 'ex (6).jpg', null, null, null, sysdate,
 120, '도조 요로시쿠 오네가이시마수', sysdate+(2/24));
