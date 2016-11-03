@@ -23,6 +23,7 @@
   
     </style>
     
+    
     <title>SQUARIZE - BUSKING</title>
 	
 </head>
@@ -412,6 +413,21 @@
 
    //select box를 클릭했을 때 실행
    $(function(){
+	   
+		   var top=$('#header').height();
+		   alert(top);
+		   $('.page-content').css('padding-top',top+'px');
+	   //회원가입/정보수정/로그인시 고정된 헤더 relative로 아래 안움직이게
+	   $(".secondary #main-menu").click(function(){
+		   if($('#user-area').hasClass('in')){
+			   var height=$(window).height();
+			   alert(height);
+			   alert("hi");
+			   $('body').css('overflow','hidden');
+		   		alert("hi");
+		   }
+	   });
+	   
 	 //로그아웃
 		$("ul#main_menu").on("click", "a#main_logout", function(){
 			location.href = "logoutSQmember.action?fromWhere=busking";

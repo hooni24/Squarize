@@ -56,7 +56,7 @@
 	<select id="getAllMyApply" parameterType="String" resultType="SQ_recruit">
 		select * 
 		from sq_recruit 
-		where sq_recruit_id in (select sq_recruit_id from sq_recruit_apply where sq_member_id=#{loginId} )
+		where sq_recruit_id in (select sq_recruit_id from sq_recruit_apply where sq_member_id=#{loginId})
 	</select>
 	
 	<insert id="insertSQrecruit" parameterType="SQ_recruit">
@@ -126,8 +126,10 @@
 		SELECT * FROM sq_recruit WHERE sq_recruit_id=#{recruit_id}
 	</select>
 	
-	<select id="search_byKeyword" parameterType="SQ_recruit" resultType="SQ_recruit">
-		SELECT SQ_RECRUIT.SQ_RECRUIT_ID
+	<select id="search_byKeword" parameterType="SQ_recruit" resultType="SQ_recruit">
+		
+		SELECT 
+			SQ_RECRUIT.SQ_RECRUIT_ID
 			,SQ_RECRUIT.SQ_MEMBER_ID 
 			,SQ_RECRUIT.SQ_RECRUIT_TITLE
 			,TO_CHAR(sq_recruit.SQ_RECRUIT_INPUT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_INPUT_DATE"
@@ -140,26 +142,35 @@
 			,SQ_RECRUIT.SQ_RECRUIT_LATITUDE
 			,SQ_RECRUIT.SQ_RECRUIT_LONGITUDE
 			,SQ_RECRUIT.SQ_RECRUIT_INFO
-		FROM (SELECT * FROM SQ_RECRUIT) "SQ_RECRUIT",
-			 (SELECT * 
-				FROM (SELECT 
-						SQ_RECRUIT_ID
-			    		,DISTNACE_WGS84(#{sq_recruit_latitude},#{sq_recruit_longitude}
-			    		,SQ_RECRUIT_LATITUDE,SQ_RECRUIT_LONGITUDE) DISTANCE
-				  		FROM 
-				  			SQ_RECRUIT
-					  	WHERE 
-					  		(SQ_RECRUIT_LATITUDE BETWEEN #{sq_recruit_latitude}-#{range} AND #{sq_recruit_latitude}+#{range})
-				      	AND 
-				      		(SQ_RECRUIT_LONGITUDE BETWEEN #{sq_recruit_longitude}-#{range} AND #{sq_recruit_longitude}+#{range})
-					  	ORDER BY distance) TMP) DIST
-		WHERE 
+		FROM
+			(	<!-- 1 -->
+				SELECT * FROM SQ_RECRUIT) "SQ_RECRUIT"
+				, (	<!-- 2 -->
+					SELECT * 
+						FROM 
+							(	<!-- 3 -->
+								SELECT SQ_RECRUIT_ID
+							    ,DISTNACE_WGS84(#{sq_recruit_latitude},#{sq_recruit_longitude},SQ_RECRUIT_LATITUDE, SQ_RECRUIT_LONGITUDE
+						    ) "DISTANCE"	<!-- //3// -->
+				FROM 
+				  	SQ_RECRUIT
+				WHERE 
+				  	(SQ_RECRUIT_LATITUDE BETWEEN #{sq_recruit_latitude}-#{range} AND #{sq_recruit_latitude}+#{range})
+			      	AND 
+			      	(SQ_RECRUIT_LONGITUDE BETWEEN #{sq_recruit_longitude}-#{range} AND #{sq_recruit_longitude}+#{range}) ORDER BY DISTANCE)	<!-- //2// -->
+			      	 TMP)	<!-- //1// --> 
+			      	 DIST
+		WHERE
 			SQ_RECRUIT.SQ_RECRUIT_ID = DIST.SQ_RECRUIT_ID 
-		AND 
-			DISTANCE &lt;= #{range}
-		AND 
-			SQ_RECRUIT.SQ_RECRUIT_GENRE = #{sq_recruit_genre}
-        ORDER BY DISTANCE
+			AND 
+				DISTANCE &lt;= #{range}
+			<if test="sq_recruit_genre != '' and sq_recruit_genre != null">
+				AND SQ_RECRUIT.SQ_RECRUIT_GENRE = #{sq_recruit_genre}
+			</if>
+			<if test="sq_recruit_part != '' and sq_recruit_part != null">
+				AND SQ_RECRUIT.SQ_RECRUIT_PART = #{sq_recruit_part}
+			</if>
+		ORDER BY DISTANCE
 	</select>
 </mapper>
 	
