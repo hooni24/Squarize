@@ -441,7 +441,7 @@ INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '두대맞자밴드', 
 
 --버스킹리스트
 INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '불타는 이밤', 
-'홍대입구', '37.541056', '126.929839', 
+'홍대입구', '37.566756', '126.934539', 
 '사용안함', '발라드', 0, '밴드 오브 브라더스',
 'ex (13).jpg', 'ex (14).jpg', null, null, null, sysdate+1,
 120, '반갑습니다', sysdate+1+(2/24));
