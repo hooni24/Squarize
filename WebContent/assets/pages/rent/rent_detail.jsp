@@ -32,16 +32,6 @@
 			background-color: transparent;
 			cursor: text;
 		}
-		a.aRed{
-			text-decoration: none;
-			color: red;
-			background-color: white;
-		}
-		a.aBlack{
-			text-decoration: none;
-			color: black;
-			background-color: white;
-		}
 		a#realUpdate{
 			display: none;
 		}
@@ -78,6 +68,12 @@
 		}
 		span#span_title{
 			font-weight: bold;
+		}
+		a.img_a{
+			display: inline-block;
+			width: 14%;
+			height: auto;
+			cursor: pointer;
 		}
 	</style>
 	
@@ -361,7 +357,7 @@
                                 <img src="assets/downloadIMG/artist/${artist.sq_artist_photo }">
                             </s:if>
                             <s:else>
-                            	<img src="assets/img/person-01.jpg">
+                            	<img src="assets/img/person-02.jpg">
                             </s:else>
                             </figure>
                             <header>${rent.sq_member_id }</header>
@@ -408,17 +404,17 @@
                 <!--end Sidebar-->
                 <article class="center" id="test">
                     <s:if test="#session.loginId == rent.sq_member_id ">
-                    	<a class="btn btn-circle btn-lg btn_default aBlack" id="seeApply" class="seeApply">지원자 보기</a>&nbsp;&nbsp;&nbsp;
-                    	<a class="btn btn-circle btn-lg aBlack" id="update">수정</a>&nbsp;&nbsp;&nbsp;
-                    	<a class="btn btn-circle btn-lg aBlack" id="realUpdate">수정aa</a>&nbsp;&nbsp;&nbsp;
-                    	<a class="btn btn-circle btn-lg aRed" id="delete">삭제</a>
+                    	<a class="img_a" id="seeApply" class="seeApply"><img src="assets/img/icons/showList.png"></a>&nbsp;&nbsp;&nbsp;
+                    	<a class="img_a" id="update"><img src="assets/img/icons/update.png"></a>&nbsp;&nbsp;&nbsp;
+                    	<a class="img_a" id="realUpdate"><img src="assets/img/icons/writeContent.png">&nbsp;&nbsp;&nbsp;</a>
+                    	<a class="img_a" id="delete"><img src="assets/img/icons/deleteContent.png"></a>
                     </s:if>
                     <s:else>
 	                    <s:if test="rent_apply == null">
-		                    <a class="btn btn-circle btn-default btn-lg" id="rent_apply">지원</a>
+		                    <a class="img_a" id="rent_apply"><img src="assets/img/icons/apply.png"></a>
 	                    </s:if>
 	                    <s:else>
-		                    <a class="btn btn-circle btn-default btn-lg" id="rent_apply_cancel">지원취소</a>
+		                    <a class="img_a" id="rent_apply_cancel"><img src="assets/img/icons/applyCancel.png"></a>
 	                   </s:else>
                     </s:else>
                 </article>

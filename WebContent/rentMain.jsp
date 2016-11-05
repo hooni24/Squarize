@@ -29,11 +29,42 @@
 	    	border-radius: 35px;
 	    	margin-left: 87%;
     	}
+    	a#item_a{
+    		border-radius: 30px;
+    		overflow: hidden;
+    	}
+    	a#item_a:hover{
+    		border-radius: 30px;
+    		overflow: hidden;
+    	}
+    	img#item_img{
+    		filter: grayscale(70%);
+    		transition-duration: 0.4s;
+    	}
+    	div#ad_item{
+    		background-color: black;
+    		color: white;
+    		height: 70px;
+    		font: 1.3em 맑은 고딕;
+    	}
+    	span#ad_item_title{
+    		display: inline-block;
+    		margin-top: 20px;
+    	}
     </style>
     
     <script src="assets/js/jquery-2.1.0.min.js"></script>
     <script>
     	$(function(){
+    		//마우스오버시 필터 해제
+    		$("a#item_a").mouseover(function(){
+    			$(this).children().children().first().children().last().css("filter", "none");
+    		});
+    		//나가면 다시 필터 설정
+    		$("a#item_a").mouseleave(function(){
+    			$(this).children().children().first().children().last().css("filter", "grayscale(70%)");
+    		});
+    		
     		//로그아웃
     		$("ul#main_menu").on("click", "a#main_logout", function(){
 				location.href = "logoutSQmember.action";
@@ -477,15 +508,15 @@
 	                <div class="masonry grid animate">
 				        <s:iterator value="rentList" status="rentStatus">
 					        <div class="item move_from_bottom idle">
-					            <a href="toRentDetail.action?rent.sq_rent_id=${sq_rent_id }&rent.sq_rent_genre=${sq_rent_genre}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+					            <a href="toRentDetail.action?rent.sq_rent_id=${sq_rent_id }&rent.sq_rent_genre=${sq_rent_genre}" id="item_a" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
 					                <div class="inner">
 					                    <div class="image">
 					                        <div class="price average-color"><span>${sq_member_id }</span></div>
 					                        <s:if test="sq_rent_photo != ''">
-						                        <img src="assets/downloadIMG/rent/${sq_rent_photo }" alt="">
+						                        <img src="assets/downloadIMG/rent/${sq_rent_photo }" id="item_img" alt="">
 					                        </s:if>
 					                        <s:else>
-						                        <img src="assets/img/items/1.jpg" alt="">
+						                        <img src="assets/img/items/1.jpg" id="item_img" alt="">
 					                        </s:else>
 					                        
 					                    </div>
@@ -524,7 +555,7 @@
 								            <a href="${sq_ad_url }">
 								                <div class="inner">
 								                    <div class="image">
-								                        <div class="price average-color"><span>광고  <s:property value="count"/> </span></div>
+								                        <div class="price" id="ad_title"><span>광고</span></div>
 								                        <s:if test="sq_ad_file != ''">
 									                        <img src="assets/img/items/ad_photo/${sq_ad_file }" alt="">
 								                        </s:if>
@@ -533,10 +564,8 @@
 								                        </s:else>
 								                        
 								                    </div>
-								                    <div class="item-content">
-								                        <header class="average-color">
-								                            <h2>${sq_ad_title }</h2>
-								                        </header>
+								                    <div class="item-content" id="ad_item">
+							                            <span id="ad_item_title">&nbsp;&nbsp;&nbsp;${sq_ad_title }</span>
 								                    </div>
 								                    <!--end .item-content -->
 								                </div>

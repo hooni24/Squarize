@@ -206,15 +206,13 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	public String recruit_search_byKeyword() throws Exception {
 		System.out.println("구인검색 Action");
 		RangeCalc calc = new RangeCalc(range);
-		sq_recruit.setSq_recruit_latitude(calc.getLatRange()+"");
-		sq_recruit.setSq_recruit_longitude(calc.getLngRange()+"");
+		sq_recruit.setSq_recruit_latitude(calc.getLatRange());
+		sq_recruit.setSq_recruit_longitude(calc.getLngRange());
 		System.out.println(big_keyword+","+small_keyword);
-		if(!big_keyword.equals("") || (!big_keyword.equals("대분류")&&(!small_keyword.equals("")))){
-			if(big_keyword.equals("파트")){
-				sq_recruit.setSq_recruit_part(small_keyword);
-			} else {
-				sq_recruit.setSq_recruit_genre(small_keyword);
-			}
+		if(big_keyword.equals("파트")&&(!small_keyword.equals(""))){
+			sq_recruit.setSq_recruit_part(small_keyword);
+		} else if(big_keyword.equals("장르")&&(!small_keyword.equals(""))){
+			sq_recruit.setSq_recruit_genre(small_keyword);
 		}
 		sq_recruit.setRange(range);
 		System.out.println(sq_recruit);
