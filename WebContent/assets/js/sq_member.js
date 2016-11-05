@@ -3,6 +3,41 @@
  */
 $(function(){
 	
+			$('#search-collapse').removeClass("in");
+			 var top=$('#header').height();
+			   $('#search-collapse').css('top',top+'px');
+			 var search=$('#search-collapse').height();
+			 	$('.page-content').css('margin-top',top+search+10+"px");
+			 	
+			 $('.submit-button,.inner').click(function(){
+				 $('#search-collapse').removeClass("in");
+			 });
+		 /*  //회원가입/정보수정/로그인시 고정된 헤더 relative로 아래 안움직이게
+		  $(".secondary #main_menu *").click(function(){
+			   var h=$(window).height();
+			   alert(h);
+			   $('html, body').css({'overflow': 'hidden', 'height': '100%'});
+			   alert(2);
+		  });
+		  
+		   $('.close').click(function(){
+		   	$('html, body').css({'overflow': 'scroll', 'height': 'auto'});
+		   }); */
+		   
+		   //회원가입/정보수정/로그인시 스크롤을 내리면 회원가입 닫히게 하는 방법
+		   
+		  $("#main_menu *").click(function(){
+		       if(!($('#user-area').hasClass("in"))){
+		       	$(window).scroll(function(){
+		           	$('#user-area').removeClass("in");
+		           
+		
+		       	})
+		       	
+		       }
+			   
+		   });
+	
     		//로그인 ajax
     		$("button#sign-in-submit").on("click", function(){
     			var id = $("input#sign-in-id").val();
@@ -76,7 +111,6 @@ $(function(){
 				$('#id-check').css('color','black');
 				$('#register-id').css('color','black');
 				$('a#tab_login').trigger('click');
-				$()
     		});
     		
     		//회원가입

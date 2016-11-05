@@ -440,7 +440,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
     });
     function gMap(){
         if( $('body').hasClass('fullscreen-map') ) {
-            $('.map-wrapper #map').height( $(window).height() - $('header:first').height() - 1 - $('.page-content .search').height() );
+            $('.map-wrapper #map').height( $(window).height() - $('header:first').height() - 1 - $('.page-content .search').height()-$('.wrapper').height()-$('#b-content-loader').height() );
         }
         var mapCenter = new google.maps.LatLng(_latitude,_longitude);
         var mapOptions = {
