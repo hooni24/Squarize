@@ -29,7 +29,7 @@
   		text-align: center;
   		margin:0 auto;
   	}
-  	#map{
+  	.map-wrapper #map{
   		width:100%;
   		overflow:hidden;
   		margin-top:30px;
@@ -453,6 +453,7 @@
 		   /* $('.map-wrapper').removeClass("idle"); */
 		  /*  
 		   $('.map-wrapper').removeClass("grid"); */
+		   $('#map').css('display','none');
 		   
 	   });
 		   var top=$('#header').height();
@@ -540,7 +541,9 @@
 			   });
 	   });
  	});
-   
+   $('#close').click(function(){
+	   $('#map').css('display','block');
+   });
    //페이지가 시작되자마자 실행
    $.ajax({
       url : "toBuskingList"
