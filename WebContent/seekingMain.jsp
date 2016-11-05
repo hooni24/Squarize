@@ -366,7 +366,7 @@
 						<input type="hidden" id="big_" name="big_keyword">
 						<input type="hidden" name="sq_recruit.sq_recruit_latitude" id="lat_hidden">
 	                    <input type="hidden" name="sq_recruit.sq_recruit_longitude" id="lng_hidden">
-	                    <input type="hidden" name="range" id="range_hidden">
+	                    <input type="hidden" name="sq_recruit.range" id="range_hidden">
 					</form>
 					<!-- /.main-search -->
 				</div>
@@ -564,6 +564,7 @@
 	    				, success : function(resp){
 				    					lat = resp.results[0].geometry.location.lat;
 				    					lng = resp.results[0].geometry.location.lng;
+				    				//	alert(lat+","+lng);
 										$("input#small_").val(small);
 										$("input#big_").val(big);
 										$("input#lat_hidden").val(lat);

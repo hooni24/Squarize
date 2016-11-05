@@ -127,55 +127,40 @@
 	</select>
 	
 	<select id="search_byKeyword" parameterType="SQ_recruit" resultType="SQ_recruit">
-		<!-- SELECT SQ_RECRUIT.SQ_RECRUIT_ID
-			,SQ_RECRUIT.SQ_MEMBER_ID 
-			,SQ_RECRUIT.SQ_RECRUIT_TITLE
-			,TO_CHAR(SQ_RECRUIT.SQ_RECRUIT_INPUT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_INPUT_DATE"
-			,TO_CHAR(SQ_RECRUIT.SQ_RECRUIT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_DATE"
-			,SQ_RECRUIT.SQ_RECRUIT_PHOTO
-			,SQ_RECRUIT.SQ_RECRUIT_PHOTO_ORIGINAL
-			,SQ_RECRUIT.SQ_RECRUIT_PART
-			,SQ_RECRUIT.SQ_RECRUIT_GENRE
-			,SQ_RECRUIT.SQ_RECRUIT_LOCATION
-			,SQ_RECRUIT.SQ_RECRUIT_LATITUDE
-			,SQ_RECRUIT.SQ_RECRUIT_LONGITUDE
-			,SQ_RECRUIT.SQ_RECRUIT_INFO -->
-		SELECT * 
-		FROM SQ_RECRUIT,(SELECT *   
-								FROM 
-									(SELECT sq_recruit_id, DISTNACE_WGS84(#{sq_recruit_latitude},#{sq_recruit_longitude},SQ_RECRUIT_LATITUDE,SQ_RECRUIT_LONGITUDE) DISTANCE
-				  							FROM 
-				  								SQ_RECRUIT
-					  						WHERE 
-					  							(SQ_RECRUIT_LATITUDE BETWEEN #{sq_recruit_latitude}-#{range} AND #{sq_recruit_latitude}+#{range})
-				      						AND 
-				      							(SQ_RECRUIT_LONGITUDE BETWEEN #{sq_recruit_longitude}-#{range} AND #{sq_recruit_longitude}+#{range})
-					  						ORDER BY distance
-					  				) TMP
-					  			
-					  	) DIST			  	
-		WHERE 
-			SQ_RECRUIT.SQ_RECRUIT_ID = DIST.SQ_RECRUIT_ID 
-		AND 
-			DISTANCE &lt;= #{range}
-		AND 
-			SQ_RECRUIT_GENRE = #{sq_recruit_genre}
-        ORDER BY 
-        		DISTANCE;
-		<!-- <where> 
-			SQ_RECRUIT.SQ_RECRUIT_ID = DIST.SQ_RECRUIT_ID 
-		AND 
-			DISTANCE &lt;= #{range}
-			<if test="sq_recruit_genre != ''">
-				AND 
-					SQ_RECRUIT.SQ_RECRUIT_GENRE = #{sq_recruit_genre}
-			</if>
-			<if test="sq_recruit_part != ''">
-				AND 
-					SQ_RECRUIT.SQ_RECRUIT_part = #{sq_recruit_part}
-			</if>
+	 SELECT RECRUIT.SQ_RECRUIT_ID
+			,RECRUIT.SQ_MEMBER_ID 
+			,RECRUIT.SQ_RECRUIT_TITLE
+			,TO_CHAR(RECRUIT.SQ_RECRUIT_INPUT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_INPUT_DATE"
+			,TO_CHAR(RECRUIT.SQ_RECRUIT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_DATE"
+			,RECRUIT.SQ_RECRUIT_PHOTO
+			,RECRUIT.SQ_RECRUIT_PHOTO_ORIGINAL
+			,RECRUIT.SQ_RECRUIT_PART
+			,RECRUIT.SQ_RECRUIT_GENRE
+			,RECRUIT.SQ_RECRUIT_LOCATION
+			,RECRUIT.SQ_RECRUIT_LATITUDE
+			,RECRUIT.SQ_RECRUIT_LONGITUDE
+			,RECRUIT.SQ_RECRUIT_INFO
+		FROM (SELECT * FROM SQ_RECRUIT) "RECRUIT"
+         	 ,(SELECT * FROM 
+                    		(SELECT SQ_RECRUIT_ID, DISTNACE_WGS84( #{sq_recruit_latitude}, #{sq_recruit_longitude} , SQ_RECRUIT_LATITUDE, SQ_RECRUIT_LONGITUDE ) "DISTANCE"
+                     				FROM SQ_RECRUIT
+                     				WHERE (SQ_RECRUIT_LATITUDE BETWEEN #{sq_recruit_latitude}-#{latRange} AND #{sq_recruit_latitude}+#{latRange})
+                     				AND (SQ_RECRUIT_LONGITUDE BETWEEN #{sq_recruit_longitude}-#{lngRange} AND #{sq_recruit_longitude}+#{lngRange})
+                     				ORDER BY DISTANCE
+                     		) "TMP"
+          	   ) "DIST"
+		<where> RECRUIT.SQ_RECRUIT_ID = DIST.SQ_RECRUIT_ID 
+			AND 
+				DISTANCE &lt;= #{range}
+			
+				<if test="sq_recruit_genre != ''">
+					AND SQ_RECRUIT_GENRE = #{sq_recruit_genre}
+				</if>
+				<if test="sq_recruit_part != ''">
+					AND SQ_RECRUIT_PART = #{sq_recruit_part}
+				</if>
 		</where>
-        ORDER BY DISTANCE -->
+      	ORDER BY DISTANCE
 	</select>
 	
 </mapper>

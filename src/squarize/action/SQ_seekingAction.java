@@ -39,7 +39,6 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private SQ_recruit_apply sq_recruit_apply;
 	private SQ_portfolio sq_portfolio;
 	private int result;
-	private int range;	// 검색반경
 	private String small_keyword;	//recruit_search소분류
 	private String big_keyword;		//recruit_search대분류
 	
@@ -193,7 +192,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		}
 	}
 	
-	//구인정보 검색
+	//구인정보리스트
 	public String getAllMyApply() throws Exception {
 		System.out.println("지원내역 보기 ");
 		SQ_seekingDAO dao=new SQ_seekingDAO();
@@ -203,18 +202,18 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
+	//구인 정보 검색
 	public String recruit_search_byKeyword() throws Exception {
 		System.out.println("구인검색 Action");
-		RangeCalc calc = new RangeCalc(range);
-		sq_recruit.setSq_recruit_latitude(calc.getLatRange());
-		sq_recruit.setSq_recruit_longitude(calc.getLngRange());
+		RangeCalc calc = new RangeCalc(sq_recruit.getRange());
+		sq_recruit.setLatRange(calc.getLatRange());
+		sq_recruit.setLngRange(calc.getLngRange());
 		System.out.println(big_keyword+","+small_keyword);
 		if(big_keyword.equals("파트")&&(!small_keyword.equals(""))){
 			sq_recruit.setSq_recruit_part(small_keyword);
 		} else if(big_keyword.equals("장르")&&(!small_keyword.equals(""))){
 			sq_recruit.setSq_recruit_genre(small_keyword);
 		}
-		sq_recruit.setRange(range);
 		System.out.println(sq_recruit);
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		sq_recruit_list = dao.search_recruit(sq_recruit);
@@ -348,12 +347,4 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		this.big_keyword = big_keyword;
 	}
 
-	public int getRange() {
-		return range;
-	}
-
-	public void setRange(int range) {
-		this.range = range;
-	}
-	
 }
