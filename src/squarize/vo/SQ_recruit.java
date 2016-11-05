@@ -11,8 +11,8 @@ public class SQ_recruit {
 	private String sq_recruit_genre="";	//구인중인 장르
 	private String sq_recruit_date="";	//구인정보 공연날짜
 	private String sq_recruit_location="";	//구인정보 공연장소
-	private String sq_recruit_latitude="";	//구인정보 위도
-	private String sq_recruit_longitude="";	//구인정보 경도
+	private double sq_recruit_latitude;	//구인정보 위도
+	private double sq_recruit_longitude;	//구인정보 경도
 	private String sq_recruit_info="";		//구인정보 소개글 내용
 	private int range;		//검색시 반경
 	
@@ -20,7 +20,7 @@ public class SQ_recruit {
 	
 	public SQ_recruit(int sq_recruit_id, String sq_member_id, String sq_recruit_title, String sq_recruit_input_date,
 			String sq_recruit_part, String sq_recruit_photo, String sq_recruit_photo_original, String sq_recruit_genre,
-			String sq_recruit_date, String sq_recruit_location, String sq_recruit_latitude, String sq_recruit_longitude,
+			String sq_recruit_date, String sq_recruit_location, double sq_recruit_latitude, double sq_recruit_longitude,
 			String sq_recruit_info, int range) {
 		super();
 		this.sq_recruit_id = sq_recruit_id;
@@ -38,7 +38,6 @@ public class SQ_recruit {
 		this.sq_recruit_info = sq_recruit_info;
 		this.range = range;
 	}
-
 
 	public int getSq_recruit_id() {
 		return sq_recruit_id;
@@ -112,19 +111,19 @@ public class SQ_recruit {
 		this.sq_recruit_location = sq_recruit_location;
 	}
 	
-	public String getSq_recruit_latitude() {
+	public double getSq_recruit_latitude() {
 		return sq_recruit_latitude;
 	}
 
-	public void setSq_recruit_latitude(String sq_recruit_latitude) {
-		this.sq_recruit_latitude = sq_recruit_latitude;
-	}
-
-	public String getSq_recruit_longitude() {
+	public double getSq_recruit_longitude() {
 		return sq_recruit_longitude;
 	}
 
-	public void setSq_recruit_longitude(String sq_recruit_longitude) {
+	public void setSq_recruit_latitude(double sq_recruit_latitude) {
+		this.sq_recruit_latitude = sq_recruit_latitude;
+	}
+
+	public void setSq_recruit_longitude(double sq_recruit_longitude) {
 		this.sq_recruit_longitude = sq_recruit_longitude;
 	}
 
@@ -135,18 +134,15 @@ public class SQ_recruit {
 	public void setSq_recruit_info(String sq_recruit_info) {
 		this.sq_recruit_info = sq_recruit_info;
 	}
-	
 
 	public String getSq_recruit_photo_original() {
 		return sq_recruit_photo_original;
 	}
 
-
 	public void setSq_recruit_photo_original(String sq_recruit_photo_original) {
 		this.sq_recruit_photo_original = sq_recruit_photo_original;
 	}
 
-	
 	public int getRange() {
 		return range;
 	}
