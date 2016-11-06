@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sq_seekingMapper">
 
-	<select id="selectAll_sq_recruit" resultType="SQ_recruit">
+	<select id="selectAll_sq_recruit" parameterType="SQ_recruit" resultType="SQ_recruit">
 		SELECT 
 			SQ_RECRUIT_ID
 			,SQ_MEMBER_ID 
@@ -20,7 +20,20 @@
 		FROM 
 			SQ_RECRUIT
 		ORDER BY 
-			SQ_RECRUIT_ID DESC
+			<if test="sq_recruit_info == 'inst'">
+			(CASE SQ_RECRUIT_PART WHEN #{sq_recruit_part} THEN 1 ELSE 2 END)
+			,(CASE SQ_RECRUIT_GENRE WHEN #{sq_recruit_genre} THEN 1 ELSE 2 END)
+			,SQ_RECRUIT_PART
+			,SQ_RECRUIT_GENRE
+			,SQ_RECRUIT_ID
+			</if>
+			<if test="sq_recruit_info =='genre'">
+			(CASE SQ_RECRUIT_GENRE WHEN #{sq_recruit_genre} THEN 1 ELSE 2 END)
+			,(CASE SQ_RECRUIT_PART WHEN #{sq_recruit_part} THEN 1 ELSE 2 END)
+			,SQ_RECRUIT_GENRE
+			,SQ_RECRUIT_PART
+			,SQ_RECRUIT_ID
+			</if>
 	</select>
 	
 	<select id="AllRecruitApply" parameterType="int" resultType="SQ_human">

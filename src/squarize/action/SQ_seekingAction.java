@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.core.async.DaemonThreadFactory;
 import org.apache.struts2.interceptor.SessionAware;
+import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import squarize.dao.SQ_rentDAO;
 import squarize.dao.SQ_seekingDAO;
 import squarize.util.FileService;
 import squarize.util.RangeCalc;
+import squarize.vo.SQ_favorite;
 import squarize.vo.SQ_human;
 import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
@@ -41,6 +41,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	private int result;
 	private String small_keyword;	//recruit_search소분류
 	private String big_keyword;		//recruit_search대분류
+//	private JSONObject favorites;
 	
 	private String loginId;
 	private SQ_seekingDAO sdao=new SQ_seekingDAO(); 
@@ -53,8 +54,9 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	//구인정보리스트
 	public String selectAll_SQ_recruit() throws Exception {
 		System.out.println("구인정보 리스트 갖고오기 - Action");
+		loginId = (String)session.get("loginId"); 
 		SQ_seekingDAO dao = new SQ_seekingDAO();
-		sq_recruit_list = (List<SQ_recruit>)dao.selectAll_sq_recruit();
+		sq_recruit_list = (List<SQ_recruit>)dao.selectAll_sq_recruit(loginId);
 		System.out.println("recruit_list : "+sq_recruit_list);
 		return SUCCESS;
 	}
@@ -63,7 +65,8 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	public String selectOne_SQ_recruit_artist() throws Exception {
 		System.out.println("구인 상세정보 갖고오기 - Action : " + sq_recruit_artist.getSq_recruit_id());
 		SQ_seekingDAO dao = new SQ_seekingDAO();
-		sq_recruit_artist = dao.selectOne_sq_recruit_artist(sq_recruit_artist.getSq_recruit_id());
+		sq_recruit_artist.setSq_recruit_info((String)session.get("loginId"));
+		sq_recruit_artist = dao.selectOne_sq_recruit_artist(sq_recruit_artist);
 		return SUCCESS;
 	}
 
@@ -93,8 +96,6 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		sdao.insertSQrecruit(sq_recruit);
 		return SUCCESS;
 	}
-	
-
 	
 	public String AllRecruitApply() throws Exception{
 		System.out.println("지원자리스트"+sq_recruit);
@@ -202,20 +203,29 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
-	//구인 정보 검색
+	//구인 정보 검색(검색 단어로 favorite등록 후, 검색 결과 보여주기.)
 	public String recruit_search_byKeyword() throws Exception {
 		System.out.println("구인검색 Action");
+		SQ_seekingDAO dao = new SQ_seekingDAO();
+
 		RangeCalc calc = new RangeCalc(sq_recruit.getRange());
-		sq_recruit.setLatRange(calc.getLatRange());
 		sq_recruit.setLngRange(calc.getLngRange());
+		sq_recruit.setLatRange(calc.getLatRange());
 		System.out.println(big_keyword+","+small_keyword);
-		if(big_keyword.equals("파트")&&(!small_keyword.equals(""))){
-			sq_recruit.setSq_recruit_part(small_keyword);
+
+		loginId = (String)session.get("loginId");
+		sq_recruit.setSq_member_id(loginId);
+		
+		if(big_keyword.equals("파트")&&(!small_keyword.equals(""))){		//검색이 part로 이뤄졌을 경우.
+			
+			sq_recruit.setSq_recruit_part(small_keyword);							
+		
 		} else if(big_keyword.equals("장르")&&(!small_keyword.equals(""))){
+			
 			sq_recruit.setSq_recruit_genre(small_keyword);
 		}
+		
 		System.out.println(sq_recruit);
-		SQ_seekingDAO dao = new SQ_seekingDAO();
 		sq_recruit_list = dao.search_recruit(sq_recruit);
 		System.out.println(sq_recruit_list);
 		return SUCCESS;

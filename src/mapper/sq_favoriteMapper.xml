@@ -14,7 +14,13 @@
 		WHERE sq_member_id = #{sq_member_id}
 	</update>
 	
-	
+	<update id="setFavorite" parameterType="SQ_favorite">
+		UPDATE SQ_FAVORITE
+		SET SQ_FAVORITE_INST = #{sq_favorite_inst}
+			,SQ_FAVORITE_GENRE = #{sq_favorite_genre}
+		WHERE SQ_MEMBER_ID = #{sq_member_id}
+	</update>
+
 	<select id="getAdByFavorite" parameterType="String" resultType="SQ_ad">
 		SELECT *
 		FROM sq_ad

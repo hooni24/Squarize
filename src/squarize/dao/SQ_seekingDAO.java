@@ -6,8 +6,12 @@ import javax.el.PropertyNotFoundException;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import squarize.util.MybatisConfig;
+import squarize.vo.SQ_favorite;
 import squarize.vo.SQ_human;
 import squarize.vo.SQ_portfolio;
 import squarize.vo.SQ_recruit;
@@ -24,23 +28,95 @@ public class SQ_seekingDAO {
 	}
 	
 	// 구인정보 모두 불러오기
-	public List<SQ_recruit> selectAll_sq_recruit(){
-		/*factory = MybatisConfig.getSqlSessionFactory();*/
-		ss = factory.openSession();
-		List<SQ_recruit> sq_recruit_list = ss.selectList("sq_seekingMapper.selectAll_sq_recruit");
-		System.out.println("DAO"+sq_recruit_list);
+	public List<SQ_recruit> selectAll_sq_recruit(String loginId){
+		List<SQ_recruit> sq_recruit_list = null;
+		SQ_favorite favorite = this.selectFavorite(loginId);	//아이디에 따른 favorite 갖고 옴.
+		JSONObject jsonGenre, jsonInst;
+		String max_genre = "", max_inst = "";
+		int genreMaxCount = 0, instMaxCount = 0;
+		int genreMaxIndex = 0, instMaxIndex = 0;
+		try {
+			jsonGenre = new JSONObject(favorite.getSq_favorite_genre());
+			System.out.println(jsonGenre);
+			int[] genreCounts = {jsonGenre.getInt("락"),jsonGenre.getInt("발라드"),jsonGenre.getInt("재즈"), jsonGenre.getInt("힙합")};
+			for(int i = 0 ; i < genreCounts.length; i++) {
+				if(genreCounts[i] > genreMaxCount){
+					genreMaxCount = genreCounts[i];
+					genreMaxIndex = i;
+				}
+			}
+			switch(genreMaxIndex) {
+			case 0 : max_genre = "락";	break;
+			case 1 : max_genre = "발라드";break;
+			case 2 : max_genre = "재즈";	break;
+			case 3 : max_genre = "힙합";	break;
+			}
+			
+			jsonInst = new JSONObject(favorite.getSq_favorite_inst());
+			System.out.println(jsonInst);
+			int[] instCounts = {jsonInst.getInt("보컬"),jsonInst.getInt("기타"),jsonInst.getInt("키보드"),jsonInst.getInt("드럼")};
+			for(int i = 0; i < instCounts.length; i++){
+				if(instCounts[i] > instMaxCount){
+					instMaxCount = instCounts[i];
+					instMaxIndex = i;
+				}
+			}
+			switch(instMaxIndex){
+			case 0 : max_inst = "보컬";	break;
+			case 1 : max_inst = "기타";	break;
+			case 2 : max_inst = "키보드";	break;
+			case 3 : max_inst = "드럼";	break;
+			}
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		}
+		SQ_recruit temp = new SQ_recruit();
+		temp.setSq_recruit_part(max_inst);
+		temp.setSq_recruit_genre(max_genre);
+		
+		//구직이므로 파트에 우선순위 두기.(좀 더 정확히 세분화해야함.)
+		if(genreMaxCount > instMaxCount) {	// 장르가 더 높으면 장르 뽑아오기.
+			ss = factory.openSession();
+			temp.setSq_recruit_info("genre");
+			sq_recruit_list = ss.selectList("sq_seekingMapper.selectAll_sq_recruit",temp);
+		} else {							// 그 외엔 파트로 뽑아 오기.
+			ss = factory.openSession();
+			temp.setSq_recruit_info("inst");
+			sq_recruit_list = ss.selectList("sq_seekingMapper.selectAll_sq_recruit",temp);
+		}
+		System.out.println("DAO : "+sq_recruit_list);
 		if(ss!=null) ss.close();
 		return sq_recruit_list;
 	}
+	
 	// 썸네일 클릭시 해당 구인상세정보 불러오기
-	public SQ_recruit_artist selectOne_sq_recruit_artist(int sq_recruit_id){
+	public SQ_recruit_artist selectOne_sq_recruit_artist(SQ_recruit_artist temp){
 		SQ_recruit_artist sq_recruit_artist = null;
 //		factory = MybatisConfig.getSqlSessionFactory();
+		SQ_favorite favorite = this.selectFavorite(temp.getSq_recruit_info());
+		JSONObject jsonInst = null;
+		JSONObject jsonGenre = null;
+		try {
+			jsonInst = new JSONObject(favorite.getSq_favorite_inst());
+			jsonGenre = new JSONObject(favorite.getSq_favorite_genre());
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		}
 		ss = factory.openSession();
 		try {
-			sq_recruit_artist = ss.selectOne("sq_seekingMapper.selectOne_sq_recruit_artist",sq_recruit_id);
+			sq_recruit_artist = ss.selectOne("sq_seekingMapper.selectOne_sq_recruit_artist",temp.getSq_recruit_id());
+			System.out.println("구인상세정보 selected : " + sq_recruit_artist);
+			jsonInst.put(sq_recruit_artist.getSq_recruit_part(), jsonInst.getInt(sq_recruit_artist.getSq_recruit_part())+1);
+			jsonGenre.put(sq_recruit_artist.getSq_recruit_genre(), jsonGenre.getInt(sq_recruit_artist.getSq_recruit_genre())+1);
+			favorite.setSq_favorite_inst(jsonInst.toString());
+			favorite.setSq_favorite_genre(jsonGenre.toString());
+			ss.update("sq_favoriteMapper.setFavorite", favorite);
+			ss.commit();
 		} catch (PropertyNotFoundException e) {
 			System.out.println("존재하지 않는 파일 - 확인 필요함.");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if(ss != null) {
 				ss.close();
@@ -187,10 +263,41 @@ public class SQ_seekingDAO {
 	
 	public List<SQ_recruit> search_recruit(SQ_recruit sq_recruit){
 		List<SQ_recruit> list = null;
+		SQ_favorite favorite = this.selectFavorite(sq_recruit.getSq_member_id());
+		try {
+			if(!sq_recruit.getSq_recruit_part().equals("")) {
+				JSONObject pre_inst = new JSONObject(favorite.getSq_favorite_inst());
+				int inst_count = pre_inst.getInt(sq_recruit.getSq_recruit_part());		//JSON객체로 바꾼 part의 횟수정보를 갖고 옴.
+				++inst_count;															//횟수에 +1 해줌.
+				pre_inst.put(sq_recruit.getSq_recruit_part(), inst_count);
+				favorite.setSq_favorite_inst(pre_inst.toString());
+
+			} else if(!sq_recruit.getSq_recruit_genre().equals("")) {
+				JSONObject pre_genre = new JSONObject(favorite.getSq_favorite_genre());
+				int genre_count = pre_genre.getInt(sq_recruit.getSq_recruit_genre());	//JSON객체로 바꾼 genre의 횟수정보를 갖고 옴.
+				++genre_count;															//횟수에 +1 해줌.
+				pre_genre.put(sq_recruit.getSq_recruit_genre(), genre_count);
+				favorite.setSq_favorite_inst(pre_genre.toString());
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}	
+		
+		System.out.println(favorite);
 		ss = factory.openSession();
+		ss.update("sq_favoriteMapper.setFavorite", favorite);
+		ss.commit();
 		list = ss.selectList("sq_seekingMapper.search_byKeyword", sq_recruit);
 		if(ss != null) ss.close();
 		return list;
+	}
+		
+	public SQ_favorite selectFavorite(String sq_member_id){
+		SQ_favorite favorites = null;
+		ss = factory.openSession();
+		favorites = ss.selectOne("sq_favoriteMapper.getFavorite",sq_member_id);
+		if(ss != null) ss.close();
+		return favorites;
 	}
 	
 	/*public static void main(String[] args) {
