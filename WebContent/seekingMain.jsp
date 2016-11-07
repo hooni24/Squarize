@@ -391,15 +391,15 @@
 					<div class="masonry grid animate">
 						<s:iterator value="sq_recruit_list" status="each_recruit">
 							<div class="item move_from_bottom idle">
-								<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
+								<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" id="item_a" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
 					              	<div class="inner">
 					                    <div class="image">
 					                        <div class="price average-color"><span>${sq_member_id}</span></div>
 					                        <s:if test="sq_recruit_photo == ''">
-					                        	<img src="assets/img/main/seeking.jpg">
+					                        	<img src="assets/img/main/seeking.jpg" id="item_img">
 					                        </s:if>
 					                        <s:else>
-					                        	<%-- <img src="${sq_recruit_photo}" alt=""><!-- 소스에는 사진 --> --%>
+					                        	<%-- <img src="${sq_recruit_photo}" id="item_img"><!-- 소스에는 사진 --> --%>
 					                    	</s:else>
 					                    </div>
 					                    <div class="item-content">
@@ -499,6 +499,16 @@
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 
 		<script>
+		
+			//마우스오버시 필터 해제
+			$("a#item_a").mouseover(function(){
+				$(this).children().children().first().children().last().css("filter", "none");
+			});
+			//나가면 다시 필터 설정
+			$("a#item_a").mouseleave(function(){
+				$(this).children().children().first().children().last().css("filter", "grayscale(70%)");
+			});
+		
 			
 			$("ul#main_menu").on("click", "a#main_logout", function(){
 				location.href = "logoutSQmember.action";

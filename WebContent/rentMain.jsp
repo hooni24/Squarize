@@ -502,7 +502,7 @@
 						                        <img src="assets/downloadIMG/rent/${sq_rent_photo }" id="item_img" alt="">
 					                        </s:if>
 					                        <s:else>
-						                        <img src="assets/img/items/1.jpg" id="item_img" alt="">
+						                        <img src="assets/img/items/default.png" id="item_img" alt="">
 					                        </s:else>
 					                        
 					                    </div>
