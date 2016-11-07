@@ -505,15 +505,15 @@
 			});
 				
 			$(function(){
-				$('#search-collapse').removeClass("in");
+				/* $('#search-collapse').removeClass("in"); */
 				 var top=$('#header').height();
 				   $('#search-collapse').css('top',top+'px');
 				 var search=$('#search-collapse').height();
 				 	$('.page-content').css('margin-top',top+search+10+"px");
 				 	
-				 $('.submit-button,.inner').click(function(){
+				/*  $('.submit-button,.inner').click(function(){
 					 $('#search-collapse').removeClass("in");
-				 });
+				 }); */
 			  /*  //회원가입/정보수정/로그인시 고정된 헤더 relative로 아래 안움직이게
 			   $(".secondary #main_menu *").click(function(){
 				   var h=$(window).height();
