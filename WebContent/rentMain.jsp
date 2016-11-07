@@ -51,6 +51,10 @@
     		display: inline-block;
     		margin-top: 20px;
     	}
+    	#divBtn {
+    		width: auto;
+    		margin-top: 20px;
+    	}
     </style>
     
     <script src="assets/js/jquery-2.1.0.min.js"></script>
@@ -83,19 +87,19 @@
 // 				});
 			});
     		
-    		var visible = true;
-    		//돋보기 있다없다
-    		$("a#filter").on("click", function(){
-    			if(visible){
-    				$("a.search_icon").addClass("hidden");
-    			}else {
-    				$("a.search_icon").removeClass("hidden");
-    			}
-    			visible = !visible;
-    		}); 
+//     		var visible = true;
+//     		//돋보기 있다없다
+//     		$("a#filter").on("click", function(){
+//     			if(visible){
+//     				$("a.search_icon").addClass("hidden");
+//     			}else {
+//     				$("a.search_icon").removeClass("hidden");
+//     			}
+//     			visible = !visible;
+//     		}); 
     		
     		//게시글 검색
-    		$("a.search_icon").on("click", function(){
+    		$("button#searchBtn").on("click", function(){
     			var genre = $("select#genre").val();
     			var concert_date_begin = $("input#concert_date_begin").val();
     			var concert_date_end = $("input#concert_date_end").val();
@@ -401,7 +405,7 @@
         <!--end .container-->
         <div class="container">
             <div class="submit-container">
-                <a class="btn btn-default btn-sm show-filter search_icon" ><input type="image" src="assets/img/search.png"></a>
+<!--                 <a class="btn btn-default btn-sm show-filter search_icon" ><input type="image" src="assets/img/search.png"></a> -->
                 <a href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse" id="filter">Search Filter</a>
                 <a href="toAddRent.action" class="submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true"><i><img src="assets/img/plus.png" alt=""></i></a>
             </div>
@@ -453,7 +457,7 @@
                             <!-- .row -->
                         </div>
                         <!-- col-md-3 col-sm-3 -->
-                        <div class="col-md-3 col-sm-3">
+                        <div class="col-md-2 col-sm-2">
                             <div class="form-group">
                                 <label for="location">지역</label>
                                 <div class="input-group location">
@@ -466,9 +470,9 @@
                             <!-- /.form-group -->
                         </div>
                         <!-- col-md-3 col-sm-3 -->
-                        <div class="col-md-3 col-sm-3">
+                        <div class="col-md-2 col-sm-2">
                             <div class="form-group">
-                                <label>반경</label>
+                                <label>반경설정</label>
                                 <div class="ui-slider" id="price-slider" data-value-min="3" data-value-max="15" data-value-type="price" data-currency="km" data-currency-placement="after">
                                     <div class="values clearfix">
                                         <input class="value-max" id="range" readonly>
@@ -478,7 +482,17 @@
                             </div>
                             <!-- /.form-group -->
                         </div>
-                        <!--/.col-md-3 col-sm-3-->
+                        <!--/.col-md-2 col-sm-2-->
+                        
+                        <div class="col-md-3 col-sm-3" id="divBtn">
+							<div class="form-group">
+								<div class="input-group counter" id="divSubmitBtn">
+									<button id="searchBtn" class="form-control">검색</button>	<!-- 검색버튼 -->
+                                </div>
+							</div>
+							<!-- /.form-group -->
+						</div>
+                        
                     </div>
                     <!--/.row-->
                     
@@ -502,7 +516,6 @@
                 </div>
                 <!--end Content Loader-->
                 
-                <div class="page-content">
                 
                 
 	                <div class="masonry grid animate">
@@ -591,7 +604,6 @@
        	
     </div>
     <!--end Page Content-->
-</div>
 <!-- end Page Wrapper -->
 
 <div class="loadingpage loading">
