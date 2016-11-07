@@ -46,6 +46,20 @@
   		left:0;
   	}
   	
+  	#bandName{
+  		padding-bottom: 5px;
+  	}
+  	
+  	#first_div {
+        margin-right: -130px;
+     }
+     
+     #search{
+        margin-bottom: -10px !important;
+     }
+     #reset{
+        margin-bottom: -10px !important;
+     }
     </style>
     
     <title>SQUARIZE - BUSKING</title>
@@ -335,14 +349,43 @@
                             </div>
                             <!-- /.form-group -->
                         </div>
-                          <div class="col-md-3 col-sm-3">
+                        
+                        <div class="col-md-2 col-sm-2">
+                             <div class="form-group">
+                                <label for="type">Band</label><br>
+                             	<input type="text" class="animate" id="bandName">
+                             </div>
+                        </div>
+<!--                             /.form-group -->
+                        
+<!--                           <div class="col-md-3 col-sm-3"> -->
+<!--                             <div class="form-group abc"> -->
+<!--                             	 <br> -->
+<!--                             <a href="#search-collapse" id="search" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">검색</a> -->
+<!--                             </div> -->
+<!-- 		                   </div> -->
+		                            
+<!--                           <div class="col-md-3 col-sm-3"> -->
+<!--                             <div class="form-group abc"> -->
+<!--                             <a href="#search-collapse" id="reset" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Reset</a> -->
+<!--                             </div> -->
+<!--                           </div> -->
+<!-- <!--                             /.form-group -->
+						<div class="col-md-2 col-sm-2" id="first_div">
                             <div class="form-group">
-                            	 <br>
-                                 <a href="#" class="btn btn-default btn-sm show-filter">초기화</a>
+                                <br>
+                            <a href="#search-collapse" id="search" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Search</a>
+                            </div>
+<!--                             /.form-group -->
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <div class="form-group">
+                                <br>
                             <a href="#search-collapse" id="reset" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Reset</a>
                             </div>
 <!--                             /.form-group -->
                         </div>
+
                     </div>
                     <!--/.row-->
                 </form>
@@ -427,24 +470,24 @@
 
    var _latitude = 36.265778;
    var _longitude = 127.884858;
-//     var jsonPath = 'assets/json/items.json';
-    
-//     $.getJSON(jsonPath)
-//      .done(function(json) {
-//          createHomepageGoogleMap(_latitude,_longitude,json);
-         
-//          alert(json.data[0].latitude);
-         
-//      })
-//      .fail(function( jqxhr, textStatus, error ) {
-//          console.log(error);
-//      });
-   
-   
-//    var searchResult;
+																//     var jsonPath = 'assets/json/items.json';
+																    
+																//     $.getJSON(jsonPath)
+																//      .done(function(json) {
+																//          createHomepageGoogleMap(_latitude,_longitude,json);
+																         
+																//          alert(json.data[0].latitude);
+																         
+																//      })
+																//      .fail(function( jqxhr, textStatus, error ) {
+																//          console.log(error);
+																//      });
+																   
+																   
+																//    var searchResult;
 
-   //select box를 클릭했을 때 실행
    $(function(){
+   		//select box를 클릭했을 때 실행
 	   $('.submit-button').click(function(){
 		   var margin=$('#b-content-loader').width();
 		 /*  $('.map-wrapper').stop().animate({
@@ -460,6 +503,7 @@
 	   });
 		   var top=$('#header').height();
 		   $('.page-content').css('margin-top',top+'px');
+		   
 	   //회원가입/정보수정/로그인시 고정된 헤더 relative로 아래 안움직이게
 	   $(".secondary #main-menu").click(function(){
 		   if($('#user-area').hasClass('in')){
@@ -476,9 +520,12 @@
 			location.href = "logoutSQmember.action?fromWhere=busking";
 		});
 	 
+	 
+	 	
+	 
 	   $("#type").change(function(){
 		   var genre = $('#type option:selected()').val();
-		   var item = {"searchResult": genre};		   
+		   var item = {"genre": genre};		   
 		   
 		   if(genre == '선호장르'){
 			   $.ajax({
@@ -519,10 +566,32 @@
 			   });
 		   }
 	   });
- 	});
-   
-   //초기화를 클릭했을 때 실행
-   $(function(){
+	   
+		 //밴드명을 적었을 때 실행
+	   $("#search").click(function(){
+		   var bandName = $('#bandName').val();
+		   var item = {"bandName": bandName};	
+		   $.ajax({
+			      url : "toSearchBand"
+			      , method : "post"
+			      , data : item
+			      , dataType : "json"
+			      , success : function(resp){
+			         var list = resp.buskingArraylist;
+			         var jsonArray = new Array();
+			          $.each(list, function(index, item){
+			            jsonArray.push(JSON.parse(item));
+			         }); 
+			         var finalJson = {"data" : jsonArray};
+			         createHomepageGoogleMap(_latitude,_longitude,finalJson);
+			      }
+			      , error : function(){
+			         alert("asdasd");
+			      } 
+			   });
+	   });
+	   
+		 //초기화를 클릭했을 때 실행
 	   $("#reset").click(function(){
 		   $.ajax({
 			      url : "toBuskingList"
@@ -542,10 +611,15 @@
 			      } 
 			   });
 	   });
- 	});
-   $('#close').click(function(){
-	   $('#map').css('display','block');
-   });
+		 
+	   $('#close').click(function(){
+		   $('#map').css('display','block');
+	   });
+	   
+	   
+ 	}); // $(function())
+   
+
    //페이지가 시작되자마자 실행
    $.ajax({
       url : "toBuskingList"

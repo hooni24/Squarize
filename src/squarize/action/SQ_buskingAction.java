@@ -36,12 +36,40 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
    private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
    private String uploadContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
    private String genre;
-   
+   private String bandName;
    
    public String execute(){
 	   return SUCCESS;
    }
-
+   public String searchBand(){
+	   System.out.println(bandName);
+	   buskingList = new ArrayList<>();
+	      buskingList = dao.searchBand(bandName);
+	      buskingArraylist = new ArrayList<>();
+	      
+				      	for (int i = 0; i < buskingList.size(); i++) {                              
+				      		source = "{"+                                                           
+				      				"\"sq_busking_id\": " + buskingList.get(i).getSq_busking_id() +", "+        
+				      				"\"id\": \"" + buskingList.get(i).getId() +"\", "+                  
+				      				"\"title\": \""+ buskingList.get(i).getTitle() + "\", "+                           
+				      				"\"location\": \"" + buskingList.get(i).getLocation()+"\", "+                                     
+				      				"\"latitude\": "+buskingList.get(i).getLatitude()+", "+                                   
+				      				"\"longitude\": "+buskingList.get(i).getLongitude()+", "+                                 
+				      				"\"url\": \""+ buskingList.get(i).getUrl()+"\", "+                   
+				      				"\"genre\": \""+ buskingList.get(i).getGenre()+"\", "+                                        
+				      				"\"rating\": "+ buskingList.get(i).getRating()+", "+                                              
+				      				"\"teamname\": \"" + buskingList.get(i).getTeamname() +"\", "+                                              
+				      				"\"gallery\": \""+ buskingList.get(i).getGallery()+"\", "+                    
+				      				"\"buskingdate\": \""+ buskingList.get(i).getBuskingdate()+"\", "+                               
+				      				"\"runningtime\": \""+ buskingList.get(i).getRunningtime()+"\", "+                               
+				      				"\"description\": \""+ buskingList.get(i).getDescription()+"\""+                     
+				      				"}";            
+				      		
+				      			buskingArraylist.add(source);
+						}
+	      return SUCCESS;
+   }
+   
    public String searchList(){
 	   System.out.println(genre);
 	   buskingList = new ArrayList<>();
@@ -243,12 +271,19 @@ public String addBusking(){
 		this.uploadContentType = uploadContentType;
 	}
 
-	public String getSearchResult() {
+	public String getGenre() {
 		return genre;
 	}
 
-	public void setSearchResult(String searchResult) {
-		this.genre = searchResult;
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
-	
+
+	public String getBandName() {
+		return bandName;
+	}
+
+	public void setBandName(String bandName) {
+		this.bandName = bandName;
+	}
 }

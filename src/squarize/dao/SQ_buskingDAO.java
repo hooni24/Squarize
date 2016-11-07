@@ -30,6 +30,16 @@ public class SQ_buskingDAO {
 		}
 	}
 
+	public List<SQ_busking> searchBand(String bandName){
+		System.out.println("dao searchband" + bandName);
+		try {
+			ss = factory.openSession();
+			return ss.selectList("sq_buskingMapper.searchBand", bandName);
+		} finally {
+			ss.close();
+		}
+	}
+
 	public SQ_busking buskingDetail(int sq_busking_id){
 		try {
 			ss = factory.openSession();

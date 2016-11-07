@@ -18,6 +18,13 @@
 		where end > sysdate and genre = #{genre}
 	</select>
 
+	<select id="searchBand" parameterType="String" resultType="SQ_busking">
+		select SQ_BUSKING_ID, id, title, location, latitude, longitude, url, genre, rating, teamname, 
+		gallery, gallery2, gallery3, gallery4, gallery5, buskingdate, runningtime, description, end
+		from sq_buskinglist
+		where end > sysdate and teamname LIKE '%' || #{bandname} || '%'
+	</select>
+
 	<select id="selectOne" parameterType="int" resultType="SQ_busking">
 		select * from sq_buskinglist
 		where sq_busking_id = #{sq_busking_id}
