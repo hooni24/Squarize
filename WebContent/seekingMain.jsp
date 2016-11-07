@@ -30,6 +30,7 @@
 	    	#divSubmitBtn, #for_small_list {
 	    		padding-top: 20px;
 	    	}
+	    	
 	    
 	    </style>
 	</head>
@@ -79,6 +80,7 @@
 	                                </div>
 	                                
 	                            <!-- 회원가입 -->
+	                            
 	                                
 	                                <div role="tabpanel" class="tab-pane" id="register">
 	                                    <form role="form" method="post" id="form-register" action="registerSQmember?fromWhere=seeking">
@@ -212,6 +214,7 @@
 	        <!--end .inner-->
 	    </div>
 	    <!--end User area-->
+	    
 	    <header class="animate" id="header">
 	        <div class="container">
 	            <div class="header-inner">
@@ -285,9 +288,7 @@
 	        </div>
 	    </header>
 	    
-		<!-- 여기서 부터 content -->
-		<div class="page-content">
-			<div class="search collapse in" id="search-collapse">
+	    <div class="search collapse in" id="search-collapse">
 				<div class="container">
 					<form id="search_form" class="main-search" role="form" method="post" action="recruit_search_byKeyword">
 						<div class="row">
@@ -373,6 +374,10 @@
 				<!--.container-->
 			</div>
 			<!-- .search collapse in 서치메뉴 -->
+	    
+		<!-- 여기서 부터 content -->
+		<div class="page-content">
+			
 			
 			<div class="content-inner">
 				<div class="container" id="main-container">
@@ -461,13 +466,49 @@
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 
 		<script>
-		
+			
 			$("ul#main_menu").on("click", "a#main_logout", function(){
 				location.href = "logoutSQmember.action";
 			});
 				
 			$(function(){
-                              			
+				$('#search-collapse').removeClass("in");
+				 var top=$('#header').height();
+				   $('#search-collapse').css('top',top+'px');
+				 var search=$('#search-collapse').height();
+				 	$('.page-content').css('margin-top',top+search+10+"px");
+				 	
+				 $('.submit-button,.inner').click(function(){
+					 $('#search-collapse').removeClass("in");
+				 });
+			  /*  //회원가입/정보수정/로그인시 고정된 헤더 relative로 아래 안움직이게
+			   $(".secondary #main_menu *").click(function(){
+				   var h=$(window).height();
+				   alert(h);
+				   $('html, body').css({'overflow': 'hidden', 'height': '100%'});
+				   alert(2);
+			   });
+			   
+                $('.close').click(function(){
+                	$('html, body').css({'overflow': 'scroll', 'height': 'auto'});
+                }); */
+                
+                //회원가입/정보수정/로그인시 스크롤을 내리면 회원가입 닫히게 하는 방법
+                
+               $("#main_menu *").click(function(){
+	                if(!($('#user-area').hasClass("in"))){
+	                	$(window).scroll(function(){
+		                	$('#user-area').removeClass("in");
+		                
+	 
+	                	})
+	                	
+	                }
+ 				   
+ 			   });
+                
+                
+                
 				$('#for_small_list').on("click", "ul#genre_sel li",function(){
 					var selected = $(this).children().children().html();
 					$("span#small_genre").text(selected);
@@ -575,6 +616,8 @@
 					});
 					
 				});	
+				
+				
 				
 				
 			});

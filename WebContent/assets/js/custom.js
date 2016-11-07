@@ -415,7 +415,7 @@ $(document).ready(function($) {
     });
 
     $('.fullscreen-map #search-collapse').on('hidden.bs.collapse shown.bs.collapse', function () {
-        $('.map-wrapper #map').height( $(window).height() - $('header:first').height() - 1 - $('.page-content .search').height() );
+        $('.map-wrapper #map').height( $(window).height() - $('header:first').height() - 1 - $('.page-content .search').height() - $('.wrapper').height());
     });
 
     if ($(window).width() > 768) {

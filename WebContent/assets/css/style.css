@@ -258,9 +258,14 @@ h3 {
   font-weight: bold;
   margin-bottom: 40px;
 }
-
-header {
-  position: relative;
+header{
+	position:relative;
+	
+}
+#header {
+  position: fixed;
+  width:100%;
+  z-index:999;
 }
 
 label {
@@ -315,7 +320,7 @@ ul.bullets li:before {
   -ms-transform: translateZ(0);
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  background-color: rgba(0,0,0,0.8);
+  background-color: #010101;
   margin-bottom: 50px;
   z-index: 1;
 }
@@ -535,6 +540,7 @@ ul.bullets li:before {
 #page-wrapper #user-area .close {
   top: 20px;
 }
+
 #page-wrapper #user-area .inner {
   padding: 20px 0 30px;
 }
@@ -604,6 +610,7 @@ ul.bullets li:before {
   right: 0;
   top: 0;
   z-index: 1;
+  padding:10px;
 }
 .close:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
@@ -2510,16 +2517,13 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
 
 .has-map #page-wrapper > header {
   margin-bottom: 0;
+  z-index:999;
 }
-.has-map .page-content .main-search {
+.has-map .page-content{
   margin-top: 20px;
+
 }
-.has-map .masonry {
-  margin-top: 50px;
-}
-.has-map .content-loader {
-  padding-top: 20px;
-}
+
 
 /* 8. Pages */
 #item-detail h1 {
@@ -3118,3 +3122,16 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
     	margin-top:-20px;
     
     }
+ #search-collapse{
+ 	position:fixed;
+ 	z-index:1;
+ 	background: whitesmoke;
+ 	margin: 0 auto;
+ 	padding-top:20px;
+ 	width:100%;
+ }
+ #submit-page{
+ 	background-color: white;
+ 	padding:30px;
+ 	box-shadow: 3px 3px 10px;
+ }

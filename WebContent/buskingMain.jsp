@@ -17,10 +17,35 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="assets/css/layout.css" type="text/css">
     <style type="text/css">
+    
     #markerImage{
     	text-align: center;	
     }
-  
+  	#main-container{
+  		width:100% !important;
+  	}
+  	.wrapper{
+  		width:80%;
+  		text-align: center;
+  		margin:0 auto;
+  	}
+  	.map-wrapper #map{
+  		width:100%;
+  		overflow:hidden;
+  		margin-top:30px;
+  	}
+  	#submit-page{
+  		margin-left:10%;
+  	}
+  	#main-section{
+  		position:relative;
+  		overflow:hidden;
+  	}
+  	.map-wrapper{
+  		top:0;
+  		left:0;
+  	}
+  	
     </style>
     
     <title>SQUARIZE - BUSKING</title>
@@ -279,7 +304,6 @@
     </header>
     <!--end Header-->
 
-    <div class="page-content">
         <div class="search collapse" id="search-collapse"> <!-- 여기 class에서 in 을 뺏더니 접혀 있음. 나중에 문제 생기면 in 넣어야하는지 의심 -->
             <div class="container">
                 <form class="main-search" role="form" method="post" action="#">
@@ -327,30 +351,35 @@
             <!--end .container-->
         </div>
         <!--end .search-->
+    <div class="page-content">
 
         <div class="content-inner" id="some">
-            <div class="container" id="main-container">
-            	<br>
-				<div id="markerImage">
-						<img src="assets/img/marker_blue.png"> 3일전
-						<img src="assets/img/marker_red.png"> 1일전
-						<img src="assets/img/marker_green.png"> 라이브
-				</div>
-                <div class="content-loader">
-                    <div class="content fade_in animate">
-                        <a href="#" class="close" id="close"><img src="assets/img/close.png" alt=""></a>
-<!--                         external content goes here -->
-                    </div>
-                </div>
-                <!--end Content Loader-->
+            <div  id="main-container">
+	            <div class="wrapper">
+	            	<br>
+					<div id="markerImage">
+							<img src="assets/img/marker_blue.png"> 3일전
+							<img src="assets/img/marker_red.png"> 1일전
+							<img src="assets/img/marker_green.png"> 라이브
+					</div>
+	            </div>
+	            <div id="main-section">
+	                <div class="content-loader" id="b-content-loader">
+	                    <div class="content fade_in animate">
+	                        <a href="#" class="close" id="close"><img src="assets/img/close.png" alt=""></a>
+	<!--                         external content goes here -->
+	                    </div>
+	                </div>
+	                <!--end Content Loader-->
+			        <div class="map-wrapper grid">
+			            <div class="map" id="map"></div>
+			            <!--end .map-->
+			        </div>
+	            </div>
             </div>
+		        <!--end .map-wrapper-->
         </div>
 
-        <div class="map-wrapper grid">
-            <div class="map" id="map"></div>
-            <!--end .map-->
-        </div>
-        <!--end .map-wrapper-->
 
     </div>
     
@@ -392,6 +421,8 @@
 <![endif]-->
 
 <script type="text/javascript">
+
+
    var _latitude = 36.265778;
    var _longitude = 127.884858;
 //     var jsonPath = 'assets/json/items.json';
@@ -412,6 +443,32 @@
 
    //select box를 클릭했을 때 실행
    $(function(){
+	   $('.submit-button').click(function(){
+		   var margin=$('#b-content-loader').width();
+		 /*  $('.map-wrapper').stop().animate({
+			  left:margin+"px",
+			  top:"0"
+		   },500); */
+		   /* $('.map-wrapper').addClass("idle"); */
+		   /* $('.map-wrapper').removeClass("idle"); */
+		  /*  
+		   $('.map-wrapper').removeClass("grid"); */
+		   $('#map').css('display','none');
+		   
+	   });
+		   var top=$('#header').height();
+		   $('.page-content').css('margin-top',top+'px');
+	   //회원가입/정보수정/로그인시 고정된 헤더 relative로 아래 안움직이게
+	   $(".secondary #main-menu").click(function(){
+		   if($('#user-area').hasClass('in')){
+			   var height=$(window).height();
+			   alert(height);
+			   alert("hi");
+			   $('body').css('overflow','hidden');
+		   		alert("hi");
+		   }
+	   });
+	   
 	 //로그아웃
 		$("ul#main_menu").on("click", "a#main_logout", function(){
 			location.href = "logoutSQmember.action?fromWhere=busking";
@@ -484,7 +541,9 @@
 			   });
 	   });
  	});
-   
+   $('#close').click(function(){
+	   $('#map').css('display','block');
+   });
    //페이지가 시작되자마자 실행
    $.ajax({
       url : "toBuskingList"
@@ -526,6 +585,7 @@
     // Load JSON data and create Google Map
 
 </script>
+
 
 </body>
 </html>
