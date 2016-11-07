@@ -55,7 +55,7 @@ $(function(){
 	    					var welcome = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="update">'+resp.loginId+' 님 환영합니다!</a></li>';
 	    					$("ul#main_menu").append(welcome);
 	    					var logout = '<li><a href="#" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" id="main_logout">logout</a></li>';
-	    					alert("resp.isArtist= "+resp.isArtist);
+//	    					alert("resp.isArtist= "+resp.isArtist);
 	    					if(resp.isArtist=="N"){
 	    						var makeArtist = '<li><a href="#user-area" class="promoted idle" data-toggle="collapse" aria-expanded="true" aria-controls="user-area" data-tab="#makeArtist" data-transition-parent="#header" id="main_makeArtist">make artist</a></li>';
 	    						$("ul#main_menu").append(makeArtist);

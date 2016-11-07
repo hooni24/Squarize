@@ -312,7 +312,9 @@
         <div class="container">
             <div class="submit-container">
                 <a href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Search Filter</a>
+                <s:if test='#session.isArtist == "Y"'>
                 <a href="toAddBusking.action" class="submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true"><i><img src="assets/img/plus.png" alt=""></i></a>
+           		</s:if>
             </div>
         </div>
     </header>
