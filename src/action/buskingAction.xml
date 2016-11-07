@@ -45,7 +45,7 @@
 			<result>assets/pages/items/busking_detail.jsp</result>
 		</action>
 		
-		<action name="toAddBusking" class="squarize.action.SQ_buskingAction">
+		<action name="toAddBusking" >
 			<interceptor-ref name="artistStack"></interceptor-ref>
 			<result>assets/pages/busking/add_busking.jsp</result>
 		</action>

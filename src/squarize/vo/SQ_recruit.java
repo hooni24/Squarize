@@ -11,17 +11,19 @@ public class SQ_recruit {
 	private String sq_recruit_genre="";	//구인중인 장르
 	private String sq_recruit_date="";	//구인정보 공연날짜
 	private String sq_recruit_location="";	//구인정보 공연장소
-	private double sq_recruit_latitude;	//구인정보 위도
+	private double sq_recruit_latitude;		//구인정보 위도
 	private double sq_recruit_longitude;	//구인정보 경도
 	private String sq_recruit_info="";		//구인정보 소개글 내용
-	private int range;		//검색시 반경
+	private int range;		//검색시 선택 반경
+	private double latRange;	//위도 반경
+	private double lngRange;	//경도 반경
 	
 	public SQ_recruit(){}
 	
 	public SQ_recruit(int sq_recruit_id, String sq_member_id, String sq_recruit_title, String sq_recruit_input_date,
 			String sq_recruit_part, String sq_recruit_photo, String sq_recruit_photo_original, String sq_recruit_genre,
 			String sq_recruit_date, String sq_recruit_location, double sq_recruit_latitude, double sq_recruit_longitude,
-			String sq_recruit_info, int range) {
+			String sq_recruit_info, int range, double latRange, double lngRange) {
 		super();
 		this.sq_recruit_id = sq_recruit_id;
 		this.sq_member_id = sq_member_id;
@@ -37,6 +39,8 @@ public class SQ_recruit {
 		this.sq_recruit_longitude = sq_recruit_longitude;
 		this.sq_recruit_info = sq_recruit_info;
 		this.range = range;
+		this.latRange = latRange;
+		this.lngRange = lngRange;
 	}
 
 	public int getSq_recruit_id() {
@@ -151,6 +155,22 @@ public class SQ_recruit {
 		this.range = range;
 	}
 
+	public double getLatRange() {
+		return latRange;
+	}
+
+	public void setLatRange(double latRange) {
+		this.latRange = latRange;
+	}
+
+	public double getLngRange() {
+		return lngRange;
+	}
+
+	public void setLngRange(double lngRange) {
+		this.lngRange = lngRange;
+	}
+
 	@Override
 	public String toString() {
 		return "SQ_recruit [sq_recruit_id=" + sq_recruit_id + ", sq_member_id=" + sq_member_id + ", sq_recruit_title="
@@ -159,7 +179,7 @@ public class SQ_recruit {
 				+ sq_recruit_photo_original + ", sq_recruit_genre=" + sq_recruit_genre + ", sq_recruit_date="
 				+ sq_recruit_date + ", sq_recruit_location=" + sq_recruit_location + ", sq_recruit_latitude="
 				+ sq_recruit_latitude + ", sq_recruit_longitude=" + sq_recruit_longitude + ", sq_recruit_info="
-				+ sq_recruit_info + ", range=" + range + "]";
+				+ sq_recruit_info + ", range=" + range + ", latRange=" + latRange + ", lngRange=" + lngRange + "]";
 	}
 
 }
