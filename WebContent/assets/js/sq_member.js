@@ -70,6 +70,8 @@ $(function(){
 	    					var tab_makeArtist = '<li role="presentation"><a href="#makeArtist" aria-controls="makeArtist" role="tab" data-toggle="tab"  data-transition-parent="#makeArtist" id="tab_makeArtist">Make Artist</a></li>';
 	    					$("ul#tab_menu").append(tab_makeArtist);
 	    					$("a#tab_makeArtist").trigger("click");
+	    					
+	    					location.reload();
 	    				}else if(condition == 'email'){
 	    					alert("이메일 인증 확인 후 로그인해 주세요");
 	    					return false;
