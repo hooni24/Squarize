@@ -427,6 +427,39 @@
 			       			</div>
 			       			<!-- .item move_from_bottom idle -->
 							<!-- 요기까지 정보 넣기 -->
+							
+							
+							<s:if test="#each_recruit.index % 15 == 0">		<!-- rentList의 index가 x로 나누어 떨어질때마다 광고 돌림(현재 15) -->
+					        	<s:iterator value="adList" status="adStatus">
+					        		<s:if test="#each_recruit.index/15 == #adStatus.index">	<!-- x로 나눈 몫이 광고리스트index와 같으면 해당광고 출력 -->
+								        <div class="item move_from_bottom idle">
+								            <a href="${sq_ad_url }">
+								                <div class="inner">
+								                    <div class="image">
+								                        <div class="price" id="ad_title"><span>광고</span></div>
+								                        <s:if test="sq_ad_file != ''">
+									                        <img src="assets/img/items/ad_photo/${sq_ad_file }" alt="">
+								                        </s:if>
+								                        <s:else>
+									                        <img src="assets/img/items/1.jpg" alt="">
+								                        </s:else>
+								                        
+								                    </div>
+								                    <div class="item-content" id="ad_item">
+							                            <span id="ad_item_title">&nbsp;&nbsp;&nbsp;${sq_ad_title }</span>
+								                    </div>
+								                    <!--end .item-content -->
+								                </div>
+								                <!--end .inner -->
+								            </a>
+								        </div>
+								        <!--end .item move_from_bottom idle  -->
+							        </s:if>
+						        </s:iterator>
+					        </s:if>
+							
+							
+							
 		 				</s:iterator>
 		  		 	</div>
 		  		 	<!-- .masonry grid animate -->

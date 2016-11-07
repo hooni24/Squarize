@@ -10,9 +10,11 @@ import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import squarize.dao.SQ_adDAO;
 import squarize.dao.SQ_seekingDAO;
 import squarize.util.FileService;
 import squarize.util.RangeCalc;
+import squarize.vo.SQ_ad;
 import squarize.vo.SQ_favorite;
 import squarize.vo.SQ_human;
 import squarize.vo.SQ_portfolio;
@@ -44,7 +46,9 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 //	private JSONObject favorites;
 	
 	private String loginId;
-	private SQ_seekingDAO sdao=new SQ_seekingDAO(); 
+	private SQ_seekingDAO sdao=new SQ_seekingDAO();
+
+	private List<SQ_ad> adList; 
 
 	//SQ_seekingAction 기본 생성자
 	public SQ_seekingAction(){
@@ -57,7 +61,9 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		loginId = (String)session.get("loginId"); 
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		sq_recruit_list = (List<SQ_recruit>)dao.selectAll_sq_recruit(loginId);
+		adList = new SQ_adDAO().getAdByFavorite(loginId);
 		System.out.println("recruit_list : "+sq_recruit_list);
+		System.out.println("광고물 : "+adList);
 		return SUCCESS;
 	}
 	
@@ -355,6 +361,14 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 
 	public void setBig_keyword(String big_keyword) {
 		this.big_keyword = big_keyword;
+	}
+
+	public List<SQ_ad> getAdList() {
+		return adList;
+	}
+
+	public void setAdList(List<SQ_ad> adList) {
+		this.adList = adList;
 	}
 
 }
