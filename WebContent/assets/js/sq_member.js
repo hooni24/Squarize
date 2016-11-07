@@ -30,8 +30,6 @@ $(function(){
 		       if(!($('#user-area').hasClass("in"))){
 		       	$(window).scroll(function(){
 		           	$('#user-area').removeClass("in");
-		           
-		
 		       	})
 		       	
 		       }
