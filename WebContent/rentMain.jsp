@@ -24,33 +24,6 @@
     	.hidden{
     		display : none;
     	}
-    	a.search_icon{
-	    	margin-bottom: -15px;
-	    	border-radius: 35px;
-	    	margin-left: 87%;
-    	}
-    	a#item_a{
-    		border-radius: 30px;
-    		overflow: hidden;
-    	}
-    	a#item_a:hover{
-    		border-radius: 30px;
-    		overflow: hidden;
-    	}
-    	img#item_img{
-    		filter: grayscale(70%);
-    		transition-duration: 0.4s;
-    	}
-    	div#ad_item{
-    		background-color: black;
-    		color: white;
-    		height: 70px;
-    		font: 1.3em 맑은 고딕;
-    	}
-    	span#ad_item_title{
-    		display: inline-block;
-    		margin-top: 20px;
-    	}
     	#divBtn {
     		width: auto;
     		margin-top: 20px;

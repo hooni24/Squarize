@@ -57,3 +57,34 @@
 .detail-btn:hover{
 	color:rgba(0,0,f,0.8)!important;
 }
+
+
+
+
+
+/*게시글 동그랗게 + 광고부분 처리 */
+a#item_a{
+	border-radius: 30px;
+    overflow: hidden;
+}
+a#item_a:hover{
+	border-radius: 30px;
+	overflow: hidden;
+}
+img#item_img{
+	filter: grayscale(70%);
+	transition-duration: 0.4s;
+}
+div#ad_item{
+	background-color: black;
+	color: white;
+	height: 70px;
+	font: 1.3em 맑은 고딕;
+}
+span#ad_item_title{
+	display: inline-block;
+	margin-top: 20px;
+}
+
+
+
