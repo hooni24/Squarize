@@ -389,7 +389,7 @@
 					</div>
 					<!--end Content Loader-->
 					<div class="masonry grid animate">
-						<s:iterator value="sq_recruit_list" var="each_recruit">
+						<s:iterator value="sq_recruit_list" status="each_recruit">
 							<div class="item move_from_bottom idle">
 								<a href="getRecruit_detail?sq_recruit_artist.sq_recruit_id=${sq_recruit_id}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
 					              	<div class="inner">
@@ -429,7 +429,7 @@
 							<!-- 요기까지 정보 넣기 -->
 							
 							
-							<s:if test="#each_recruit.index % 15 == 0">		<!-- rentList의 index가 x로 나누어 떨어질때마다 광고 돌림(현재 15) -->
+							<s:if test="#each_recruit.index % 15 == 0">		<!-- recruitList의 index가 x로 나누어 떨어질때마다 광고 돌림(현재 15) -->
 					        	<s:iterator value="adList" status="adStatus">
 					        		<s:if test="#each_recruit.index/15 == #adStatus.index">	<!-- x로 나눈 몫이 광고리스트index와 같으면 해당광고 출력 -->
 								        <div class="item move_from_bottom idle">
