@@ -364,13 +364,15 @@
 					</div>
 	            </div>
 	            <div id="main-section">
-	                <div class="content-loader" id="b-content-loader">
-	                    <div class="content fade_in animate">
-	                        <a href="#" class="close" id="close"><img src="assets/img/close.png" alt=""></a>
-	<!--                         external content goes here -->
-	                    </div>
-	                </div>
-	                <!--end Content Loader-->
+	            	<div class="wrapper">
+		                <div class="content-loader" id="b-content-loader">
+		                    <div class="content fade_in animate">
+		                        <a href="#" class="close" id="close"><img src="assets/img/close.png" alt=""></a>
+		<!--                         external content goes here -->
+		                    </div>
+		                </div>
+		                <!--end Content Loader-->
+	            	</div>
 			        <div class="map-wrapper grid">
 			            <div class="map" id="map"></div>
 			            <!--end .map-->
