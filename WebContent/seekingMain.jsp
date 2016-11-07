@@ -288,7 +288,7 @@
 	        </div>
 	    </header>
 	    
-	    <div class="search collapse in" id="search-collapse">
+	    <div class="search collapse" id="search-collapse">
 				<div class="container">
 					<form id="search_form" class="main-search" role="form" method="post" action="recruit_search_byKeyword">
 						<div class="row">
@@ -499,6 +499,13 @@
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAeZB9L58YYqTQo0pz8Awbw6J_e9jYUcOI&sensor=false&libraries=places"></script>
 
 		<script>
+			//수정할때 서치필터 열렸으면 닫기
+			$("#update").click(function(){
+				var search = $("#search-collapse").hasClass("in");
+				if(search){
+					$("#search-collapse").removeClass("in");
+				}
+			});
 		
 			//마우스오버시 필터 해제
 			$("a#item_a").mouseover(function(){

@@ -33,6 +33,14 @@
     <script src="assets/js/jquery-2.1.0.min.js"></script>
     <script>
     	$(function(){
+    		//수정할때 서치필터 열렸으면 닫기
+			$("#update").click(function(){
+				var search = $("#search-collapse").hasClass("in");
+				if(search){
+					$("#search-collapse").removeClass("in");
+				}
+			});
+    		
     		//마우스오버시 필터 해제
     		$("a#item_a").mouseover(function(){
     			$(this).children().children().first().children().last().css("filter", "none");
@@ -387,7 +395,7 @@
     <!--end Header-->
 
     <div class="page-content">
-        <div class="search collapse in" id="search-collapse">
+        <div class="search collapse" id="search-collapse">
             <div class="container">
                 <form class="main-search" role="form" method="post" action="searchRentRedirect" id="form_search">
                     <div class="row">
