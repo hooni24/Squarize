@@ -45,7 +45,7 @@ function drawInfobox(infoboxContent, json, i){
             '<a href="toDetailInformation.action?sq_busking_id='+sq_busking_id+'" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
                 '<div class="image">' +
                 teamname +
-                    '<img src="assets/downloadIMG/busking/'+gallery+'"	>' +
+                    '<img class="galleryWidth" src="assets/downloadIMG/busking/'+gallery+'">' +
                 '</div>' +
                 '<header class="average-color">' +
                     '<h1 class="animate move_from_top_short">'+ title +'</h1>' +

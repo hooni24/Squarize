@@ -2142,6 +2142,7 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
   background-color: #fff;
   display: table;
 }
+
 .infobox article {
   margin-bottom: 20px;
 }
@@ -2193,7 +2194,8 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
   min-height: 150px;
 }
 .infobox .left .image img {
-  width: 100%;
+  width: 260px;
+  height: 200px;
 }
 .infobox .left .image .price {
   font-size: 14px;
