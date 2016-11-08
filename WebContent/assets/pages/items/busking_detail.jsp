@@ -23,6 +23,13 @@
 		width: 40px;
 		height: 20px;
 	}
+	
+	#money_img {
+		height : 50px;
+		width : 50px;
+		margin-bottom : -27px;
+		margin-right: -80px;
+	}
 	</style> 
 	<script type="text/javascript">
 /*       $(function() {
@@ -40,6 +47,11 @@
 				var src = $(this).attr("src");
 				
 				$(".image img").attr("src", src);		
+			});
+			
+			
+			$("#support").on('click', function(){
+				alert("서비스 준비중입니다.");
 			});
       	});
       
@@ -92,10 +104,13 @@
                 </article>
                 <!--end Description-->
                 <article class="sidebar">
+                	<a href="#" id="support">
+                    	<img id="money_img" src="img/coin.png" alt="" title="이 버스커에 서포트하기!"><!-- 서포트버튼  -->
+                    </a>
                     <div class="person animate move_from_bottom_short">
                         <div class="inner average-color">
 <!--                             <figure class="person-image"> -->
-<%--                                 <img src="assets/downloadIMG/busking/<s:property value="SQ_busking.gallery"/>" alt=""> --%>
+<!--                                 <img src="img/coin.png" alt=""> -->
 <!--                             </figure> -->
 <!--                             <header>Catherine Brown</header> -->
 <!--                             <a href="tel:818-832-5258">818-832-5258</a> -->
