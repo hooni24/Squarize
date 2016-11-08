@@ -23,6 +23,9 @@
 		width: 40px;
 		height: 20px;
 	}
+	.wrapper{
+		text-align: justify;
+	}
 	</style> 
 	<script type="text/javascript">
 /*       $(function() {

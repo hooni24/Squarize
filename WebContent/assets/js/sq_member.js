@@ -113,6 +113,8 @@ $(function(){
 				$('a#tab_login').trigger('click');
     		});
     		
+    	
+    		
     		//회원가입
     		$("button#register_btn").on("click", function(){
     			var id=$('#register-id');

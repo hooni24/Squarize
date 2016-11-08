@@ -3,11 +3,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function clickEvents($this){
-
+	
     var $grid = $('.grid');
     var $content = $('.content');
     var $contentLoader = $('.content-loader');
-
     var b = itemsInRow + 1;
     if( $($this).hasClass('item') ){
         var _this = $($this).children('a');

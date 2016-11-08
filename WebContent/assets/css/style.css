@@ -325,7 +325,7 @@ ul.bullets li:before {
   z-index: 1;
 }
 #page-wrapper > header.idle {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #010101;
 }
 #page-wrapper > header .header-inner {
   display: table;
