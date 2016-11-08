@@ -9,8 +9,8 @@
 				 WHEN #{keyword} THEN 1
 				 ELSE 2
 				 END)
+				, sq_rent_concert_date
 				, sq_rent_genre
-				, sq_rent_id
 	</select>
 
 	<insert id="insertRent" parameterType="SQ_rent">
