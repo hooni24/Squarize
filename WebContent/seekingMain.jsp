@@ -571,7 +571,7 @@
 					$("input#small_").val(selected);
 				});
 				
-				$("select#recruit_search_category").change(function(){
+				$("select#recruit_search_category").change(function(){	//대분류 선택시 소분류 메뉴 나오게 하기.
 					var large = $("select#recruit_search_category").val();
 					$("input#big_").val(large);
 // 					alert($("input#big_").val());
@@ -666,9 +666,6 @@
 					});
 					
 				});	
-				
-				
-				
 				
 			});
 		</script>
