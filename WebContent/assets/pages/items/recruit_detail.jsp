@@ -299,13 +299,12 @@
 		                <article class="animate move_from_bottom_short">
 		                    <div class="gallery">
 		                        <div class="image">
-		                        	<s:if test="#session.loginId != null && sq_recruit_artist.sq_recruit_photo == null">
-		                        		<img src="assets/img/default-item.png" alt="">
+		                        	<s:if test="#session.loginId != null && sq_recruit_artist.sq_recruit_photo != null">
+		                         	   <img src="assets/downloadIMG/recruit/${sq_recruit_artist.sq_recruit_photo}" alt="">
 		                        	</s:if>
-		                        	<s:elseif test="#session.loginId != null && sq_recruit_artist.sq_recruit_photo != null">
-		                         	   <img src="${sq_recruit_artist.sq_recruit_photo}" alt="">
-		                        		
-		                        	</s:elseif>
+		                        	<s:else>
+		                        		<img src="assets/img/default-item.png" alt="">
+		                        	</s:else>
 		                        	
 		                        </div>
 		                    </div>
@@ -328,10 +327,10 @@
 	                        <div class="inner average-color">
 	                            <figure class="person-image">
 	                            	<s:if test="sq_recruit_artist.sq_artist_photo == null">
-	                            		<img src="assets/img/person-01.jpg" alt="">
+	                            		<img src="assets/img/person-02.jpg" alt="">
 	                            	</s:if>
 	                            	<s:else>
-	                                	<img src="${sq_recruit_artist.sq_artist_photo}" alt="">
+	                                	<img src="assets/downloadIMG/recruit/${sq_recruit_artist.sq_artist_photo}">
 	                            	</s:else>
 	                            </figure>
 	                            <header>${sq_recruit_artist.sq_member_name}</header>

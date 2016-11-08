@@ -31,6 +31,7 @@ public class SQ_seekingDAO {
 	public List<SQ_recruit> selectAll_sq_recruit(String loginId){
 		List<SQ_recruit> sq_recruit_list = null;
 		SQ_favorite favorite = this.selectFavorite(loginId);	//아이디에 따른 favorite 갖고 옴.
+		System.out.println("전체 구인정보 갖고 오기 전, favorite:"+favorite);
 		JSONObject jsonGenre, jsonInst;
 		String max_genre = "", max_inst = "";
 		int genreMaxCount = 0, instMaxCount = 0;
