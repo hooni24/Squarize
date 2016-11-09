@@ -98,6 +98,11 @@
 			<result>seekingMain.jsp</result>
 		</action>
 		
+		<action name="getAllMyRecruit" class="squarize.action.SQ_seekingAction" method="getAllMyRecruit">
+			<interceptor-ref name="artistStack"></interceptor-ref>
+			<result>seekingMain.jsp</result>
+		</action>
+		
     </package>
 
 </struts>

@@ -3035,7 +3035,7 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
   }
 
   .offset-col-1, .offset-col-2, .offset-col-3, .offset-col-4, .offset-col-5, .offset-col-6,
-  .offset-col-7, .offset-col-8, .offset-col-9, .offset-col-10, .offset-col-11, .offset-col-12 {
+  .offset-col-7, .offset-col-8, .offset-col-9, .offset-col-10, .offset-col-1, .offset-col-12 {
     margin-left: 0px !important;
   }
   .offset-col-1.grid, .offset-col-2.grid, .offset-col-3.grid, .offset-col-4.grid, .offset-col-5.grid, .offset-col-6.grid,

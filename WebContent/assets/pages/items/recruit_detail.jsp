@@ -40,6 +40,9 @@
 	        .title{
 	        	font-weight: bold;
 	        }
+	        dd#part_tag{
+	        	z-index:999;
+	        }
 	    </style>
 		<script src="../../js/sq_recruit.js"></script>
 		<script type="text/javascript" src="assets/js/infobox.js"></script>

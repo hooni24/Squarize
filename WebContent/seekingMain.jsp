@@ -256,7 +256,7 @@
 	                            <a href="#" class="has-child">마이페이지</a>
 	                            <ul>
 	                                <li><a href="toPortfolio.action?fromWhere=seeking" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="portfolio_menu">My Portfolio</a></li>
-	                                <li><a href="#">내가 올린 글</a></li>
+	                                <li><a href="getAllMyRecruit.action">내가 올린 글</a></li>
 			                        <li><a href="getAllMyApply.action">내 지원현황</a></li>
 	                            </ul>
 	                        </li>

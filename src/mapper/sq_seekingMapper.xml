@@ -55,7 +55,7 @@
 			,SQ_R.SQ_RECRUIT_PART, SQ_R.SQ_RECRUIT_GENRE
 			,SQ_R.SQ_RECRUIT_PHOTO, SQ_R.SQ_RECRUIT_PHOTO_ORIGINAL
 			,TO_CHAR(SQ_R.SQ_RECRUIT_INPUT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_INPUT_DATE"
-			,TO_CHAR(SQ_R.SQ_RECRUIT_DATE, 'YYYY/MM/DD HH24:MI') "SQ_RECRUIT_DATE"
+			,TO_CHAR(SQ_R.SQ_RECRUIT_DATE, 'YYYY/MM/DD') "SQ_RECRUIT_DATE"
 			,SQ_R.SQ_RECRUIT_INFO
 		FROM 
 			SQ_RECRUIT SQ_R, SQ_MEMBER SQ_M, SQ_ARTIST SQ_A 
@@ -178,5 +178,10 @@
 		</where>
       	ORDER BY DISTANCE
 	</select>
+	
+	<select id="getAllMyRecruit" parameterType="String" resultType="SQ_recruit">
+		SELECT * from sq_recruit where sq_member_id=#{loginId}
+	</select>
+	
 </mapper>
 	
