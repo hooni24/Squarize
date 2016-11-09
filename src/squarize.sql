@@ -461,20 +461,160 @@ INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, '1234', '두대맞자밴드', 
 
 --버스킹리스트
 INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '불타는 이밤', 
-'홍대입구', '37.566756', '126.934539', 
-'사용안함', '발라드', 0, '밴드 오브 브라더스',
+'홍대입구', '37.554609', '126.922898', 
+'사용안함', '발라드', 0, '김태희밴드',
 'ex (13).jpg', 'ex (14).jpg', null, null, null, sysdate+1,
 120, '반갑습니다', sysdate+1+(2/24));
 INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '오늘밤은 저희가 책임집니다.', 
-'홍대입구', '37.641056', '126.929839', 
-'사용안함', '발라드', 0, '밴드 오브 브라더스',
+'홍대입구', '37.554609', '126.932898', 
+'사용안함', '발라드', 0, '김화선밴드',
 'ex (15).jpg', 'ex (16).jpg', null, null, null, sysdate+3,
 120, '이길아선생님 짱', sysdate+3+(2/24));
 INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '불타는 이밤', 
-'홍대입구', '37.541056', '126.929839', 
+'홍대입구', '37.544609', '126.932898', 
 '사용안함', '발라드', 0, '밴드 오브 브라더스',
 'ex (13).jpg', 'ex (14).jpg', null, null, null, sysdate+1,
 120, '반갑습니다', sysdate+1+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '놀러오세요', 
+'홍대입구', '37.534609', '126.939098', 
+'사용안함', '락', 0, '신나는 락밴드',
+'ex (1).jpg', 'ex (2).jpg', null, null, null, sysdate,
+120, '반갑습니다', sysdate+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '재즈와 함께 밤을', 
+'코엑스', '37.511950', '127.058681', 
+'사용안함', '재즈', 0, '재즈3형제',
+'ex (3).jpg', 'ex (4).jpg', null, null, null, sysdate,
+120, '재즈는 연주 스타일이나 연주 그자체에 대한 호칭으로 연주자의 감각과 표현력을 중요시하며 모든 음악 중에서 가장 자유로운 표현이 허용되는 음악이다.', sysdate+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '힙합 힙힙힙합', 
+'삼성역', '37.508958', '127.062855', 
+'사용안함', '힙합', 0, '쇼미더머니',
+'ex (5).jpg', 'ex (6).jpg', null, null, null, sysdate+1,
+120, '힙합의 세계로 빠져봅시다.', sysdate+1+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '감미로운 노래속으로', 
+'이태원', '37.534414', '126.994611', 
+'사용안함', '발라드', 0, '성시경',
+'ex (7).jpg', 'ex (8).jpg', null, null, null, sysdate+2,
+120, '감미로운 발라드의 세계로', sysdate+2+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '락', 
+'이태원', '37.544414', '126.984611', 
+'사용안함', '락', 0, '하정우',
+'ex (9).jpg', 'ex (10).jpg', null, null, null, sysdate+2,
+120, '감미로운 발라드의 세계로', sysdate+2+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '락', 
+'이태원', '37.634414', '126.894611', 
+'사용안함', '락', 0, '혼토니',
+'ex (9).jpg', 'ex (10).jpg', null, null, null, sysdate+2,
+120, '감미로운 발라드의 세계로', sysdate+2+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '재즈', 
+'이태원', '37.434414', '126.894611', 
+'사용안함', '재즈', 0, '이충구',
+'ex (10).jpg', 'ex (11).jpg', null, null, null, sysdate,
+120, '감미로운 발라드의 세계로', sysdate+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '힙합', 
+'대학로', '37.582294', '127.002588', 
+'사용안함', '힙합', 0, '조전형',
+'ex (12).jpg', 'ex (13).jpg', null, null, null, sysdate,
+120, '감미로운 발라드의 세계로', sysdate+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '발라드', 
+'대학로', '37.682294', '127.102588', 
+'사용안함', '발라드', 0, '김지현',
+'ex (12).jpg', 'ex (13).jpg', null, null, null, sysdate+1,
+120, '감미로운 발라드의 세계로', sysdate+1+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '락', 
+'대학로', '37.581588', '126.999659', 
+'사용안함', '발라드', 0, '안성전',
+'ex (12).jpg', 'ex (13).jpg', null, null, null, sysdate+2,
+120, '감미로운 발라드의 세계로', sysdate+2+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '재즈', 
+'대학로', '37.579904', '126.999552', 
+'사용안함', '재즈', 0, '백승훈',
+'ex (12).jpg', 'ex (13).jpg', null, null, null, sysdate+1,
+120, '감미로운 발라드의 세계로', sysdate+1+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '힙합', 
+'부산', '35.115464', '129.040687', 
+'사용안함', '힙합', 0, '오승연',
+'ex (12).jpg', 'ex (13).jpg', null, null, null, sysdate+2,
+120, '감미로운 발라드의 세계로', sysdate+2+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '발라드', 
+'전주', '35.836737', '127.123493', 
+'사용안함', '발라드', 0, '김승훈',
+'ex (14).jpg', 'ex (15).jpg', null, null, null, sysdate,
+120, '감미로운 발라드의 세계로', sysdate+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '락', 
+'광주', '35.158437', '126.848745', 
+'사용안함', '락', 0, '장민식',
+'ex (16).jpg', 'ex (17).jpg', null, null, null, sysdate+1,
+120, '감미로운 발라드의 세계로', sysdate+1+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '재즈', 
+'광주', '35.155038', '126.853967', 
+'사용안함', '재즈', 0, '조현상',
+'ex (18).jpg', 'ex (19).jpg', null, null, null, sysdate+2,
+120, '감미로운 발라드의 세계로', sysdate+2+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '힙합', 
+'광주', '35.153425', '126.860060', 
+'사용안함', '힙합', 0, '김성훈',
+'ex (20).jpg', 'ex (1).jpg', null, null, null, sysdate+3,
+120, '감미로운 발라드의 세계로', sysdate+3+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '발라드', 
+'광주', '35.825076', '127.122520', 
+'사용안함', '발라드', 0, '이도연',
+'ex (2).jpg', 'ex (3).jpg', null, null, null, sysdate,
+120, '감미로운 발라드의 세계로', sysdate+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '락', 
+'광주', '35.823950', '127.127194', 
+'사용안함', '락', 0, '장효민',
+'ex (4).jpg', 'ex (5).jpg', null, null, null, sysdate+1,
+120, '감미로운 발라드의 세계로', sysdate+1+(2/24));
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '재즈', 
+'대전', '36.339548', '127.393027', 
+'사용안함', '재즈', 0, '김두리나',
+'ex (6).jpg', 'ex (7).jpg', null, null, null, sysdate+2,
+120, '감미로운 발라드의 세계로', sysdate+2+(2/24)); 
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '힙합', 
+'대전', '36.339381', '127.389854', 
+'사용안함', '힙합', 0, '이사야',
+'ex (8).jpg', 'ex (9).jpg', null, null, null, sysdate+3,
+120, '감미로운 발라드의 세계로', sysdate+3+(2/24)); 
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '발라드', 
+'속초', '38.197225', '128.540727', 
+'사용안함', '발라드', 0, '김재은',
+'ex (10).jpg', 'ex (11).jpg', null, null, null, sysdate,
+120, '감미로운 발라드의 세계로', sysdate+(2/24)); 
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '락', 
+'속초', '38.197292', '128.535287', 
+'사용안함', '락', 0, '한수현',
+'ex (12).jpg', 'ex (13).jpg', null, null, null, sysdate+1,
+120, '감미로운 발라드의 세계로', sysdate+1+(2/24)); 
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '락', 
+'속초', '37.521638', '126.924206', 
+'사용안함', '락', 0, '이정훈',
+'ex (12).jpg', 'ex (13).jpg', null, null, null, sysdate+1,
+120, '감미로운 발라드의 세계로', sysdate+1+(2/24)); 
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '재즈', 
+'여의도', '37.528846', '126.932057', 
+'사용안함', '재즈', 0, '김다흰',
+'ex (14).jpg', 'ex (15).jpg', null, null, null, sysdate+2,
+120, '감미로운 발라드의 세계로', sysdate+2+(2/24)); 
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '발라드', 
+'대구', '35.830199', '128.568758', 
+'사용안함', '발라드', 0, '최서현',
+'ex (16).jpg', 'ex (17).jpg', null, null, null, sysdate+3,
+120, '감미로운 발라드의 세계로', sysdate+3+(2/24)); 
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '힙합', 
+'대구', '35.837826', '128.558035', 
+'사용안함', '힙합', 0, '안중수',
+'ex (16).jpg', 'ex (17).jpg', null, null, null, sysdate,
+120, '감미로운 발라드의 세계로', sysdate+(2/24)); 
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '힙합', 
+'홍대', '37.654609', '126.922898', 
+'사용안함', '힙합', 0, '권상우',
+'ex (16).jpg', 'ex (17).jpg', null, null, null, sysdate+1,
+120, '감미로운 발라드의 세계로', sysdate+1+(2/24)); 
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '락', 
+'홍대', '37.457323', '126.922387', 
+'사용안함', '락', 0, '소지섭',
+'ex (16).jpg', 'ex (17).jpg', null, null, null, sysdate+2,
+120, '감미로운 발라드의 세계로', sysdate+2+(2/24)); 
 
 
 
