@@ -41,11 +41,17 @@
   		position:relative;
   		overflow:hidden;
   	}
-  	.map-wrapper{
+  	.map-wrapper .grid{
   		top:0;
   		left:0;
   	}
+  	#main-section > .map-wrapper .grid .offset-col-9 .idle{
+ 		margin-left : 150px !important;
   	
+  	}
+  	#main-section > .map-wrapper .grid .offset-col-9 .idle > #map{
+  		position : absolute;
+  	}
   	#bandName{
   		padding-bottom: 5px;
   	}
@@ -399,7 +405,7 @@
     <div class="page-content">
 
         <div class="content-inner" id="some">
-            <div  id="main-container">
+            <div id="main-container">
 	            <div class="wrapper">
 	            	<br>
 					<div id="markerImage">
@@ -418,7 +424,7 @@
 		                </div>
 		                <!--end Content Loader-->
 	            	</div>
-			        <div class="map-wrapper grid">
+			        <div class="map-wrapper grid" id="changingPage">
 			            <div class="map" id="map"></div>
 			            <!--end .map-->
 			        </div>
