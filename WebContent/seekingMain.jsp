@@ -433,7 +433,7 @@
 					        	<s:iterator value="adList" status="adStatus">
 					        		<s:if test="#each_recruit.index/15 == #adStatus.index">	<!-- x로 나눈 몫이 광고리스트index와 같으면 해당광고 출력 -->
 								        <div class="item move_from_bottom idle">
-								            <a href="${sq_ad_url }">
+								            <a href="${sq_ad_url }" target="_new">
 								                <div class="inner">
 								                    <div class="image">
 								                        <div class="price" id="ad_title"><span>광고</span></div>

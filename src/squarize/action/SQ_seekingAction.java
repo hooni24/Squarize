@@ -163,7 +163,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
-	public String getAllMyRecruit() throws Exception{
+	public String selectAllMyRecruit() throws Exception{
 		System.out.println("내가 쓴 글 가져오기 ");
 		loginId=(String)session.get("loginId");
 		SQ_seekingDAO sdao=new SQ_seekingDAO();
@@ -207,7 +207,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 	}
 	
 	//구인정보리스트
-	public String getAllMyApply() throws Exception {
+	public String selectAllMyApply() throws Exception {
 		System.out.println("지원내역 보기 ");
 		SQ_seekingDAO dao=new SQ_seekingDAO();
 		loginId=(String)session.get("loginId");

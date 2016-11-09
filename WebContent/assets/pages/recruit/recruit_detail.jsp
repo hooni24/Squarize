@@ -328,14 +328,11 @@
 	                <article class="sidebar">
 	                    <div class="person animate move_from_bottom_short">
 	                        <div class="inner average-color">
-	                            <figure class="person-image">
-	                            	<s:if test="sq_recruit_artist.sq_artist_photo == null">
-	                            		<img src="assets/img/person-02.jpg" alt="">
-	                            	</s:if>
-	                            	<s:else>
-	                                	<img src="assets/downloadIMG/recruit/${sq_recruit_artist.sq_artist_photo}">
-	                            	</s:else>
-	                            </figure>
+                            	<s:if test="sq_recruit_artist.sq_artist_photo != null">
+		                            <figure class="person-image">
+		                                <img src="assets/downloadIMG/artist/${sq_recruit_artist.sq_artist_photo}" alt="">
+		                            </figure>
+	                           	</s:if>
 	                            <header>${sq_recruit_artist.sq_member_name}</header>
 	                            <a href="tel:${sq_recruit_artist.sq_artist_phone}">${sq_recruit_artist.sq_artist_phone}</a>
 	                            <a href="mailto:${sq_recruit_artist.sq_member_email}">${sq_recruit_artist.sq_member_email}</a>

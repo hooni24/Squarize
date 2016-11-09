@@ -46,7 +46,7 @@
 		
 		<action name="toDetailInformation" class="squarize.action.SQ_buskingAction" method="buskingDetail">
 <!-- 			<result>assets/pages/items/busking_detail.jsp</result> -->
-			<result>assets/pages/items/busking_detail.jsp</result>
+			<result>assets/pages/busking/busking_detail.jsp</result>
 		</action>
 		
 		<action name="toAddBusking" >
