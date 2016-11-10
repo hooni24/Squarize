@@ -26,6 +26,17 @@
 	.wrapper{
 		text-align: justify;
 	}
+	
+	#favoriteBtn{
+		vertical-align: bottom;
+		width: 25px;
+		height: 25px;
+	}
+	#bousiBtn{
+		width : 30px;
+		height : 30px;
+	}
+	
 	</style> 
 	<script type="text/javascript">
 /*       $(function() {
@@ -43,6 +54,14 @@
 				var src = $(this).attr("src");
 				
 				$(".image img").attr("src", src);		
+			});
+			
+			$("#favoriteBtn").click(function(){
+				alert("앱에서만 가능한 기능입니다.");
+			});
+			
+			$("#bousiBtn").click(function(){
+				alert("앱에서만 가능한 기능입니다.");
 			});
       	});
       
@@ -165,6 +184,13 @@
                             <dd id="buskingdate"></dd>
                             <dt>공연시간</dt>
                             <dd><s:property value="SQ_busking.runningtime"/>분</dd>
+                            <dt>Supported</dt>
+                            <dd>1,000 마일리지</dd>
+                            <dt></dt>
+                            <dd>
+                            	<a href="#" title="구독하기" id="favoriteIcon"><img id="favoriteBtn" src="img/favorite.png" alt="" /></a>
+                            	&nbsp;&nbsp;
+                            	<a href="#" title="서포트하기" id="supportIcon"><img id="bousiBtn" src="img/bousi.png" alt="" /></a></dd>
                         </dl>
                     </div>
                 </article>
