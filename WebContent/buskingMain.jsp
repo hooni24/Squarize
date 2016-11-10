@@ -382,7 +382,7 @@
 						<div class="col-md-2 col-sm-2" id="first_div">
                             <div class="form-group">
                                 <br>
-                            <a href="#search-collapse" id="search" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Search</a>
+                            <a href="#search-collapse" id="search" class="btn btn-default btn-sm show-filter" data-toggle="" aria-expanded="false" aria-controls="search-collapse">Search</a>
                             </div>
 <!--                             /.form-group -->
                         </div>
@@ -528,9 +528,6 @@
 			location.href = "logoutSQmember.action?fromWhere=busking";
 		});
 	 
-	 
-	 	
-	 
 	   $("#type").change(function(){
 		   var genre = $('#type option:selected()').val();
 		   var item = {"genre": genre};		   
@@ -594,7 +591,7 @@
 			         createHomepageGoogleMap(_latitude,_longitude,finalJson);
 			      }
 			      , error : function(){
-			         alert("asdasd");
+			         alert("실패");
 			      } 
 			   });
 	   });
@@ -623,11 +620,9 @@
 	   $('#close').click(function(){
 		   $('#map').css('display','block');
 	   });
-	   
-	   
  	}); // $(function())
    
-
+ 	
    //페이지가 시작되자마자 실행
    $.ajax({
       url : "toBuskingList"
@@ -643,18 +638,13 @@
 //             jsonArray.push(eval("(" + item + ")"));
             jsonArray.push(JSON.parse(item));
          }); 
-         
-         
 //           var data = resp.source;
-         
 //          var jjj = JSON.parse(data);
-         
 //          var array = [jjj];
-         
+
          var finalJson = {"data" : jsonArray};      //data : {   [   {  }, {   }   ]   }
                                        //            marker  gallery
 //          alert(finalJson.data[0]);
-         
 //          alert(JSON.stringify(finalJson));
          
          createHomepageGoogleMap(_latitude,_longitude,finalJson);
@@ -662,14 +652,8 @@
       , error : function(){
          alert("실패");
       } 
-      
    });
-
-    
     // Load JSON data and create Google Map
-
 </script>
-
-
 </body>
 </html>
