@@ -615,7 +615,11 @@ INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '락',
 '사용안함', '락', 0, '소지섭',
 'ex (16).jpg', 'ex (17).jpg', null, null, null, sysdate+2,
 120, '감미로운 발라드의 세계로', sysdate+2+(2/24)); 
-
+INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '발라드', 
+'홍대', '37.557323', '126.950387', 
+'사용안함', '발라드', 0, '10센치',
+'10c.jpg', '10c2.png', '10c3.jpg', '10c4.jpg', '10c5.jpg', sysdate,
+120, '10㎝(십센치)는 대한민국의 2인조 인디 밴드이다. 고교시절 스쿨밴드 선후배 사이인 윤철종과 권정열로 구성되었다. 밴드 이름은 두 멤버의 키가 10㎝ 차이 난다는 것에서 나왔다.', sysdate+(2/24)); 
 
 
 --포트폴리오
