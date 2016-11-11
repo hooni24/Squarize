@@ -346,7 +346,7 @@
                     <div class="brand">
                         <a href="index.action">
                             <img class="smallLogo" src="img/smalllogo.png">
-                        </a>
+                        </a>Rent
                     </div>
                     <ul>
                         <li>

@@ -274,10 +274,10 @@
                 <nav class="main">
                     <div class="brand">
                         <a href="index.action">
-                            <div>
+                            
 	                            <img class="smallLogo" src="img/smalllogo.png">
-                            </div>
-                        </a>
+                           
+                        </a>Busking
                     </div>
                     <ul>
                         <li>

@@ -9,6 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link href="assets/fonts/font-awesome.css" rel="stylesheet"	type="text/css">
+		<link href="//db.onlinewebfonts.com/c/9bcefd123427259224a38a4f8c1d010a?family=CubicW90-LightRegular" rel="stylesheet" type="text/css"/>
 		<link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" type="text/css">
 		<link rel="stylesheet" href="assets/css/bootstrap-select.min.css" type="text/css">
@@ -30,7 +31,11 @@
 	    	#divSubmitBtn, #for_small_list {
 	    		padding-top: 20px;
 	    	}
-	    	
+	    	.brand{
+	    		font-size: 15px;
+	    		font-weight: 150%;
+	    		color:#dddddd;
+	    	}
 	    
 	    </style>
 	</head>
@@ -240,7 +245,7 @@
 	                    <div class="brand">
 	                        <a href="index.action">
 	                            <img class="smallLogo" src="img/smalllogo.png">
-	                        </a>
+	                        </a>Seeking
 	                    </div>
 	                    <ul>
 	                        <li>
