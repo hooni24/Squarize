@@ -108,7 +108,6 @@
 				
 					var valid = validCheck();
 					if(valid){
-						alert("hi");
 						/* var title = $("input#title").val();
 						var part = $("textarea#part").val();
 						var limitDate = $("input#limitDate").val();
@@ -119,7 +118,6 @@
 						/* $("input#real_concert_date").val(concert_date);
 						$("input#real_limit").val(limit); */
 		 				$("#form").submit();
-						alert("성공");
 					}//if(valid)
 				}//success펑션
 			});//ajax
