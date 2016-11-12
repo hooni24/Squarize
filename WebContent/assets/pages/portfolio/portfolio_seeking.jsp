@@ -39,10 +39,7 @@
     
     //무결성 체크
     function valid(inst, career, pr){
-    	if(inst.length < 1 || inst.length > 8){
-			alert("악기명은 1~8글자로 입력해주세요");
-			return false;
-		}else if(career.length < 1 || career.length > 1000){
+    	if(career.length < 1 || career.length > 1000){
 			alert("약력은 1~1000글자로 입력해주세요");
 			return false;
 		}else if(pr.length < 1 || pr.length > 1000){

@@ -181,7 +181,7 @@
 		                <h3 class="right_">사진 업로드</h3>
 		           	</div>
 		            <div class="col-md-4">
-		                <input type="file" id="recruit-pic" name="sq_recruit.sq_recruit_photo" >
+		                <input type="file" id="recruit-pic" name="upload" >
 		           	</div>
 		        </div>
             </article>
