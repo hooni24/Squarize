@@ -36,7 +36,10 @@
 		, to_date(#{buskingdate}, 'YYYY/MM/DD HH24:Mi:ss'), #{runningtime}, #{description}, to_date(#{end}, 'YYYY/MM/DD HH24:Mi:ss'))
 	</insert>
 	
-	
+	<delete id="deleteTimeout">
+		DELETE sq_buskinglist
+		WHERE end &lt; sysdate
+	</delete>
 </mapper>
 
 

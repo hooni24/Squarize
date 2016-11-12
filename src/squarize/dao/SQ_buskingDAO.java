@@ -63,4 +63,18 @@ public class SQ_buskingDAO {
 		}
 		
 	}
+	
+	/**
+	 * 시간지난 버스킹 정보 삭제
+	 */
+	public void deleteTimeout(){
+		try {
+			ss = factory.openSession();
+			ss.delete("sq_buskingMapper.deleteTimeout");
+			ss.commit();
+		} finally {
+			ss.close();
+		}
+	}
+	
 }
