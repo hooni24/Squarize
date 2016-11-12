@@ -102,7 +102,7 @@
     		
     		//포트폴리오 수정창 띄우기
     		$("a#update").on("click", function(){
-    			alert(window.location.search);
+    			/* alert(window.location.search); */
     			$("#instH1").html("<input type='text' id='inst' name='sq_portfolio.sq_port_inst' value='"+inst+"'>");
     			$("textarea#career").attr("readonly", false);
     			$("textarea#pr").attr("readonly", false);

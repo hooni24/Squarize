@@ -3,8 +3,8 @@
  */
 	$(function(){
 		// Try HTML5 geolocation.
-		alert("hi");
-		var marker;		//submit할때 마커좌표 얻기위해 전역변수로 설정
+/*		alert("hi");
+*/		var marker;		//submit할때 마커좌표 얻기위해 전역변수로 설정
 		if (navigator.geolocation) {	//gps사용 가능 브라우져이면
 			
 	  		navigator.geolocation.getCurrentPosition(function(position) {	//현재 위치 좌표 얻어와서 함수실행
@@ -64,10 +64,10 @@
 				
 					var valid = validCheck();
 					if(valid){
-						alert("hi");
+						/*alert("hi");*/
 						
 		 				$("#form").submit();
-						alert("성공");
+						/*alert("성공");*/
 					}//if(valid)
 				}//success펑션
 			});//ajax
@@ -80,7 +80,7 @@
 			var title_value=$('#title1').text();
 			var limit_date=$('#limitDate').text();
 			var info=$('#content').val();
-			alert(info);
+			/*alert(info);*/
 			$('#title1').html("<input type='text' name='sq_recruit.sq_recruit_title' id='title' value='"+title_value+"'/>");
 			$('dd#part_tag').html("<select name='sq_recruit.sq_recruit_part' multiple title='part' id='part'><option>드럼</option><option>키보드</option><option>보컬</option><option>기타</option></select>");                                
 			$('dd#genre_tag').html('<select name="sq_recruit.sq_recruit_genre" multiple title="genre" id="genre"><option>락</option><option>발라드</option><option>재즈</option><option>힙합</option></select>');
@@ -92,7 +92,7 @@
             /*marker.setDraggable(true);*/
 		});
 		$('.center').on('click','#update',function(){
-			alert("hello");
+			/*alert("hello");*/
 			
 			var lat = marker.position.lat();		//위도경도 얻어옴
 			var lng = marker.position.lng();
@@ -150,7 +150,7 @@
 			var part = $("#part").val();
 			var genre = $("#genre").val();
 			var limitDate = $("input#limitDate").val().length;
-			alert(title+" 1 "+part+" 2  "+genre+"  3  "+limitDate+"  4  ")
+			/*alert(title+" 1 "+part+" 2  "+genre+"  3  "+limitDate+"  4  ")*/
 			if(title < 1){
 				alert("제목을 입력해주세요 ");
 				return false;
