@@ -111,10 +111,8 @@
 						
 							var valid = validCheck();
 							if(valid){
-								alert("hi");
 								
 				 				$("#form").submit();
-								alert("성공");
 							}//if(valid)
 						}//success펑션
 					});//ajax
@@ -123,12 +121,10 @@
 				
 				
 				$('#update-btn').click(function(){
-					alert("hi")
 					var marker;
 					var title_value=$('#title1').text();
 					var limit_date=$('#limitDate').text();
 					var info=$('#content').val();
-					alert(info);
 					$('#title1').html("<input type='text' name='sq_recruit.sq_recruit_title' id='title' value='"+title_value+"'/>");
 					$('dd#part_tag').html("<select name='sq_recruit.sq_recruit_part' multiple title='part' id='part'><option>드럼</option><option>키보드</option><option>보컬</option><option>기타</option></select>");                                
 					$('dd#genre_tag').html('<select name="sq_recruit.sq_recruit_genre" multiple title="genre" id="genre"><option>락</option><option>발라드</option><option>재즈</option><option>힙합</option></select>');
@@ -140,7 +136,6 @@
 		            marker.setDraggable(true);
 				});
 				$('.center').on('click','#update',function(){
-					alert("hello");
 					
 					/* var lat = 37.5//marker.position.lat();		//위도경도 얻어옴
 					var lng = 37.5//marker.position.lng();
@@ -173,14 +168,12 @@
 						,datatype:'json'
 						,success:function(send){
 							var list=send.sq_apply_list;
-							alert(list);
 							var code2="";
 							var count=1;
 							/* if(list==null){
 								alert("지원자가 없습니다.");
 								
 							}else{ */ 
-								alert("hi");
 								$.each(list,function(index,item){
 									var appendThing = '<article class="person list">';
 									appendThing += '<div class="left average-color">';
@@ -263,7 +256,6 @@
 				var part = $("#part").val();
 				var genre = $("#genre").val();
 				var limitDate = $("input#limitDate").val().length;
-				alert(title+" 1 "+part+" 2  "+genre+"  3  "+limitDate+"  4  ")
 				if(title < 1){
 					alert("제목을 입력해주세요 ");
 					return false;

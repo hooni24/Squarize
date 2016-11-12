@@ -15,9 +15,7 @@ $(function(){
 		 /*  //회원가입/정보수정/로그인시 고정된 헤더 relative로 아래 안움직이게
 		  $(".secondary #main_menu *").click(function(){
 			   var h=$(window).height();
-			   alert(h);
 			   $('html, body').css({'overflow': 'hidden', 'height': '100%'});
-			   alert(2);
 		  });
 		  
 		   $('.close').click(function(){

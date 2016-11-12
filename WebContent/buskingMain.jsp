@@ -516,10 +516,7 @@
 	   $(".secondary #main-menu").click(function(){
 		   if($('#user-area').hasClass('in')){
 			   var height=$(window).height();
-			   alert(height);
-			   alert("hi");
 			   $('body').css('overflow','hidden');
-		   		alert("hi");
 		   }
 	   });
 	   
