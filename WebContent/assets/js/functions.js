@@ -467,8 +467,10 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         var lastClicked = false;
 
         //현재시간 불러오기(yyyy-mm-dd hh:mm:ss) 형식으로
+        //datedate에 담는다.
         var datedate = getTimeStamp();
         function getTimeStamp() {
+          //현재시간 d
           var d = new Date();
           var s =
         	    leadingZeros(d.getFullYear(), 4) + '-' +
@@ -502,7 +504,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         	else end = '';
         	
 //        	86400000 하루차이의 시간의 양
-        	var now = new Date(datedate);
+        	var now = new Date();
 //			var nowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 			var buskingDate = new Date(buskingdate);
 			var endDate = new Date(end);
