@@ -135,6 +135,7 @@
 		            $('.center').html('<a href="#" class="btn btn-circle btn-default btn-lg detail-btn submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" id="update">확인</a>');
 		            marker.setDraggable(true);
 				});
+				
 				$('.center').on('click','#update',function(){
 					
 					/* var lat = 37.5//marker.position.lat();		//위도경도 얻어옴
