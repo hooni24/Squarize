@@ -66,6 +66,9 @@
      #reset{
         margin-bottom: -10px !important;
      }
+     img.img{
+     	display: inline-block;
+     }
     </style>
     
     <title>SQUARIZE - BUSKING</title>
