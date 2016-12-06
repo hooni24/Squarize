@@ -22,7 +22,6 @@ begin
          ));
 end DISTNACE_WGS84;
 
-
 /* Drop Tables */
 
 DROP TABLE SQ_AD CASCADE CONSTRAINTS;
@@ -373,7 +372,6 @@ INSERT INTO SQ_MEMBER VALUES ('asd', '123', '김똥2', 'a@a.a', '발라드', 'N'
 INSERT INTO SQ_MEMBER VALUES ('zxc', '123', '김똥3', 'a@a.a', '발라드', 'N', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('cxz', '123', '김똥4', 'a@a.a', '발라드', 'N', null, 'Y');
 INSERT INTO SQ_MEMBER VALUES ('dsa', '123', '김똥5', 'a@a.a', '발라드', 'N', null, 'Y');
-INSERT INTO SQ_MEMBER VALUES ('kallee','1111','이도연','kkk@a.com', '락', 'Y', null,'Y');
 INSERT INTO SQ_MEMBER VALUES ('aloha','1111','하와이안','aaa@a.com', '재즈', 'Y', null,'Y');
 INSERT INTO SQ_MEMBER VALUES ('solo','1111','뼈속까지','sss@a.com', '락', 'Y', null,'Y');
 INSERT INTO SQ_MEMBER VALUES ('calories','1111','빼자','ccc@a.com', '힙합', 'Y', null,'Y');
@@ -381,6 +379,10 @@ INSERT INTO SQ_MEMBER VALUES ('soulmate','1111','음악','bbb@a.com' ,'힙합', 
 INSERT INTO SQ_MEMBER VALUES ('home','1111','리스','hhh@a.com', '락', 'Y', null,'Y');
 INSERT INTO SQ_MEMBER VALUES ('gaikoku','1111','진','ggg@a.com', '힙합', 'Y', null,'Y');
 INSERT INTO SQ_MEMBER VALUES ('youna','1111','김연아','yyy@a.com', '락', 'Y', null,'Y');
+
+
+INSERT INTO SQ_MEMBER VALUES ('artist1','1234','테스트용1','yyy@a.com', '락', 'Y', null,'Y');
+
 
 --SQ_ARTIST 생성
 INSERT INTO SQ_ARTIST VALUES ('aa', '010-1111-1011', null,'adfadsfd');
@@ -392,7 +394,6 @@ INSERT INTO SQ_ARTIST VALUES ('qq', '010-1291-1161', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('nnn', '010-1271-1211', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('jhs1', '010-1271-1213', null,'adfadsfd');
 
-INSERT INTO SQ_ARTIST VALUES ('kallee', '010-9808-8223', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('aloha', '010-1211-8765', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('solo', '010-1241-1321', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('calories', '010-1216-9999', null,'adfadsfd');
@@ -402,9 +403,12 @@ INSERT INTO SQ_ARTIST VALUES ('gaikoku', '010-1271-3333', null,'adfadsfd');
 INSERT INTO SQ_ARTIST VALUES ('youna', '010-1271-2222', null,'adfadsfd');
 
 
+INSERT INTO SQ_ARTIST VALUES ('artist1', '010-1991-2922', null,'adfadsfd');
+
+
 --구인 테스트용 데이터(38)
 
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '이리오세요! 기타세션 급구', sysdate, '기타','recruit_indi1.jpg', null, '락', sysdate, '홍대',37.556386, 126.924211, '컴온 이리오세요');
+INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '이리오세요! 기타세션 급구', sysdate, '기타','recruit_indi1.jpg', null, '힙합', sysdate, '홍대',37.556386, 126.924211, '컴온 이리오세요');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '밤을 잊은 그대에게-Jazz', sysdate, '기타','recruit_indi2.jpg', null, '재즈', sysdate, '도림천',37.472118, 126.933605, '컴온');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', 'Jazz - Guitar session', sysdate, '기타','recruit_ind3.jpg', null, '재즈', sysdate, '홍대',37.556309, 126.924104, '요~~');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '재즈 : 베이스 캄온~~!', sysdate, '드럼','recruit_indi4.jpg', null, '락', sysdate, '청담',37.523830, 127.053350, '풋쳐핸즈업');
@@ -413,9 +417,7 @@ INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Drummer!!!', sysd
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', 'Guitar!!!', sysdate, '기타','recruit_indi7.jpg', null, '락', sysdate, '서울 시청',37.565578, 126.977984, '컴온 보이즈');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '베이스 찾습니다', sysdate, '기타','recruit_indi8.jpg', null, '락', sysdate, '홍대',37.555739, 126.923959, '쉬즈건');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '헤비메탈에 목청을 바칩니다', sysdate, '보컬','recruit_indi9.jpg', null, '발라드', sysdate, '대학동',37.470931, 126.938185, '콜라보레이션');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '파티타임! 기타세션~', sysdate, '기타','recruit_indi10.jpg', null, '재즈', sysdate, '신림',37.483913, 126.929257, '아임인');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '창하셨던 분 환영!', sysdate, '보컬', 'recruit_indi11.jpg',null, '재즈', sysdate, '홍대',37.555939, 126.924286, '준');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aaaaa', '빠른 곡 연주 가능한 키보드 세션 급해요!', sysdate, '키보드', 'recruit_indi12.jpg',null, '힙합', sysdate,'청담',37.523668, 127.054047, '컴온 이리오세요');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', 'DRUM 세션 급구!', sysdate, '드럼', 'recruit_indi13.jpg', null,'힙합', sysdate,'삼성동',37.512441, 127.058668, '아리랑');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '드러머! - 퍼포먼스 가능자!', sysdate, '드럼', 'recruit_indi14.jpg',null, '락', sysdate, '도림천',37.471539, 126.93438, '퓨전');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '역삼역-락보컬', sysdate, '보컬', 'recruit_indi15.jpg', null,'재즈', sysdate, '도림천',37.471752, 126.933691, '컴온 이리오세요');
@@ -424,34 +426,29 @@ INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '난 싱어다!!! 
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '키보드 - 실력자 급합니다!', sysdate, '키보드','recruit_indi18.jpg', null, '발라드', sysdate,'삼성동', 37.511488, 127.061088, '컴컴');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'jhs1', '키보드 - 반주자', sysdate, '키보드','recruit_indi19.jpg', null, '재즈', sysdate, '홍대',37.556033, 126.924797, '냥냥');
 
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aaaaa', '락 스피릿]기타세션 급구', sysdate, '기타','recruit_indi20.jpg', null, '락', sysdate, '홍대',37.556386, 126.924221, '컴온 이리오세요');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '기타 세션 구합니다.', sysdate, '기타','recruit_indi21.jpg', null, '재즈', sysdate, '도림천',37.472118, 126.935605, '컴온');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '어구스틱 기타', sysdate, '기타','recruit_ind22.jpg', null, '재즈', sysdate, '홍대',37.556309, 126.924004, '요~~');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '재즈', sysdate, '드럼','recruit_indi23.jpg', null, '락', sysdate, '청담',37.523830, 127.053351, '풋쳐핸즈업');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'kallee', '키보드-꾸준히 하실 분', sysdate, '드럼','recruit_indi24.jpg', null, '락', sysdate, '이대',37.561866, 126.946726, '왓썹?');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Such a *****!(드러머 구인!)', sysdate, '드럼','recruit_indi25.jpg', null, '락', sysdate, '홍대',37.555799, 126.924033, '컴온 레이디즈');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'dd', 'Nanananana-기타리스트 클릭!', sysdate, '기타','recruit_indi26.jpg', null, '락', sysdate, '서울 시청',37.565578, 126.977981, '컴온 보이즈');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '베이스 기타리스트', sysdate, '기타','recruit_indi27.jpg', null, '락', sysdate, '홍대',37.555739, 126.923958, '쉬즈건');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '헤비메탈에 목청을 바칩니다', sysdate, '보컬','recruit_indi28.jpg', null, '발라드', sysdate, '대학동',37.470931, 126.938189, '콜라보레이션');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aaaaa', '파티타임! 기타세션~', sysdate, '기타','recruit_indi29.jpg', null, '재즈', sysdate, '신림',37.483913, 126.929256, '아임인');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '락보컬이 필요해요~', sysdate, '보컬', 'recruit_indi30.jpg',null, '재즈', sysdate, '홍대',37.555939, 126.924284, '준');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'kallee', '키보드 ㄱㄱㄱ', sysdate, '키보드', 'recruit_indi31.jpg',null, '힙합', sysdate,'청담',37.523668, 127.054043, '컴온 이리오세요');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', 'DRUM 세션!', sysdate, '드럼', 'recruit_indi32.jpg', null,'힙합', sysdate,'삼성동',37.512441, 127.058669, '아리랑');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '기타 파트 모집중', sysdate, '기타', 'recruit_indi33.jpg',null, '락', sysdate, '도림천',37.471539, 126.93437, '퓨전');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '발라드 - 보컬 급구', sysdate, '보컬', 'recruit_indi34.jpg', null,'재즈', sysdate, '도림천',37.471752, 126.933692, '컴온 이리오세요');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'aa', '락발라드 기타세션 구합니다', sysdate, '기타','recruit_indi35.jpg', null, '재즈', sysdate, '삼성동',37.511956, 127.060572, '발라드 함 들어보실라예');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '1234', '보컬 가 봅시다~', sysdate, '보컬','recruit_indi36.jpg', null, '락', sysdate, '삼성동',37.510145, 127.061725, '컴온 이리오세요');
-INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, '123', '모든 장르 아우르는 드러머 급구합니다!', sysdate, '드럼','recruit_indi37.png', null, '발라드', sysdate,'삼성동', 37.511488, 127.061089, '컴컴');
 INSERT INTO SQ_RECRUIT VALUES(SQ_RECRUIT_ID_SQ.nextval, 'ss', '재즈에 드럼~ 세션도전!', sysdate, '드럼','recruit_indi38.jpg', null, '재즈', sysdate, '홍대',37.556033, 126.924790, '냥냥');
 
-INSERT INTO SQ_RECRUIT_APPLY VALUES (SQ_RECRUIT_APPLY_ID_SQ.nextval, 1, 'aa');
+INSERT INTO SQ_RECRUIT_APPLY VALUES (SQ_RECRUIT_APPLY_ID_SQ.nextval, 1, 'artist1');
 
 
 
 
 
 --대관 게시물 등록
-INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '즐거운밴드', sysdate+7, sysdate, sysdate+5, '같이해요', 'ex (1).jpg', 'ex (1).jpg', '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
+INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'artist1', '즐거운밴드', sysdate+7, sysdate, sysdate+5, '같이해요', 'ex (1).jpg', 'ex (1).jpg', '서울특별시 강남구', '락', '1', '1', 37.510674, 127.060012599);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '반가운밴드', sysdate+6, sysdate, sysdate+5, '같이해요', 'ex (2).jpg', 'ex (2).jpg', '서울특별시 강남구', '재즈', '1', '1', 37.510674, 127.060012599);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '서울밴드', sysdate+10, sysdate, sysdate+8, '같이해요', 'ex (3).jpg', 'ex (3).jpg', '서울특별시 중랑구', '힙합', '1', '1', 37.59015412293465, 127.08782174306634);
 INSERT INTO sq_rent VALUES(sq_rent_id_sq.nextval, 'aa', '안즐거운밴드', sysdate+9, sysdate, sysdate+7, '같이해요', 'ex (4).jpg', 'ex (4).jpg', '경기도 광명시', '발라드', '1', '1', 37.48071088450467, 126.86225869374994);
@@ -497,8 +494,7 @@ INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '불타는 
 --포트폴리오
 INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, 'ss', '기타', '1988년 기타를 들고 태어남', '저는 많이 활약했어요', 'portFile (1).jpg', 'portMedia (1).MOV');
 INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, 'dd', '기타', '1989년 드럼을 들고 태어남', '저는 많이 활약했어요', 'portFile (2).jpg', 'portMedia (2).MOV');
-INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, '123', '기타', '1990년 키보드를 들고 태어남', '저는 많이 활약했어요', 'portFile (3).jpg', 'portMedia (3).MOV');
-INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, 'kallee', '키보드', '2014년 이후 프리랜서.', '특기: 발라드, 재즈', 'busking53.jpg', 'busking_clip1.mp4');
+INSERT INTO sq_portfolio VALUES (sq_port_id_sq.nextval, 'artist1', '기타', '1990년 키보드를 들고 태어남', '저는 많이 활약했어요', 'portFile (3).jpg', 'portMedia (3).MOV');
 
 --형님밴드 지원자들
 INSERT INTO sq_rent_apply VALUES(sq_rent_apply_id_sq.nextval, 1, 'dd');
@@ -515,7 +511,6 @@ INSERT INTO sq_favorite VALUES('qq', '{"락":0, "발라드":0, "재즈":10, "힙
 INSERT INTO sq_favorite VALUES('nnn', '{"락":0, "발라드":10, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 INSERT INTO sq_favorite VALUES('jhs1', '{"락":0, "발라드":10, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
 
-INSERT INTO sq_favorite VALUES('kallee', '{"락":10, "발라드":7, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":8}' );
 INSERT INTO sq_favorite VALUES('aloha', '{"락":0, "발라드":10, "재즈":20, "힙합":0}', '임시보류', '{"기타":0, "드럼":10, "키보드":0, "보컬":0}' );
 INSERT INTO sq_favorite VALUES('solo', '{"락":10, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":2}' );
 INSERT INTO sq_favorite VALUES('calories', '{"락":10, "발라드":0, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":10, "키보드":0, "보컬":0}' );
@@ -523,6 +518,11 @@ INSERT INTO sq_favorite VALUES('soulmate', '{"락":0, "발라드":0, "재즈":0,
 INSERT INTO sq_favorite VALUES('home', '{"락":12, "발라드":0, "재즈":8, "힙합":0}', '임시보류', '{"기타":0, "드럼":10, "키보드":0, "보컬":0}' );
 INSERT INTO sq_favorite VALUES('gaikoku', '{"락":0, "발라드":10, "재즈":10, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":30, "보컬":5}' );
 INSERT INTO sq_favorite VALUES('youna', '{"락":5, "발라드":1, "재즈":2, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+
+
+INSERT INTO sq_favorite VALUES('artist1', '{"락":15, "발라드":15, "재즈":0, "힙합":0}', '임시보류', '{"기타":0, "드럼":0, "키보드":0, "보컬":0}' );
+
+
 
 INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '오렌지앰프', 'amp.jpg', 'http://freebud.co.kr/', '기타');
 INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '전자드럼', 'drum.jpg', 'http://freebud.co.kr/', '드럼');
@@ -533,18 +533,6 @@ INSERT INTO sq_ad VALUES (sq_ad_id_sq.nextval, '스틱 세일', 'stick.jpg', 'ht
 
 
 -- 버스킹 데이터
-INSERT INTO SQ_BUSKINGLIST VALUES (
-  SQ_BUSKING_ID_SQ.nextval, 'kallee', '예술의 전당에서 합동공연 팀 모집','예술의 전당', 
-  37.478894, 127.011888,'사용안함','발라드',0, '칼리밴드',
-  'busking1.jpg','busking2.jpg','busking3.jpg','busking4.jpg',null,
-  '2016/11/17',120, '칼리밴드에서 협동공연할 팀을 모집합니다.','2016/11/17' 
-);
-INSERT INTO SQ_BUSKINGLIST VALUES (
-  SQ_BUSKING_ID_SQ.nextval,  'kallee', '홍대락!','홍대 입구', 
-  37.555667, 126.923929,'사용안함','락',0, '칼리 밴드',
-  'busking5.jpg',null,null,null,null,
-  '2016/11/18',120, '이번엔 락이다!','2016/11/18' 
-);
 INSERT INTO SQ_BUSKINGLIST VALUES (
   SQ_BUSKING_ID_SQ.nextval, 'aloha', '비가 오는 날이면 생각나는 밴드','홍대 입구', 
   37.555832, 126.924204,'사용안함','발라드',0, '하와이안',
@@ -658,12 +646,6 @@ INSERT INTO SQ_BUSKINGLIST VALUES (
   37.555418, 126.923759,'사용안함','힙합',0, '외쿡인밴드',
   'busking35.jpg','busking36.jpg',null,null,null,
   '2016/11/15',120, '힙합!','2016/11/15' 
-);
-INSERT INTO SQ_BUSKINGLIST VALUES (
-  SQ_BUSKING_ID_SQ.nextval,'youna', '시작','홍대 입구', 
-  37.555465, 126.923550,'사용안함','재즈',0, '그녀들',
-  'busking37.jpg',null,null,null,null,
-  '2016/11/14',120, '그녀들의 느낌~~','201d6/11/14' 
 );
 INSERT INTO SQ_BUSKINGLIST values (SQ_BUSKING_ID_SQ.NEXTVAL, 'jhs1', '불타는 이밤', 
 '홍대입구', '37.554609', '126.922898', 

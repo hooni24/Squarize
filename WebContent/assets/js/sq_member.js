@@ -137,11 +137,6 @@ $(function(){
     				name.focus();
     				return false;
     			}
-    			if(email.val().length<4){
-    				alert("이메일은 도메인포함 정확히 입력해주세요");
-    				email.focus();
-    				return false;
-    			}
     			if(pw.val().length<4 || pw.val().length>8){
     				alert("비밀번호는 4~8자로 입력하여주세요");
     				pw.focus();
@@ -301,11 +296,7 @@ $(function(){
     			var fileLength = file.length;
     			var ext = file.substring(fileLength-3, fileLength);	//확장자
     			
-    			if(email.val().length<4){
-    				alert("이메일은 도메인포함 정확히 입력해주세요");
-    				email.focus();
-    				return false;
-    			}else if(pw.val().length<4 || pw.val().length>8){
+    			if(pw.val().length<4 || pw.val().length>8){
     				alert("비밀번호는 4~8자로 입력하여주세요");
     				pw.focus();
     				return false;
