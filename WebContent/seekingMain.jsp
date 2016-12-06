@@ -332,10 +332,10 @@
 									<div class="input-group location">
 										<input type="text" class="form-control" id="location" placeholder="지역명 입력">
 										<span class="input-group-btn">
-											<button class="btn btn-default animate" type="button">
+											<!-- <button class="btn btn-default animate" type="button">
 												<i class="fa fa-map-marker geolocation"	data-toggle="tooltip" data-placement="bottom"
 													title="내 위치 찾기"></i>
-											</button>
+											</button> --><button class="btn btn-default animate" type="button"><i class="fa fa-map-marker geolocation" data-toggle="tooltip" data-placement="bottom" title="Find my position"></i></button>
 										</span>
 									</div>
 								</div>

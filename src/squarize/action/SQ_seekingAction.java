@@ -116,7 +116,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		System.out.println("지원여부 확인하기.");
 		//지원여부 확인. 지원한 적 있으면, recruit_apply 객체 리턴.
 		sq_recruit_artist.setSq_member_id((String)session.get("loginId"));
-		System.out.println("검색재료(아이디만 있으면 됌) : " + sq_recruit_artist);
+		System.out.println("검색재료(아이디만 있으면 됨) : " + sq_recruit_artist);
 		SQ_seekingDAO dao = new SQ_seekingDAO();
 		SQ_recruit_apply checked_apply = dao.checkApplied(sq_recruit_artist);
 		return checked_apply;
@@ -132,6 +132,7 @@ public class SQ_seekingAction extends ActionSupport implements SessionAware {
 		} else {
 			//지원한 적 없으면(checked_apply가 null) portfolio DB에서 portfolio 유무 확인. 
 			SQ_seekingDAO dao = new SQ_seekingDAO();
+			System.out.println("checkPortfolio : ok???");
 			sq_portfolio = dao.checkPortfolio((String)session.get("loginId"));
 			System.out.println("지원여부 아닌 사람에게서 포트폴리오 객체 얻어옴(있니없니?) : "+sq_portfolio);
 			if(sq_portfolio != null) {

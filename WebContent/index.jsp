@@ -281,7 +281,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading"><img id="bigLogo" src="img/biglogo.png"></h1>
                         <p class="intro-text">밴드와 버스커를 위한 최고의 사이트</p>
-                        <a href="#about" class="btn btn-circle page-scroll">
+                        <a href="#about_-" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
                     </div>

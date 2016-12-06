@@ -226,6 +226,7 @@ public class SQ_seekingDAO {
 	public SQ_recruit_apply checkApplied(SQ_recruit_artist sq_recruit_artist){
 		SQ_recruit_apply applied = null;
 		ss = factory.openSession();
+		System.out.println("sq_recruit_aritst : "+sq_recruit_artist);
 		applied = ss.selectOne("sq_seekingMapper.selectOne_apply", sq_recruit_artist);
 		System.out.println("DAO checkedApplied : " + applied);
 		if(ss != null) ss.close();
@@ -251,7 +252,9 @@ public class SQ_seekingDAO {
 	public SQ_portfolio checkPortfolio(String member_id){
 		SQ_portfolio port = null;
 		ss = factory.openSession();
+		System.out.println("into checkPortfolio method???");
 		port = ss.selectOne("sq_seekingMapper.selectOne_port", member_id);
+		System.out.println("port : "+ port);
 		if(ss != null) ss.close();
 		return port;
 	}
