@@ -80,7 +80,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		sq_member.setSq_member_email_key(authkey);
 		mdao.registerSQmember(sq_member);
 		System.out.println("ACtion sq_member"+sq_member);
-		String authURL= "http://10.10.15.20:8888/Squarize/emailAuth.action?sq_member.sq_member_id="+sq_member.getSq_member_id()+"&sq_member.sq_member_email_key="+authkey;
+		String authURL= "http://10.10.15.2:8888/Squarize/emailAuth.action?sq_member.sq_member_id="+sq_member.getSq_member_id()+"&sq_member.sq_member_email_key="+authkey;
 		//난수를 발생
 		//auth.jsp만들어서 struts.xml에 등록
 		//authURL = http://localhost:8888/Squarize/auth.action?id=아이디&authKey=발생된 난수
