@@ -20,6 +20,9 @@ public class SQ_busking {
 	private int runningtime;
 	private String description;
 	private String end;
+	
+	
+	private String isGoodock;
 
 	public SQ_busking() {
 		// TODO Auto-generated constructor stub
@@ -27,8 +30,8 @@ public class SQ_busking {
 
 	public SQ_busking(int sq_busking_id, String id, String title, String location, String latitude, String longitude,
 			String url, String genre, int rating, String teamname, String gallery, String gallery2, String gallery3,
-			String gallery4, String gallery5, String buskingdate, int runningtime, String description) {
-		super();
+			String gallery4, String gallery5, String buskingdate, int runningtime, String description, String end,
+			String isGoodock) {
 		this.sq_busking_id = sq_busking_id;
 		this.id = id;
 		this.title = title;
@@ -47,7 +50,11 @@ public class SQ_busking {
 		this.buskingdate = buskingdate;
 		this.runningtime = runningtime;
 		this.description = description;
+		this.end = end;
+		this.isGoodock = isGoodock;
 	}
+
+
 
 	public int getSq_busking_id() {
 		return sq_busking_id;
@@ -199,6 +206,17 @@ public class SQ_busking {
 	public void setEnd(String end) {
 		this.end = end;
 	}
+	
+	
+
+
+	public String getIsGoodock() {
+		return isGoodock;
+	}
+
+	public void setIsGoodock(String isGoodock) {
+		this.isGoodock = isGoodock;
+	}
 
 	@Override
 	public String toString() {
@@ -206,6 +224,9 @@ public class SQ_busking {
 				+ location + ", latitude=" + latitude + ", longitude=" + longitude + ", url=" + url + ", genre=" + genre
 				+ ", rating=" + rating + ", teamname=" + teamname + ", gallery=" + gallery + ", gallery2=" + gallery2
 				+ ", gallery3=" + gallery3 + ", gallery4=" + gallery4 + ", gallery5=" + gallery5 + ", buskingdate="
-				+ buskingdate + ", runningtime=" + runningtime + ", description=" + description + ", end=" + end + "]";
+				+ buskingdate + ", runningtime=" + runningtime + ", description=" + description + ", end=" + end
+				+ ", isGoodock=" + isGoodock + "]";
 	}
+
+	
 }

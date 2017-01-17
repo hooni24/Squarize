@@ -58,6 +58,15 @@
 			<result type="redirect">toBuskingMain.action</result>
 		</action>
 		
+		
+		<action name="addGoodock" class="squarize.action.SQ_buskingAction" method="addGoodock">
+			<result type="json"></result>
+		</action>
+		
+		<action name="removeGoodock" class="squarize.action.SQ_buskingAction" method="removeGoodock">
+			<result type="json"></result>
+		</action>
+		
     </package>
 
 </struts>

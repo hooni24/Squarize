@@ -91,4 +91,25 @@
 		WHERE sq_member_id = #{loginId}
 	</select>
 	
+	
+	<select id="mileGet" parameterType="String" resultType="SQ_member">
+		SELECT *
+		FROM sq_member
+		WHERE sq_member_id = #{id}
+	</select>
+	
+	
+	<update id="minusMyMile" parameterType="SQ_member">
+		UPDATE sq_member 
+		SET sq_member_mile = sq_member_mile - #{sq_member_mile}  
+		WHERE sq_member_id = #{sq_member_id}
+	</update>
+	
+	
+	<update id="plusBuskerMile" parameterType="SQ_member">
+		UPDATE sq_member 
+		SET sq_member_mile = sq_member_mile + #{sq_member_mile} 
+		WHERE sq_member_id = #{sq_member_email}
+	</update>
+	
 </mapper>

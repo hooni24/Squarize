@@ -37,6 +37,8 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String condition;
 	private String toDo;
 	
+	private String mile;
+	
 	
 	private File upload;					// 업로드할 파일. Form의 <file> 태그의 name. 
 	private String uploadFileName;			// 업로드할 파일의 파일명 (File타입 속성명 + "FileName") 
@@ -47,10 +49,17 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	private String uploadMediaContentType;		// 업로드할 파일의 컨텐츠 타입 (File타입 속성명 + "ContentType") 
 	
 	
+	
+	private String id;
+	private String buskerId;
+	
 	/**
 	 * 메인페이지에 표시할 각 게시물 카운트
 	 */
 	public String mainCount(){
+		
+		System.out.println("okoko");
+		
 		count = new SQ_memberDAO().mainCount();
 		return SUCCESS;
 	}
@@ -80,7 +89,7 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 		sq_member.setSq_member_email_key(authkey);
 		mdao.registerSQmember(sq_member);
 		System.out.println("ACtion sq_member"+sq_member);
-		String authURL= "http://10.10.15.2:8888/Squarize/emailAuth.action?sq_member.sq_member_id="+sq_member.getSq_member_id()+"&sq_member.sq_member_email_key="+authkey;
+		String authURL= "http://203.233.199.20:8888/Squarize/emailAuth.action?sq_member.sq_member_id="+sq_member.getSq_member_id()+"&sq_member.sq_member_email_key="+authkey;
 		//난수를 발생
 		//auth.jsp만들어서 struts.xml에 등록
 		//authURL = http://localhost:8888/Squarize/auth.action?id=아이디&authKey=발생된 난수
@@ -111,6 +120,9 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	 * 
 	 * */
 	public String loginSQmember() throws Exception{
+		
+		System.out.println("ID : " + sq_member_id);
+		
 		mdao=new SQ_memberDAO();
 		sq_member=mdao.loginSQmember(sq_member_id);
 		if(sq_member != null){
@@ -352,6 +364,12 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 	
 	
 	
+	public String hoowon(){
+		new SQ_memberDAO().hoowon(id, buskerId, mile);
+		return SUCCESS;
+	}
+	
+	
 	
 	
 	public SQ_member getSq_member() {
@@ -497,6 +515,30 @@ public class SQ_memberAction extends ActionSupport implements SessionAware{
 
 	public void setToDo(String toDo) {
 		this.toDo = toDo;
+	}
+
+	public String getMile() {
+		return mile;
+	}
+
+	public void setMile(String mile) {
+		this.mile = mile;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getBuskerId() {
+		return buskerId;
+	}
+
+	public void setBuskerId(String buskerId) {
+		this.buskerId = buskerId;
 	}
 	
 

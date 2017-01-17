@@ -90,6 +90,13 @@
 			<result name="success">auth.jsp</result>
 			<result type="redirect" name="login">index.action</result>
 		</action>
+		
+		
+		<action name="hoowon" class="squarize.action.SQ_memberAction" method="hoowon">
+			<result type="json"></result>
+		</action>
+		
+		
     </package>
 	
 

@@ -12,10 +12,14 @@ public class SQ_buskingDAO {
 	private SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 	private SqlSession ss;
 	
-	public List<SQ_busking> buskingList(){
+	public List<SQ_busking> buskingList(String id){
 		try {
 			ss = factory.openSession();
-			return ss.selectList("sq_buskingMapper.selectAll");
+			if(id == null){
+				return ss.selectList("sq_buskingMapper.selectAll");
+			}else {
+				return ss.selectList("sq_buskingMapper.selectAllwithId", id);
+			}
 		} finally {
 			ss.close();
 		}
@@ -71,6 +75,26 @@ public class SQ_buskingDAO {
 		try {
 			ss = factory.openSession();
 			ss.delete("sq_buskingMapper.deleteTimeout");
+			ss.commit();
+		} finally {
+			ss.close();
+		}
+	}
+
+	public void addGoodock(SQ_busking busking) {
+		try {
+			ss = factory.openSession();
+			ss.insert("sq_buskingMapper.addGoodock", busking);
+			ss.commit();
+		} finally {
+			ss.close();
+		}
+	}
+
+	public void removeGoodock(SQ_busking busking) {
+		try {
+			ss = factory.openSession();
+			ss.delete("sq_buskingMapper.removeGoodock", busking);
 			ss.commit();
 		} finally {
 			ss.close();

@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 import squarize.dao.SQ_buskingDAO;
+import squarize.dao.SQ_memberDAO;
 import squarize.util.FileService;
 import squarize.vo.SQ_busking;
 
@@ -25,6 +26,8 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
    private List<SQ_busking> buskingList;
    private String b_hour;
    private String b_min;
+   private String id;
+   private String buskingId;
    
    private JSONObject jsonData;
    private String source;
@@ -38,16 +41,38 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
    private String genre;
    private String bandName;
    
+   private String mile;
+   
    public String execute(){
 	   return SUCCESS;
    }
+   
+   public String addGoodock(){
+	   SQ_busking = new SQ_busking();
+	   SQ_busking.setId(buskingId);	//버스커 아이디 세팅
+	   SQ_busking.setEnd(id);		//구독자 아이디 세팅
+	   dao.addGoodock(SQ_busking);
+	   return SUCCESS;
+   }
+   
+   public String removeGoodock(){
+	   SQ_busking = new SQ_busking();
+	   SQ_busking.setId(buskingId);	//버스커 아이디 세팅
+	   SQ_busking.setEnd(id);		//구독자 아이디 세팅
+	   dao.removeGoodock(SQ_busking);
+	   return SUCCESS;
+   }
+   
+   
    public String searchBand(){
 	   System.out.println(bandName);
 	   buskingList = new ArrayList<>();
 	      buskingList = dao.searchBand(bandName);
 	      buskingArraylist = new ArrayList<>();
 	      
-				      	for (int i = 0; i < buskingList.size(); i++) {                              
+	      
+	      
+				      	for (int i = 0; i < buskingList.size(); i++) {
 				      		source = "{"+                                                           
 				      				"\"sq_busking_id\": " + buskingList.get(i).getSq_busking_id() +", "+        
 				      				"\"id\": \"" + buskingList.get(i).getId() +"\", "+                  
@@ -65,7 +90,7 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 				      				"\"description\": \""+ buskingList.get(i).getDescription()+"\""+                     
 				      				"}";            
 				      		
-				      			buskingArraylist.add(source);
+			      			buskingArraylist.add(source);
 						}
 	      return SUCCESS;
    }
@@ -101,8 +126,10 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
    
    public String buskingList(){
       buskingList = new ArrayList<>();
-      buskingList = dao.buskingList();
+      buskingList = dao.buskingList(id);
       buskingArraylist = new ArrayList<>();
+      
+      System.out.println(buskingList);
       
 			      	for (int i = 0; i < buskingList.size(); i++) {                              
 			      		source = "{"+                                                           
@@ -119,11 +146,20 @@ public class SQ_buskingAction extends ActionSupport implements SessionAware {
 			      				"\"gallery\": \""+ buskingList.get(i).getGallery()+"\", "+                    
 			      				"\"buskingdate\": \""+ buskingList.get(i).getBuskingdate()+"\", "+                               
 			      				"\"runningtime\": \""+ buskingList.get(i).getRunningtime()+"\", "+                               
-			      				"\"description\": \""+ buskingList.get(i).getDescription()+"\""+                     
-			      				"}";            
+			      				"\"description\": \""+ buskingList.get(i).getDescription()+"\", "+                     
+			      				"\"isGoodock\": \""+ buskingList.get(i).getIsGoodock()+"\""+                     
+			      				"}";
 			      		
 			      			buskingArraylist.add(source);
+			      			
+			      			System.out.println(source);
+			      			
 					}
+			      	
+			      	
+			      	
+	  mile = (new SQ_memberDAO().mileGet(id)).getSq_member_mile();
+			      	
       return SUCCESS;
    }
    
@@ -285,4 +321,28 @@ public String addBusking(){
 	public void setBandName(String bandName) {
 		this.bandName = bandName;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getBuskingId() {
+		return buskingId;
+	}
+
+	public String getMile() {
+		return mile;
+	}
+
+	public void setMile(String mile) {
+		this.mile = mile;
+	}
+
+	public void setBuskingId(String buskingId) {
+		this.buskingId = buskingId;
+	}
+	
+	
 }

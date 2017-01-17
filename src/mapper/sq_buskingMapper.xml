@@ -4,6 +4,18 @@
 <!-- 	<select id="selectAll" resultType="SQ_busking"> -->
 <!-- 		select * from SQ_BUSKINGLIST -->
 <!-- 	</select> -->
+	<select id="selectAllwithId" parameterType="String" resultType="SQ_busking">
+		select SQ_BUSKING_ID, id, title, location, latitude, longitude, url, genre, rating, teamname, 
+		gallery, gallery2, gallery3, gallery4, gallery5, buskingdate, runningtime, description, end,
+			  case when id = (select sq_goodock_id from sq_goodock where sq_member_id = #{id}) 
+			  then 'true' 
+			  else 'false'
+			  end
+			  as isGoodock
+		from sq_buskinglist
+		where end > sysdate
+	</select>
+	
 	<select id="selectAll" resultType="SQ_busking">
 		select SQ_BUSKING_ID, id, title, location, latitude, longitude, url, genre, rating, teamname, 
 		gallery, gallery2, gallery3, gallery4, gallery5, buskingdate, runningtime, description, end
@@ -40,6 +52,18 @@
 		DELETE sq_buskinglist
 		WHERE end &lt; sysdate
 	</delete>
+	
+	
+	<insert id="addGoodock" parameterType="SQ_busking">
+		INSERT INTO sq_goodock
+		VALUES (#{id},#{end})
+	</insert>
+	
+	<delete id="removeGoodock" parameterType="SQ_busking">
+		DELETE sq_goodock
+		WHERE sq_member_id = #{end} AND sq_goodock_id = #{id}
+	</delete>
+	
 </mapper>
 
 

@@ -226,6 +226,34 @@ public class SQ_memberDAO {
 			ss.close();
 		}
 	}
+
+	public SQ_member mileGet(String id) {
+		try {
+			ss = factory.openSession();
+			return ss.selectOne("sq_memberMapper.mileGet", id);
+		} finally {
+			ss.close();
+		}
+	}
+
+	public void hoowon(String id, String buskerId, String mile) {
+		try {
+			ss = factory.openSession();
+			
+			System.out.println(id + buskerId + mile);
+			
+			SQ_member sq = new SQ_member();
+			sq.setSq_member_id(id);
+			sq.setSq_member_email(buskerId);
+			sq.setSq_member_mile(mile);
+			
+			ss.update("sq_memberMapper.minusMyMile", sq);
+			ss.update("sq_memberMapper.plusBuskerMile", sq);
+			ss.commit();
+		} finally {
+			ss.close();
+		}
+	}
 }
 
 
